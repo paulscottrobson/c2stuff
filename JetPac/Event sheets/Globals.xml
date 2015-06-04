@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <variable comment="left/right force" constant="1" name="LEFTRIGHT_THRUST" sid="1719578592230699" static="0" type="number">12</variable>
+        <variable comment="Physics Force for Jetpac" constant="1" name="JETPAC_THRUST" sid="3343218921387918" static="0" type="number">16</variable>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Controls</name>
+    <events>
+        <comment>First, clear thrusting and horizontal movement values</comment>
+        <event-block sid="8509723237633741">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6396388474066827" type="System" />
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="4960485631272543" type="Player">
+                    <param id="0" name="Instance variable">jetThrusting</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="8916866405416172" type="Player">
+                    <param id="0" name="Instance variable">horizontalMovement</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="433437880406601" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Set thrusting if up arrow is down.</comment>
+        <event-block sid="8325354960103602">
+            <conditions>
+                <condition id="2" name="Key is down" sid="4057143612082118" type="Keyboard">
+                    <param id="0" name="Key">38 (Up arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="1513281106070372" type="Player">
+                    <param id="0" name="Instance variable">jetThrusting</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Set firing if space bar is down</comment>
+        <event-block sid="8558247883457875">
+            <conditions>
+                <condition id="2" name="Key is down" sid="2948322805158254" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="1496732028887196" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Translate left and right arrow to set horizontal movement.</comment>
+        <event-block sid="8562832161649851">
+            <conditions>
+                <condition id="2" name="Key is down" sid="64656468046984" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="6962698755673596" type="Player">
+                    <param id="0" name="Instance variable">horizontalMovement</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5630340704135749">
+            <conditions>
+                <condition id="2" name="Key is down" sid="1477677907929324" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="2730203555912109" type="Player">
+                    <param id="0" name="Instance variable">horizontalMovement</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
