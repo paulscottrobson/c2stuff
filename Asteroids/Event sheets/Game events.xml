@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game events</name>
+    <events>
+        <comment>Game globals</comment>
+        <variable constant="0" name="score" sid="8634006042594461" static="0" type="number">-1</variable>
+        <variable comment="lives remaining" constant="0" name="lives" sid="738515966651608" static="0" type="number">0</variable>
+        <variable comment="Current Level Number" constant="0" name="level" sid="9734402933399176" static="0" type="number">1</variable>
+        <variable comment="Non zero when waiting for player to appear" constant="0" name="isHiding" sid="4485005652090439" static="0" type="number">0</variable>
+        <variable comment="Non-zero when game enabled" constant="0" name="isEnabled" sid="154523076303813" static="0" type="number">1</variable>
+        <variable comment="Speed multiplier for asteroid speeds" constant="0" name="speedScalar" sid="8611650519583838" static="0" type="number">1</variable>
+        <variable comment="Number of local asteroids in range" constant="0" name="countLocalAsteroids" sid="2611033549691372" static="0" type="number">0</variable>
+        <comment>Game constants</comment>
+        <variable comment="Player acceleration" constant="1" name="PLAYER_ACCEL" sid="2545696852258352" static="0" type="number">6000</variable>
+        <variable comment="Scalar for automatic deacceleration" constant="0" name="DEACC_SCALAR" sid="7021349050908799" static="0" type="number">0.33</variable>
+        <variable comment="Asteroids must all be this far away to start" constant="0" name="MIN_DISTANCE" sid="2012671295557166" static="0" type="number">110</variable>
+        <variable comment="Max no bullets in play at any time" constant="0" name="MAX_BULLETS" sid="5281860797880221" static="0" type="number">4</variable>
+        <variable comment="Fire time minimum" constant="0" name="FIRE_TIME" sid="3644586297538826" static="0" type="number">0.23</variable>
+        <variable comment="rotating rate, degrees per second" constant="1" name="ROTATE_SPEED" sid="3399430844002668" static="0" type="number">170</variable>
+        <variable comment="time to launch subsequent UFO" constant="0" name="RELAUNCH_TIME" sid="6249503065006048" static="0" type="number">20</variable>
+        <variable comment="time to launch first UFO" constant="1" name="LAUNCH_TIME" sid="91189577361452" static="0" type="number">45</variable>
+        <comment>If score &lt; 0 indicates new game</comment>
+        <event-block sid="4109142323062197">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7696728063437992" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9932062107499005">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="8430196597032935" type="System">
+                            <param id="0" name="First value">score</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2422804101989267" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7810354643430727" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9459433272724446" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Create asteroids on layout start</comment>
+        <event-block sid="7465103820700693">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1456248091566998" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="9511559760388873" type="Asteroid" />
+                <action id="-9" name="Destroy" sid="5163260831425808" type="Bullet" />
+                <action id="-9" name="Destroy" sid="1952576223286031" type="UFO" />
+                <action id="-9" name="Destroy" sid="7751544742334946" type="UFOBullet" />
+                <action id="-9" name="Set value" sid="7320176766261045" type="System">
+                    <param id="0" name="Variable">speedScalar</param>
+                    <param id="1" name="Value">1+(level-1)/8</param>
+                </action>
+                <action id="-9" name="Set value" sid="4693465640781028" type="System">
+                    <param id="0" name="Variable">isHiding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="6646703681050072" type="Player">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="4835199740440805" type="Player">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">LayoutHeight/2</param>
+                </action>
+                <action id="-8" name="Set angle" sid="5073948116574836" type="Player">
+                    <param id="0" name="Angle">random(0,360)</param>
+                </action>
+                <action id="-9" name="Set value" sid="4373328803244857" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="Fade" id="0" name="Restart fade" sid="7956094622919987" type="StartLevelLabel" />
+                <action id="0" name="Call function" sid="2155938370889894" type="Function">
+                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>If Level &gt; 1 replace &quot;Player 1&quot; with &quot;Level #&quot;</comment>
+                <event-block sid="7591056448505883">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7287479390425333" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="631188944874111" type="StartLevelLabel">
+                            <param id="0" name="Text">&quot;Level &quot; &amp; level</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Create required number of asteroids</comment>
+                <event-block sid="4827955883062536">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5791757660611282" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">(level+2)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="8297961150568723" type="System">
+                            <param id="0" name="Object to create">Asteroid</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">random(0,LayoutWidth)</param>
+                            <param id="3" name="Y">random(0,LayoutHeight)</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="6349645145818273" type="Asteroid">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="793428021664677" type="Asteroid">
+                            <param id="0" name="Angle">random(0,360)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2256816679681995" type="Asteroid">
+                            <param id="0" name="Instance variable">currentSize</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1505011289688297" type="Asteroid">
+                            <param id="0" name="Instance variable">requiredSize</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="4401197499054432">
+            <conditions>
+                <condition behavior="Fade" id="0" name="On fade-out finished" sid="2738629043621919" type="StartLevelLabel" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="787751965571395" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle auto appearing when invisible, waiting for a clear space, when it happens disable hiding and fade it in</comment>
+        <event-block sid="6237714739314433">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="212241600305798" type="System">
+                    <param id="0" name="Variable">isHiding</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="595628811123002" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="3238079198162256" type="Asteroid">
+                    <param id="0" name="Instance variable">playerDistance</param>
+                    <param id="1" name="Value">distance(Asteroid.X,Asteroid.Y,Player.X,Player.Y)</param>
+                </action>
+                <action id="-9" name="Set value" sid="5929469730139116" type="System">
+                    <param id="0" name="Variable">countLocalAsteroids</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Count all asteroids that are too near</comment>
+                <event-block sid="73516874845249">
+                    <conditions>
+                        <condition id="-34" name="Pick by evaluate" sid="2304376279609146" type="System">
+                            <param id="0" name="Object">Asteroid</param>
+                            <param id="1" name="Expression">Asteroid.playerDistance &lt; MIN_DISTANCE</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="6426283530130926" type="System">
+                            <param id="0" name="Variable">countLocalAsteroids</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>If ther are none within reach, enable the player</comment>
+                <event-block sid="3591451049083716">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4286462260784826" type="System">
+                            <param id="0" name="Variable">countLocalAsteroids</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="9878658595774003" type="Player" />
+                        <action id="-9" name="Set value" sid="4691523143429363" type="System">
+                            <param id="0" name="Variable">isHiding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="2318416479380863" type="Player">
+                            <param id="0" name="Duration">max(15,LAUNCH_TIME-level*4)</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;launchUFO&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Reset Asteroid sizes, speeds and rotation speeds whenever Asteroid.requiredSize changes</comment>
+        <event-block sid="3896498771729401">
+            <conditions>
+                <condition id="-34" name="Pick by evaluate" sid="4750007626288203" type="System">
+                    <param id="0" name="Object">Asteroid</param>
+                    <param id="1" name="Expression">Asteroid.currentSize &lt;&gt; Asteroid.requiredSize</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="9806865591113291" type="Asteroid">
+                    <param id="0" name="Instance variable">currentSize</param>
+                    <param id="1" name="Value">Asteroid.requiredSize</param>
+                </action>
+                <action id="-5" name="Set width" sid="18611654080517" type="Asteroid">
+                    <param id="0" name="Width">64/Asteroid.currentSize</param>
+                </action>
+                <action id="-6" name="Set height" sid="3215048670093524" type="Asteroid">
+                    <param id="0" name="Height">Asteroid.Width</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1226406027202661" type="Asteroid">
+                    <param id="0" name="Speed">30*Asteroid.currentSize*speedScalar</param>
+                </action>
+                <action behavior="Rotate" id="0" name="Set speed" sid="4906987493879723" type="Asteroid">
+                    <param id="0" name="Speed">50*Asteroid.currentSize</param>
+                </action>
+                <action id="4" name="Set animation" sid="2778728178473379" type="Asteroid">
+                    <param id="0" name="Animation">&quot;asteroid&quot; &amp; choose(1,2,3)</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle ship movement + firing</comment>
+        <event-block sid="2982019728793224">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8512200733066287" type="System">
+                    <param id="0" name="Variable">isHiding</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="8253987969253111" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Handle rotation</comment>
+                <event-block sid="6432974343535197">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="8901472211437427" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" sid="4699327534009483" type="Player">
+                            <param id="0" name="Angle">Player.Angle-ROTATE_SPEED*dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1081029355689111">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="1680850401648017" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" sid="4977698637649922" type="Player">
+                            <param id="0" name="Angle">Player.Angle+ROTATE_SPEED*dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Thrust</comment>
+                <event-block sid="3797874745125853">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="1404975596652523" type="Keyboard">
+                            <param id="0" name="Key">38 (Up arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="CustomMovement" id="4" name="Accelerate toward angle" sid="2288362547078092" type="Player">
+                            <param id="0" name="Acceleration">PLAYER_ACCEL*dt</param>
+                            <param id="1" name="Angle">Player.Angle</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="205443206329734" type="Player">
+                            <param id="0" name="Animation">&quot;Moving&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="0" name="Play" sid="9150614626645418" type="Audio">
+                            <param id="0" name="Audio file">thrust</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Friction</comment>
+                <event-block sid="4048400685066264">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="6605654325555051" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="CustomMovement" id="2" name="Set speed" sid="2416434838091093" type="Player">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="Speed">Player.CustomMovement.Speed*(1-dt*DEACC_SCALAR)</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="1167851866952825" type="Player">
+                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Firing</comment>
+                <event-block sid="5364884165448038">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="7078242252724059" type="Keyboard">
+                            <param id="0" name="Key">32 (Space)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="4183149163509708" type="System">
+                            <param id="0" name="First value">Bullet.Count</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">MAX_BULLETS</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="6139365357788769" type="System">
+                            <param id="0" name="First value">time</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">Player.lastFireTime+FIRE_TIME</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="9416717118983788" type="Player">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="5515493813479016" type="Bullet">
+                            <param id="0" name="Angle">Player.Angle</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7244299894272835" type="Player">
+                            <param id="0" name="Instance variable">lastFireTime</param>
+                            <param id="1" name="Value">time</param>
+                        </action>
+                        <action id="0" name="Play" sid="1980477883454767" type="Audio">
+                            <param id="0" name="Audio file">shoot</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Stores UID of hit asteroid, size and direction for newly spawned asteroids</comment>
+        <variable comment="How big a newly created asteroid is" constant="0" name="asteroidNewSize" sid="8406282801078716" static="0" type="number">0</variable>
+        <variable comment="ID of hit asteroid, means only one !" constant="0" name="hitAsteroidID" sid="6031086716348613" static="0" type="number">0</variable>
+        <variable comment="direction of destroying bullet" constant="0" name="bulletDirection" sid="2854996789872258" static="0" type="number">0</variable>
+        <comment>Hit the UFO</comment>
+        <event-block sid="3342348806501972">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7396606750210938" type="UFO">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5001448887019597" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">UFO.isLarge ? 250:1000</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9190847459516605" type="UFO">
+                    <param id="0" name="Object">AsteroidDied</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5660360778982511" type="UFO" />
+                <action id="-9" name="Destroy" sid="8263985646955447" type="Bullet" />
+                <action id="0" name="Call function" sid="4956166676327128" type="Function">
+                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Play" sid="6163226199487778" type="Audio">
+                    <param id="0" name="Audio file">explode1</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Hit asteroid we save the UID of the asteroid because we only want a single collision to occur, so one bullet can only destroy one asteroid.</comment>
+        <event-block sid="8992368553236012">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2709101260559195" type="Asteroid">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1093009674174415" type="System">
+                    <param id="0" name="Variable">hitAsteroidID</param>
+                    <param id="1" name="Value">Asteroid.UID</param>
+                </action>
+                <action id="-9" name="Set value" sid="8787687468493221" type="System">
+                    <param id="0" name="Variable">bulletDirection</param>
+                    <param id="1" name="Value">Bullet.Bullet.AngleOfMotion</param>
+                </action>
+                <action id="-9" name="Destroy" sid="2681840215729733" type="Bullet" />
+            </actions>
+        </event-block>
+        <comment>Is there an asteroid that has been hit</comment>
+        <event-block sid="6129417910556389">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3548622350959662" type="System">
+                    <param id="0" name="Variable">hitAsteroidID</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Select it, and zero the hit ID variable for next time.</comment>
+                <event-block sid="922101517037869">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="9852535115658319" type="Asteroid">
+                            <param id="0" name="Unique ID">hitAsteroidID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="647254048567198" type="System">
+                            <param id="0" name="Variable">hitAsteroidID</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Play" sid="7387181259699689" type="Audio">
+                            <param id="0" name="Audio file">explode1</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Shrink and rotate the asteroid that you&apos;ve just hit, and save the new size and direction for the spawned asteroid, then spawn it. </comment>
+                        <event-block sid="4745150921162612">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2249081354722555" type="Asteroid">
+                                    <param id="0" name="Instance variable">currentSize</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5694765949520025" type="Asteroid">
+                                    <param id="0" name="Angle">bulletDirection+90</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="9528852121202265" type="Asteroid">
+                                    <param id="0" name="Instance variable">requiredSize</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="1594449296552916" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">(Asteroid.currentSize = 1) ? 20:50</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="5851241636071539" type="System">
+                                    <param id="0" name="Variable">asteroidNewSize</param>
+                                    <param id="1" name="Value">Asteroid.requiredSize</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="1214548326907205" type="System">
+                                    <param id="0" name="Object to create">Asteroid</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">Asteroid.X</param>
+                                    <param id="3" name="Y">Asteroid.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="8365596875324646" type="Function">
+                                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Destroyed the tiniest asteroid, so just destroy it.</comment>
+                        <event-block sid="2658816604251364">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7257023893415435" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="6222032843521357" type="Asteroid">
+                                    <param id="0" name="Object">AsteroidDied</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="6131111817533398" type="Asteroid" />
+                                <action id="-9" name="Destroy" sid="2128162887490434" type="Bullet" />
+                                <action id="-10" name="Add to" sid="3830060750684057" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2086419778921872" type="Function">
+                                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Level complete ?</comment>
+        <event-block sid="3207791727428287">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="1035839360314965" type="System">
+                    <param id="0" name="First value">Asteroid.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="3959401129752978" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="2397335731272475" type="System" />
+            </actions>
+        </event-block>
+        <comment>Set size and direction of new Asteroid - it doesn&apos;t work if you put this after the object creation.</comment>
+        <event-block sid="1596390712077046">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="2646323960482397" type="Asteroid">
+                    <param id="0" name="Instance variable">currentSize</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="6374831235899457" type="Asteroid">
+                    <param id="0" name="Instance variable">requiredSize</param>
+                    <param id="1" name="Value">asteroidNewSize</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="1954337296566235" type="Asteroid">
+                    <param id="0" name="Angle">bulletDirection-90</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="9493598157999513" type="Asteroid">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle UFO</comment>
+        <event-block sid="8680012875693238">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="6794300327526015" type="Player">
+                    <param id="0" name="Tag">&quot;launchUFO&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="4972672649634751" type="Player">
+                    <param id="0" name="Duration">max(5,RELAUNCH_TIME-level*2)</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;launchUFO&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Only actually launch if there isn&apos;t one, only one at once.</comment>
+                <event-block sid="3551209926925741">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7519620123971229" type="System">
+                            <param id="0" name="First value">UFO.Count</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="7083857574621655" type="System">
+                            <param id="0" name="First value">isEnabled</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="2099348078587515" type="System">
+                            <param id="0" name="Object to create">UFO</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">random(32,LayoutHeight-32)</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="957594963135275" type="UFO">
+                            <param id="0" name="Speed">speedScalar*80</param>
+                        </action>
+                        <action id="0" name="Play" sid="7417281592326886" type="Audio">
+                            <param id="0" name="Audio file">saucer</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>50/50 Chance of a large UFO</comment>
+                        <event-block sid="5237323712904453">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4926900360943089" type="System">
+                                    <param id="0" name="First value">random(0,1)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0.5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-7" name="Set size" sid="7190035024298168" type="UFO">
+                                    <param id="0" name="Width">44</param>
+                                    <param id="1" name="Height">22</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="3844315779629872" type="UFO">
+                                    <param id="0" name="Instance variable">isLarge</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="8117554334693489" type="UFO">
+                                    <param id="0" name="Speed">speedScalar*40</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Every 1/2 second, 1 in 4 chance of firing a bullet if there is a UFO and enabled is on.</comment>
+        <event-block sid="5120691568250106">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8591694273043438" type="System">
+                    <param id="0" name="Interval (seconds)">0.5/speedScalar</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="6656944277116365" type="System">
+                    <param id="0" name="First value">random(0,1)</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value"> 0.25</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="4655004603282227" type="System">
+                    <param id="0" name="First value">UFO.Count</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="5357623797818155" type="System">
+                    <param id="0" name="First value">isEnabled</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="778156417908683" type="UFO">
+                    <param id="0" name="Object">UFOBullet</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="7461734482112722" type="UFOBullet">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Large UFO shoots randomly</comment>
+                <event-block sid="1728596870675876">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="929941615920073" type="UFO">
+                            <param id="0" name="Instance variable">isLarge</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" sid="6070759054429097" type="UFOBullet">
+                            <param id="0" name="Angle">random(0,360)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Life lost - check collisions and store ID of hit object, again using this to pick one only in the case of multiple collisions.</comment>
+        <variable constant="0" name="hitObjectID" sid="7136912628802982" static="0" type="number">0</variable>
+        <event-block sid="5594080500821124">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="2102202299305197" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4181115448906785" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1585301008665787">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="957353755405453" type="Player">
+                    <param id="0" name="Object">UFOBullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8730016530519109" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Value">UFOBullet.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="784337109451045">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5271034500069592" type="Player">
+                    <param id="0" name="Object">UFO</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5041577625630961" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Value">UFO.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="983917793236884">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8563825535789493" type="Player">
+                    <param id="0" name="Object">Asteroid</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8987736244453671" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Value">Asteroid.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If hit something then restart, clear hit flag, destroy UFOs, show particle, hide player and stop movement</comment>
+        <event-block sid="1326008801234122">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5790897328086824" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="559288514347962" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6725774724680514" type="System">
+                    <param id="0" name="Variable">isHiding</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6945907104130053" type="UFO" />
+                <action id="-9" name="Destroy" sid="6213916152607201" type="UFOBullet" />
+                <action id="0" name="Spawn another object" sid="3842337589038774" type="Player">
+                    <param id="0" name="Object">AsteroidDied</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="246973526171424" type="System">
+                    <param id="0" name="Variable">isHiding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="8153831695726876" type="Player">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3585619170038199" type="System">
+                    <param id="0" name="Variable">isEnabled</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="CustomMovement" id="0" name="Stop" sid="8431132375117074" type="Player" />
+                <action id="-11" name="Subtract from" sid="4700193011127861" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Call function" sid="5251177463738864" type="Function">
+                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Play" sid="6902879943285951" type="Audio">
+                    <param id="0" name="Audio file">explode1</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">5</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="969358483194163" type="System">
+                    <param id="0" name="Variable">hitObjectID</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>This fade ending starts the wait for the space phase</comment>
+                <event-block sid="8978375376822817">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4916519783021004" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="2999323316449694" type="StartLevelLabel" />
+                    </actions>
+                </event-block>
+                <comment>If lives is zero, it&apos;s game over time folks.</comment>
+                <event-block sid="6540535638185481">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="3454660194234195" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="4433367529499148" type="GameOverLabel" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Here at game over display finished, just restarts. Setting score to -1 means the level/lives/score will all be reset. If using another screen for HiScore, go to that layout and set score to -1 before coming back to this one.</comment>
+        <event-block sid="2507563936871186">
+            <conditions>
+                <condition behavior="Fade" id="0" name="On fade-out finished" sid="6425940709711164" type="GameOverLabel" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="-9" name="Set value" sid="6422805747568256" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="2286481273776388" type="System">
+                    <param id="0" name="Layout">Start</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Update score and lives</comment>
+        <event-block sid="2964963725560311">
+            <conditions>
+                <condition id="0" name="On function" sid="2220203742014929" type="Function">
+                    <param id="0" name="Name">&quot;updateScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="3456193811238015" type="Score">
+                    <param id="0" name="Text">(score &lt; 100) ? right(&quot;0&quot;&amp;score,2):score</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6990841953006705" type="Life">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="9428464538586188">
+                    <conditions>
+                        <condition id="-34" name="Pick by evaluate" sid="6360419126098599" type="System">
+                            <param id="0" name="Object">Life</param>
+                            <param id="1" name="Expression">Life.lifeNumber &lt;= lives</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="5531051989454541" type="Life">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Asteroids</name>
+    <description>Version of the 1979 Atari Vector Arcade Game</description>
+    <version>1.0.0.0</version>
+    <author>Paul Robson</author>
+    <author-email>paul@robsons.org.uk</author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>4z5zye6x5ntq</unique-id>
+    <saved-with-version>20600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Rotate" version="1">Rotate</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+        <behavior author="Scirra" id="custom" version="1">Custom Movement</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>640</width>
+        <height>640</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <first-layout>Start</first-layout>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="Asteroid" sid="4958539929636213">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="size the asteroid actually is" name="currentSize" sid="2903035191112603" type="number" />
+                <instance-variable comment="Size we want asteroid to be (1 = largest,3 = smallest)" name="requiredSize" sid="9107042162052167" type="number" />
+                <instance-variable comment="distance from Asteroid to player" name="playerDistance" sid="3388351917606826" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="2896769500936559">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Rotate" sid="3545688989260719">
+                    <behavior id="Rotate" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="106335049709609">
+                    <behavior id="wrap" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="asteroid1" pingpong="0" repeatcount="1" repeatto="0" sid="2711485498916368" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Asteroids\as1.png">
+                        <collision-poly>
+                            <point x="0.140625" y="0.140625" />
+                            <point x="0.5" y="0.09375" />
+                            <point x="0.875" y="0.125" />
+                            <point x="0.90625" y="0.5" />
+                            <point x="0.84375" y="0.84375" />
+                            <point x="0.5" y="0.921875" />
+                            <point x="0.140625" y="0.859375" />
+                            <point x="0.125" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="asteroid2" pingpong="0" repeatcount="1" repeatto="0" sid="6798675472444669" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Asteroids\as2.png">
+                        <collision-poly>
+                            <point x="0.203125" y="0.203125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.859375" y="0.140625" />
+                            <point x="0.765625" y="0.5" />
+                            <point x="0.875" y="0.875" />
+                            <point x="0.5" y="0.921875" />
+                            <point x="0.15625" y="0.84375" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="asteroid3" pingpong="0" repeatcount="1" repeatto="0" sid="7730689761412154" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Asteroids\as3.png">
+                        <collision-poly>
+                            <point x="0.109375" y="0.109375" />
+                            <point x="0.5" y="0.1875" />
+                            <point x="0.859375" y="0.140625" />
+                            <point x="0.890625" y="0.5" />
+                            <point x="0.859375" y="0.859375" />
+                            <point x="0.5" y="1" />
+                            <point x="0.109375" y="0.890625" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Player" sid="8755436400059584">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="system time last fired." name="lastFireTime" sid="7666418538417919" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Wrap" sid="8532551674083548">
+                    <behavior id="wrap" />
+                </behavior-type>
+                <behavior-type name="CustomMovement" sid="5615369294456071">
+                    <behavior id="custom" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="4241461491878575">
+                    <behavior id="Fade" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="6112164919807479">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2429815029628538" speed="10">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="FirePoint" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="2" loop="1" name="Moving" pingpong="0" repeatcount="1" repeatto="0" sid="5752125809719862" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="FirePoint" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="FirePoint" x="1" y="0.5" />
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="9635776549046059">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="Debug" sid="5427987570439379">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Bullet" sid="7473912030007984">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="4087323341179278">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="1092338396704695">
+                    <behavior id="wrap" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="2890012857752356">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5973400369050055" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Score" sid="6568783814199613">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Practice\Docs\Asteroids\hyperspace.png" />
+        </object-type>
+        <object-type name="Life" sid="9594782787540359">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="system time last fired." name="lifeNumber" sid="4026325088096566" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6437910814176702" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="FirePoint" x="0.5" y="0" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="AsteroidDied" sid="2780631752750535">
+            <plugin id="Particles" />
+            <texture />
+        </object-type>
+        <object-type name="Function" sid="8501153125967763">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="StartLevelLabel" sid="9532519226982787">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="943309792731587">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Construct2\Sprite Font Creator\hyperspace.png" />
+        </object-type>
+        <object-type name="UFO" sid="533425855882188">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="true if large UFO" name="isLarge" sid="4211693231884048" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="5148603189722469">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="4111232287763609">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9957011858777146" speed="5">
+                    <frame duration="1" hotspotX="0.511628" hotspotY="0.521739" original-source="C:\Construct2\Practice\Docs\Asteroids\ship.png">
+                        <collision-poly>
+                            <point x="0.209302" y="0.391304" />
+                            <point x="0.488372" y="0" />
+                            <point x="0.860465" y="0.478261" />
+                            <point x="0.883721" y="0.782609" />
+                            <point x="0.488372" y="1" />
+                            <point x="0.0930233" y="0.826087" />
+                            <point x="0.0930233" y="0.478261" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="UFOBullet" sid="2932665020987061">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="6690169728348751">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="2487733739321362">
+                    <behavior id="wrap" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="5779791781170585">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8033126983462087" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="1504226214341169">
+            <plugin id="Audio" />
+        </object-type>
+        <object-type name="GameOverLabel" sid="5125446795933301">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="3405657405797654">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Construct2\Sprite Font Creator\hyperspace.png" />
+        </object-type>
+        <object-type name="TextItem" sid="9464334916607992">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Sprite Font Creator\hyperspace.png" />
+        </object-type>
+        <object-type global="1" name="HighScoreList" sid="7293968368675251">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="ScoreItem" sid="9437906333068123">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Sprite Font Creator\hyperspace.png" />
+        </object-type>
+        <object-type name="Touch" sid="870584625572368">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="LocalStorage" sid="6128094220518973">
+            <plugin id="LocalStorage" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Game.xml</layout>
+        <layout>Start.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Game events.xml</event-sheet>
+        <event-sheet>Start events.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Keyboard" uid="2" />
+        <global-instance type="Function" uid="11" />
+        <global-instance type="Audio" uid="15">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
+        <global-instance type="Touch" uid="22">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="LocalStorage" uid="23" />
+    </global-instances>
+    <sounds-folder>
+        <file name="saucer.m4a" />
+        <file name="saucer.ogg" />
+        <file name="shoot.m4a" />
+        <file name="shoot.ogg" />
+        <file name="thrust.m4a" />
+        <file name="thrust.ogg" />
+        <file name="explode1.m4a" />
+        <file name="explode1.ogg" />
+        <file name="life.m4a" />
+        <file name="life.ogg" />
+    </sounds-folder>
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

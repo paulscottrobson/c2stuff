@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Start events</name>
+    <events>
+        <variable comment="Key for Asteroids" constant="0" name="ASTEROID_KEY" sid="8171538386477237" static="0" type="text">PSRAsteroidHighScores</variable>
+        <comment>On start, check Asteroid key exists.</comment>
+        <event-block sid="9696787749369013">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="123374830822685" type="System" />
+            </conditions>
+            <actions>
+                <action id="5" name="Check item exists" sid="7912085338628699" type="LocalStorage">
+                    <param id="0" name="Key">ASTEROID_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If key not found, create default values and refresh it.</comment>
+        <event-block sid="7426545471679397">
+            <conditions>
+                <condition id="10" name="On item missing" sid="2454013796397302" type="LocalStorage">
+                    <param id="0" name="Key">ASTEROID_KEY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="4866085090926654">
+                    <conditions>
+                        <condition id="-10" name="For" sid="828259072947143" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">7</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set at X" sid="3617407721492407" type="HighScoreList">
+                            <param id="0" name="X">loopindex</param>
+                            <param id="1" name="Value">1000</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5513140171096017">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="5511031312419111" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set at X" sid="9868807901284475" type="HighScoreList">
+                            <param id="0" name="X">8</param>
+                            <param id="1" name="Value">score</param>
+                        </action>
+                        <action id="0" name="Call function" sid="1326772792426508" type="Function">
+                            <param id="0" name="Name">&quot;refreshHighScore&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If High Score Table exists, retrieve it.</comment>
+        <event-block sid="3600688913700107">
+            <conditions>
+                <condition id="9" name="On item exists" sid="1998547278359891" type="LocalStorage">
+                    <param id="0" name="Key">ASTEROID_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="2735910804877349" type="LocalStorage">
+                    <param id="0" name="Key">ASTEROID_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When retrieved add latest score and update hst</comment>
+        <event-block sid="4503654125421604">
+            <conditions>
+                <condition id="1" name="On item get" sid="1053899251720357" type="LocalStorage">
+                    <param id="0" name="Key">ASTEROID_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="11" name="Load" sid="5497463197363994" type="HighScoreList">
+                    <param id="0" name="JSON">LocalStorage.ItemValue</param>
+                </action>
+                <action id="2" name="Set at X" sid="9023399289983133" type="HighScoreList">
+                    <param id="0" name="X">8</param>
+                    <param id="1" name="Value">score</param>
+                </action>
+                <action id="0" name="Call function" sid="3675996070138654" type="Function">
+                    <param id="0" name="Name">&quot;refreshHighScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On touch start game. Setting score to -1 is an instruction to restart the game in game - zeros score, sets lives, sets level.</comment>
+        <event-block sid="2529734077126938">
+            <conditions>
+                <condition id="14" name="On tap" sid="5940019820092902" type="Touch" />
+                <condition id="-10" name="For" sid="2737580376491973" type="System">
+                    <param id="0" name="Name">&quot;&quot;</param>
+                    <param id="1" name="Start index">0</param>
+                    <param id="2" name="End index">7</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="282926801890808" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="6622998190209968" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Sort High Score and Update Text, write back to Local Storage</comment>
+        <event-block sid="8111711420432454">
+            <conditions>
+                <condition id="0" name="On function" sid="9339832654575924" type="Function">
+                    <param id="0" name="Name">&quot;refreshHighScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Sort" sid="1361213981206867" type="HighScoreList">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="7" name="Reverse" sid="1728743327546783" type="HighScoreList">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5867254975631591" type="ScoreItem" />
+            </actions>
+            <sub-events>
+                <event-block sid="3524708773625878">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5828211741488229" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">7</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="5382681071443457" type="System">
+                            <param id="0" name="Object to create">ScoreItem</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">loopindex*40+140</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2538512480050324" type="ScoreItem">
+                            <param id="0" name="Text">(loopindex+1) &amp; &quot;. AAA &quot; &amp; right(&quot;00000&quot; &amp; HighScoreList.At(loopindex),6)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Write back (option to delete here for testing)</comment>
+                <event-block sid="9629415104360064">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3696881768338704" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set item" sid="5451183980149185" type="LocalStorage">
+                            <param id="0" name="Key">ASTEROID_KEY</param>
+                            <param id="1" name="Value">HighScoreList.AsJSON</param>
+                        </action>
+                        <action disabled="1" id="2" name="Remove item" sid="9634196048893582" type="LocalStorage">
+                            <param id="0" name="Key">ASTEROID_KEY</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
