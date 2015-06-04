@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>Controls</name>
+    <name>Controllers</name>
     <events>
         <comment>First, clear thrusting and horizontal movement values</comment>
         <event-block sid="8509723237633741">

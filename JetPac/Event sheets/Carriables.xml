@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Carriables</name>
+    <events>
+        <comment>random dropping of fuel when it is required.</comment>
+        <comment>random dropping of collectables</comment>
+        <comment></comment>
+        <comment>On layout start, not carrying anything.</comment>
+        <event-block sid="4211418616457282">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="2375376562034397" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="409353662497172" type="Player">
+                    <param id="0" name="Instance variable">carriedUID</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Forces carriable objects (e.g. anything that can fall) to not fall at a speed beyond a specified velocity</comment>
+        <event-block sid="2217816212074396">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="2717792273615512" type="Carriable">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">DROP_VELOCITY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="2143769330384125" type="Carriable">
+                    <param id="0" name="X component">0</param>
+                    <param id="1" name="Y component">DROP_VELOCITY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Collided with a carriable object</comment>
+        <event-block sid="1173222109706079">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1252299185778972" type="Player">
+                    <param id="0" name="Object">Carriable</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Is it the right carriable object ?</comment>
+                <event-block sid="4560200459446542">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9045987364493546" type="Carriable">
+                            <param id="0" name="Instance variable">carryID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">gameState</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5613988355684914" type="Player">
+                            <param id="0" name="Instance variable">carriedUID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="800719853588075" type="Player">
+                            <param id="0" name="Instance variable">carriedUID</param>
+                            <param id="1" name="Value">Carriable.UID</param>
+                        </action>
+                        <action behavior="Physics" id="27" name="Set enabled" sid="3808922445271037" type="Carriable">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Is it an immediately collectable object ? TODO: Score for immediate collectable.</comment>
+                <event-block sid="3601951407323378">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2590726847337731" type="Carriable">
+                            <param id="0" name="Instance variable">carryID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">COLLECTABLE_ID</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If something is being carried, make it stay with the player until we let go of it, and check we can drop it.</comment>
+        <event-block sid="6791967805811652">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="6899451809657076" type="Player">
+                    <param id="0" name="Instance variable">carriedUID</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Carrying it, so force a pin in code. </comment>
+                <event-block sid="6106801605829088">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="258224283830126" type="Carriable">
+                            <param id="0" name="Unique ID">Player.carriedUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="1093565337610096" type="Carriable">
+                            <param id="0" name="X">Player.X</param>
+                            <param id="1" name="Y">Player.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Reached the rocket position, plus or minus a bit.</comment>
+                <event-block sid="438104462738574">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="3059750031574725" type="System">
+                            <param id="0" name="First value">abs(Player.X-Rocket.X)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>If there, find carried object, detach the carry, move to next game state, re-enable physics so it falls and make it fall in the right line. TODO: falling, terminate out when past a specific Y value.</comment>
+                        <event-block sid="799845499474229">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="3537173005284888" type="Carriable">
+                                    <param id="0" name="Unique ID">Player.carriedUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="8054604520006692" type="System">
+                                    <param id="0" name="Variable">gameState</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7607605029350184" type="Player">
+                                    <param id="0" name="Instance variable">carriedUID</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="3766810015674156" type="Carriable">
+                                    <param id="0" name="Instance variable">yTerminal</param>
+                                    <param id="1" name="Value">Rocket.Y</param>
+                                </action>
+                                <action behavior="Physics" id="27" name="Set enabled" sid="4924379891066398" type="Carriable">
+                                    <param id="0" name="Mode">1</param>
+                                </action>
+                                <action behavior="Physics" id="15" name="Set velocity" sid="447011386842293" type="Carriable">
+                                    <param id="0" name="X component">0</param>
+                                    <param id="1" name="Y component">0</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="7656911058722519" type="Carriable">
+                                    <param id="0" name="X">Rocket.X</param>
+                                </action>
+                                <action behavior="Physics" id="21" name="Set immovable" sid="986134754216944" type="Carriable">
+                                    <param id="0" name="Setting">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="8369293531521934">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="1454759375329321" type="Carriable">
+                                            <param id="0" name="Instance variable">carryID</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="8386884187979578" type="Carriable">
+                                            <param id="0" name="Instance variable">yTerminal</param>
+                                            <param id="1" name="Value">-64/Carriable.carryID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Component reached the dropping place, then reset game status</comment>
+        <event-block sid="6701336116105167">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="880957501369397" type="Carriable">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">Carriable.yTerminal-4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="9588655994089956" type="Function">
+                    <param id="0" name="Name">&quot;setGameStatus&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

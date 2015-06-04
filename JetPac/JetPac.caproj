@@ -10,13 +10,17 @@
     <unique-id>2x7l4btktrc07</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects>
@@ -163,6 +167,7 @@
                 <instance-variable comment="True if fire button down" name="isFiring" sid="9828735640191705" type="boolean" />
                 <instance-variable comment="Horizontal Movement (-1, 0, 1)" name="horizontalMovement" sid="2652886393959584" type="number" />
                 <instance-variable comment="True if jet is thrusting." name="jetThrusting" sid="4878912133879317" type="boolean" />
+                <instance-variable comment="UID of carried object" name="carriedUID" sid="9168607493903479" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Physics" sid="9732427514280041">
@@ -171,19 +176,19 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="4" loop="1" name="Walking" pingpong="0" repeatcount="1" repeatto="0" sid="5682222764261167" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\walk1.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\walk2.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\walk3.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\walk4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\walk1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\walk2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\walk3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\walk4.png" />
                 </animation>
                 <animation framecount="4" loop="1" name="Flying" pingpong="0" repeatcount="1" repeatto="0" sid="5196264032165644" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\jet1.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\jet2.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\jet3.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\jet4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\jet1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\jet2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\jet3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\jet4.png" />
                 </animation>
                 <animation framecount="1" loop="0" name="Waiting" pingpong="0" repeatcount="1" repeatto="0" sid="8501259038718599" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\walk1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\walk1.png" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -200,6 +205,124 @@
                     <behavior id="Physics" />
                 </behavior-type>
             </behaviors>
+            <texture />
+        </object-type>
+        <object-type name="Laser" sid="7907072109226613">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="colour" sid="5600845130119551" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="749525894640226">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="4977070165267738">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9253112177230456" speed="5">
+                    <frame duration="1" hotspotX="0.515625" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Function" sid="9928427102416245">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Rocket" sid="609580680173381">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="8" loop="0" name="Rocket1" pingpong="0" repeatcount="1" repeatto="0" sid="5622521722920278" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_5.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p1_3.png" />
+                </animation>
+                <animation framecount="8" loop="0" name="Rocket2" pingpong="0" repeatcount="1" repeatto="0" sid="9840430730675765" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_5.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket2_6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p2_3.png" />
+                </animation>
+                <animation framecount="8" loop="0" name="Rocket3" pingpong="0" repeatcount="1" repeatto="0" sid="971460589283823" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_5.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket3_6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p3_3.png" />
+                </animation>
+                <animation framecount="8" loop="0" name="Rocket4" pingpong="0" repeatcount="1" repeatto="0" sid="4592679527796985" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_4.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_5.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket4_6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p4_3.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Component" sid="2070026300926033">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="3" loop="0" name="Rocket1" pingpong="0" repeatcount="1" repeatto="0" sid="6046077544569386" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p1_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p1_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p1_3.png" />
+                </animation>
+                <animation framecount="3" loop="0" name="Rocket2" pingpong="0" repeatcount="1" repeatto="0" sid="5711742441651761" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p2_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p2_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p2_3.png" />
+                </animation>
+                <animation framecount="3" loop="0" name="Rocket3" pingpong="0" repeatcount="1" repeatto="0" sid="4659835690579492" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p3_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p3_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p3_3.png" />
+                </animation>
+                <animation framecount="3" loop="0" name="Rocket4" pingpong="0" repeatcount="1" repeatto="0" sid="8861537128689085" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p4_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p4_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket_p4_3.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="FuelBar" sid="7885587485086691">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5431541615733854" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\fuel.png">
+                        <collision-poly>
+                            <point x="0.375" y="0.375" />
+                            <point x="0.625" y="0.375" />
+                            <point x="1" y="0.5" />
+                            <point x="0.9375" y="0.9375" />
+                            <point x="0.0625" y="0.9375" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Engine" sid="6049752039880687">
+            <plugin id="Particles" />
             <texture />
         </object-type>
     </object-folder>
@@ -224,6 +347,21 @@
                 </effect-type>
             </effects>
         </family>
+        <family name="Carriable" plugin-id="Sprite" sid="7043534243102998">
+            <members>
+                <member>Component</member>
+                <member>FuelBar</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="-2 (middle) -1 (top) 0+ (fuel) -99 (collectable)" name="carryID" sid="6453614379251433" type="number" />
+                <instance-variable comment="y position after which the droppable has landed." name="yTerminal" sid="778898590068426" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Physics" sid="5555513954087615">
+                    <behavior id="Physics" />
+                </behavior-type>
+            </behaviors>
+        </family>
     </families>
     <layout-folder>
         <layout>Main Game.xml</layout>
@@ -232,10 +370,13 @@
         <event-sheet>Game Events.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>Player Movement.xml</event-sheet>
-        <event-sheet>Controls.xml</event-sheet>
+        <event-sheet>Controllers.xml</event-sheet>
+        <event-sheet>System.xml</event-sheet>
+        <event-sheet>Carriables.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="55" />
+        <global-instance type="Function" uid="60" />
     </global-instances>
     <sounds-folder />
     <music-folder />

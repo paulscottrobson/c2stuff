@@ -13,8 +13,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <layout order="0">Main Game</layout>
         <event-sheet order="1">Game Events</event-sheet>
         <event-sheet order="2">Globals</event-sheet>
-        <event-sheet active="1" order="3">Player Movement</event-sheet>
-        <event-sheet order="4">Controls</event-sheet>
+        <event-sheet order="3">Player Movement</event-sheet>
+        <event-sheet order="4">Controllers</event-sheet>
+        <event-sheet order="5">System</event-sheet>
+        <event-sheet active="1" order="6">Carriables</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -24,6 +26,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </properties>
     <families-expanded root="1">
         <family expanded="1" name="Platforms" />
+        <family expanded="1" name="Carriable" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
@@ -38,5 +41,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/PlatformCentre/" />
         <folder expanded="1" path="animation-folder/LivesSprite/" />
         <folder expanded="1" path="animation-folder/Player/" />
+        <folder expanded="1" path="animation-folder/Laser/" />
+        <folder expanded="1" path="animation-folder/Rocket/" />
+        <folder expanded="1" path="animation-folder/Component/" />
+        <folder expanded="1" path="animation-folder/FuelBar/" />
     </folders-expanded>
 </c2uistate>

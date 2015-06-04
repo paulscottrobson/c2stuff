@@ -3,7 +3,29 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
+        <comment></comment>
+        <comment>GLOBAL VARIABLES</comment>
+        <comment></comment>
+        <comment>Current game score</comment>
+        <variable comment="Current Score" constant="0" name="score" sid="9056718505906741" static="0" type="number">0</variable>
+        <comment>Current number of lives, including the current one</comment>
+        <variable comment="Number of lives" constant="0" name="lives" sid="5437640299672346" static="0" type="number">3</variable>
+        <comment>Highest score so far this run.</comment>
+        <variable comment="Current high score" constant="0" name="highScore" sid="8148229376884348" static="0" type="number">1000</variable>
+        <comment>-2 = collecting middle part, -1 = collecting top part, 0+ means complete rocket with that amount of fuel. Also specifies what collectable should be collected.</comment>
+        <variable comment="Current state of play" constant="0" name="gameState" sid="6928549597316304" static="0" type="number">-2</variable>
+        <comment>ID of Rocket in use (1-4)</comment>
+        <variable comment="Rocket Number" constant="0" name="rocketID" sid="451883565815713" static="0" type="number">2</variable>
+        <comment></comment>
+        <comment>CONSTANTS</comment>
+        <comment></comment>
+        <comment>Force applied to move horizontally</comment>
         <variable comment="left/right force" constant="1" name="LEFTRIGHT_THRUST" sid="1719578592230699" static="0" type="number">12</variable>
+        <comment>Force applied to counteract gravity.</comment>
         <variable comment="Physics Force for Jetpac" constant="1" name="JETPAC_THRUST" sid="3343218921387918" static="0" type="number">16</variable>
+        <comment>How fast objects fall, maximum</comment>
+        <variable comment="How fast objects fall (maximum)" constant="1" name="DROP_VELOCITY" sid="1648254197176057" static="0" type="number">16</variable>
+        <comment>Carry ID for things that score points immediately rather than being carried to the rocket.</comment>
+        <variable comment="CarryID for things that score points immediately." constant="0" name="COLLECTABLE_ID" sid="8235626516204275" static="0" type="number">-99</variable>
     </events>
 </c2eventsheet>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>System</name>
+    <events>
+        <comment>Start a new level off. The purpose of this is to set up rocket parts according to a specification.</comment>
+        <event-block sid="6697144844463802">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7784513005657095" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="6251887164157098" type="Function">
+                    <param id="0" name="Name">&quot;updateDisplay&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="744401293487361" type="Function">
+                    <param id="0" name="Name">&quot;setGameStatus&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action behavior="Physics" id="15" name="Set velocity" sid="9117018186853488" type="Player">
+                    <param id="0" name="X component">0</param>
+                    <param id="1" name="Y component">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="8013605721298836" type="Player">
+                    <param id="0" name="X">320</param>
+                    <param id="1" name="Y">368</param>
+                </action>
+                <action id="-9" name="Destroy" sid="4272437629457238" type="Laser" />
+                <action id="-9" name="Destroy" sid="9805962672069319" type="Engine" />
+            </actions>
+        </event-block>
+        <comment>This function updates the score, highscore and lives.</comment>
+        <event-block sid="6696048532833602">
+            <conditions>
+                <condition id="0" name="On function" sid="7462318000554224" type="Function">
+                    <param id="0" name="Name">&quot;updateDisplay&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7207252728833015" type="System">
+                    <param id="0" name="Variable">highScore</param>
+                    <param id="1" name="Value">max(score,highScore)</param>
+                </action>
+                <action id="0" name="Set text" sid="1705340668261667" type="Score">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; score,6)</param>
+                </action>
+                <action id="0" name="Set text" sid="7918953569045296" type="HighScore">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; highScore,6)</param>
+                </action>
+                <action id="0" name="Set text" sid="5088055211989984" type="Lives">
+                    <param id="0" name="Text">lives</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>This function sets up the game state from -2 to 6 - puts all the bits that should be there in the right position.</comment>
+        <event-block sid="9246840300558195">
+            <conditions>
+                <condition id="0" name="On function" sid="7028841211430864" type="Function">
+                    <param id="0" name="Name">&quot;setGameStatus&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="8234424294901692" type="Rocket">
+                    <param id="0" name="Animation">&quot;Rocket&quot; &amp; rocketID</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="2" name="Stop" sid="4660877221198409" type="Rocket" />
+                <action id="-9" name="Destroy" sid="8426743277964011" type="Component" />
+                <action id="-9" name="Destroy" sid="7111178726124969" type="FuelBar" />
+            </actions>
+            <sub-events>
+                <comment>If game state &lt; 0, then the rocket base only is visible. (e.g. frame 7), create the top component and middle components on their respective platforms</comment>
+                <event-block sid="2101559968376403">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7079242438848551" type="System">
+                            <param id="0" name="Variable">gameState</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="486573580898598" type="Rocket">
+                            <param id="0" name="Frame number">7</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="6131067315877261" type="System">
+                            <param id="0" name="Object to create">Component</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">112</param>
+                            <param id="3" name="Y">144</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="5388877754175327" type="Component">
+                            <param id="0" name="Animation">&quot;Rocket&quot; &amp; rocketID</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="213087761789299" type="Component">
+                            <param id="0" name="Instance variable">carryID</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="2" name="Stop" sid="6173750064101236" type="Component" />
+                        <action id="5" name="Set frame" sid="3133224232280195" type="Component">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="9398032895411261" type="System">
+                            <param id="0" name="Object to create">Component</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">272</param>
+                            <param id="3" name="Y">192</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9408193631230741" type="Component">
+                            <param id="0" name="Animation">&quot;Rocket&quot; &amp; rocketID</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="914106930507241" type="Component">
+                            <param id="0" name="Instance variable">carryID</param>
+                            <param id="1" name="Value">-2</param>
+                        </action>
+                        <action id="2" name="Stop" sid="1463195913924589" type="Component" />
+                        <action id="5" name="Set frame" sid="3992499049360949" type="Component">
+                            <param id="0" name="Frame number">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>For -1, we move the rocket middle section to where it should be, as we&apos;ve collected it.</comment>
+                        <event-block sid="9830357207787264">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="777372666033757" type="System">
+                                    <param id="0" name="Variable">gameState</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="5444078529598086" type="Component">
+                                    <param id="0" name="X">Rocket.X</param>
+                                    <param id="1" name="Y">336</param>
+                                </action>
+                                <action behavior="Physics" id="27" name="Set enabled" sid="9894551833900051" type="Component">
+                                    <param id="0" name="Mode">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>If the game state is 0-6 then we have a fueled rocket, the graphic is selected using the animation frame which is the same as the number of fuel items.</comment>
+                <event-block sid="6116575630002023">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9367520759624064" type="System">
+                            <param id="0" name="Variable">gameState</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="5775989057581865" type="Rocket">
+                            <param id="0" name="Frame number">gameState</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
