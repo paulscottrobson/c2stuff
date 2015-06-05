@@ -16,8 +16,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="3">Controllers</event-sheet>
         <event-sheet order="4">System</event-sheet>
         <event-sheet order="5">Carriables</event-sheet>
-        <event-sheet order="6">Enemies</event-sheet>
-        <event-sheet active="1" order="7">Globals</event-sheet>
+        <event-sheet active="1" order="6">Enemies</event-sheet>
+        <event-sheet order="7">Globals</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />

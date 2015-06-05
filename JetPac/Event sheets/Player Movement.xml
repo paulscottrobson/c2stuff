@@ -8,7 +8,11 @@
             <conditions>
                 <condition id="-9" name="Is visible" sid="3949124481972093" type="Player" />
             </conditions>
-            <actions />
+            <actions>
+                <action behavior="Physics" id="12" name="Set world gravity" sid="5868974500109327" type="Player">
+                    <param id="0" name="Gravity">6</param>
+                </action>
+            </actions>
             <sub-events>
                 <comment>Handle vertically up thrust when jetpack is firing</comment>
                 <event-block sid="1953491854864086">

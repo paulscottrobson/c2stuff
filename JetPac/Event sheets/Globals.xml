@@ -25,7 +25,7 @@
         <comment>Force applied to move horizontally</comment>
         <variable comment="left/right force" constant="1" name="LEFTRIGHT_THRUST" sid="1719578592230699" static="0" type="number">12</variable>
         <comment>Force applied to counteract gravity.</comment>
-        <variable comment="Physics Force for Jetpac" constant="1" name="JETPAC_THRUST" sid="3343218921387918" static="0" type="number">16</variable>
+        <variable comment="Physics Force for Jetpac" constant="1" name="JETPAC_THRUST" sid="3343218921387918" static="0" type="number">10</variable>
         <comment>How fast objects fall, maximum</comment>
         <variable comment="How fast objects fall (maximum)" constant="1" name="DROP_VELOCITY" sid="1648254197176057" static="0" type="number">22</variable>
         <comment>Carry ID for things that score points immediately rather than being carried to the rocket.</comment>
