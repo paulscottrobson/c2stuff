@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Enemies</name>
+    <events>
+        <comment>Purely for debugging, allows easy tweak of enemy type displayed</comment>
+        <event-block sid="1073029207137813">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5355969581627347" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9113264376004637" type="System">
+                    <param id="0" name="Variable">enemyType</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Create objects at 1Hz if not 4 present, also player must be visible.</comment>
+        <event-block sid="8461276835221469">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="3176539717550971" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="-9" name="Is visible" sid="9265673095692849" type="Player" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6407090699843114">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="923736792880173" type="System">
+                            <param id="0" name="First value">Enemy.Count</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="1287581054878482" type="System">
+                            <param id="0" name="Object to create">Enemy</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>When enemy created, set a random colour, set type ID and Animation, mirror if necessary and call ControlEnemy for the first time</comment>
+        <event-block sid="4094582331741537">
+            <conditions>
+                <condition id="-18" name="On created" sid="7744318973852382" type="Enemy" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="3233121724696543" type="Enemy">
+                    <param id="0" name="Instance variable">colour</param>
+                    <param id="1" name="Value">floor(random(1,8))</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2661162836372206" type="Enemy">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,0) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2325340373416311" type="Enemy">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,1) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="7432373047698998" type="Enemy">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,2) * 100</param>
+                </action>
+                <action id="-3" name="Set position" sid="2422096523848059" type="Enemy">
+                    <param id="0" name="X">random(0,1) &lt; 0.5 ? 0 : LayoutWidth</param>
+                    <param id="1" name="Y">random(48,LayoutHeight-48)</param>
+                </action>
+                <action id="4" name="Set animation" sid="3152873067268545" type="Enemy">
+                    <param id="0" name="Animation">&quot;Enemy&quot; &amp; enemyType</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5942620526586312" type="Enemy">
+                    <param id="0" name="Instance variable">isFirst</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="5896345392191716" type="Enemy">
+                    <param id="0" name="Instance variable">typeID</param>
+                    <param id="1" name="Value">enemyType</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Handle right to left moving enemies with mirroring</comment>
+                <event-block sid="9061952126498223">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="5065870759697678" type="Enemy">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth/2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="4769440844881818" type="Enemy">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="2839358481443276" type="Enemy">
+                            <param id="0" name="Angle">180</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="5813797093504989" type="Enemy">
+                            <param id="0" name="Instance variable">isLeftMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>And finally call ControlEnemy to setup</comment>
+                <event-block sid="8401440292542185">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="4671931498030251" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="6963857363832448" type="Function">
+                            <param id="0" name="Name">&quot;controlEnemy&quot;</param>
+                            <param id="1" name="Parameter {n}">Enemy.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Update all objects at 4Hz depending on adjustment rate.</comment>
+        <event-block sid="8229229235073194">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="9518850032671792" type="System">
+                    <param id="0" name="Interval (seconds)">0.25</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5255961031783576">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="6044266131506679" type="Enemy">
+                            <param id="0" name="Instance variable">adjustRate</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">random(0,1)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="6159787367081917" type="Function">
+                            <param id="0" name="Name">&quot;controlEnemy&quot;</param>
+                            <param id="1" name="Parameter {n}">Enemy.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Hit a platform</comment>
+        <event-block sid="7857619901291157">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7407106207704695" type="Enemy">
+                    <param id="0" name="Object">Platforms</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If dies in collision, errr... die</comment>
+                <event-block sid="9741760978441105">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="1136767583936368" type="Enemy">
+                            <param id="0" name="Instance variable">diesOnCollision</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="1153577674724026" type="Enemy">
+                            <param id="0" name="Object">Explosion</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="8318522024142148" type="Explosion">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">getbit(Enemy.colour,0) * 100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="3253694178439943" type="Explosion">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">getbit(Enemy.colour,1) * 100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="5621085776133631" type="Explosion">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">getbit(Enemy.colour,2) * 100</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8588505467457374" type="Enemy" />
+                    </actions>
+                </event-block>
+                <comment>Otherwise bounce</comment>
+                <event-block sid="7806718757451868">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="8650395687487202" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="5036148977307721" type="Enemy">
+                            <param id="0" name="Angle">360-Enemy.Bullet.AngleOfMotion</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Enemy shot</comment>
+        <event-block sid="8578753025973126">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4389347319070944" type="Enemy">
+                    <param id="0" name="Object">Laser</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="2014220248621746" type="Enemy">
+                    <param id="0" name="Object">Explosion</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="1612450635111672" type="Explosion">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,0) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="1940250120648804" type="Explosion">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,1) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="7934848655199984" type="Explosion">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">getbit(Enemy.colour,2) * 100</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7175903245796133" type="Enemy" />
+                <action id="-10" name="Add to" sid="6839686762370114" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">25</param>
+                </action>
+                <action id="0" name="Call function" sid="9016155174464901" type="Function">
+                    <param id="0" name="Name">&quot;updateDisplay&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6047389641684612">
+            <conditions>
+                <condition id="4" name="On finished" sid="5105526407689574" type="Explosion">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5627183381160361" type="Explosion" />
+            </actions>
+        </event-block>
+        <comment>Function to adjust enemies behaviour</comment>
+        <event-block sid="844718815045816">
+            <conditions>
+                <condition id="0" name="On function" sid="8022954519458218" type="Function">
+                    <param id="0" name="Name">&quot;controlEnemy&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9162787605549113">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="2022660479961312" type="Enemy">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="7451561284996249" type="Enemy">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Enemy type 1 (Meteorites) and 7 (Spaceships). Gently wander up and down, die on collision with platforms.</comment>
+                        <event-block any="1" sid="2504053729057897">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9575974369908909" type="Enemy">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="4193427297607976" type="Enemy">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">7</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="2868575314591723" type="Enemy">
+                                    <param id="0" name="Instance variable">diesOnCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2083077814748487" type="Enemy">
+                                    <param id="0" name="Angle">Enemy.isLeftMoving ? random(155,205) : random(-25,25)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="569917230574165" type="Enemy">
+                                    <param id="0" name="Speed">60</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5422034788047637" type="Enemy">
+                                    <param id="0" name="Instance variable">adjustRate</param>
+                                    <param id="1" name="Value">0.15</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Enemy type 2 (Furballs) bounces off platforms</comment>
+                        <event-block any="1" sid="3808093946862955">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="6770219516518773" type="Enemy">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="1098618071039711" type="Enemy">
+                                    <param id="0" name="Instance variable">diesOnCollision</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="1171406022520961" type="Enemy">
+                                    <param id="0" name="Angle">Enemy.isLeftMoving ? choose(225,135):choose(45,-45)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="4056638445725873" type="Enemy">
+                                    <param id="0" name="Speed">70</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8647543542702327" type="Enemy">
+                                    <param id="0" name="Instance variable">adjustRate</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Enemy type 3 (Balls) 6 (Crosses) - like the furballs except every so often they redirect</comment>
+                        <event-block any="1" sid="8839852994094624">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="1642594913098916" type="Enemy">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="8847805124769733" type="Enemy">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="1756407609673211" type="Enemy">
+                                    <param id="0" name="Instance variable">diesOnCollision</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="7763798465474335" type="Enemy">
+                                    <param id="0" name="Angle">Enemy.isLeftMoving ? choose(225,180,135):choose(45,0,-45)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="5388237154045223" type="Enemy">
+                                    <param id="0" name="Speed">70</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4759847518239783" type="Enemy">
+                                    <param id="0" name="Instance variable">adjustRate</param>
+                                    <param id="1" name="Value">0.15</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="801611327806112">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="8633330314160198" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="4243588623603012" type="Enemy">
+                            <param id="0" name="Instance variable">isFirst</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="2522050991339807" type="Enemy">
+                            <param id="0" name="Instance variable">isFirst</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

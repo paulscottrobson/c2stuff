@@ -22,6 +22,7 @@
         <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
     </used-behaviors>
     <used-effects>
         <effect author="Scirra" id="setcolor">Set color</effect>
@@ -363,7 +364,7 @@
                             <point x="0.0625" y="0.5" />
                         </collision-poly>
                     </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" />
                 </animation>
                 <animation framecount="1" loop="0" name="Collect2" pingpong="0" repeatcount="1" repeatto="0" sid="6474641701084606" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect3.png">
@@ -402,6 +403,125 @@
                             <point x="0.0625" y="0.5" />
                         </collision-poly>
                     </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Enemy" sid="7090541848491254">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="RGB Colour 1-7" name="colour" sid="776706659938391" type="number" />
+                <instance-variable comment="enemy type" name="typeID" sid="3213028772656576" type="number" />
+                <instance-variable comment="Chance n &lt; (0-1) of responding to 4Hz tick" name="adjustRate" sid="5442415764219564" type="number" />
+                <instance-variable comment="If true, enemy dies on collision with platforms" name="diesOnCollision" sid="9673505492359144" type="boolean" />
+                <instance-variable comment="Set to true if moving right to left" name="isLeftMoving" sid="4163049361972969" type="boolean" />
+                <instance-variable comment="True if first call to controlEnemy" name="isFirst" sid="4597932220782849" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="7524346127156447">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="4633426347314751">
+                    <behavior id="wrap" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Enemy1" pingpong="0" repeatcount="1" repeatto="0" sid="7835343423019342" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy1a.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy1b.png" />
+                </animation>
+                <animation framecount="2" loop="1" name="Enemy2" pingpong="0" repeatcount="1" repeatto="0" sid="9526134431487517" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy2a.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy2b.png" />
+                </animation>
+                <animation framecount="2" loop="1" name="Enemy3" pingpong="0" repeatcount="1" repeatto="0" sid="2650670093686612" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy3a.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy3b.png" />
+                </animation>
+                <animation framecount="1" loop="0" name="Enemy4" pingpong="0" repeatcount="1" repeatto="0" sid="3585517538129082" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy4.png">
+                        <collision-poly>
+                            <point x="0.375" y="0.375" />
+                            <point x="0.5" y="0.4375" />
+                            <point x="0.5625" y="0.4375" />
+                            <point x="0.875" y="0.5" />
+                            <point x="0.75" y="0.75" />
+                            <point x="0.25" y="0.75" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Enemy5" pingpong="0" repeatcount="1" repeatto="0" sid="8929913638947467" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy5.png">
+                        <collision-poly>
+                            <point x="0.5" y="0.1875" />
+                            <point x="1" y="0.5" />
+                            <point x="0.6875" y="0.6875" />
+                            <point x="0.3125" y="0.6875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Enemy6" pingpong="0" repeatcount="1" repeatto="0" sid="3906955038213992" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy6.png">
+                        <collision-poly>
+                            <point x="0.3125" y="0.3125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.5625" y="0.4375" />
+                            <point x="1" y="0.5" />
+                            <point x="0.6875" y="0.6875" />
+                            <point x="0.5" y="0.9375" />
+                            <point x="0.5" y="0.5" />
+                            <point x="0.0625" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Enemy7" pingpong="0" repeatcount="1" repeatto="0" sid="1979431466224886" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy7.png">
+                        <collision-poly>
+                            <point x="0.1875" y="0.1875" />
+                            <point x="0.5" y="0.1875" />
+                            <point x="0.75" y="0.25" />
+                            <point x="0.625" y="0.5" />
+                            <point x="0.75" y="0.75" />
+                            <point x="0.5" y="0.8125" />
+                            <point x="0.1875" y="0.8125" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Enemy8" pingpong="0" repeatcount="1" repeatto="0" sid="2674357807247099" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\enemy8.png">
+                        <collision-poly>
+                            <point x="0.1875" y="0.1875" />
+                            <point x="0.5" y="0.125" />
+                            <point x="0.8125" y="0.1875" />
+                            <point x="1" y="0.5" />
+                            <point x="0.8125" y="0.8125" />
+                            <point x="0.5" y="0.875" />
+                            <point x="0.1875" y="0.8125" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Explosion" sid="1066964708672484">
+            <plugin id="Sprite" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3332450060973182" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode3.png" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -454,6 +574,7 @@
         <event-sheet>Controllers.xml</event-sheet>
         <event-sheet>System.xml</event-sheet>
         <event-sheet>Carriables.xml</event-sheet>
+        <event-sheet>Enemies.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="55" />

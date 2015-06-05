@@ -11,13 +11,13 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">Main Game</layout>
-        <event-sheet active="1" order="1">Game Events</event-sheet>
-        <event-sheet order="2">Globals</event-sheet>
-        <event-sheet order="3">Player Movement</event-sheet>
-        <event-sheet order="4">Controllers</event-sheet>
-        <event-sheet order="5">System</event-sheet>
-        <event-sheet order="6">Carriables</event-sheet>
-        <event-sheet order="7">Enemies</event-sheet>
+        <event-sheet order="1">Game Events</event-sheet>
+        <event-sheet order="2">Player Movement</event-sheet>
+        <event-sheet order="3">Controllers</event-sheet>
+        <event-sheet order="4">System</event-sheet>
+        <event-sheet order="5">Carriables</event-sheet>
+        <event-sheet order="6">Enemies</event-sheet>
+        <event-sheet active="1" order="7">Globals</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -47,5 +47,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Component/" />
         <folder expanded="1" path="animation-folder/FuelBar/" />
         <folder expanded="1" path="animation-folder/Collectable/" />
+        <folder expanded="1" path="animation-folder/Enemy/" />
+        <folder expanded="1" path="animation-folder/Explosion/" />
     </folders-expanded>
 </c2uistate>

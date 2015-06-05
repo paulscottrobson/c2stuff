@@ -13,5 +13,7 @@
         <include>Player Movement</include>
         <comment>Handle carrying and dropping things.</comment>
         <include>Carriables</include>
+        <comment>Handle enemy creation and movement update</comment>
+        <include>Enemies</include>
     </events>
 </c2eventsheet>

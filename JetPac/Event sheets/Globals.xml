@@ -31,6 +31,6 @@
         <comment>Carry ID for things that score points immediately rather than being carried to the rocket.</comment>
         <variable comment="CarryID for things that score points immediately." constant="0" name="COLLECTABLE_ID" sid="8235626516204275" static="0" type="number">-99</variable>
         <comment>Maximum walking speed</comment>
-        <variable comment="Max walking speed" constant="1" name="MAX_WALK_VELOCITY" sid="7766735367418986" static="0" type="number">20</variable>
+        <variable comment="Max walking speed" constant="1" name="MAX_WALK_VELOCITY" sid="7766735367418986" static="0" type="number">32</variable>
     </events>
 </c2eventsheet>

@@ -72,6 +72,10 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="8608450851300747">
+                    <conditions />
+                    <actions />
+                </event-block>
             </sub-events>
         </event-block>
         <comment>If something is being carried, make it stay with the player until we let go of it, and check we can drop it.</comment>
@@ -122,10 +126,6 @@
                                     <param id="0" name="Variable">gameState</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="-10" name="Set value" sid="7607605029350184" type="Player">
-                                    <param id="0" name="Instance variable">carriedUID</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
                                 <action id="-10" name="Set value" sid="3766810015674156" type="Carriable">
                                     <param id="0" name="Instance variable">yTerminal</param>
                                     <param id="1" name="Value">Rocket.Y</param>
@@ -142,6 +142,10 @@
                                 </action>
                                 <action behavior="Physics" id="21" name="Set immovable" sid="986134754216944" type="Carriable">
                                     <param id="0" name="Setting">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8043593603133347" type="Player">
+                                    <param id="0" name="Instance variable">carriedUID</param>
+                                    <param id="1" name="Value">0</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -175,6 +179,10 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="-10" name="Set value" sid="5090253026112113" type="Player">
+                    <param id="0" name="Instance variable">carriedUID</param>
+                    <param id="1" name="Value">0</param>
+                </action>
                 <action id="-9" name="Destroy" sid="5828524429880425" type="Carriable" />
                 <action id="0" name="Call function" sid="9588655994089956" type="Function">
                     <param id="0" name="Name">&quot;setGameStatus&quot;</param>

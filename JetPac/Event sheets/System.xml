@@ -56,6 +56,7 @@
                     <param id="1" name="Y">368</param>
                 </action>
                 <action id="-9" name="Destroy" sid="4272437629457238" type="Laser" />
+                <action id="-9" name="Destroy" sid="8408364786755358" type="Enemy" />
             </actions>
         </event-block>
         <comment>Rocket in flight</comment>
