@@ -3,6 +3,35 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>System</name>
     <events>
+        <comment>Start of game indicated by level &lt; 0</comment>
+        <event-block sid="5041887741384449">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9586400096591995" type="System" />
+                <condition id="-14" name="Compare variable" sid="6325119260768496" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1980230169914875" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="7190139706556503" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+                <action id="-9" name="Set value" sid="5005838009474579" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Call function" sid="616081806516316" type="Function">
+                    <param id="0" name="Name">&quot;setUpLevel&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
         <comment>Start a new level off. The purpose of this is to set up rocket parts according to a specification.</comment>
         <event-block sid="6697144844463802">
             <conditions>
@@ -29,6 +58,130 @@
                 <action id="-9" name="Destroy" sid="4272437629457238" type="Laser" />
             </actions>
         </event-block>
+        <comment>Rocket in flight</comment>
+        <event-block sid="6504884837424828">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="6279411457972584" type="Rocket">
+                    <param id="0" name="Instance variable">flightDirection</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="4737799903626588" type="Rocket">
+                    <param id="0" name="Y">Rocket.Y+Rocket.flightDirection*40*dt</param>
+                </action>
+                <action id="-3" name="Set position" sid="3275693862227638" type="Engine">
+                    <param id="0" name="X">Rocket.X</param>
+                    <param id="1" name="Y">Rocket.Y</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Rocket lands</comment>
+                <event-block sid="1736707288550429">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6706425460160372" type="Rocket">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">368</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="8782529092704706" type="Rocket">
+                            <param id="0" name="Instance variable">flightDirection</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="3910953222269277" type="Player">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3583747833532239" type="System">
+                            <param id="0" name="Variable">gameState</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3139401642209292" type="Function">
+                            <param id="0" name="Name">&quot;setGameStatus&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2050516957659648" type="Rocket">
+                            <param id="0" name="Instance variable">flightDirection</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Rocket leaves top off screen, set up for next level and reload layout</comment>
+                <event-block sid="8001028074686114">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6070982711538283" type="Rocket">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">32</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="8632540888137005" type="Rocket">
+                            <param id="0" name="Instance variable">flightDirection</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="5736039833083882" type="System">
+                            <param id="0" name="Variable">gameState</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="931891832795132" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3366391586072056" type="Function">
+                            <param id="0" name="Name">&quot;setUpLevel&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="73350980514338" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment></comment>
+        <comment>Functions</comment>
+        <comment></comment>
+        <comment>This function is called to set up a new level. Sets the rocket ID and enemy type, and the game state to -3 (landing). Levels 0,5,10,15 etc. have the construction part.</comment>
+        <event-block sid="9902537870433477">
+            <conditions>
+                <condition id="0" name="On function" sid="7979493115370584" type="Function">
+                    <param id="0" name="Name">&quot;setUpLevel&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="77247414657284" type="System">
+                    <param id="0" name="Variable">rocketID</param>
+                    <param id="1" name="Value">floor(level/5) % 4 + 1</param>
+                </action>
+                <action id="-9" name="Set value" sid="3524712388349877" type="System">
+                    <param id="0" name="Variable">gameState</param>
+                    <param id="1" name="Value">-3</param>
+                </action>
+                <action id="-9" name="Set value" sid="8229410155075214" type="System">
+                    <param id="0" name="Variable">enemyType</param>
+                    <param id="1" name="Value">level % 8 + 1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>On every 5th level, we have a construction level.</comment>
+                <event-block sid="7653908394750895">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7401880798318187" type="System">
+                            <param id="0" name="First value">level % 5</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2546516873548487" type="System">
+                            <param id="0" name="Variable">gameState</param>
+                            <param id="1" name="Value">-2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
         <comment>This function updates the score, highscore and lives.</comment>
         <event-block sid="6696048532833602">
             <conditions>
@@ -49,6 +202,9 @@
                 </action>
                 <action id="0" name="Set text" sid="5088055211989984" type="Lives">
                     <param id="0" name="Text">lives</param>
+                </action>
+                <action disabled="1" id="0" name="Set text" sid="9678484432039937" type="HighScore">
+                    <param id="0" name="Text">&quot;Level: &quot;&amp;level</param>
                 </action>
             </actions>
         </event-block>
@@ -216,86 +372,6 @@
                         </action>
                         <action id="-15" name="Set visible" sid="3193335492515542" type="Player">
                             <param id="0" name="Visibility">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <comment>Rocket in flight</comment>
-        <event-block sid="3016457732432486">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="724697384434488" type="Rocket">
-                    <param id="0" name="Instance variable">flightDirection</param>
-                    <param id="1" name="Comparison">1</param>
-                    <param id="2" name="Value">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-2" name="Set Y" sid="8316739593204202" type="Rocket">
-                    <param id="0" name="Y">Rocket.Y+Rocket.flightDirection*40*dt</param>
-                </action>
-                <action id="-3" name="Set position" sid="8769371061554923" type="Engine">
-                    <param id="0" name="X">Rocket.X</param>
-                    <param id="1" name="Y">Rocket.Y</param>
-                </action>
-            </actions>
-            <sub-events>
-                <comment>Rocket lands</comment>
-                <event-block sid="8211198907100852">
-                    <conditions>
-                        <condition id="-2" name="Compare Y" sid="5545839721458246" type="Rocket">
-                            <param id="0" name="Comparison">4</param>
-                            <param id="1" name="Y co-ordinate">368</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="7586745071327202" type="Rocket">
-                            <param id="0" name="Instance variable">flightDirection</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-15" name="Set visible" sid="4107479117120939" type="Player">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="7623041605377565" type="System">
-                            <param id="0" name="Variable">gameState</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="0" name="Call function" sid="4033772897460887" type="Function">
-                            <param id="0" name="Name">&quot;setGameStatus&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                        <action id="-10" name="Set value" sid="8219482393267323" type="Rocket">
-                            <param id="0" name="Instance variable">flightDirection</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Rocket leaves top off screen // TODO: Return to main screen</comment>
-                <event-block sid="5870232497740153">
-                    <conditions>
-                        <condition id="-2" name="Compare Y" sid="5571584046700605" type="Rocket">
-                            <param id="0" name="Comparison">2</param>
-                            <param id="1" name="Y co-ordinate">32</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="5258559039631521" type="Rocket">
-                            <param id="0" name="Instance variable">flightDirection</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-10" name="Add to" sid="6099270651626338" type="System">
-                            <param id="0" name="Variable">gameState</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="0" name="Call function" sid="3666483114640804" type="Function">
-                            <param id="0" name="Name">&quot;setGameStatus&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                        <action id="-10" name="Set value" sid="1301333431642454" type="Rocket">
-                            <param id="0" name="Instance variable">flightDirection</param>
-                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                 </event-block>
