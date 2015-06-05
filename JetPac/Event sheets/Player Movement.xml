@@ -3,178 +3,191 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Player Movement</name>
     <events>
-        <comment>Handle vertically up thrust when jetpack is firing</comment>
-        <event-block sid="1953491854864086">
+        <comment>Only move and fire when Player is visible</comment>
+        <event-block sid="6581488099635442">
             <conditions>
-                <condition id="-8" name="Is boolean instance variable set" sid="9270849490962293" type="Player">
-                    <param id="0" name="Instance variable">jetThrusting</param>
-                </condition>
+                <condition id="-9" name="Is visible" sid="3949124481972093" type="Player" />
             </conditions>
-            <actions>
-                <action behavior="Physics" id="2" name="Apply force at angle" sid="6870953549961101" type="Player">
-                    <param id="0" name="Force">JETPAC_THRUST</param>
-                    <param id="1" name="Angle">-90</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <comment>Apply horizontal thrust and mirror animation if moving left/right.</comment>
-        <event-block sid="2183140914828711">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="4411291941373149" type="Player">
-                    <param id="0" name="Instance variable">horizontalMovement</param>
-                    <param id="1" name="Comparison">1</param>
-                    <param id="2" name="Value">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Physics" id="2" name="Apply force at angle" sid="1249979679556579" type="Player">
-                    <param id="0" name="Force">LEFTRIGHT_THRUST</param>
-                    <param id="1" name="Angle">Player.horizontalMovement &gt; 0 ? 0 : 180</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="7" name="Set mirrored" sid="4676507595396573" type="Player">
-                    <param id="0" name="State">1</param>
-                </action>
-            </actions>
+            <actions />
             <sub-events>
-                <event-block sid="9307994342840537">
+                <comment>Handle vertically up thrust when jetpack is firing</comment>
+                <event-block sid="1953491854864086">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="3114680563880585" type="Player">
-                            <param id="0" name="Instance variable">horizontalMovement</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Value">0</param>
+                        <condition id="-8" name="Is boolean instance variable set" sid="9270849490962293" type="Player">
+                            <param id="0" name="Instance variable">jetThrusting</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="7" name="Set mirrored" sid="70606029909886" type="Player">
-                            <param id="0" name="State">0</param>
+                        <action behavior="Physics" id="2" name="Apply force at angle" sid="6870953549961101" type="Player">
+                            <param id="0" name="Force">JETPAC_THRUST</param>
+                            <param id="1" name="Angle">-90</param>
+                            <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
                 </event-block>
-            </sub-events>
-        </event-block>
-        <comment>Check if not overlapping platform e.g. in air.</comment>
-        <event-block sid="3845991789304359">
-            <conditions>
-                <condition id="9" inverted="1" name="Is overlapping at offset" sid="3660064375977544" type="Player">
-                    <param id="0" name="Object">Platforms</param>
-                    <param id="1" name="Offset X">0</param>
-                    <param id="2" name="Offset Y">8</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="4" name="Set animation" sid="3035386886510335" type="Player">
-                    <param id="0" name="Animation">&quot;Flying&quot;</param>
-                    <param id="1" name="From">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <comment>So this is overlapping the platform e.g. we are walking</comment>
-        <event-block sid="4436589709115081">
-            <conditions>
-                <condition id="-22" name="Else" sid="7703318937560771" type="System" />
-            </conditions>
-            <actions>
-                <action id="4" name="Set animation" sid="4233453463783156" type="Player">
-                    <param id="0" name="Animation">&quot;Walking&quot;</param>
-                    <param id="1" name="From">1</param>
-                </action>
-            </actions>
-            <sub-events>
-                <comment>And this is not actually moving on the platform.</comment>
-                <event-block sid="6212095142842256">
+                <comment>Apply horizontal thrust and mirror animation if moving left/right.</comment>
+                <event-block sid="2183140914828711">
                     <conditions>
-                        <condition behavior="Physics" id="1" name="Compare velocity" sid="4647872682272126" type="Player">
-                            <param id="0" name="Which">0</param>
-                            <param id="1" name="Comparison">0</param>
+                        <condition id="-7" name="Compare instance variable" sid="4411291941373149" type="Player">
+                            <param id="0" name="Instance variable">horizontalMovement</param>
+                            <param id="1" name="Comparison">1</param>
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="4" name="Set animation" sid="719062695702394" type="Player">
-                            <param id="0" name="Animation">&quot;Waiting&quot;</param>
+                        <action behavior="Physics" id="2" name="Apply force at angle" sid="1249979679556579" type="Player">
+                            <param id="0" name="Force">LEFTRIGHT_THRUST</param>
+                            <param id="1" name="Angle">Player.horizontalMovement &gt; 0 ? 0 : 180</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="4676507595396573" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9307994342840537">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3114680563880585" type="Player">
+                                    <param id="0" name="Instance variable">horizontalMovement</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="70606029909886" type="Player">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Check if not overlapping platform e.g. in air.</comment>
+                <event-block sid="3845991789304359">
+                    <conditions>
+                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="3660064375977544" type="Player">
+                            <param id="0" name="Object">Platforms</param>
+                            <param id="1" name="Offset X">0</param>
+                            <param id="2" name="Offset Y">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="3035386886510335" type="Player">
+                            <param id="0" name="Animation">&quot;Flying&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
                     </actions>
                 </event-block>
-            </sub-events>
-        </event-block>
-        <comment>Check to see if firing.</comment>
-        <event-block sid="7367275294843924">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="9659702798683544" type="System">
-                    <param id="0" name="Interval (seconds)">0.15</param>
-                </condition>
-                <condition id="-8" name="Is boolean instance variable set" sid="3228415275475108" type="Player">
-                    <param id="0" name="Instance variable">isFiring</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="5920476879988578" type="System">
-                    <param id="0" name="Object to create">Laser</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="X">Player.X+Laser.Width/2+Player.Width/2</param>
-                    <param id="3" name="Y">Player.Y+random(-8,8)-Player.Height/2</param>
-                </action>
-                <action id="-10" name="Set value" sid="988505890565015" type="Laser">
-                    <param id="0" name="Instance variable">colour</param>
-                    <param id="1" name="Value">choose(1,2,3)</param>
-                </action>
-                <action id="-25" name="Move to bottom" sid="7093681279960415" type="Laser" />
-            </actions>
-            <sub-events>
-                <comment>If mirrored , e.g. left facing, then fix up laser accordingly</comment>
-                <event-block sid="1422050907601184">
+                <comment>So this is overlapping the platform e.g. we are walking</comment>
+                <event-block sid="4436589709115081">
                     <conditions>
-                        <condition id="7" name="Is mirrored" sid="1253282392257104" type="Player" />
+                        <condition id="-22" name="Else" sid="7703318937560771" type="System" />
                     </conditions>
                     <actions>
-                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="7301504221428093" type="Laser">
-                            <param id="0" name="Angle">180</param>
+                        <action id="4" name="Set animation" sid="4233453463783156" type="Player">
+                            <param id="0" name="Animation">&quot;Walking&quot;</param>
+                            <param id="1" name="From">1</param>
                         </action>
-                        <action id="-1" name="Set X" sid="8772902127063555" type="Laser">
-                            <param id="0" name="X">Player.X-player.Width/2-laser.Width/2</param>
+                        <action behavior="Physics" id="15" name="Set velocity" sid="4956979033994398" type="Player">
+                            <param id="0" name="X component">clamp(Player.Physics.VelocityX,-MAX_WALK_VELOCITY,MAX_WALK_VELOCITY)</param>
+                            <param id="1" name="Y component">0</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <comment>And this is not actually moving on the platform.</comment>
+                        <event-block sid="6212095142842256">
+                            <conditions>
+                                <condition behavior="Physics" id="1" name="Compare velocity" sid="4647872682272126" type="Player">
+                                    <param id="0" name="Which">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="719062695702394" type="Player">
+                                    <param id="0" name="Animation">&quot;Waiting&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
-                <comment>Lasers can be coloured White, Cyan and Magenta</comment>
-                <event-block sid="5221973393918877">
+                <comment>Check to see if firing.</comment>
+                <event-block sid="7367275294843924">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="208532147735143" type="Laser">
-                            <param id="0" name="Instance variable">colour</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
+                        <condition id="-6" name="Every X seconds" sid="9659702798683544" type="System">
+                            <param id="0" name="Interval (seconds)">0.15</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="3228415275475108" type="Player">
+                            <param id="0" name="Instance variable">isFiring</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-28" name="Set effect parameter" sid="3147152100690932" type="Laser">
-                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
-                            <param id="1" name="Parameter index">1</param>
-                            <param id="2" name="Value">100</param>
+                        <action id="-3" name="Create object" sid="5920476879988578" type="System">
+                            <param id="0" name="Object to create">Laser</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">Player.X+Laser.Width/2+Player.Width/2</param>
+                            <param id="3" name="Y">Player.Y+random(-8,8)-Player.Height/2</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6049439957064924">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="2191454763780935" type="Laser">
+                        <action id="-10" name="Set value" sid="988505890565015" type="Laser">
                             <param id="0" name="Instance variable">colour</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">2</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-28" name="Set effect parameter" sid="3826034536145718" type="Laser">
-                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
-                            <param id="1" name="Parameter index">1</param>
-                            <param id="2" name="Value">100</param>
+                            <param id="1" name="Value">choose(1,2,3)</param>
                         </action>
-                        <action id="-28" name="Set effect parameter" sid="8569089543466968" type="Laser">
-                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
-                            <param id="1" name="Parameter index">2</param>
-                            <param id="2" name="Value">0</param>
-                        </action>
+                        <action id="-25" name="Move to bottom" sid="7093681279960415" type="Laser" />
                     </actions>
+                    <sub-events>
+                        <comment>If mirrored , e.g. left facing, then fix up laser accordingly</comment>
+                        <event-block sid="1422050907601184">
+                            <conditions>
+                                <condition id="7" name="Is mirrored" sid="1253282392257104" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="7301504221428093" type="Laser">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="8772902127063555" type="Laser">
+                                    <param id="0" name="X">Player.X-player.Width/2-laser.Width/2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Lasers can be coloured White, Cyan and Magenta</comment>
+                        <event-block sid="5221973393918877">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="208532147735143" type="Laser">
+                                    <param id="0" name="Instance variable">colour</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="3147152100690932" type="Laser">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6049439957064924">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2191454763780935" type="Laser">
+                                    <param id="0" name="Instance variable">colour</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="3826034536145718" type="Laser">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="8569089543466968" type="Laser">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

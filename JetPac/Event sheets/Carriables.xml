@@ -3,9 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Carriables</name>
     <events>
-        <comment>random dropping of fuel when it is required.</comment>
-        <comment>random dropping of collectables</comment>
-        <comment></comment>
         <comment>On layout start, not carrying anything.</comment>
         <event-block sid="4211418616457282">
             <conditions>
@@ -65,18 +62,15 @@
                         <action behavior="Physics" id="27" name="Set enabled" sid="3808922445271037" type="Carriable">
                             <param id="0" name="Mode">0</param>
                         </action>
+                        <action id="-10" name="Add to" sid="1085093774157102" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3261520247074153" type="Function">
+                            <param id="0" name="Name">&quot;updateDisplay&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
                     </actions>
-                </event-block>
-                <comment>Is it an immediately collectable object ? TODO: Score for immediate collectable.</comment>
-                <event-block sid="3601951407323378">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="2590726847337731" type="Carriable">
-                            <param id="0" name="Instance variable">carryID</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">COLLECTABLE_ID</param>
-                        </condition>
-                    </conditions>
-                    <actions />
                 </event-block>
             </sub-events>
         </event-block>
@@ -116,7 +110,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <comment>If there, find carried object, detach the carry, move to next game state, re-enable physics so it falls and make it fall in the right line. TODO: falling, terminate out when past a specific Y value.</comment>
+                        <comment>If there, find carried object, detach the carry, move to next game state, re-enable physics so it falls and make it fall in the right line.</comment>
                         <event-block sid="799845499474229">
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" sid="3537173005284888" type="Carriable">
@@ -181,8 +175,118 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="-9" name="Destroy" sid="5828524429880425" type="Carriable" />
                 <action id="0" name="Call function" sid="9588655994089956" type="Function">
                     <param id="0" name="Name">&quot;setGameStatus&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Launch fuel bar every 2-4 seconds if collecting fuel and not already present.</comment>
+        <event-block sid="8276603391204715">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8334656910989737" type="System">
+                    <param id="0" name="Interval (seconds)">random(2,4)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="5122084006470877" type="System">
+                    <param id="0" name="Variable">gameState</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="2540409914670221" type="System">
+                    <param id="0" name="Variable">gameState</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">6</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7752671434656208">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="8820807109620173" type="System">
+                            <param id="0" name="First value">FuelBar.Count</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="8906854133872679" type="System">
+                            <param id="0" name="Object to create">FuelBar</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">random(64,LayoutWidth-64)</param>
+                            <param id="3" name="Y">64</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2636191870840539" type="FuelBar">
+                            <param id="0" name="Instance variable">carryID</param>
+                            <param id="1" name="Value">gameState</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Launch collectables</comment>
+        <event-block sid="6146900524938982">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="5668243805724474" type="System">
+                    <param id="0" name="Interval (seconds)">random(3,7)</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3659115610093619" type="System">
+                    <param id="0" name="First value">Collectable.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="2432940661031318" type="System">
+                    <param id="0" name="Object to create">Collectable</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">random(64,LayoutWidth-64)</param>
+                    <param id="3" name="Y">64</param>
+                </action>
+                <action id="-10" name="Set value" sid="4716957067554715" type="Collectable">
+                    <param id="0" name="Instance variable">carryID</param>
+                    <param id="1" name="Value">COLLECTABLE_ID</param>
+                </action>
+                <action id="4" name="Set animation" sid="2312062894250561" type="Collectable">
+                    <param id="0" name="Animation">&quot;Collect&quot; &amp; floor(random(1,6))</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="8353197731403875" type="Collectable">
+                    <param id="0" name="Instance variable">colour</param>
+                    <param id="1" name="Value">floor(random(1,8))</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="8860691941571145" type="Collectable">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">getbit(Collectable.colour,0) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="549405040509933" type="Collectable">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">getbit(Collectable.colour,1) * 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2485672749692081" type="Collectable">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">getbit(Collectable.colour,2) * 100</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Hit collectable</comment>
+        <event-block sid="7662604344639512">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7657536352530003" type="Player">
+                    <param id="0" name="Object">Collectable</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6152282905681119" type="Collectable" />
+                <action id="-10" name="Add to" sid="400937509519474" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">250</param>
+                </action>
+                <action id="0" name="Call function" sid="8869241568025995" type="Function">
+                    <param id="0" name="Name">&quot;updateDisplay&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>

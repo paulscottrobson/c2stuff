@@ -236,6 +236,9 @@
         </object-type>
         <object-type name="Rocket" sid="609580680173381">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Direction of Rocket Flight when flying" name="flightDirection" sid="3626579732717834" type="number" />
+            </instance-variables>
             <animation-folder>
                 <animation framecount="8" loop="0" name="Rocket1" pingpong="0" repeatcount="1" repeatto="0" sid="5622521722920278" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\rocket1_0.png" />
@@ -325,6 +328,83 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
+        <object-type name="Collectable" sid="3750565805769381">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Colour as value 1-7" name="colour" sid="128237666480182" type="number" />
+            </instance-variables>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Collect0" pingpong="0" repeatcount="1" repeatto="0" sid="2909378452288082" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect1.png">
+                        <collision-poly>
+                            <point x="0.375" y="0.375" />
+                            <point x="0.625" y="0.375" />
+                            <point x="1" y="0.5" />
+                            <point x="0.9375" y="0.9375" />
+                            <point x="0.0625" y="0.9375" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="2" loop="1" name="Collect1" pingpong="0" repeatcount="1" repeatto="0" sid="6494633154254441" speed="2">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect2.png">
+                        <collision-poly>
+                            <point x="0.3125" y="0.3125" />
+                            <point x="0.6875" y="0.3125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.625" y="0.625" />
+                            <point x="0.5" y="1" />
+                            <point x="0.125" y="0.875" />
+                            <point x="0.0625" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Collect2" pingpong="0" repeatcount="1" repeatto="0" sid="6474641701084606" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect3.png">
+                        <collision-poly>
+                            <point x="0.8125" y="0.5" />
+                            <point x="0.9375" y="0.9375" />
+                            <point x="0.5" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0.25" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Collect3" pingpong="0" repeatcount="1" repeatto="0" sid="5894575385372207" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect4.png">
+                        <collision-poly>
+                            <point x="0.4375" y="0.4375" />
+                            <point x="0.5625" y="0.4375" />
+                            <point x="0.875" y="0.5" />
+                            <point x="0.9375" y="0.9375" />
+                            <point x="0.5" y="1" />
+                            <point x="0.0625" y="0.9375" />
+                            <point x="0.125" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Collect4" pingpong="0" repeatcount="1" repeatto="0" sid="2738757982121677" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Construct2\Practice\Docs\JetPac\collect5.png">
+                        <collision-poly>
+                            <point x="0.3125" y="0.3125" />
+                            <point x="0.5" y="0.25" />
+                            <point x="0.6875" y="0.3125" />
+                            <point x="0.9375" y="0.5" />
+                            <point x="0.75" y="0.75" />
+                            <point x="0.5" y="1" />
+                            <point x="0.25" y="0.75" />
+                            <point x="0.0625" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Platforms" plugin-id="Sprite" sid="6158889423089168">
@@ -349,6 +429,7 @@
         </family>
         <family name="Carriable" plugin-id="Sprite" sid="7043534243102998">
             <members>
+                <member>Collectable</member>
                 <member>Component</member>
                 <member>FuelBar</member>
             </members>
