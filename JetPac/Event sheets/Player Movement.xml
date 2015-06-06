@@ -137,6 +137,12 @@
                             <param id="1" name="Value">choose(1,2,3)</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="7093681279960415" type="Laser" />
+                        <action id="0" name="Play" sid="3222349632005342" type="Audio">
+                            <param id="0" name="Audio file">Fire Laser</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <comment>If mirrored , e.g. left facing, then fix up laser accordingly</comment>
@@ -192,6 +198,82 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <comment>Player hit enemy, lose a life if not in God mode (cheat !)</comment>
+                <event-block sid="8014822945366864">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6081443053029627" type="Player">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="4485603865504393" type="System">
+                            <param id="0" name="Variable">isGod</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Make it one in case of double colliions.</comment>
+                        <event-block sid="968195025078162">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="6316041708433406" type="System">
+                                    <param id="0" name="Object">Enemy</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Subtract from" sid="3990546559100071" type="System">
+                                    <param id="0" name="Variable">lives</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="654524695523098" type="Player">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="3132835685260373" type="Player">
+                                    <param id="0" name="Object">ExplosionPlayer</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Call function" sid="5253962955186208" type="Function">
+                                    <param id="0" name="Name">&quot;updateDisplay&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Explosion over, restart layout.</comment>
+        <event-block sid="1075609738675473">
+            <conditions>
+                <condition id="4" name="On finished" sid="8543641562076657" type="ExplosionPlayer">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3765042853284135">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9530744302829797" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Restart layout" sid="1901453839953357" type="System" />
+                    </actions>
+                </event-block>
+                <event-block sid="2071533030164039">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="1245336878381202" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="2458981580497272" type="System">
+                            <param id="0" name="Layout">Title Page</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

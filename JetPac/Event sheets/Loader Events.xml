@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Loader Events</name>
+    <events>
+        <comment>Width of loader bars displayed, max.</comment>
+        <variable comment="height max of loader bar" constant="1" name="LOADER_BAR_SIZE" sid="4103274860081963" static="0" type="number">10</variable>
+        <comment>On start, create loader bars</comment>
+        <event-block sid="5015199190825757">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="622926051319759" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="9655143193557097" type="LoaderBar" />
+                <action behavior="Timer" id="0" name="Start timer" sid="5514513681270923" type="Image">
+                    <param id="0" name="Duration">3</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="816033162315021">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5285149867093178" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">floor(LayoutHeight/LOADER_BAR_SIZE-1)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="5296820475061798" type="System">
+                            <param id="0" name="Object to create">LoaderBar</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">loopindex*LOADER_BAR_SIZE</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5402021420414882" type="LoaderBar">
+                            <param id="0" name="Instance variable">baseY</param>
+                            <param id="1" name="Value">LoaderBar.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Move them about randomly</comment>
+        <event-block sid="3573752006339213">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8895853697463044" type="System">
+                    <param id="0" name="Interval (seconds)">0.05</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-6" name="Set height" sid="8177237831551418" type="LoaderBar">
+                    <param id="0" name="Height">random(1,LOADER_BAR_SIZE/2)</param>
+                </action>
+                <action id="-2" name="Set Y" sid="9144919317341534" type="LoaderBar">
+                    <param id="0" name="Y">LoaderBar.baseY+1+random(0,LOADER_BAR_SIZE-2-LoaderBar.Height)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Time out go to title screen</comment>
+        <event-block sid="980331324369406">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="3442107200873885" type="Image">
+                    <param id="0" name="Tag">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="7045425976551675" type="System">
+                    <param id="0" name="Layout">Title Page</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

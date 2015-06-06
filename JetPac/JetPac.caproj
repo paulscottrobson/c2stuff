@@ -10,6 +10,7 @@
     <unique-id>2x7l4btktrc07</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
@@ -20,6 +21,7 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
@@ -36,6 +38,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>Title Page</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -525,6 +528,43 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="ExplosionPlayer" sid="9822473077348564">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1849119420546267" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\explode3.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="3274521153835064">
+            <plugin id="Audio" />
+        </object-type>
+        <object-type name="Image" sid="5324392166652521">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Timer" sid="990407227147792">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1572177279567955" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JetPac\Jetpac.gif" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="LoaderBar" sid="4929057937713361">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="baseY" sid="7202403634913473" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6277043313059533" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Platforms" plugin-id="Sprite" sid="6158889423089168">
@@ -566,22 +606,52 @@
     </families>
     <layout-folder>
         <layout>Main Game.xml</layout>
+        <layout>Title Page.xml</layout>
+        <layout>Loader Page.xml</layout>
     </layout-folder>
     <event-folder>
-        <event-sheet>Game Events.xml</event-sheet>
+        <event-sheet>Main Game Events.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>Player Movement.xml</event-sheet>
         <event-sheet>Controllers.xml</event-sheet>
         <event-sheet>System.xml</event-sheet>
         <event-sheet>Carriables.xml</event-sheet>
         <event-sheet>Enemies.xml</event-sheet>
+        <event-sheet>Title Page Event.xml</event-sheet>
+        <event-sheet>Loader Events.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="55" />
         <global-instance type="Function" uid="60" />
+        <global-instance type="Audio" uid="73">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
-    <music-folder />
+    <sounds-folder>
+        <file name="Piece Added.m4a" />
+        <file name="Piece Added.ogg" />
+        <file name="Piece Collected.m4a" />
+        <file name="Piece Collected.ogg" />
+        <file name="Fire Laser.m4a" />
+        <file name="Fire Laser.ogg" />
+        <file name="Enemy Dead.m4a" />
+        <file name="Enemy Dead.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Rocket Moves.m4a" />
+        <file name="Rocket Moves.ogg" />
+    </music-folder>
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />

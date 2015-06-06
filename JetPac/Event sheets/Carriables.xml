@@ -70,6 +70,12 @@
                             <param id="0" name="Name">&quot;updateDisplay&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
+                        <action id="0" name="Play" sid="2056655704053896" type="Audio">
+                            <param id="0" name="Audio file">Piece Collected</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="8608450851300747">
@@ -188,6 +194,12 @@
                     <param id="0" name="Name">&quot;setGameStatus&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Play" sid="67902559167104" type="Audio">
+                    <param id="0" name="Audio file">Piece Added</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <comment>Launch fuel bar every 2-4 seconds if collecting fuel and not already present.</comment>
@@ -296,6 +308,12 @@
                 <action id="0" name="Call function" sid="8869241568025995" type="Function">
                     <param id="0" name="Name">&quot;updateDisplay&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Play" sid="2580892303069114" type="Audio">
+                    <param id="0" name="Audio file">Piece Collected</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
         </event-block>

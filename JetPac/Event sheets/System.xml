@@ -57,6 +57,8 @@
                 </action>
                 <action id="-9" name="Destroy" sid="4272437629457238" type="Laser" />
                 <action id="-9" name="Destroy" sid="8408364786755358" type="Enemy" />
+                <action id="-9" name="Destroy" sid="2832271575808086" type="Explosion" />
+                <action id="-9" name="Destroy" sid="6173385774630607" type="ExplosionPlayer" />
             </actions>
         </event-block>
         <comment>Rocket in flight</comment>
@@ -70,7 +72,7 @@
             </conditions>
             <actions>
                 <action id="-2" name="Set Y" sid="4737799903626588" type="Rocket">
-                    <param id="0" name="Y">Rocket.Y+Rocket.flightDirection*40*dt</param>
+                    <param id="0" name="Y">Rocket.Y+Rocket.flightDirection*24*dt</param>
                 </action>
                 <action id="-3" name="Set position" sid="3275693862227638" type="Engine">
                     <param id="0" name="X">Rocket.X</param>
@@ -107,6 +109,7 @@
                             <param id="0" name="Instance variable">flightDirection</param>
                             <param id="1" name="Value">0</param>
                         </action>
+                        <action id="33" name="Stop all" sid="6787430205525412" type="Audio" />
                     </actions>
                 </event-block>
                 <comment>Rocket leaves top off screen, set up for next level and reload layout</comment>
@@ -136,6 +139,7 @@
                             <param id="1" name="Parameter {n}"></param>
                         </action>
                         <action id="-26" name="Restart layout" sid="73350980514338" type="System" />
+                        <action id="33" name="Stop all" sid="5153886657728198" type="Audio" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -349,6 +353,12 @@
                         <action id="-15" name="Set visible" sid="278642152778496" type="Player">
                             <param id="0" name="Visibility">0</param>
                         </action>
+                        <action id="0" name="Play" sid="1790832240692949" type="Audio">
+                            <param id="0" name="Audio file">Rocket Moves</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Rocket is taking off</comment>
@@ -373,6 +383,12 @@
                         </action>
                         <action id="-15" name="Set visible" sid="3193335492515542" type="Player">
                             <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="0" name="Play" sid="4464943171761711" type="Audio">
+                            <param id="0" name="Audio file">Rocket Moves</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>

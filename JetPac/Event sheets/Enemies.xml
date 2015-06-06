@@ -238,6 +238,12 @@
                     <param id="0" name="Name">&quot;updateDisplay&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Play" sid="5553299300716488" type="Audio">
+                    <param id="0" name="Audio file">Enemy Dead</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="6047389641684612">

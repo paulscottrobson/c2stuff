@@ -8,17 +8,19 @@
         <comment>Current level number, note the first one is level zero. Set to -1 to force a new game.</comment>
         <variable comment="Level Number (starts from zero)" constant="0" name="level" sid="4669277028014759" static="0" type="number">-1</variable>
         <comment>Current game score</comment>
-        <variable comment="Current Score" constant="0" name="score" sid="9056718505906741" static="0" type="number">0</variable>
+        <variable comment="Current Score" constant="0" name="score" sid="9056718505906741" static="0" type="number">42</variable>
         <comment>Current number of lives, including the current one</comment>
         <variable comment="Number of lives" constant="0" name="lives" sid="5437640299672346" static="0" type="number">5</variable>
         <comment>Highest score so far this run.</comment>
         <variable comment="Current high score" constant="0" name="highScore" sid="8148229376884348" static="0" type="number">1000</variable>
         <comment>-2 = collecting middle part, -1 = collecting top part, 0+ means complete rocket with that amount of fuel, -3 is the landing animation, 7 means level completed. . Also specifies what collectable ID should be collected.</comment>
-        <variable comment="Current state of play" constant="0" name="gameState" sid="6928549597316304" static="0" type="number">5</variable>
+        <variable comment="Current state of play" constant="0" name="gameState" sid="6928549597316304" static="0" type="number">6</variable>
         <comment>ID of Rocket in use (1-4)</comment>
         <variable comment="Rocket Number" constant="0" name="rocketID" sid="451883565815713" static="0" type="number">2</variable>
         <comment>Enemy Number (1-8)</comment>
         <variable comment="Type ID of enemy (1-8)" constant="0" name="enemyType" sid="932295705972538" static="0" type="number">0</variable>
+        <comment>If non zero player cannot be killed.</comment>
+        <variable comment="If non-zero, player is indestructable" constant="0" name="isGod" sid="4904340764356342" static="0" type="number">0</variable>
         <comment></comment>
         <comment>CONSTANTS</comment>
         <comment></comment>

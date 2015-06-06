@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Title Page Event</name>
+    <events>
+        <comment>Update current scores on start</comment>
+        <event-block sid="3768564262709259">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9948586168562911" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5618770257282462" type="Score">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; score,6)</param>
+                </action>
+                <action id="0" name="Set text" sid="2328211454734366" type="HighScore">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; highScore,6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Start game when 5 pressed (setting level to -1 forces a game reset)</comment>
+        <event-block sid="5549234708008509">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="313407136543411" type="Keyboard">
+                    <param id="0" name="Key">53 (5)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8026249610212071" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="7829159093052339" type="System">
+                    <param id="0" name="Layout">Main Game</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

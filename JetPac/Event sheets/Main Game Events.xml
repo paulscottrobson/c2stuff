@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>Game Events</name>
+    <name>Main Game Events</name>
     <events>
         <comment>Globals and Constants</comment>
         <include>Globals</include>
