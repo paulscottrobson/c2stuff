@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>Layout 1</name>
+    <name>GameScreen</name>
     <sid>9796235390724184</sid>
-    <event-sheet>Event sheet 1</event-sheet>
+    <event-sheet>GameEvent</event-sheet>
     <size>
         <width>896</width>
         <height>1024</height>
@@ -227,11 +227,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -264,11 +266,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -301,11 +305,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -338,11 +344,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -354,7 +362,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>64</x>
+                        <x>128</x>
                         <y>352</y>
                         <z>0</z>
                         <width>64</width>
@@ -375,11 +383,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -391,7 +401,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>544</x>
+                        <x>608</x>
                         <y>352</y>
                         <z>0</z>
                         <width>64</width>
@@ -412,11 +422,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -428,7 +440,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>64</x>
+                        <x>96</x>
                         <y>224</y>
                         <z>0</z>
                         <width>64</width>
@@ -449,11 +461,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -465,7 +479,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>352</x>
+                        <x>416</x>
                         <y>224</y>
                         <z>0</z>
                         <width>64</width>
@@ -486,11 +500,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -502,7 +518,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>704</x>
+                        <x>768</x>
                         <y>224</y>
                         <z>0</z>
                         <width>64</width>
@@ -523,11 +539,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -560,11 +578,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -597,11 +617,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -625,43 +647,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LogMiddle" uid="47">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <direction>1</direction>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>200</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>No</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>128</x>
-                        <y>352</y>
-                        <z>0</z>
-                        <width>64</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="LogMiddle" uid="49">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -671,11 +656,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -708,11 +695,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -736,43 +725,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LogMiddle" uid="52">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <direction>1</direction>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>200</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>No</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>608</x>
-                        <y>352</y>
-                        <z>0</z>
-                        <width>64</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="LogMiddle" uid="54">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -782,11 +734,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -819,11 +773,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -847,80 +803,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LogMiddle" uid="59">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <direction>1</direction>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>200</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>No</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>128</x>
-                        <y>224</y>
-                        <z>0</z>
-                        <width>64</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="LogMiddle" uid="61">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <direction>1</direction>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>200</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>No</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>416</x>
-                        <y>224</y>
-                        <z>0</z>
-                        <width>64</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="LogMiddle" uid="63">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -930,11 +812,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -958,43 +842,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LogMiddle" uid="65">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <direction>1</direction>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>200</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>No</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>768</x>
-                        <y>224</y>
-                        <z>0</z>
-                        <width>64</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="LogRight" uid="11">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -1004,11 +851,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1041,11 +890,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1078,11 +929,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1115,11 +968,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1152,11 +1007,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1189,11 +1046,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1205,7 +1064,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>192</x>
+                        <x>160</x>
                         <y>224</y>
                         <z>0</z>
                         <width>64</width>
@@ -1226,11 +1085,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1263,11 +1124,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>28</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1337,11 +1200,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>25</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1374,11 +1239,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>25</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1411,11 +1278,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>40</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1448,11 +1317,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1485,11 +1356,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>60</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1541,11 +1414,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1553,6 +1428,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1578,11 +1454,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1590,6 +1468,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1615,11 +1494,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1627,6 +1508,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1652,11 +1534,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1664,6 +1548,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1689,11 +1574,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1701,6 +1588,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1726,11 +1614,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1738,6 +1628,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1763,11 +1654,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1775,6 +1668,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1800,11 +1694,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1812,6 +1708,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1837,11 +1734,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1849,6 +1748,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1874,11 +1774,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1886,6 +1788,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1911,11 +1814,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1923,6 +1828,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1948,11 +1854,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1960,6 +1868,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1985,11 +1894,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -1997,6 +1908,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -2022,11 +1934,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2034,6 +1948,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -2059,11 +1974,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2071,6 +1988,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -2096,11 +2014,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2108,6 +2028,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -2133,11 +2054,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>60</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2170,11 +2093,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>70</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2207,11 +2132,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>40</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2244,11 +2171,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>40</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2281,11 +2210,13 @@
                     </properties>
                     <instance-variables>
                         <direction>1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>25</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2318,11 +2249,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>25</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2355,11 +2288,13 @@
                     </properties>
                     <instance-variables>
                         <direction>-1</direction>
+                        <groupID>0</groupID>
+                        <isFirstObject>false</isFirstObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>200</speed>
+                                <speed>25</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -2383,10 +2318,50 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="HomeFrog" uid="52">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <homeFrogSlot>0</homeFrogSlot>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-224</x>
+                        <y>160</y>
+                        <z>0</z>
+                        <width>81</width>
+                        <height>75</height>
+                        <depth>0</depth>
+                        <hotspotX>0.506172836</hotspotX>
+                        <hotspotY>0.50666666</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
     </layers>
-    <nonworld-instances />
+    <nonworld-instances>
+        <instance type="ItemCount" uid="47">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="HomeFrogOccupied" uid="59">
+            <properties>
+                <width>5</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+    </nonworld-instances>
     <effects />
 </c2layout>

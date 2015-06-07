@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>GameInitialise</name>
+    <events>
+        <event-group description="When it starts up, set everything as it should be" sid="9105647970739103" title="Creating Group">
+            <sub-events>
+                <comment>*** Set speed scalar, bullet direction, bullet speed ***</comment>
+                <event-block sid="9727575971997999">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="1915007380145516" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="4550634553193275" type="System">
+                            <param id="0" name="Variable">speedScalar</param>
+                            <param id="1" name="Value">min((level - 1) / 10 + 1,2)</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="1027104583002253" type="Wrappers">
+                            <param id="0" name="Angle">Wrappers.direction &lt; 0 ? 180 : 0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="2233836079887461" type="Wrappers">
+                            <param id="0" name="Speed">Wrappers.Bullet.Speed * speedScalar</param>
+                        </action>
+                        <action behavior="Bullet" disabled="1" id="5" name="Set enabled" sid="4757630884983161" type="Wrappers">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>*** Group all objects together so each cluster of log parts, turtles etc. has a unique group ID ***</comment>
+                <event-block sid="6116443481517797">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="6411995801816116" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5307776616012799" type="System">
+                            <param id="0" name="Variable">lastGroupID</param>
+                            <param id="1" name="Value">FIRST_GROUP_ID-1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="yPos" sid="2613393956211647" static="0" type="number">0</variable>
+                        <variable constant="0" name="xPos" sid="9365114300672319" static="0" type="number">0</variable>
+                        <comment>Identify all the wrappers on the left (e.g. don&apos;t overlap something on the right)</comment>
+                        <event-block sid="4299433124862888">
+                            <conditions>
+                                <condition id="9" inverted="1" name="Is overlapping at offset" sid="2110942742932414" type="Wrappers">
+                                    <param id="0" name="Object">Wrappers</param>
+                                    <param id="1" name="Offset X">-48</param>
+                                    <param id="2" name="Offset Y">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>For each one of them, save the position, mark as first object</comment>
+                                <event-block sid="2289385575821561">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="5263816991905438" type="System">
+                                            <param id="0" name="Object">Wrappers</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="4696478757342078" type="System">
+                                            <param id="0" name="Variable">lastGroupID</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="6609846209369328" type="Wrappers">
+                                            <param id="0" name="Instance variable">isFirstObject</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="4093144250269518" type="System">
+                                            <param id="0" name="Variable">xPos</param>
+                                            <param id="1" name="Value">Wrappers.X</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="3462969657941313" type="System">
+                                            <param id="0" name="Variable">yPos</param>
+                                            <param id="1" name="Value">Wrappers.Y</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>Reselect all wrappers</comment>
+                                        <event-block sid="5305720864230805">
+                                            <conditions>
+                                                <condition id="-19" name="Pick all" sid="3060927183686472" type="System">
+                                                    <param id="0" name="Object">Wrappers</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>While there&apos;s a wrapper overlapping the position, it belongs to this group, go to the next square right.</comment>
+                                                <event-block sid="5587583979919917">
+                                                    <conditions>
+                                                        <condition id="-23" name="While" sid="8949619630663121" type="System" />
+                                                        <condition id="-36" name="Pick overlapping point" sid="5124278713535453" type="System">
+                                                            <param id="0" name="Object">Wrappers</param>
+                                                            <param id="1" name="X">xPos</param>
+                                                            <param id="2" name="Y">yPos</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="2282579010896057" type="Wrappers">
+                                                            <param id="0" name="Instance variable">groupID</param>
+                                                            <param id="1" name="Value">lastGroupID</param>
+                                                        </action>
+                                                        <action id="-10" name="Add to" sid="2879753045074137" type="System">
+                                                            <param id="0" name="Variable">xPos</param>
+                                                            <param id="1" name="Value">64</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Remove some of the objects on higher levels.</comment>
+                <event-block sid="457086296497211">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="1261544146701171" type="System" />
+                        <condition id="-14" name="Compare variable" sid="7212305840323613" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Clear" sid="7782500523233199" type="ItemCount" />
+                    </actions>
+                    <sub-events>
+                        <comment>Count all the objects in each layer</comment>
+                        <event-block sid="1925071626352804">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4109658269126215" type="Wrappers">
+                                    <param id="0" name="Instance variable">isFirstObject</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="5306088041352253" type="Wrappers">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">Water.BBoxBottom</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="581888294956265">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="4380036196384914" type="System">
+                                            <param id="0" name="Object">Wrappers</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="2" name="Set at X" sid="6471812732160892" type="ItemCount">
+                                            <param id="0" name="X">floor((MIDDLE_PATH_POSITION-Wrappers.Y)/64)</param>
+                                            <param id="1" name="Value">ItemCount.At(floor((MIDDLE_PATH_POSITION-Wrappers.Y)/64))+1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Remove a given number of objects from the screen. How many depends on the level</comment>
+                        <event-block sid="4931221394642248">
+                            <conditions>
+                                <condition id="-10" name="For" sid="1219154205067374" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">min(8,level-2)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <variable comment="ID of group to kill" constant="0" name="groupToKill" sid="5169697422176591" static="0" type="number">0</variable>
+                                <comment>Pick all wrappers in the top half, must not have been destroyed yet (will be one of first object because of event above)</comment>
+                                <event-block sid="9867128335041059">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="8999025289946505" type="System">
+                                            <param id="0" name="Object">Wrappers</param>
+                                            <param id="1" name="Expression">Wrappers.Y &lt; MIDDLE_PATH_POSITION</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="5506728206463747" type="Wrappers">
+                                            <param id="0" name="Instance variable">groupID</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>Pick a random wrapper from this, and if there are at least 2 on this line, mark it as the group to kill and reduce the value in the array</comment>
+                                        <event-block sid="4496624691697585">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="4863116967637042" type="System">
+                                                    <param id="0" name="Object">Wrappers</param>
+                                                </condition>
+                                                <condition id="-8" name="Compare two values" sid="9666319785294392" type="System">
+                                                    <param id="0" name="First value">ItemCount.At(floor((MIDDLE_PATH_POSITION-Wrappers.Y)/64))</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="2525949727241249" type="System">
+                                                    <param id="0" name="Variable">groupToKill</param>
+                                                    <param id="1" name="Value">Wrappers.groupID</param>
+                                                </action>
+                                                <action id="2" name="Set at X" sid="6116191158788696" type="ItemCount">
+                                                    <param id="0" name="X">floor((MIDDLE_PATH_POSITION-Wrappers.Y)/64)</param>
+                                                    <param id="1" name="Value">ItemCount.At(floor((MIDDLE_PATH_POSITION-Wrappers.Y)/64))-1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <comment>Pick all wrappers, we have groupToKill being the ID to kill</comment>
+                                                <event-block sid="6824916898114186">
+                                                    <conditions>
+                                                        <condition id="-19" name="Pick all" sid="3684176684891725" type="System">
+                                                            <param id="0" name="Object">Wrappers</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <comment>And kill them, also marking them not redeletable</comment>
+                                                        <event-block sid="9842797867384521">
+                                                            <conditions>
+                                                                <condition id="-7" name="Compare instance variable" sid="1866733759362079" type="Wrappers">
+                                                                    <param id="0" name="Instance variable">groupID</param>
+                                                                    <param id="1" name="Comparison">0</param>
+                                                                    <param id="2" name="Value">groupToKill</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Set value" sid="7425376202334811" type="Wrappers">
+                                                                    <param id="0" name="Instance variable">groupID</param>
+                                                                    <param id="1" name="Value">-1</param>
+                                                                </action>
+                                                                <action id="-9" name="Destroy" sid="837542578156432" type="Wrappers" />
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>*** Randomly adjust the starting offset of each line to mix the game up. ***</comment>
+                <event-block sid="1896236491128151">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="8092116151394184" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="371089639144924">
+                            <conditions>
+                                <condition id="-10" name="For" sid="3008506072831707" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">10</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <variable comment="y coordinate to shift" constant="0" name="lineToShift" sid="6360894110632127" static="0" type="number">0</variable>
+                                <variable comment="Amount to offset by" constant="0" name="offset" sid="6486713238924165" static="0" type="number">0</variable>
+                                <comment>Pick a line by randomly picking an instance, save Y, calculate offset</comment>
+                                <event-block sid="7833978897641435">
+                                    <conditions>
+                                        <condition id="-16" name="Pick random instance" sid="8885620801513028" type="System">
+                                            <param id="0" name="Object">Wrappers</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="4842387560150209" type="System">
+                                            <param id="0" name="Variable">lineToShift</param>
+                                            <param id="1" name="Value">Wrappers.Y</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="7947880678871967" type="System">
+                                            <param id="0" name="Variable">offset</param>
+                                            <param id="1" name="Value">floor(random(0,LayoutWidth))</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>Now clear the selection</comment>
+                                        <event-block sid="2415087230426767">
+                                            <conditions>
+                                                <condition id="-19" name="Pick all" sid="2489274576836855" type="System">
+                                                    <param id="0" name="Object">Wrappers</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>Select all wrappers with that Y and offset it</comment>
+                                                <event-block sid="563681897285932">
+                                                    <conditions>
+                                                        <condition id="-2" name="Compare Y" sid="7233284004944793" type="Wrappers">
+                                                            <param id="0" name="Comparison">0</param>
+                                                            <param id="1" name="Y co-ordinate">lineToShift</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-1" name="Set X" sid="9514855305311092" type="Wrappers">
+                                                            <param id="0" name="X">Wrappers.X+offset</param>
+                                                        </action>
+                                                    </actions>
+                                                    <sub-events>
+                                                        <comment>Handle the end around wrap</comment>
+                                                        <event-block sid="4329209418873581">
+                                                            <conditions>
+                                                                <condition id="-1" name="Compare X" sid="9343653170071363" type="Wrappers">
+                                                                    <param id="0" name="Comparison">4</param>
+                                                                    <param id="1" name="X co-ordinate">LayoutWidth+32</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-1" name="Set X" sid="8412526870092797" type="Wrappers">
+                                                                    <param id="0" name="X">Wrappers.X - LayoutWidth - 64</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>*** Handle processing of turtles so they do not all sink at the same time. ***</comment>
+                <event-block sid="3685650646192798">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="5197892395798261" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="1042528278268634" type="Turtle">
+                            <param id="0" name="Animation">&quot;NonSinking&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="8063329884589143" type="Turtle">
+                            <param id="0" name="Speed">Turtle.AnimationSpeed*speedScalar</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Look for all the &apos;lead&apos; turtles, and start their timers.</comment>
+                        <event-block sid="3180799415647057">
+                            <conditions>
+                                <condition id="-34" name="Pick by evaluate" sid="45866118682881" type="System">
+                                    <param id="0" name="Object">Turtle</param>
+                                    <param id="1" name="Expression">Turtle.isFirstObject &lt;&gt; 0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Timer" id="0" name="Start timer" sid="6427401634231718" type="Turtle">
+                                    <param id="0" name="Duration">random(0,6)</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;startAnimation&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>When a turtle lead fires, start its animation and all the animations in its group</comment>
+                <variable constant="0" name="turtleStartID" sid="9107008241061332" static="0" type="number">0</variable>
+                <event-block sid="5695174650793685">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="9094556032818218" type="Turtle">
+                            <param id="0" name="Tag">&quot;startAnimation&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="142077058673504" type="System">
+                            <param id="0" name="Variable">turtleStartID</param>
+                            <param id="1" name="Value">Turtle.groupID</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Repick all turtles</comment>
+                        <event-block sid="433469441418188">
+                            <conditions>
+                                <condition id="-19" name="Pick all" sid="6978312613765148" type="System">
+                                    <param id="0" name="Object">Turtle</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Set sinking to all groups which have the same ID as the start.</comment>
+                                <event-block sid="104273735138451">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="8169481036430293" type="Turtle">
+                                            <param id="0" name="Instance variable">groupID</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">turtleStartID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="817653029165274" type="Turtle">
+                                            <param id="0" name="Animation">&quot;Sinking&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>*** Erase all home frogs and create them accordingly to the gloabl record in HomeFrogOccupied ***</comment>
+                <event-block sid="6130075409839018">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="9078037194493387" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="5828756893085825" type="HomeFrog" />
+                    </actions>
+                    <sub-events>
+                        <comment>For every element of the HomeFrogOccupied array (maintains how many frogs and where), create a home frog</comment>
+                        <event-block sid="9542477151109991">
+                            <conditions>
+                                <condition id="3" name="For each element" sid="137457531001416" type="HomeFrogOccupied">
+                                    <param id="0" name="Axes">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="3398978492149027" type="System">
+                                    <param id="0" name="Object to create">HomeFrog</param>
+                                    <param id="1" name="Layer">4</param>
+                                    <param id="2" name="X">64+HomeFrogOccupied.CurX*192</param>
+                                    <param id="3" name="Y">160</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>But if it is not occupied, make it invisible. We decide what to do when we collide with it.</comment>
+                                <event-block sid="4727897158689376">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="1282048773221944" type="System">
+                                            <param id="0" name="First value">HomeFrogOccupied.CurValue</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="7474552025336087" type="HomeFrog">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="It also manually wraps." sid="4547299162804362" title="This group moves the objects left or right ">
+            <sub-events>
+                <comment>Wrap left and right. I didn&apos;t use the Wrap behaviour because it didn&apos;t work consistently. 1 Pixel Gaps appeared between the log pieces.</comment>
+                <event-block sid="6601115176465534">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="2177580720078086" type="Wrappers">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth+32</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="9097392436601501" type="Wrappers">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="2668924046111449" type="Wrappers">
+                            <param id="0" name="X">Wrappers.X - LayoutWidth - 64</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6724888583961278">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="1962543155141729" type="Wrappers">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-32</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="2114116797689868" type="Wrappers">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="2667905548018699" type="Wrappers">
+                            <param id="0" name="X">Wrappers.X + LayoutWidth + 64</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

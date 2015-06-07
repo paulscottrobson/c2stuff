@@ -10,11 +10,13 @@
     <unique-id>2hren7ofuk2pn</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -148,6 +150,11 @@
         </object-type>
         <object-type name="Turtle" sid="5520383524501312">
             <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Timer" sid="6068776863528141">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="NonSinking" pingpong="0" repeatcount="1" repeatto="0" sid="6808300309079081" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.508772" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\turtle1.png" />
@@ -216,6 +223,34 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="ItemCount" sid="7102542004017228">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="HomeFrog" sid="9536485896898408">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="homeFrogSlot" sid="9580305668457183" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6971748230554667" speed="5">
+                    <frame duration="1" hotspotX="0.506173" hotspotY="0.506667" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\froghome.png">
+                        <collision-poly>
+                            <point x="0.333333" y="0.36" />
+                            <point x="0.493827" y="0.173333" />
+                            <point x="0.790123" y="0.226667" />
+                            <point x="0.938272" y="0.493333" />
+                            <point x="0.802469" y="0.786667" />
+                            <point x="0.493827" y="0.84" />
+                            <point x="0.209877" y="0.773333" />
+                            <point x="0.111111" y="0.493333" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="HomeFrogOccupied" sid="8865383570306084">
+            <plugin id="Arr" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Wrappers" plugin-id="Sprite" sid="942512308344014">
@@ -228,6 +263,8 @@
             </members>
             <instance-variables>
                 <instance-variable comment="Direction of travel (-1 or 1)" name="direction" sid="5703954379728891" type="number" />
+                <instance-variable comment="Identifier for each group" name="groupID" sid="9958613914276614" type="number" />
+                <instance-variable name="isFirstObject" sid="7524565105243771" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="639355209888963">
@@ -237,10 +274,12 @@
         </family>
     </families>
     <layout-folder>
-        <layout>Layout 1.xml</layout>
+        <layout>GameScreen.xml</layout>
     </layout-folder>
     <event-folder>
-        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>GameInitialise.xml</event-sheet>
+        <event-sheet>Globals.xml</event-sheet>
+        <event-sheet>GameEvent.xml</event-sheet>
     </event-folder>
     <global-instances />
     <sounds-folder />

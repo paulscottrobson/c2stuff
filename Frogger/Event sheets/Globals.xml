@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <comment>last allocated group ID</comment>
+        <variable comment="last allocated group ID" constant="0" name="lastGroupID" sid="4022173985521904" static="0" type="number">0</variable>
+        <comment>Current level</comment>
+        <variable comment="Current level" constant="0" name="level" sid="8722193542570323" static="0" type="number">1</variable>
+        <comment>Scalar for how fast the logs, turtles and cars move.</comment>
+        <variable comment="Scalar for speed of moving objects." constant="0" name="speedScalar" sid="2563569294739173" static="0" type="number">2</variable>
+        <comment>Last group ID allocated</comment>
+        <variable comment="Position of middle path" constant="1" name="MIDDLE_PATH_POSITION" sid="5524512098359099" static="0" type="number">512</variable>
+        <comment>First Group ID Allocated</comment>
+        <variable comment="First group ID used." constant="1" name="FIRST_GROUP_ID" sid="8097008254158341" static="0" type="number">1000</variable>
+        <comment>TODO:</comment>
+        <comment>Clear home frog array on initialisation or new level.</comment>
+    </events>
+</c2eventsheet>
