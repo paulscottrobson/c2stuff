@@ -11,14 +11,19 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="setcolor">Set color</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
@@ -251,6 +256,95 @@
         <object-type global="1" name="HomeFrogOccupied" sid="8865383570306084">
             <plugin id="Arr" />
         </object-type>
+        <object-type name="Player" sid="7320746151223984">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True when player dies" name="isDead" sid="7903256874557299" type="boolean" />
+                <instance-variable comment="target x" name="newX" sid="9458075907525293" type="number" />
+                <instance-variable comment="Target Y" name="newY" sid="6067643461784297" type="number" />
+                <instance-variable comment="X on jump" name="oldX" sid="9455943412697919" type="number" />
+                <instance-variable comment="Y on jump" name="oldY" sid="5685046359955283" type="number" />
+                <instance-variable comment="time jump started, in seconds." name="jumpStartTime" sid="9336624456650612" type="number" />
+                <instance-variable comment="True if in mid jump." name="isJumping" sid="9862142208389251" type="boolean" />
+                <instance-variable comment="UID of object riding, 0 if not." name="ridingUID" sid="8135904932414843" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="449708568791149" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\frog.png">
+                        <collision-poly>
+                            <point x="0.0526316" y="0.0416667" />
+                            <point x="0.5" y="0.208333" />
+                            <point x="0.921053" y="0.0625" />
+                            <point x="0.973684" y="0.5" />
+                            <point x="0.921053" y="0.9375" />
+                            <point x="0.5" y="0.791667" />
+                            <point x="0.0526316" y="0.958333" />
+                            <point x="0.0789474" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Prompt" sid="4009820712411065">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="ScoreText" sid="1687155742868097">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="HighScoreText" sid="9377337739792227">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="Function" sid="7087283391566462">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Life" sid="6481958328177022">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7378571553459789" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\life.png">
+                        <collision-poly>
+                            <point x="0.0625" y="0.0625" />
+                            <point x="0.5" y="0.03125" />
+                            <point x="0.90625" y="0.09375" />
+                            <point x="0.84375" y="0.5" />
+                            <point x="0.90625" y="0.90625" />
+                            <point x="0.5" y="0.71875" />
+                            <point x="0.09375" y="0.90625" />
+                            <point x="0.125" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TimeBar" sid="1098347051729442">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5376081111842871" speed="5">
+                    <frame duration="1" hotspotX="1.0625" hotspotY="0.4375" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="3120809933548598">
+            <plugin id="Keyboard" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Wrappers" plugin-id="Sprite" sid="942512308344014">
@@ -280,8 +374,12 @@
         <event-sheet>GameInitialise.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>GameEvent.xml</event-sheet>
+        <event-sheet>Player.xml</event-sheet>
     </event-folder>
-    <global-instances />
+    <global-instances>
+        <global-instance type="Function" uid="68" />
+        <global-instance type="Keyboard" uid="72" />
+    </global-instances>
     <sounds-folder />
     <music-folder />
     <files-folder>

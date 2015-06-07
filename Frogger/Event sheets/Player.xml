@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Player</name>
+    <events>
+        <event-group description="" sid="2751945923447463" title="This group controls the Frog - player" />
+        <event-block sid="2150439196607642">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9204070533085741" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="4412337448224496" type="Player" />
+                <action id="-3" name="Create object" sid="3415242978576857" type="System">
+                    <param id="0" name="Object to create">Player</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">64*floor(random(0,LayoutWidth/64))</param>
+                    <param id="3" name="Y">LayoutHeight-64-32</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1960401799736912">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6404867307717738" type="System">
+                    <param id="0" name="First value">Player.isDead</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2383757058170915">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="5189622028326478" type="System">
+                            <param id="0" name="First value">Player.isJumping</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="9826329841550486" type="Player">
+                            <param id="0" name="Instance variable">newX</param>
+                            <param id="1" name="Value">Player.X</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="8463442664909506" type="Player">
+                            <param id="0" name="Instance variable">oldX</param>
+                            <param id="1" name="Value">Player.X</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2803263018531992" type="Player">
+                            <param id="0" name="Instance variable">newY</param>
+                            <param id="1" name="Value">Player.Y</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7517859990373902" type="Player">
+                            <param id="0" name="Instance variable">oldY</param>
+                            <param id="1" name="Value">Player.Y</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7119199021833956">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="3856721745984924" type="Keyboard">
+                                    <param id="0" name="Key">37 (Left arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="2524617337305037" type="Player">
+                                    <param id="0" name="Instance variable">newX</param>
+                                    <param id="1" name="Value">-64</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="3409857261935566" type="Player">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3135301870149894">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="2700954960677276" type="Keyboard">
+                                    <param id="0" name="Key">39 (Right arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="2249723625079502" type="Player">
+                                    <param id="0" name="Instance variable">newX</param>
+                                    <param id="1" name="Value">64</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="613776045597766" type="Player">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9874193539625076">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="6611700485979153" type="Keyboard">
+                                    <param id="0" name="Key">38 (Up arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="2269747755257701" type="Player">
+                                    <param id="0" name="Instance variable">newY</param>
+                                    <param id="1" name="Value">-64</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="7368170148142793" type="Player">
+                                    <param id="0" name="Angle">-90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6291667420044091">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="1384823016115381" type="Keyboard">
+                                    <param id="0" name="Key">40 (Down arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="6437690781080699" type="Player">
+                                    <param id="0" name="Instance variable">newY</param>
+                                    <param id="1" name="Value">64</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="290212396100471" type="Player">
+                                    <param id="0" name="Angle">90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="442123148652168">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9806975725740139" type="Player">
+                                    <param id="0" name="Instance variable">newX</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Player.oldX</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="7162780370349644" type="Player">
+                                    <param id="0" name="Instance variable">newY</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Player.oldY</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="8194018946338049" type="Player">
+                                    <param id="0" name="Instance variable">jumpStartTime</param>
+                                    <param id="1" name="Value">time</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6725658289474862" type="Player">
+                                    <param id="0" name="Instance variable">ridingUID</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="3965310961211362" type="Player">
+                                    <param id="0" name="Instance variable">isJumping</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7874097127512417">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="1972876274338964" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable comment="Lerp input value" constant="0" name="li" sid="5355567228593115" static="0" type="number">0</variable>
+                        <event-block sid="4707217107903374">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="9047626247643497" type="System">
+                                    <param id="0" name="First value">time</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">Player.jumpStartTime+JUMP_TIME</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="7572768329320191" type="Player">
+                                    <param id="0" name="X">Player.newX</param>
+                                    <param id="1" name="Y">Player.newY</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4104514437673454" type="Player">
+                                    <param id="0" name="Instance variable">isJumping</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7955184788330073">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="2412567534561899" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="8401934057540334" type="System">
+                                    <param id="0" name="Variable">li</param>
+                                    <param id="1" name="Value">(time-Player.jumpStartTime)/JUMP_TIME</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3263644110256904" type="Player">
+                                    <param id="0" name="X">lerp(Player.oldX,Player.newX,li)</param>
+                                    <param id="1" name="Y">lerp(Player.oldY,Player.newY,li)</param>
+                                </action>
+                                <action id="9" name="Set scale" sid="1968810235705086" type="Player">
+                                    <param id="0" name="Scale">sin(li*180)/4+1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

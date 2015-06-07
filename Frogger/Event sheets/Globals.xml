@@ -3,17 +3,30 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
+        <comment>Current number of lives</comment>
+        <variable comment="Number of lives left" constant="0" name="lives" sid="8899591252946103" static="0" type="number">0</variable>
+        <comment>Current score</comment>
+        <variable comment="Score" constant="0" name="score" sid="732338468284632" static="0" type="number">0</variable>
+        <comment>Current High Score</comment>
+        <variable comment="High Score (overall)" constant="0" name="highScore" sid="5671739212082622" static="0" type="number">1000</variable>
+        <comment>Start time in seconds</comment>
+        <variable comment="time game started, in seconds" constant="0" name="startTime" sid="8342729756578045" static="0" type="number">0</variable>
+        <comment>Time Allocated in seconds</comment>
+        <variable comment="Amount of time allocated in seconds" constant="0" name="timeAllocated" sid="4052995808033656" static="0" type="number">0</variable>
         <comment>last allocated group ID</comment>
         <variable comment="last allocated group ID" constant="0" name="lastGroupID" sid="4022173985521904" static="0" type="number">0</variable>
         <comment>Current level</comment>
-        <variable comment="Current level" constant="0" name="level" sid="8722193542570323" static="0" type="number">1</variable>
+        <variable comment="Current level" constant="0" name="level" sid="8722193542570323" static="0" type="number">-1</variable>
         <comment>Scalar for how fast the logs, turtles and cars move.</comment>
         <variable comment="Scalar for speed of moving objects." constant="0" name="speedScalar" sid="2563569294739173" static="0" type="number">2</variable>
+        <comment>Jump time in seconds</comment>
+        <variable comment="Jump time in seconds" constant="0" name="JUMP_TIME" sid="6365794823848603" static="0" type="number">0.2</variable>
         <comment>Last group ID allocated</comment>
         <variable comment="Position of middle path" constant="1" name="MIDDLE_PATH_POSITION" sid="5524512098359099" static="0" type="number">512</variable>
         <comment>First Group ID Allocated</comment>
         <variable comment="First group ID used." constant="1" name="FIRST_GROUP_ID" sid="8097008254158341" static="0" type="number">1000</variable>
         <comment>TODO:</comment>
+        <comment>Handle landing on stuff and moving about.</comment>
         <comment>Clear home frog array on initialisation or new level.</comment>
     </events>
 </c2eventsheet>

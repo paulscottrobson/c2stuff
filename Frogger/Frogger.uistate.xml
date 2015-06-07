@@ -11,9 +11,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">GameScreen</layout>
-        <event-sheet active="1" order="1">GameInitialise</event-sheet>
-        <event-sheet order="2">Globals</event-sheet>
+        <event-sheet order="1">GameInitialise</event-sheet>
+        <event-sheet active="1" order="2">Globals</event-sheet>
         <event-sheet order="3">GameEvent</event-sheet>
+        <event-sheet order="4">Player</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -39,5 +40,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/LogMiddle/" />
         <folder expanded="1" path="animation-folder/LogRight/" />
         <folder expanded="1" path="animation-folder/HomeFrog/" />
+        <folder expanded="1" path="animation-folder/Player/" />
+        <folder expanded="1" path="animation-folder/Life/" />
+        <folder expanded="1" path="animation-folder/TimeBar/" />
     </folders-expanded>
 </c2uistate>

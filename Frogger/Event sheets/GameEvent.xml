@@ -3,7 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>GameEvent</name>
     <events>
-        <include>GameInitialise</include>
         <include>Globals</include>
+        <include>GameInitialise</include>
+        <include>Player</include>
     </events>
 </c2eventsheet>
