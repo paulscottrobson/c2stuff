@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Frogger</name>
+    <description>Rewrite of Konami Arcade Game</description>
+    <version>1.0.0.0</version>
+    <author>Paul Robson</author>
+    <author-email>paul@robsons.org.uk</author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>2hren7ofuk2pn</unique-id>
+    <saved-with-version>20600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>896</width>
+        <height>1024</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="Car" sid="1121715495387452">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Car1" pingpong="0" repeatcount="1" repeatto="0" sid="7504453001915491" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.508475" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\car1.png">
+                        <collision-poly>
+                            <point x="0.147059" y="0.169492" />
+                            <point x="0.5" y="0.271186" />
+                            <point x="0.941176" y="0.0677966" />
+                            <point x="0.955882" y="0.491525" />
+                            <point x="0.941176" y="0.932203" />
+                            <point x="0.5" y="0.728814" />
+                            <point x="0.147059" y="0.830508" />
+                            <point x="0" y="0.491525" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Car2" pingpong="0" repeatcount="1" repeatto="0" sid="1807150639925397" speed="5">
+                    <frame duration="1" hotspotX="0.508197" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\car2.png">
+                        <collision-poly>
+                            <point x="0.0491803" y="0.0576923" />
+                            <point x="0.491803" y="0.0576923" />
+                            <point x="0.983607" y="0.0192308" />
+                            <point x="0.918033" y="0.5" />
+                            <point x="0.983607" y="0.980769" />
+                            <point x="0.0163934" y="0.980769" />
+                            <point x="0.0163934" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Car3" pingpong="0" repeatcount="1" repeatto="0" sid="4822150129533897" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.511628" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\car3.png">
+                        <collision-poly>
+                            <point x="0.09375" y="0.139535" />
+                            <point x="0.5" y="0.209302" />
+                            <point x="0.921875" y="0.116279" />
+                            <point x="0.953125" y="0.488372" />
+                            <point x="0.921875" y="0.883721" />
+                            <point x="0.5" y="0.813953" />
+                            <point x="0.09375" y="0.860465" />
+                            <point x="0.015625" y="0.488372" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Car4" pingpong="0" repeatcount="1" repeatto="0" sid="4696631000457476" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\car4.png">
+                        <collision-poly>
+                            <point x="0.0454545" y="0.0517241" />
+                            <point x="0.5" y="0.275862" />
+                            <point x="0.863636" y="0.155172" />
+                            <point x="1" y="0.5" />
+                            <point x="0.863636" y="0.844828" />
+                            <point x="0.5" y="0.741379" />
+                            <point x="0.0454545" y="0.948276" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Car5" pingpong="0" repeatcount="1" repeatto="0" sid="5182519615350887" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.512195" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\car5.png">
+                        <collision-poly>
+                            <point x="0.0438596" y="0.121951" />
+                            <point x="0.5" y="0.0731707" />
+                            <point x="0.973684" y="0.0731707" />
+                            <point x="1" y="0.487805" />
+                            <point x="0.973684" y="0.926829" />
+                            <point x="0.5" y="0.926829" />
+                            <point x="0.0438596" y="0.878049" />
+                            <point x="0" y="0.487805" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HomeArea" sid="1368520182046866">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3529558029152302" speed="5">
+                    <frame duration="1" hotspotX="0.502488" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\home.png">
+                        <collision-poly>
+                            <point x="0.0199005" y="0.0416667" />
+                            <point x="0.99005" y="0.0208333" />
+                            <point x="1" y="0.5" />
+                            <point x="0.980099" y="0.958333" />
+                            <point x="0.497512" y="0.270833" />
+                            <point x="0.00497512" y="0.989583" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Ground" sid="9514252034670752">
+            <plugin id="TiledBg" />
+            <texture original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\ground.png" />
+        </object-type>
+        <object-type name="Water" sid="3512164368347131">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="Road" sid="8351427883460627">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="Turtle" sid="5520383524501312">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="NonSinking" pingpong="0" repeatcount="1" repeatto="0" sid="6808300309079081" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.508772" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\turtle1.png" />
+                </animation>
+                <animation framecount="4" loop="1" name="Sinking" pingpong="1" repeatcount="1" repeatto="0" sid="1212783472926932" speed="0.7">
+                    <frame duration="4" hotspotX="0.5" hotspotY="0.508772" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\turtle1.png" />
+                    <frame duration="1.3" hotspotX="0.5" hotspotY="0.508772" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\turtle2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.508772" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\turtle3.png" />
+                    <frame duration="0.33" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="LogLeft" sid="5719442577756513">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3067344045025418" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\log_left.png">
+                        <collision-poly>
+                            <point x="0.125" y="0.137931" />
+                            <point x="0.5" y="0.0172414" />
+                            <point x="0.984375" y="0.0172414" />
+                            <point x="1" y="0.5" />
+                            <point x="0.875" y="0.862069" />
+                            <point x="0.5" y="0.982759" />
+                            <point x="0.203125" y="0.775862" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="LogMiddle" sid="1322890237012096">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1524553023096682" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\log_middle.png">
+                        <collision-poly>
+                            <point x="0.078125" y="0.0862069" />
+                            <point x="0.5" y="0.0689655" />
+                            <point x="0.984375" y="0.0172414" />
+                            <point x="1" y="0.5" />
+                            <point x="0.953125" y="0.948276" />
+                            <point x="0.046875" y="0.948276" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="LogRight" sid="4161334540445111">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="594457013014391" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\log_right.png">
+                        <collision-poly>
+                            <point x="0.015625" y="0.0172414" />
+                            <point x="0.5" y="0" />
+                            <point x="0.875" y="0.137931" />
+                            <point x="1" y="0.5" />
+                            <point x="0.875" y="0.862069" />
+                            <point x="0.5" y="0.965517" />
+                            <point x="0.125" y="0.862069" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families>
+        <family name="Wrappers" plugin-id="Sprite" sid="942512308344014">
+            <members>
+                <member>Car</member>
+                <member>LogLeft</member>
+                <member>LogMiddle</member>
+                <member>LogRight</member>
+                <member>Turtle</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="Direction of travel (-1 or 1)" name="direction" sid="5703954379728891" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="639355209888963">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+        </family>
+    </families>
+    <layout-folder>
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Event sheet 1.xml</event-sheet>
+    </event-folder>
+    <global-instances />
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
