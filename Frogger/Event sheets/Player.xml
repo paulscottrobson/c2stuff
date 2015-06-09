@@ -184,6 +184,14 @@
                                     <param id="3" name="Volume">0</param>
                                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
+                                <action id="-10" name="Add to" sid="8339626942347594" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">10</param>
+                                </action>
+                                <action id="0" name="Call function" sid="8557953972151306" type="Function">
+                                    <param id="0" name="Name">&quot;updateScores&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>Not changed to jumping mode</comment>
@@ -246,6 +254,10 @@
                                             <param id="0" name="Object">Wrappers</param>
                                         </condition>
                                         <condition id="-2" name="Compare Y" sid="4437059684801673" type="Wrappers">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Y co-ordinate">512</param>
+                                        </condition>
+                                        <condition id="-2" name="Compare Y" sid="9944395639016812" type="Player">
                                             <param id="0" name="Comparison">2</param>
                                             <param id="1" name="Y co-ordinate">512</param>
                                         </condition>
@@ -334,6 +346,18 @@
                                     <param id="0" name="Instance variable">isLevelComplete</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-10" name="Add to" sid="4383449816684856" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">50</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="7143540788135021" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">max(floor(timeAllocated-(time-startTime))*10,0)</param>
+                                </action>
+                                <action id="0" name="Call function" sid="1281854916554839" type="Function">
+                                    <param id="0" name="Name">&quot;updateScores&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>Set level completed to false if any of the slots are zero (e.g. there&apos;s no frog in that slot), so will be true if all the frog slots are occupied</comment>
@@ -373,6 +397,10 @@
                                         <action id="-10" name="Add to" sid="3086862312654295" type="System">
                                             <param id="0" name="Variable">level</param>
                                             <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="5179661609733059" type="Function">
+                                            <param id="0" name="Name">&quot;updateScores&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -425,7 +453,7 @@
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Play" sid="3089905870736589" type="Audio">
-                            <param id="0" name="Audio file">Bass Death</param>
+                            <param id="0" name="Audio file">Deep Frongas</param>
                             <param id="2" name="Loop">0</param>
                             <param id="3" name="Volume">0</param>
                             <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
@@ -433,7 +461,7 @@
                     </actions>
                 </event-block>
                 <comment>Kill player if landed in river area, if not riding something.</comment>
-                <event-block sid="243796354500358">
+                <event-block bookmark="1" sid="243796354500358">
                     <conditions>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1632644355792657" type="Player">
                             <param id="0" name="Instance variable">isJumping</param>
@@ -474,7 +502,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="6893324518225003">
+                        <event-block bookmark="1" sid="6893324518225003">
                             <conditions>
                                 <condition id="3" name="Compare frame" sid="5695402589273525" type="Turtle">
                                     <param id="0" name="Comparison">0</param>
@@ -541,7 +569,7 @@
             </actions>
         </event-block>
         <comment></comment>
-        <comment>TODO: Handle death, make death noise, deduct lives, game over if zero else restart, and scoring for various events.</comment>
+        <comment>TODO: Handle death, make death noise, deduct lives.</comment>
         <comment></comment>
     </events>
 </c2eventsheet>

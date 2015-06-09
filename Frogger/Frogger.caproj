@@ -16,6 +16,7 @@
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
@@ -274,7 +275,7 @@
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="449708568791149" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\frog.png">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.509091" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\frog.png">
                         <collision-poly>
                             <point x="0.0526316" y="0.0416667" />
                             <point x="0.5" y="0.208333" />
@@ -351,6 +352,9 @@
         </object-type>
         <object-type name="Audio" sid="9717976449284273">
             <plugin id="Audio" />
+        </object-type>
+        <object-type name="Debug" sid="9894659305404855">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>

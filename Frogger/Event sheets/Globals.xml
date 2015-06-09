@@ -9,6 +9,8 @@
         <variable comment="Score" constant="0" name="score" sid="732338468284632" static="0" type="number">0</variable>
         <comment>Current High Score</comment>
         <variable comment="High Score (overall)" constant="0" name="highScore" sid="5671739212082622" static="0" type="number">1000</variable>
+        <comment>Points before next extra life given</comment>
+        <variable comment="Points before next extra life" constant="0" name="nextExtraLife" sid="8126690448628668" static="0" type="number">0</variable>
         <comment>Start time in seconds</comment>
         <variable comment="time game started, in seconds" constant="0" name="startTime" sid="8342729756578045" static="0" type="number">0</variable>
         <comment>Time Allocated in seconds</comment>
@@ -25,8 +27,11 @@
         <variable comment="Position of middle path" constant="1" name="MIDDLE_PATH_POSITION" sid="5524512098359099" static="0" type="number">512</variable>
         <comment>First Group ID Allocated</comment>
         <variable comment="First group ID used." constant="1" name="FIRST_GROUP_ID" sid="8097008254158341" static="0" type="number">1000</variable>
-        <comment>TODO:</comment>
-        <comment>Handle landing on stuff and moving about.</comment>
-        <comment>Clear home frog array on initialisation or new level.</comment>
+        <comment>Max Number of lives</comment>
+        <variable comment="Max number of extra lives" constant="1" name="MAX_LIVES" sid="2844664398003884" static="0" type="number">6</variable>
+        <comment>Points per extra life</comment>
+        <variable comment="Points per extra life" constant="1" name="POINTS_PER_EXTRA_LIFE" sid="7002524711435294" static="0" type="number">100</variable>
+        <comment>Seconds per level</comment>
+        <variable comment="Seconds for level" constant="1" name="TIME_PER_LEVEL" sid="7505232482887259" static="0" type="number">45</variable>
     </events>
 </c2eventsheet>

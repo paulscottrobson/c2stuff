@@ -1839,11 +1839,11 @@
                         <x>-256</x>
                         <y>448</y>
                         <z>0</z>
-                        <width>56</width>
-                        <height>60</height>
+                        <width>50</width>
+                        <height>55</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotY>0.5090909</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -2614,6 +2614,33 @@
                         <depth>0</depth>
                         <hotspotX>1.0625</hotspotX>
                         <hotspotY>0.4375</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Debug" uid="74">
+                    <properties>
+                        <text>(Debug)</text>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <font>Arial,-19,400,0</font>
+                        <color>255,255,0</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>40</x>
+                        <y>895</y>
+                        <z>0</z>
+                        <width>448</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
