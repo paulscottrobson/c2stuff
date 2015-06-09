@@ -267,6 +267,9 @@
                 <instance-variable comment="time jump started, in seconds." name="jumpStartTime" sid="9336624456650612" type="number" />
                 <instance-variable comment="True if in mid jump." name="isJumping" sid="9862142208389251" type="boolean" />
                 <instance-variable comment="UID of object riding, 0 if not." name="ridingUID" sid="8135904932414843" type="number" />
+                <instance-variable comment="True if level completed" name="isLevelComplete" sid="7203312843742249" type="boolean" />
+                <instance-variable comment="Offset from rider position X" name="ridingOffsetX" sid="3719428892765663" type="number" />
+                <instance-variable comment="Offset from rider Y" name="ridingOffsetY" sid="9703063808387225" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="449708568791149" speed="5">

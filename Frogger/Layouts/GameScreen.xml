@@ -1829,6 +1829,9 @@
                         <jumpStartTime>0</jumpStartTime>
                         <isJumping>false</isJumping>
                         <ridingUID>0</ridingUID>
+                        <isLevelComplete>false</isLevelComplete>
+                        <ridingOffsetX>0</ridingOffsetX>
+                        <ridingOffsetY>0</ridingOffsetY>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

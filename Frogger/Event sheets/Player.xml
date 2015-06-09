@@ -13,11 +13,12 @@
                 <action id="-3" name="Create object" sid="3415242978576857" type="System">
                     <param id="0" name="Object to create">Player</param>
                     <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">64*floor(random(0,LayoutWidth/64))</param>
+                    <param id="2" name="X">64*floor(random(1,LayoutWidth/64-1))</param>
                     <param id="3" name="Y">LayoutHeight-64-32</param>
                 </action>
             </actions>
         </event-block>
+        <comment>If player is alive</comment>
         <event-block sid="1960401799736912">
             <conditions>
                 <condition id="-8" name="Compare two values" sid="6404867307717738" type="System">
@@ -28,6 +29,7 @@
             </conditions>
             <actions />
             <sub-events>
+                <comment>If not in jumping mode, Reset all new XY/oldXY to current position</comment>
                 <event-block sid="2383757058170915">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="5189622028326478" type="System">
@@ -55,6 +57,7 @@
                         </action>
                     </actions>
                     <sub-events>
+                        <comment>If key is down, set angle and adjust position</comment>
                         <event-block sid="7119199021833956">
                             <conditions>
                                 <condition id="2" name="Key is down" sid="3856721745984924" type="Keyboard">
@@ -71,6 +74,7 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>If key is down, set angle and adjust position</comment>
                         <event-block sid="3135301870149894">
                             <conditions>
                                 <condition id="2" name="Key is down" sid="2700954960677276" type="Keyboard">
@@ -87,6 +91,7 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>If key is down, set angle and adjust position</comment>
                         <event-block sid="9874193539625076">
                             <conditions>
                                 <condition id="2" name="Key is down" sid="6611700485979153" type="Keyboard">
@@ -103,6 +108,7 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>If key is down, set angle and adjust position</comment>
                         <event-block sid="6291667420044091">
                             <conditions>
                                 <condition id="2" name="Key is down" sid="1384823016115381" type="Keyboard">
@@ -119,6 +125,7 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>If the position has changed, switch to jumping mode, remember start time, and we aren&apos;t jumping any more.</comment>
                         <event-block any="1" sid="442123148652168">
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" sid="9806975725740139" type="Player">
@@ -147,6 +154,29 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>Not changed to jumping mode</comment>
+                        <event-block sid="5324505774442724">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7808639587218428" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Are we riding on something ?</comment>
+                                <event-block sid="5568640094959086">
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" sid="7151007544526829" type="Wrappers">
+                                            <param id="0" name="Unique ID">Player.ridingUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" sid="7768325866745391" type="Player">
+                                            <param id="0" name="X">Wrappers.X+Player.ridingOffsetX</param>
+                                            <param id="1" name="Y">Wrappers.Y+Player.ridingOffsetY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <event-block sid="7874097127512417">
@@ -155,7 +185,9 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <comment>Otherwise, in jumping mode</comment>
                         <variable comment="Lerp input value" constant="0" name="li" sid="5355567228593115" static="0" type="number">0</variable>
+                        <comment>Has the jump completed ?</comment>
                         <event-block sid="4707217107903374">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="9047626247643497" type="System">
@@ -174,7 +206,36 @@
                                     <param id="1" name="Value">0</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <comment>Landed on a Turtle or Log ? If so, ride on it - set the UID of riding object and the offset from its anchor point</comment>
+                                <event-block sid="978231188544978">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="3507446024367921" type="Player">
+                                            <param id="0" name="Object">Wrappers</param>
+                                        </condition>
+                                        <condition id="-2" name="Compare Y" sid="4437059684801673" type="Wrappers">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Y co-ordinate">512</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="961696279178878" type="Player">
+                                            <param id="0" name="Instance variable">ridingUID</param>
+                                            <param id="1" name="Value">Wrappers.UID</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="3023116914223697" type="Player">
+                                            <param id="0" name="Instance variable">ridingOffsetX</param>
+                                            <param id="1" name="Value">Player.X-Wrappers.X</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="9780580330310099" type="Player">
+                                            <param id="0" name="Instance variable">ridingOffsetY</param>
+                                            <param id="1" name="Value">Player.Y-Wrappers.Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
+                        <comment>If not work out how far through the jump we are and lerp the position, and use a sine wave to calculate the scale</comment>
                         <event-block sid="7955184788330073">
                             <conditions>
                                 <condition id="-22" name="Else" sid="2412567534561899" type="System" />
@@ -194,6 +255,197 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <comment>Player landed in home slot</comment>
+                <event-block sid="8869982929940433">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="3324184476346274" type="Player">
+                            <param id="0" name="Object">HomeFrog</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Dead if there&apos;s a visible frog in there (there&apos;s always a HomeFrog but it may not be visible yet) or you just aren&apos;t near enough to the frog.</comment>
+                        <event-block any="1" sid="6557208321697721">
+                            <conditions>
+                                <condition id="-9" name="Is visible" sid="2278558660158476" type="HomeFrog" />
+                                <condition id="-8" name="Compare two values" sid="3628083539481259" type="System">
+                                    <param id="0" name="First value">abs(HomeFrog.X-Player.X)</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">32</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="4346830982327046" type="Player">
+                                    <param id="0" name="Instance variable">isDead</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>If not, set the HomeFrogOccupied slot and mark the level completed.</comment>
+                        <event-block sid="6662548147445918">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6187253619248057" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="2" name="Set at X" sid="1809823506943862" type="HomeFrogOccupied">
+                                    <param id="0" name="X">HomeFrog.homeFrogSlot</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="9286927747397073" type="Player">
+                                    <param id="0" name="Instance variable">isLevelComplete</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Set level completed to false if any of the slots are zero (e.g. there&apos;s no frog in that slot), so will be true if all the frog slots are occupied</comment>
+                                <event-block sid="4455049658493283">
+                                    <conditions>
+                                        <condition id="3" name="For each element" sid="9123612735675931" type="HomeFrogOccupied">
+                                            <param id="0" name="Axes">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="6553949385018929">
+                                            <conditions>
+                                                <condition id="4" name="Compare current value" sid="4088133283279656" type="HomeFrogOccupied">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="976484401024469" type="Player">
+                                                    <param id="0" name="Instance variable">isLevelComplete</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>If the level actually is complete, clear the frog array and go to the next level</comment>
+                                <event-block sid="3354469195464985">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="5302079709660162" type="Player">
+                                            <param id="0" name="Instance variable">isLevelComplete</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Clear" sid="4844537094596365" type="HomeFrogOccupied" />
+                                        <action id="-10" name="Add to" sid="3086862312654295" type="System">
+                                            <param id="0" name="Variable">level</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1080438708888905">
+                                    <conditions>
+                                        <condition id="-1" name="Every tick" sid="1999956404289782" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-26" name="Restart layout" sid="9602621983512878" type="System" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Kill player if outside layout or outside the bottom.</comment>
+                <event-block any="1" sid="3164822128215109">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="810450914842362" type="Player" />
+                        <condition id="-2" name="Compare Y" sid="3513002916219462" type="Player">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">LayoutHeight-64</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="5264587773544592" type="Player">
+                            <param id="0" name="Instance variable">isDead</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Kill player on time out.</comment>
+                <event-block sid="6267110302418994">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="9932327266750285" type="System">
+                            <param id="0" name="First value">time</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">startTime+timeAllocated</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="1076765526272361" type="Player">
+                            <param id="0" name="Instance variable">isDead</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Kill player if landed in river area, if not riding something.</comment>
+                <event-block sid="243796354500358">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1632644355792657" type="Player">
+                            <param id="0" name="Instance variable">isJumping</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="6945292966475571" type="Player">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">512</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="9830017770449498" type="Player">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">224</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="7535817036635892" type="Player">
+                            <param id="0" name="Instance variable">ridingUID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="1285961289222787" type="Player">
+                            <param id="0" name="Instance variable">isDead</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Kill Player if on a sunk turtle</comment>
+                <event-block sid="4518928130870168">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="8195291768090629" type="Player">
+                            <param id="0" name="Object">Turtle</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1194914092584449" type="Player">
+                            <param id="0" name="Instance variable">isJumping</param>
+                        </condition>
+                        <condition id="3" name="Compare frame" sid="5695402589273525" type="Turtle">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Number">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="6884445425375606" type="Player">
+                            <param id="0" name="Instance variable">isDead</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Kill player if hit by a car</comment>
+                <event-block sid="2850304075408341">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="5602244024945002" type="Player">
+                            <param id="0" name="Object">Car</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2637779731847217" type="Player">
+                            <param id="0" name="Instance variable">isJumping</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="8019719886587838" type="Player">
+                            <param id="0" name="Instance variable">isDead</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

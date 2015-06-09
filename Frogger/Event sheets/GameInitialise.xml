@@ -33,6 +33,7 @@
                                     <param id="0" name="Variable">lives</param>
                                     <param id="1" name="Value">3</param>
                                 </action>
+                                <action id="0" name="Clear" sid="5601001385707278" type="HomeFrogOccupied" />
                             </actions>
                         </event-block>
                         <event-block sid="8278982310357136">
@@ -506,6 +507,10 @@
                                     <param id="2" name="X">64+HomeFrogOccupied.CurX*192</param>
                                     <param id="3" name="Y">160</param>
                                 </action>
+                                <action id="-10" name="Set value" sid="3695974497846496" type="HomeFrog">
+                                    <param id="0" name="Instance variable">homeFrogSlot</param>
+                                    <param id="1" name="Value">HomeFrogOccupied.CurX</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>But if it is not occupied, make it invisible. We decide what to do when we collide with it.</comment>
@@ -581,24 +586,6 @@
                             <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
-                    <sub-events>
-                        <comment>Kill player on time out.</comment>
-                        <event-block sid="1838101737083579">
-                            <conditions>
-                                <condition id="-8" name="Compare two values" sid="5837197252055968" type="System">
-                                    <param id="0" name="First value">time</param>
-                                    <param id="1" name="Comparison">4</param>
-                                    <param id="2" name="Second value">startTime+timeAllocated</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" sid="8478425767370048" type="Player">
-                                    <param id="0" name="Instance variable">isDead</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -621,6 +608,9 @@
                         </action>
                         <action id="0" name="Set text" sid="1552661992653808" type="HighScoreText">
                             <param id="0" name="Text">right(&quot;000000&quot; &amp; highScore,5)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="6996507683574684" type="HighScoreText">
+                            <param id="0" name="Text">&quot;L&quot; &amp; level</param>
                         </action>
                     </actions>
                 </event-block>
