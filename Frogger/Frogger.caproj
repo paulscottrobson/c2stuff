@@ -11,6 +11,7 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -348,6 +349,9 @@
         <object-type name="Keyboard" sid="3120809933548598">
             <plugin id="Keyboard" />
         </object-type>
+        <object-type name="Audio" sid="9717976449284273">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Wrappers" plugin-id="Sprite" sid="942512308344014">
@@ -382,20 +386,30 @@
     <global-instances>
         <global-instance type="Function" uid="68" />
         <global-instance type="Keyboard" uid="72" />
+        <global-instance type="Audio" uid="73">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
     <sounds-folder>
         <file name="Bass Death.m4a" />
         <file name="Bass Death.ogg" />
         <file name="Clicks.m4a" />
         <file name="Clicks.ogg" />
-        <file name="Coin Drop 2.m4a" />
-        <file name="Coin Drop 2.ogg" />
         <file name="Deep Frongas.m4a" />
         <file name="Deep Frongas.ogg" />
         <file name="Frog Drown 2.m4a" />
         <file name="Frog Drown 2.ogg" />
-        <file name="Frog Drown.m4a" />
-        <file name="Frog Drown.ogg" />
         <file name="Frog Jump.m4a" />
         <file name="Frog Jump.ogg" />
         <file name="Get Started.m4a" />

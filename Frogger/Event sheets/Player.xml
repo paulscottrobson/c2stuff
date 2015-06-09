@@ -16,6 +16,29 @@
                     <param id="2" name="X">64*floor(random(1,LayoutWidth/64-1))</param>
                     <param id="3" name="Y">LayoutHeight-64-32</param>
                 </action>
+                <action id="33" name="Stop all" sid="9369244745031389" type="Audio" />
+                <action id="0" name="Play" sid="9812361192897232" type="Audio">
+                    <param id="0" name="Audio file">Get Started</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;startMusic&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9001536155150168">
+            <conditions>
+                <condition id="5" inverted="1" name="Is tag playing" sid="1953294188568977" type="Audio">
+                    <param id="0" name="Tag">&quot;startMusic&quot;</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="9731570254142468" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="9224553233075565" type="Audio">
+                    <param id="0" name="Audio file">Game Music</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;music&quot;</param>
+                </action>
             </actions>
         </event-block>
         <comment>If player is alive</comment>
@@ -25,6 +48,9 @@
                     <param id="0" name="First value">Player.isDead</param>
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="5" inverted="1" name="Is tag playing" sid="4596503399498604" type="Audio">
+                    <param id="0" name="Tag">&quot;startMusic&quot;</param>
                 </condition>
             </conditions>
             <actions />
@@ -151,6 +177,12 @@
                                 <action id="-13" name="Set boolean" sid="3965310961211362" type="Player">
                                     <param id="0" name="Instance variable">isJumping</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="2392322661412743" type="Audio">
+                                    <param id="0" name="Audio file">Frog Jump</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -280,6 +312,12 @@
                                     <param id="0" name="Instance variable">isDead</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="0" name="Play" sid="6187291299739651" type="Audio">
+                                    <param id="0" name="Audio file">Bass Death</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>If not, set the HomeFrogOccupied slot and mark the level completed.</comment>
@@ -364,6 +402,12 @@
                             <param id="0" name="Instance variable">isDead</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="0" name="Play" sid="5349724325196889" type="Audio">
+                            <param id="0" name="Audio file">Bass Death</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Kill player on time out.</comment>
@@ -379,6 +423,12 @@
                         <action id="-13" name="Set boolean" sid="1076765526272361" type="Player">
                             <param id="0" name="Instance variable">isDead</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Play" sid="3089905870736589" type="Audio">
+                            <param id="0" name="Audio file">Bass Death</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -407,28 +457,47 @@
                             <param id="0" name="Instance variable">isDead</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="0" name="Play" sid="3494524529146041" type="Audio">
+                            <param id="0" name="Audio file">Frog Drown 2</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Kill Player if on a sunk turtle</comment>
                 <event-block sid="4518928130870168">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="8195291768090629" type="Player">
-                            <param id="0" name="Object">Turtle</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1194914092584449" type="Player">
-                            <param id="0" name="Instance variable">isJumping</param>
-                        </condition>
-                        <condition id="3" name="Compare frame" sid="5695402589273525" type="Turtle">
-                            <param id="0" name="Comparison">0</param>
-                            <param id="1" name="Number">3</param>
+                        <condition id="-14" name="Pick by unique ID" sid="8195291768090629" type="Turtle">
+                            <param id="0" name="Unique ID">Player.ridingUID</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" sid="6884445425375606" type="Player">
-                            <param id="0" name="Instance variable">isDead</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6893324518225003">
+                            <conditions>
+                                <condition id="3" name="Compare frame" sid="5695402589273525" type="Turtle">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Number">3</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1194914092584449" type="Player">
+                                    <param id="0" name="Instance variable">isJumping</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="6884445425375606" type="Player">
+                                    <param id="0" name="Instance variable">isDead</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="6256665236857774" type="Audio">
+                                    <param id="0" name="Audio file">Frog Drown 2</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>Kill player if hit by a car</comment>
                 <event-block sid="2850304075408341">
@@ -445,9 +514,34 @@
                             <param id="0" name="Instance variable">isDead</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="0" name="Play" sid="3204742620824864" type="Audio">
+                            <param id="0" name="Audio file">Bass Death</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;dead&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>On Player Dead (not if level completed at the same time)</comment>
+        <event-block sid="4382523726231133">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="7926102848540622" type="Player">
+                    <param id="0" name="Instance variable">isDead</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4477768988724065" type="Player">
+                    <param id="0" name="Instance variable">isLevelComplete</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="7247686384917315" type="Audio">
+                    <param id="0" name="Tag">&quot;music&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment></comment>
+        <comment>TODO: Handle death, make death noise, deduct lives, game over if zero else restart, and scoring for various events.</comment>
+        <comment></comment>
     </events>
 </c2eventsheet>
