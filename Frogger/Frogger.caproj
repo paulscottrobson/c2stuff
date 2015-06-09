@@ -383,8 +383,30 @@
         <global-instance type="Function" uid="68" />
         <global-instance type="Keyboard" uid="72" />
     </global-instances>
-    <sounds-folder />
-    <music-folder />
+    <sounds-folder>
+        <file name="Bass Death.m4a" />
+        <file name="Bass Death.ogg" />
+        <file name="Clicks.m4a" />
+        <file name="Clicks.ogg" />
+        <file name="Coin Drop 2.m4a" />
+        <file name="Coin Drop 2.ogg" />
+        <file name="Deep Frongas.m4a" />
+        <file name="Deep Frongas.ogg" />
+        <file name="Frog Drown 2.m4a" />
+        <file name="Frog Drown 2.ogg" />
+        <file name="Frog Drown.m4a" />
+        <file name="Frog Drown.ogg" />
+        <file name="Frog Jump.m4a" />
+        <file name="Frog Jump.ogg" />
+        <file name="Get Started.m4a" />
+        <file name="Get Started.ogg" />
+        <file name="You died Music.m4a" />
+        <file name="You died Music.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Game Music.m4a" />
+        <file name="Game Music.ogg" />
+    </music-folder>
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />
