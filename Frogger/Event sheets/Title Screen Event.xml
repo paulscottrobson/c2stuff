@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Title Screen Event</name>
+    <events>
+        <comment>Update start text, create Frogs that mutate into Frogger.</comment>
+        <event-block sid="9550437747145364">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3301248160655607" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="2306923910215921" type="ScoreText">
+                    <param id="0" name="Text">right(&quot;000000&quot; &amp; score,5)</param>
+                </action>
+                <action id="0" name="Set text" sid="1622928474542483" type="HighScoreText">
+                    <param id="0" name="Text">right(&quot;000000&quot; &amp; highScore,5)</param>
+                </action>
+                <action id="5" name="Check item exists" sid="736500811620569" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2085665386479112">
+                    <conditions>
+                        <condition id="-10" name="For" sid="1924338455502499" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">len(TITLE)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="9131986874572968" type="System">
+                            <param id="0" name="Object to create">Player</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">LayoutWidth/2 + (loopindex-1)/2*160-6*40</param>
+                            <param id="3" name="Y">160</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7912436242395548" type="Player">
+                            <param id="0" name="Instance variable">titleLetter</param>
+                            <param id="1" name="Value">mid(TITLE,loopindex-1,1)</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="6235927519994877" type="Player">
+                            <param id="0" name="Duration">0.5*loopindex</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;&quot;</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="2988802760259768" type="Player">
+                            <param id="0" name="Angle">-90</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Frogger Key Missing</comment>
+        <event-block sid="4733236722856264">
+            <conditions>
+                <condition id="10" name="On item missing" sid="8988798825581037" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Initialise the array</comment>
+                <event-block sid="8150754111771655">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5243852505201665" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set at X" sid="6943521914437761" type="HighScoreArray">
+                            <param id="0" name="X">loopindex</param>
+                            <param id="1" name="Value">1000</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Refresh the scoreboard</comment>
+                <event-block sid="637134191302443">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="8526742333982412" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set at X" sid="1721649287834829" type="HighScoreArray">
+                            <param id="0" name="X">5</param>
+                            <param id="1" name="Value">score</param>
+                        </action>
+                        <action id="0" name="Call function" sid="5463711726475639" type="Function">
+                            <param id="0" name="Name">&quot;refreshScoreboard&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Frogger Key exists, retreive high score data</comment>
+        <event-block sid="2721580471799801">
+            <conditions>
+                <condition id="9" name="On item exists" sid="553153478286053" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="8071363812133515" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On retrieved, load Array with JSON High Score data</comment>
+        <event-block sid="5236633357393805">
+            <conditions>
+                <condition id="1" name="On item get" sid="2297110107095788" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="11" name="Load" sid="7946888064258129" type="HighScoreArray">
+                    <param id="0" name="JSON">LocalStorage.ItemValue</param>
+                </action>
+                <action id="2" name="Set at X" sid="2594220524866296" type="HighScoreArray">
+                    <param id="0" name="X">5</param>
+                    <param id="1" name="Value">score</param>
+                </action>
+                <action id="0" name="Call function" sid="4176126671752317" type="Function">
+                    <param id="0" name="Name">&quot;refreshScoreboard&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Mutate Frogs on time out.</comment>
+        <event-block sid="1397571948538924">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="7485607368413179" type="Player">
+                    <param id="0" name="Tag">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="8191572841891471" type="Player">
+                    <param id="0" name="Object">Letter</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Set text" sid="5825666936398926" type="Letter">
+                    <param id="0" name="Text">Player.titleLetter</param>
+                </action>
+                <action id="-8" name="Set angle" sid="5021205667443032" type="Letter">
+                    <param id="0" name="Angle">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="801396027239935" type="Player" />
+            </actions>
+        </event-block>
+        <comment>Handle Game Start</comment>
+        <event-block sid="1873874174892831">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="2295096894379883" type="Touch" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4879232965493529" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="1194193895007397" type="System">
+                    <param id="0" name="Layout">GameScreen</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Refresh the score board</comment>
+        <event-block sid="7234147280238446">
+            <conditions>
+                <condition id="0" name="On function" sid="9987031958503216" type="Function">
+                    <param id="0" name="Name">&quot;refreshScoreboard&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="2" name="Set at X" sid="2578489432475279" type="HighScoreArray">
+                    <param id="0" name="X">5</param>
+                    <param id="1" name="Value">score</param>
+                </action>
+                <action id="8" name="Sort" sid="9592466231661663" type="HighScoreArray">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="7" name="Reverse" sid="8484426808041311" type="HighScoreArray">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="0" name="Set item" sid="1665360101253831" type="LocalStorage">
+                    <param id="0" name="Key">FROGGER_KEY</param>
+                    <param id="1" name="Value">HighScoreArray.AsJSON</param>
+                </action>
+            </actions>
+            <sub-events>
+                <variable comment="Horizontal position" constant="0" name="y" sid="4992524365940717" static="0" type="number">0</variable>
+                <event-block sid="9111925277182288">
+                    <conditions>
+                        <condition id="-10" name="For" sid="1722629884211495" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="4022104204923565" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">scoreRanking.Y+loopindex*64+64</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="6350764946246654" type="System">
+                            <param id="0" name="Object to create">Prompt</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">y</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7150060554740387" type="Prompt">
+                            <param id="0" name="Text">loopindex &amp; &quot;TH    &quot;  &amp; right(&quot;00000&quot; &amp; HighScoreArray.At(loopindex-1),6) &amp; &quot; PTS&quot;</param>
+                        </action>
+                        <action id="-5" name="Set width" sid="9327375852905532" type="Prompt">
+                            <param id="0" name="Width">LayoutWidth</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

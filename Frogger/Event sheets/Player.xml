@@ -567,9 +567,69 @@
                     <param id="0" name="Tag">&quot;music&quot;</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="4877001962664361">
+                    <conditions>
+                        <condition id="5" name="Is tag playing" sid="6385616300351194" type="Audio">
+                            <param id="0" name="Tag">&quot;dead&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-18" name="Rotate clockwise" sid="424434034070153" type="Player">
+                            <param id="0" name="Degrees">360*3*dt</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="7186777640441624" type="Player">
+                            <param id="0" name="Width">max(0,Player.Width-70*dt)</param>
+                            <param id="1" name="Height">max(0,Player.hEIGHT-70*dt)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
-        <comment></comment>
-        <comment>TODO: Handle death, make death noise, deduct lives.</comment>
-        <comment></comment>
+        <comment>Dead, end of sound effect, restart level if lives &gt; 0</comment>
+        <event-block sid="3904307377027472">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="2509281844408573" type="Player">
+                    <param id="0" name="Instance variable">isDead</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2472835680310609" type="Player">
+                    <param id="0" name="Instance variable">isLevelComplete</param>
+                </condition>
+                <condition id="5" inverted="1" name="Is tag playing" sid="2990617832476911" type="Audio">
+                    <param id="0" name="Tag">&quot;dead&quot;</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="8285507785171726" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="4751757793285565" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2964532048883243">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="1794083884953344" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Restart layout" sid="3341961382240993" type="System" />
+                    </actions>
+                </event-block>
+                <event-block sid="1068530933890506">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="7416090622372434" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="8752153634039877" type="System">
+                            <param id="0" name="Layout">Title Screen</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

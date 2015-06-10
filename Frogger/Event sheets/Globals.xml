@@ -30,8 +30,12 @@
         <comment>Max Number of lives</comment>
         <variable comment="Max number of extra lives" constant="1" name="MAX_LIVES" sid="2844664398003884" static="0" type="number">6</variable>
         <comment>Points per extra life</comment>
-        <variable comment="Points per extra life" constant="1" name="POINTS_PER_EXTRA_LIFE" sid="7002524711435294" static="0" type="number">100</variable>
+        <variable comment="Points per extra life" constant="1" name="POINTS_PER_EXTRA_LIFE" sid="7002524711435294" static="0" type="number">10000</variable>
         <comment>Seconds per level</comment>
         <variable comment="Seconds for level" constant="1" name="TIME_PER_LEVEL" sid="7505232482887259" static="0" type="number">45</variable>
+        <comment>LocalStorage Key Frogger</comment>
+        <variable constant="1" name="FROGGER_KEY" sid="324640558390476" static="0" type="text">PaulRobsonFroggerHighScore</variable>
+        <comment>Frogger Title</comment>
+        <variable comment="Title text" constant="1" name="TITLE" sid="2904635000650096" static="0" type="text">FROGGER</variable>
     </events>
 </c2eventsheet>

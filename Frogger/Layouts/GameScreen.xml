@@ -1832,7 +1832,11 @@
                         <isLevelComplete>false</isLevelComplete>
                         <ridingOffsetX>0</ridingOffsetX>
                         <ridingOffsetY>0</ridingOffsetY>
+                        <titleLetter></titleLetter>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>

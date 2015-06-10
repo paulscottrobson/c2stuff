@@ -14,10 +14,12 @@
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -35,6 +37,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>Title Screen</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -272,7 +275,13 @@
                 <instance-variable comment="True if level completed" name="isLevelComplete" sid="7203312843742249" type="boolean" />
                 <instance-variable comment="Offset from rider position X" name="ridingOffsetX" sid="3719428892765663" type="number" />
                 <instance-variable comment="Offset from rider Y" name="ridingOffsetY" sid="9703063808387225" type="number" />
+                <instance-variable comment="Character to appear" name="titleLetter" sid="4914319297782353" type="string" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="2494889485575071">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="449708568791149" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.509091" original-source="C:\Construct2\Practice\Docs\Frogger\Gfx\frog.png">
@@ -356,6 +365,33 @@
         <object-type name="Debug" sid="9894659305404855">
             <plugin id="Text" />
         </object-type>
+        <object-type name="Letter" sid="8517958324952872">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="ScoreRanking" sid="4026878377239487">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type global="1" name="HighScoreArray" sid="1014687752188118">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="LocalStorage" sid="937980819986808">
+            <plugin id="LocalStorage" />
+        </object-type>
+        <object-type name="Touch" sid="3792765971380262">
+            <plugin id="Touch" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Wrappers" plugin-id="Sprite" sid="942512308344014">
@@ -380,12 +416,14 @@
     </families>
     <layout-folder>
         <layout>GameScreen.xml</layout>
+        <layout>Title Screen.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>GameInitialise.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>GameEvent.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>
+        <event-sheet>Title Screen Event.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="68" />
@@ -402,6 +440,12 @@
                 <reference-distance>600</reference-distance>
                 <maximum-distance>10000</maximum-distance>
                 <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
+        <global-instance type="LocalStorage" uid="84" />
+        <global-instance type="Touch" uid="85">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
             </properties>
         </global-instance>
     </global-instances>
