@@ -3,8 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Frame</name>
     <events>
-        <variable comment="Frame size (long)" constant="1" name="FRAME_LONG" sid="7845801931263286" static="0" type="number">64</variable>
-        <variable comment="Frame size (short)" constant="1" name="FRAME_SHORT" sid="3489782081867744" static="0" type="number">6</variable>
+        <comment>Length of each maze box segment</comment>
+        <variable comment="Frame size (long)" constant="1" name="MAZE_BOX_SIZE" sid="7845801931263286" static="0" type="number">64</variable>
+        <comment>How close it has to be to the centre to allow movement in that axis</comment>
+        <variable comment="How close it has to be to the middle to count for movement" constant="0" name="MAZE_CENTRE_ALLOWED" sid="6477134134064367" static="0" type="number">7</variable>
+        <comment>Size of the tunnel left&lt;-&gt;right in pixels</comment>
+        <variable comment="Size of tunnel" constant="1" name="TUNNEL_WIDTH" sid="541696148547471" static="0" type="number">192</variable>
+        <comment>Width of the frames</comment>
+        <variable comment="Frame size (short)" constant="1" name="MAZE_EDGE_WIDTH" sid="3489782081867744" static="0" type="number">6</variable>
         <comment>Firstly, mirror the left half of the frame which is horizontally symmetrical</comment>
         <event-block sid="150355136699659">
             <conditions>
@@ -25,7 +31,7 @@
                         </condition>
                         <condition id="-1" name="Compare X" sid="7729453072533978" type="FrameV">
                             <param id="0" name="Comparison">2</param>
-                            <param id="1" name="X co-ordinate">LayoutWidth/2-FRAME_LONG/2</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth/2-MAZE_BOX_SIZE/2</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -40,7 +46,7 @@
                             <param id="3" name="Y">FrameV.Y</param>
                         </action>
                         <action id="-7" name="Set size" sid="6712421011517937" type="FrameV">
-                            <param id="0" name="Width">FRAME_SHORT</param>
+                            <param id="0" name="Width">MAZE_EDGE_WIDTH</param>
                             <param id="1" name="Height">size</param>
                         </action>
                     </actions>
@@ -64,7 +70,7 @@
                         </action>
                         <action id="-7" name="Set size" sid="8523702670807797" type="FrameH">
                             <param id="0" name="Width">size</param>
-                            <param id="1" name="Height">FRAME_SHORT</param>
+                            <param id="1" name="Height">MAZE_EDGE_WIDTH</param>
                         </action>
                     </actions>
                 </event-block>
@@ -86,17 +92,40 @@
                     </conditions>
                     <actions>
                         <action id="-6" name="Set height" sid="6629618547237709" type="FrameH">
-                            <param id="0" name="Height">FRAME_SHORT</param>
+                            <param id="0" name="Height">MAZE_EDGE_WIDTH</param>
                         </action>
                         <action id="-5" name="Set width" sid="8703940200386184" type="FrameH">
-                            <param id="0" name="Width">floor((FrameH.Width+FRAME_LONG/2)/FRAME_LONG) * FRAME_LONG+FRAME_SHORT</param>
+                            <param id="0" name="Width">floor((FrameH.Width+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE) * MAZE_BOX_SIZE+MAZE_EDGE_WIDTH</param>
                         </action>
                         <action id="-1" name="Set X" sid="6756930528091451" type="Frames">
-                            <param id="0" name="X">floor((Frames.X+FRAME_LONG/2)/FRAME_LONG)*FRAME_LONG</param>
+                            <param id="0" name="X">floor((Frames.X+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE</param>
                         </action>
                         <action id="-2" name="Set Y" sid="180679803550652" type="Frames">
-                            <param id="0" name="Y">floor((Frames.Y+FRAME_LONG/2)/FRAME_LONG)*FRAME_LONG-FRAME_SHORT/2</param>
+                            <param id="0" name="Y">floor((Frames.Y+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE-MAZE_EDGE_WIDTH/2</param>
                         </action>
+                    </actions>
+                </event-block>
+                <comment>Fix the width, height and position, and looks neater at the bottom</comment>
+                <event-block sid="4638242286709773">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="3774678866022457" type="System">
+                            <param id="0" name="Object">Door</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-6" name="Set height" sid="5302699749840395" type="Door">
+                            <param id="0" name="Height">MAZE_EDGE_WIDTH</param>
+                        </action>
+                        <action id="-5" name="Set width" sid="2163547714280718" type="Door">
+                            <param id="0" name="Width">floor((Door.Width+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE) * MAZE_BOX_SIZE+MAZE_EDGE_WIDTH</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="1235214928435527" type="Door">
+                            <param id="0" name="X">floor((Door.X+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="8357637797235792" type="Door">
+                            <param id="0" name="Y">floor((Door.Y+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE-MAZE_EDGE_WIDTH/2</param>
+                        </action>
+                        <action id="-25" name="Move to bottom" sid="6839698719476924" type="Door" />
                     </actions>
                 </event-block>
                 <comment>Fix the width, height and position</comment>
@@ -108,16 +137,16 @@
                     </conditions>
                     <actions>
                         <action id="-5" name="Set width" sid="1259088989327272" type="FrameV">
-                            <param id="0" name="Width">FRAME_SHORT</param>
+                            <param id="0" name="Width">MAZE_EDGE_WIDTH</param>
                         </action>
                         <action id="-6" name="Set height" sid="3203619815076559" type="FrameV">
-                            <param id="0" name="Height">floor((FrameV.Height+FRAME_LONG/2)/FRAME_LONG) * FRAME_LONG+FRAME_SHORT</param>
+                            <param id="0" name="Height">floor((FrameV.Height+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE) * MAZE_BOX_SIZE+MAZE_EDGE_WIDTH</param>
                         </action>
                         <action id="-1" name="Set X" sid="8743079859260712" type="Frames">
-                            <param id="0" name="X">floor((Frames.X+FRAME_LONG/2)/FRAME_LONG)*FRAME_LONG-FRAME_SHORT/2</param>
+                            <param id="0" name="X">floor((Frames.X+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE-MAZE_EDGE_WIDTH/2</param>
                         </action>
                         <action id="-2" name="Set Y" sid="3000604736198587" type="Frames">
-                            <param id="0" name="Y">floor((Frames.Y+FRAME_LONG/2)/FRAME_LONG)*FRAME_LONG</param>
+                            <param id="0" name="Y">floor((Frames.Y+MAZE_BOX_SIZE/2)/MAZE_BOX_SIZE)*MAZE_BOX_SIZE</param>
                         </action>
                     </actions>
                 </event-block>
@@ -144,26 +173,26 @@
                         <action id="-3" name="Create object" sid="2765889096708403" type="System">
                             <param id="0" name="Object to create">PowerPill</param>
                             <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">FRAME_LONG/2</param>
-                            <param id="3" name="Y">FRAME_LONG*5/2</param>
+                            <param id="2" name="X">MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">MAZE_BOX_SIZE*5/2</param>
                         </action>
                         <action id="-3" name="Create object" sid="5609189100977633" type="System">
                             <param id="0" name="Object to create">PowerPill</param>
                             <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">FRAME_LONG/2</param>
-                            <param id="3" name="Y">FRAME_LONG*19/2</param>
+                            <param id="2" name="X">MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">MAZE_BOX_SIZE*19/2</param>
                         </action>
                         <action id="-3" name="Create object" sid="8378507162600072" type="System">
                             <param id="0" name="Object to create">PowerPill</param>
                             <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">LayoutWidth-FRAME_LONG/2</param>
-                            <param id="3" name="Y">FRAME_LONG*5/2</param>
+                            <param id="2" name="X">LayoutWidth-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">MAZE_BOX_SIZE*5/2</param>
                         </action>
                         <action id="-3" name="Create object" sid="1183615086845597" type="System">
                             <param id="0" name="Object to create">PowerPill</param>
                             <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">LayoutWidth-FRAME_LONG/2</param>
-                            <param id="3" name="Y">FRAME_LONG*19/2</param>
+                            <param id="2" name="X">LayoutWidth-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">MAZE_BOX_SIZE*19/2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -173,7 +202,7 @@
                         <condition id="-10" name="For" sid="7440393898004697" type="System">
                             <param id="0" name="Name">&quot;x&quot;</param>
                             <param id="1" name="Start index">1</param>
-                            <param id="2" name="End index">LayoutWidth/FRAME_LONG</param>
+                            <param id="2" name="End index">LayoutWidth/MAZE_BOX_SIZE</param>
                         </condition>
                     </conditions>
                     <actions />
@@ -183,39 +212,26 @@
                                 <condition id="-10" name="For" sid="7206362267687523" type="System">
                                     <param id="0" name="Name">&quot;y&quot;</param>
                                     <param id="1" name="Start index">2</param>
-                                    <param id="2" name="End index">LayoutHeight/FRAME_LONG-1</param>
+                                    <param id="2" name="End index">LayoutHeight/MAZE_BOX_SIZE-1</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-3" name="Create object" sid="4399439939370041" type="System">
+                                    <param id="0" name="Object to create">Dot</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">(loopindex(&quot;x&quot;)-0.5)*MAZE_BOX_SIZE</param>
+                                    <param id="3" name="Y">(loopindex(&quot;y&quot;)-0.5)*MAZE_BOX_SIZE</param>
+                                </action>
+                            </actions>
                             <sub-events>
-                                <comment>This test stops dots appearing where the enclosed boxes are on the second row of the maze</comment>
-                                <event-block any="1" sid="6519965099285918">
+                                <comment>Destroy any dot that overlaps a power pill or a &quot;no dot&quot; cross</comment>
+                                <event-block any="1" sid="1116932800812168">
                                     <conditions>
-                                        <condition id="-8" inverted="1" name="Compare two values" sid="4508903600560635" type="System">
-                                            <param id="0" name="First value">loopindex(&quot;y&quot;) </param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">3</param>
-                                        </condition>
-                                        <condition id="-8" inverted="1" name="Compare two values" sid="3311287089549686" type="System">
-                                            <param id="0" name="First value">(loopindex(&quot;x&quot;) = 2)  | (loopindex(&quot;x&quot;) = 4) | (loopindex(&quot;x&quot;) = 7) | (loopindex(&quot;x&quot;) = 9)</param>
-                                            <param id="1" name="Comparison">1</param>
-                                            <param id="2" name="Second value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-3" name="Create object" sid="4399439939370041" type="System">
-                                            <param id="0" name="Object to create">Dot</param>
-                                            <param id="1" name="Layer">0</param>
-                                            <param id="2" name="X">(loopindex(&quot;x&quot;)-0.5)*FRAME_LONG</param>
-                                            <param id="3" name="Y">(loopindex(&quot;y&quot;)-0.5)*FRAME_LONG</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <comment>Destroy any dot that overlaps a power pill</comment>
-                                <event-block sid="2606444838620999">
-                                    <conditions>
-                                        <condition id="1" name="Is overlapping another object" sid="815068813090561" type="Dot">
+                                        <condition id="1" name="Is overlapping another object" sid="8446627851038479" type="Dot">
                                             <param id="0" name="Object">PowerPill</param>
+                                        </condition>
+                                        <condition id="1" name="Is overlapping another object" sid="9158807780534896" type="Dot">
+                                            <param id="0" name="Object">NoDot</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -225,6 +241,16 @@
                             </sub-events>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <comment>Put them on the bottom of the layer</comment>
+                <event-block sid="8033853394655343">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="5519125811081935" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-25" name="Move to bottom" sid="1711067255907645" type="PowerPill" />
+                        <action id="-25" name="Move to bottom" sid="2562781108534079" type="Dot" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

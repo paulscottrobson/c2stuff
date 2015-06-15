@@ -11,6 +11,7 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
@@ -46,62 +47,375 @@
     <object-folder>
         <object-type name="Ghost" sid="2536858482831011">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True if last move was not at a junction" name="lastWasNotJunction" sid="4553465243664051" type="boolean" />
+                <instance-variable comment="Chance (0-1) of making a smart decision" name="brains" sid="5915884845103382" type="number" />
+                <instance-variable comment="if 1 then chase player, if -1 run away" name="attractDirection" sid="4958407716194959" type="number" />
+            </instance-variables>
             <animation-folder>
-                <animation framecount="8" loop="0" name="Red" pingpong="0" repeatcount="1" repeatto="0" sid="5201690205519101" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                <animation framecount="8" loop="1" name="Red" pingpong="0" repeatcount="1" repeatto="0" sid="5201690205519101" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0390625" y="0.0369318" />
+                            <point x="0.958333" y="0.0397727" />
+                            <point x="0.958333" y="0.948863" />
+                            <point x="0.0390625" y="0.965909" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="8" loop="0" name="Orange" pingpong="0" repeatcount="1" repeatto="0" sid="8373669777554916" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="8" loop="0" name="Pink" pingpong="0" repeatcount="1" repeatto="0" sid="6979163873296796" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="8" loop="0" name="Cyan" pingpong="0" repeatcount="1" repeatto="0" sid="3235948924855115" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="4" loop="0" name="Chased" pingpong="0" repeatcount="1" repeatto="0" sid="1820991691077911" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="8" loop="0" name="Eyes" pingpong="0" repeatcount="1" repeatto="0" sid="5188425125900325" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -123,23 +437,121 @@
         <object-type name="Pacman" sid="6910145289656505">
             <plugin id="Sprite" />
             <animation-folder>
-                <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="2617513451431463" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_closed.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open1.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open2.png" />
+                <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="2617513451431463" speed="9">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_closed.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open1.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open2.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
                 <animation framecount="11" loop="0" name="Death" pingpong="0" repeatcount="1" repeatto="0" sid="1276972566605081" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -186,6 +598,21 @@
         <object-type name="Function" sid="3769503965319527">
             <plugin id="Function" />
         </object-type>
+        <object-type name="Keyboard" sid="3215585817245307">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="NoDot" sid="7870891762758979">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9160730458176808" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Door" sid="8710944641465302">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
     </object-folder>
     <families>
         <family name="Collectable" plugin-id="Sprite" sid="3996633519157558">
@@ -200,9 +627,21 @@
                 <member>Ghost</member>
                 <member>Pacman</member>
             </members>
+            <instance-variables>
+                <instance-variable comment="Current horizontal movement" name="dx" sid="8050732070428586" type="number" />
+                <instance-variable comment="Current Vertical Movement" name="dy" sid="3636211186285845" type="number" />
+                <instance-variable comment="Requested horizontal movement from controller" name="reqDx" sid="490288240181098" type="number" />
+                <instance-variable comment="Requested vertical movement from controller" name="reqDy" sid="4387639890034387" type="number" />
+                <instance-variable comment="Speed in pixels/second for dt" name="speed" sid="6487812644437896" type="number" />
+                <instance-variable comment="True if can mathematically move horizontally at this point" name="canMoveHorizontal" sid="4341845842237516" type="boolean" />
+                <instance-variable comment="True if can mathematically move vertically at this point" name="canMoveVertical" sid="3223497954016686" type="boolean" />
+                <instance-variable comment="Function to call to request control information" name="controlFunction" sid="2693528783183423" type="string" />
+                <instance-variable comment="Function to call to fix up animation" name="animationFunction" sid="5108071747659802" type="string" />
+            </instance-variables>
         </family>
         <family name="Frames" plugin-id="TiledBg" sid="6695061720642325">
             <members>
+                <member>Door</member>
                 <member>FrameH</member>
                 <member>FrameV</member>
             </members>
@@ -219,9 +658,11 @@
     <event-folder>
         <event-sheet>Game Events.xml</event-sheet>
         <event-sheet>Frame.xml</event-sheet>
+        <event-sheet>MovingObjects.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="66" />
+        <global-instance type="Keyboard" uid="41" />
     </global-instances>
     <sounds-folder>
         <file name="Death.m4a" />

@@ -3,6 +3,9 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Game Events</name>
     <events>
+        <comment>Code to tidy up and reset frame</comment>
         <include>Frame</include>
+        <comment>General code for moving objects</comment>
+        <include>MovingObjects</include>
     </events>
 </c2eventsheet>

@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>MovingObjects</name>
+    <events>
+        <event-group description="This controls the movement of all Moveables" sid="1404789654424851" title="Movement Manager">
+            <sub-events>
+                <event-block sid="7392503622323549">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="211112670410672" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Work through all moveables.</comment>
+                        <event-block sid="4532229603658968">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="4692513880972335" type="System">
+                                    <param id="0" name="Object">Moveable</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="8626538965694658" type="Moveable">
+                                    <param id="0" name="Instance variable">reqDx</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7499357650854619" type="Moveable">
+                                    <param id="0" name="Instance variable">reqDy</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="7981902420354876" type="Moveable">
+                                    <param id="0" name="Instance variable">canMoveHorizontal</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4071310863613684" type="Moveable">
+                                    <param id="0" name="Instance variable">canMoveVertical</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Check to see if we can move horizontally i.e. is the x coordinate close to the middle</comment>
+                                <event-block sid="8194765556723419">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="5947913640183509" type="System">
+                                            <param id="0" name="First value">abs(Moveable.Y % MAZE_BOX_SIZE-MAZE_BOX_SIZE/2)</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">MAZE_CENTRE_ALLOWED</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="4649793807195052" type="Moveable">
+                                            <param id="0" name="Instance variable">canMoveHorizontal</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>See if we can move vertically i.e. is the y coordinate close to the middle</comment>
+                                <event-block sid="434758379876322">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="9271914216928345" type="System">
+                                            <param id="0" name="First value">abs(Moveable.X % MAZE_BOX_SIZE-MAZE_BOX_SIZE/2)</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">MAZE_CENTRE_ALLOWED</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="8570337340015152" type="Moveable">
+                                            <param id="0" name="Instance variable">canMoveVertical</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Call the function to decide what we want it to do.</comment>
+                                <event-block sid="8389177767916061">
+                                    <conditions>
+                                        <condition id="-1" name="Every tick" sid="4054456415430861" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="5936086440385345" type="Function">
+                                            <param id="0" name="Name">Moveable.controlFunction</param>
+                                            <param id="1" name="Parameter {n}">Moveable.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>If cannot move horizontally, clear required dx</comment>
+                                <event-block sid="5614187339109229">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="696756738960825" type="System">
+                                            <param id="0" name="First value">Moveable.canMoveHorizontal</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="90638914624674" type="Moveable">
+                                            <param id="0" name="Instance variable">reqDx</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>If cannot move vertically, clear required dy</comment>
+                                <event-block sid="3179944400715412">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="5189781432865345" type="System">
+                                            <param id="0" name="First value">Moveable.canMoveVertical</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="5429949205384436" type="Moveable">
+                                            <param id="0" name="Instance variable">reqDy</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>If either required move is mathematically possible then update dx and dy</comment>
+                                <event-block sid="2118314414241753">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="4789996535051996" type="Moveable">
+                                            <param id="0" name="Instance variable">canMoveHorizontal</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                </event-block>
+                                <event-block any="1" sid="6505182838245246">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="9357528194845665" type="Moveable">
+                                            <param id="0" name="Instance variable">reqDx</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="3557818967159333" type="Moveable">
+                                            <param id="0" name="Instance variable">reqDy</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="9737793521002795" type="Moveable">
+                                            <param id="0" name="Instance variable">dx</param>
+                                            <param id="1" name="Value">Moveable.reqDx</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="3990067542099123" type="Moveable">
+                                            <param id="0" name="Instance variable">dy</param>
+                                            <param id="1" name="Value">Moveable.reqDy</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>If currently moving then try to move</comment>
+                                <event-block any="1" sid="987440437729223">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="6469053516057428" type="Moveable">
+                                            <param id="0" name="Instance variable">dx</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="8903193005907635" type="Moveable">
+                                            <param id="0" name="Instance variable">dy</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>If moving horizontally lock Y on centre axis</comment>
+                                        <event-block sid="2510870930156271">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="3108621131079944" type="Moveable">
+                                                    <param id="0" name="Instance variable">dx</param>
+                                                    <param id="1" name="Comparison">1</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-2" name="Set Y" sid="2582369871692315" type="Moveable">
+                                                    <param id="0" name="Y">floor(Moveable.Y/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>If moving vertically lock X on  centre axis</comment>
+                                        <event-block sid="5216469982264307">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="4199161727436812" type="Moveable">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Comparison">1</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-1" name="Set X" sid="557934430905091" type="Moveable">
+                                                    <param id="0" name="X">floor(Moveable.X/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Will that movement cause a collision, if so clear it.</comment>
+                                        <event-block sid="449144439607335">
+                                            <conditions>
+                                                <condition id="9" name="Is overlapping at offset" sid="5514163433913079" type="Moveable">
+                                                    <param id="0" name="Object">Frames</param>
+                                                    <param id="1" name="Offset X">Moveable.dx*2</param>
+                                                    <param id="2" name="Offset Y">Moveable.dy*2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="817534594699517" type="Moveable">
+                                                    <param id="0" name="Instance variable">dx</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="8599937997290769" type="Moveable">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-1" name="Set X" sid="7356670775492123" type="Moveable">
+                                                    <param id="0" name="X">floor(Moveable.X/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                                <action id="-2" name="Set Y" sid="6541023106227076" type="Moveable">
+                                                    <param id="0" name="Y">floor(Moveable.Y/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="5501064160906201">
+                                            <conditions>
+                                                <condition id="9" name="Is overlapping at offset" sid="2062423187751262" type="Moveable">
+                                                    <param id="0" name="Object">Door</param>
+                                                    <param id="1" name="Offset X">2*Moveable.dx</param>
+                                                    <param id="2" name="Offset Y">2*Moveable.dy</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="8547789345449707" type="Moveable">
+                                                    <param id="0" name="Instance variable">dx</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="3970309549793329" type="Moveable">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-1" name="Set X" sid="5415007819866911" type="Moveable">
+                                                    <param id="0" name="X">floor(Moveable.X/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                                <action id="-2" name="Set Y" sid="9140259903797889" type="Moveable">
+                                                    <param id="0" name="Y">floor(Moveable.Y/MAZE_BOX_SIZE)*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Finally, actually move.</comment>
+                                        <event-block sid="5744625594596398">
+                                            <conditions>
+                                                <condition id="-1" name="Every tick" sid="7216054410850001" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Set position" sid="1302633684527556" type="Moveable">
+                                                    <param id="0" name="X">Moveable.X+dt*Moveable.dx*Moveable.speed</param>
+                                                    <param id="1" name="Y">Moveable.Y+dt*Moveable.dy*Moveable.speed</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="5623364343640901">
+                                                    <conditions>
+                                                        <condition id="-1" name="Compare X" sid="3690610582909536" type="Moveable">
+                                                            <param id="0" name="Comparison">2</param>
+                                                            <param id="1" name="X co-ordinate">TUNNEL_WIDTH</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-1" name="Set X" sid="6699597176954988" type="Moveable">
+                                                            <param id="0" name="X">Moveable.X+TUNNEL_WIDTH*2+LayoutWidth</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="8712949153982864">
+                                                    <conditions>
+                                                        <condition id="-1" name="Compare X" sid="1431438640641386" type="Moveable">
+                                                            <param id="0" name="Comparison">5</param>
+                                                            <param id="1" name="X co-ordinate">LayoutWidth+TUNNEL_WIDTH</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-1" name="Set X" sid="5754849621002015" type="Moveable">
+                                                            <param id="0" name="X">Moveable.X-TUNNEL_WIDTH*2-LayoutWidth</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Call the function to animate if needed</comment>
+                                <event-block sid="7367939677665073">
+                                    <conditions>
+                                        <condition id="-1" name="Every tick" sid="4435696868521318" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="9617574945071728" type="Function">
+                                            <param id="0" name="Name">Moveable.animationFunction</param>
+                                            <param id="1" name="Parameter {n}">Moveable.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="These control the movement and animation of the moveable objects via indirectly called functions" sid="9406745987930808" title="Moving Functions">
+            <sub-events>
+                <comment>Function that does absolutely nothing, default controller and animator</comment>
+                <event-block sid="8045447526524403">
+                    <conditions>
+                        <condition id="0" name="On function" sid="5072573659415277" type="Function">
+                            <param id="0" name="Name">&quot;dummyFunction&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <comment>Pacman control function - this uses the keyboard.</comment>
+                <event-block sid="3140837307904583">
+                    <conditions>
+                        <condition id="0" name="On function" sid="3294822000639124" type="Function">
+                            <param id="0" name="Name">&quot;pacmanController&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="9099428149360397">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="5459189947069926" type="Pacman">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="6593345837858378">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="4098614834276912" type="Keyboard">
+                                            <param id="0" name="Key">38 (Up arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="3857416242308876" type="Pacman">
+                                            <param id="0" name="Instance variable">reqDy</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="9940400335698922" type="Pacman">
+                                            <param id="0" name="Angle">-90</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6771319458022797">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="8920160363738879" type="Keyboard">
+                                            <param id="0" name="Key">40 (Down arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="3514914293947476" type="Pacman">
+                                            <param id="0" name="Instance variable">reqDy</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="5608825563011632" type="Pacman">
+                                            <param id="0" name="Angle">90</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6634142980977365">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="2118197064931649" type="Keyboard">
+                                            <param id="0" name="Key">37 (Left arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="4045023206899614" type="Pacman">
+                                            <param id="0" name="Instance variable">reqDx</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="4042419456841832" type="Pacman">
+                                            <param id="0" name="Angle">180</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9597252042130187">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="8580189717201141" type="Keyboard">
+                                            <param id="0" name="Key">39 (Right arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="5474651948443734" type="Pacman">
+                                            <param id="0" name="Instance variable">reqDx</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="486361497998161" type="Pacman">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Pacman Controller</comment>
+                <event-block sid="1413931046910999">
+                    <conditions>
+                        <condition id="0" name="On function" sid="1917945522921901" type="Function">
+                            <param id="0" name="Name">&quot;ghostController&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4871721313030593">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="6361144389278266" type="Ghost">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="2150080499932407">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="6331500244951175" type="Ghost">
+                                            <param id="0" name="Instance variable">canMoveHorizontal</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="4823949084337225" type="Ghost">
+                                            <param id="0" name="Instance variable">canMoveVertical</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="5571634451455599">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="4185302073969949" type="Ghost">
+                                                    <param id="0" name="Instance variable">lastWasNotJunction</param>
+                                                </condition>
+                                                <condition id="-8" name="Compare two values" sid="9297876918851794" type="System">
+                                                    <param id="0" name="First value">random(0,1)</param>
+                                                    <param id="1" name="Comparison">2</param>
+                                                    <param id="2" name="Second value">0.1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="969095673128138" type="Ghost">
+                                                    <param id="0" name="Instance variable">dx</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="2163502849565471" type="Ghost">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="1023524473635861">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="5645232296627978" type="Ghost">
+                                            <param id="0" name="Instance variable">canMoveHorizontal</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="5610638486138426" type="Ghost">
+                                            <param id="0" name="Instance variable">canMoveVertical</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="309983556495778" type="Ghost">
+                                            <param id="0" name="Instance variable">lastWasNotJunction</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="7314147384013681">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="6673247998394727" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="5704298344966585" type="Ghost">
+                                            <param id="0" name="Instance variable">lastWasNotJunction</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9438788110752476">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="1944096213263557" type="Ghost">
+                                            <param id="0" name="Instance variable">dx</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="6063084681056315" type="Ghost">
+                                            <param id="0" name="Instance variable">dy</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="3905808549289053">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="3354523938460656" type="System">
+                                                    <param id="0" name="First value">choose(1,2)</param>
+                                                    <param id="1" name="Comparison">1</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="7682680767949695" type="Ghost">
+                                                    <param id="0" name="Instance variable">reqDx</param>
+                                                    <param id="1" name="Value">Ghost.attractDirection*(Ghost.X &lt; Pacman.X ? 1:-1)</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block any="1" sid="3368560350513099">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="1556316325095969" type="System">
+                                                            <param id="0" name="First value">random(0,1)</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Second value">Ghost.brains</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="737775041767809" type="Ghost">
+                                                            <param id="0" name="Instance variable">reqDx</param>
+                                                            <param id="1" name="Value">choose(-1,1)</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="6081615911696911">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="5797193111834289" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="3420632761830236" type="Ghost">
+                                                    <param id="0" name="Instance variable">reqDy</param>
+                                                    <param id="1" name="Value">Ghost.attractDirection*(Ghost.Y &lt; Pacman.Y ? 1 : -1)</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block any="1" sid="6811267239853728">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="6607550452976248" type="System">
+                                                            <param id="0" name="First value">random(0,1)</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Second value">Ghost.brains</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="4024185178623389" type="Ghost">
+                                                            <param id="0" name="Instance variable">reqDy</param>
+                                                            <param id="1" name="Value">choose(-1,1)</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
