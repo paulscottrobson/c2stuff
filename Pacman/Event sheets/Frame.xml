@@ -16,16 +16,7 @@
             <conditions>
                 <condition id="-2" name="On start of layout" sid="3918972181685811" type="System" />
             </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="6211996646597622" type="Function">
-                    <param id="0" name="Name">&quot;resetDotsAndPills&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-                <action id="0" name="Call function" sid="1709665035390325" type="Function">
-                    <param id="0" name="Name">&quot;resetGhosts&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-            </actions>
+            <actions />
             <sub-events>
                 <variable comment="temporary for size of cloned object" constant="0" name="size" sid="858012323270944" static="0" type="number">0</variable>
                 <event-block sid="8827068590894752">
@@ -357,6 +348,49 @@
                             <param id="0" name="Instance variable">brains</param>
                             <param id="1" name="Value">0.1</param>
                         </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Reset the Pacman</comment>
+        <event-block sid="4101759867533066">
+            <conditions>
+                <condition id="0" name="On function" sid="473390122981519" type="Function">
+                    <param id="0" name="Name">&quot;resetPacman&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1093392894006137" type="Pacman" />
+                <action id="-3" name="Create object" sid="2414518001457169" type="System">
+                    <param id="0" name="Object to create">Pacman</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">5*MAZE_BOX_SIZE</param>
+                    <param id="3" name="Y">9*MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="4536365443058004">
+                    <conditions>
+                        <condition id="9" name="Is overlapping at offset" sid="1690431365335499" type="Pacman">
+                            <param id="0" name="Object">Dot</param>
+                            <param id="1" name="Offset X">16</param>
+                            <param id="2" name="Offset Y">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4161086107920806" type="Dot" />
+                    </actions>
+                </event-block>
+                <event-block sid="5699660676763039">
+                    <conditions>
+                        <condition id="9" name="Is overlapping at offset" sid="2645706290776555" type="Pacman">
+                            <param id="0" name="Object">Dot</param>
+                            <param id="1" name="Offset X">-16</param>
+                            <param id="2" name="Offset Y">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9028875379200701" type="Dot" />
                     </actions>
                 </event-block>
             </sub-events>

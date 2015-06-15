@@ -24,6 +24,9 @@
                                         <condition id="-8" name="Is boolean instance variable set" sid="4692513880972335" type="Moveable">
                                             <param id="0" name="Instance variable">isControlled</param>
                                         </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="6757067613278011" type="Controller">
+                                            <param id="0" name="Instance variable">isGameRunning</param>
+                                        </condition>
                                     </conditions>
                                     <actions>
                                         <action id="-10" name="Set value" sid="8626538965694658" type="Moveable">
@@ -262,8 +265,8 @@
                                                     </conditions>
                                                     <actions>
                                                         <action id="-3" name="Set position" sid="1302633684527556" type="Moveable">
-                                                            <param id="0" name="X">Moveable.X+dt*Moveable.dx*Moveable.speed</param>
-                                                            <param id="1" name="Y">Moveable.Y+dt*Moveable.dy*Moveable.speed</param>
+                                                            <param id="0" name="X">Moveable.X+dt*Moveable.dx*Moveable.speed*Controller.speedScalar</param>
+                                                            <param id="1" name="Y">Moveable.Y+dt*Moveable.dy*Moveable.speed*Controller.speedScalar</param>
                                                         </action>
                                                     </actions>
                                                     <sub-events>

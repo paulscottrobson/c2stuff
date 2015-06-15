@@ -10,6 +10,7 @@
     <unique-id>14p66e7tjgvfq</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -561,6 +562,24 @@
             <plugin id="TiledBg" />
             <texture />
         </object-type>
+        <object-type global="1" name="Controller" sid="9453097270027026">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True if game running" name="isGameRunning" sid="2741816986737774" type="boolean" />
+                <instance-variable comment="Current score" name="score" sid="6895996441389435" type="number" />
+                <instance-variable comment="Current Number of Lives" name="lives" sid="8720130912523041" type="number" />
+                <instance-variable comment="Current level" name="level" sid="8577793678232501" type="number" />
+                <instance-variable comment="Movement speed scalar" name="speedScalar" sid="9961204717816525" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6697367393854527" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="7143309549732974">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Collectable" plugin-id="Sprite" sid="3996633519157558">
@@ -617,22 +636,34 @@
         <event-sheet>Game Events.xml</event-sheet>
         <event-sheet>Frame.xml</event-sheet>
         <event-sheet>MovingObjects.xml</event-sheet>
+        <event-sheet>Controller.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="66" />
         <global-instance type="Keyboard" uid="41" />
+        <global-instance type="Audio" uid="62">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
     <sounds-folder>
         <file name="Death.m4a" />
-        <file name="Eat Dot.ogg" />
         <file name="Chasing Sound.m4a" />
         <file name="Chasing Sound.ogg" />
         <file name="Death.ogg" />
         <file name="Eat Dot.m4a" />
         <file name="Eat Ghost.m4a" />
-        <file name="Eat Ghost.ogg" />
         <file name="Extra Life.m4a" />
-        <file name="Extra Life.ogg" />
         <file name="Ghost Returning.m4a" />
         <file name="Ghost Returning.ogg" />
         <file name="High Siren.m4a" />
@@ -641,6 +672,9 @@
         <file name="Intermission.ogg" />
         <file name="Intro.m4a" />
         <file name="Intro.ogg" />
+        <file name="Eat Dot.ogg" />
+        <file name="Eat Ghost.ogg" />
+        <file name="Extra Life.ogg" />
         <file name="Low Siren.m4a" />
         <file name="Low Siren.ogg" />
     </sounds-folder>

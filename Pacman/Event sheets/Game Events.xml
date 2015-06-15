@@ -7,5 +7,7 @@
         <include>Frame</include>
         <comment>General code for moving objects</comment>
         <include>MovingObjects</include>
+        <comment>Code which controls the game</comment>
+        <include>Controller</include>
     </events>
 </c2eventsheet>

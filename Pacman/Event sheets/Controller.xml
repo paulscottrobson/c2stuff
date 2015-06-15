@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Controller</name>
+    <events>
+        <comment>New Controller, Restart a new Level</comment>
+        <event-block sid="8971395287947577">
+            <conditions>
+                <condition id="-18" name="On created" sid="9074026740570051" type="Controller" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="5638070283574098" type="Function">
+                    <param id="0" name="Name">&quot;controllerNewLevel&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>End of intro, start game.</comment>
+        <event-block sid="5293338043887477">
+            <conditions>
+                <condition id="0" name="On ended" sid="8898099874701706" type="Audio">
+                    <param id="0" name="Tag">&quot;starting&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="9239279321382638" type="Controller">
+                    <param id="0" name="Instance variable">isGameRunning</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="9581997643944583" type="Audio">
+                    <param id="0" name="Audio file">Low Siren</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1534232288726434">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3836127642768702" type="Pacman">
+                    <param id="0" name="Object">Dot</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3785628615255324" type="Dot" />
+                <action id="0" name="Play" sid="3817246764045436" type="Audio">
+                    <param id="0" name="Audio file">Eat Dot</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-11" name="Add to" sid="8169058824668977" type="Controller">
+                    <param id="0" name="Instance variable">score</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Start a new level</comment>
+        <event-block sid="1514091084316405">
+            <conditions>
+                <condition id="0" name="On function" sid="1852533400845761" type="Function">
+                    <param id="0" name="Name">&quot;controllerNewLevel&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="3002964195501891" type="Function">
+                    <param id="0" name="Name">&quot;resetDotsAndPills&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="9043745855637295" type="Function">
+                    <param id="0" name="Name">&quot;resetGhosts&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="2021212145144048" type="Function">
+                    <param id="0" name="Name">&quot;resetPacman&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-10" name="Set value" sid="3111026175616118" type="Controller">
+                    <param id="0" name="Instance variable">speedScalar</param>
+                    <param id="1" name="Value">1+(min(Controller.level-1,13))*0.12</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Level 1, play intro, and start on ended</comment>
+                <event-block sid="2644527067514773">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="587113463669568" type="Controller">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="6552003790390679" type="Controller">
+                            <param id="0" name="Instance variable">isGameRunning</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Play" sid="790221732294862" type="Audio">
+                            <param id="0" name="Audio file">Intro</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;starting&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Level 2+ no intro</comment>
+                <event-block sid="9591788694479775">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="4433310293858987" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="8644561233533569" type="Controller">
+                            <param id="0" name="Instance variable">isGameRunning</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Play" sid="9555271723784888" type="Audio">
+                            <param id="0" name="Audio file">Low Siren</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>TODO: Display Score</comment>
+        <comment>TODO: Power pill collision etc.</comment>
+        <comment>TODO: Power pill end</comment>
+        <comment>TODO: Ghost collision and scoring</comment>
+        <comment>TODO: Death</comment>
+        <comment>TODO: Collections</comment>
+    </events>
+</c2eventsheet>
