@@ -15,7 +15,10 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
-    <used-behaviors />
+    <used-behaviors>
+        <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
     <used-effects>
         <effect author="Scirra" id="setcolor">Set color</effect>
     </used-effects>
@@ -352,69 +355,13 @@
                         </collision-poly>
                     </frame>
                 </animation>
-                <animation framecount="8" loop="0" name="Eyes" pingpong="0" repeatcount="1" repeatto="0" sid="5188425125900325" speed="5">
+                <animation framecount="1" loop="0" name="Eyes" pingpong="0" repeatcount="1" repeatto="0" sid="5188425125900325" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
-                        </collision-poly>
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0182292" y="0.0426136" />
-                            <point x="0.971354" y="0.0426136" />
-                            <point x="0.966146" y="0.951704" />
-                            <point x="0.0260417" y="0.957386" />
+                            <point x="0.268229" y="0.244318" />
+                            <point x="0.911458" y="0.235795" />
+                            <point x="0.908854" y="0.571022" />
+                            <point x="0.260417" y="0.562499" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -638,13 +585,24 @@
                 <instance-variable comment="True if can mathematically move vertically at this point" name="canMoveVertical" sid="3223497954016686" type="boolean" />
                 <instance-variable comment="Function to call to request control information" name="controlFunction" sid="2693528783183423" type="string" />
                 <instance-variable comment="Function to call to fix up animation" name="animationFunction" sid="5108071747659802" type="string" />
+                <instance-variable comment="If true controlled by MovingObjects code" name="isControlled" sid="6651721505135092" type="boolean" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Pathfinding" sid="8919756691477399">
+                    <behavior id="Pathfinding" />
+                </behavior-type>
+            </behaviors>
         </family>
         <family name="Frames" plugin-id="TiledBg" sid="6695061720642325">
             <members>
                 <member>FrameH</member>
                 <member>FrameV</member>
             </members>
+            <behaviors>
+                <behavior-type name="Solid" sid="7026807158055338">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
             <effects>
                 <effect-type name="SetColor">
                     <effect id="setcolor" />

@@ -12,8 +12,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <open-tabs>
         <layout order="0">Game Screen</layout>
         <event-sheet order="1">Game Events</event-sheet>
-        <event-sheet active="1" order="2">Frame</event-sheet>
-        <event-sheet order="3">MovingObjects</event-sheet>
+        <event-sheet order="2">Frame</event-sheet>
+        <event-sheet active="1" order="3">MovingObjects</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
