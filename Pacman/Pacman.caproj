@@ -51,6 +51,7 @@
                 <instance-variable comment="True if last move was not at a junction" name="lastWasNotJunction" sid="4553465243664051" type="boolean" />
                 <instance-variable comment="Chance (0-1) of making a smart decision" name="brains" sid="5915884845103382" type="number" />
                 <instance-variable comment="if 1 then chase player, if -1 run away" name="attractDirection" sid="4958407716194959" type="number" />
+                <instance-variable comment="The normal animation (e.g. not chasing)" name="standardAnimation" sid="7783109763932052" type="string" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="8" loop="1" name="Red" pingpong="0" repeatcount="1" repeatto="0" sid="5201690205519101" speed="5">
@@ -317,7 +318,7 @@
                         </collision-poly>
                     </frame>
                 </animation>
-                <animation framecount="4" loop="0" name="Chased" pingpong="0" repeatcount="1" repeatto="0" sid="1820991691077911" speed="5">
+                <animation framecount="4" loop="1" name="Chased" pingpong="0" repeatcount="1" repeatto="0" sid="1820991691077911" speed="8">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <collision-poly>
                             <point x="0.0182292" y="0.0426136" />
@@ -641,7 +642,6 @@
         </family>
         <family name="Frames" plugin-id="TiledBg" sid="6695061720642325">
             <members>
-                <member>Door</member>
                 <member>FrameH</member>
                 <member>FrameV</member>
             </members>

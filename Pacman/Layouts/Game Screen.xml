@@ -597,11 +597,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>192</x>
-                        <y>507</y>
+                        <x>277</x>
+                        <y>510.5</y>
                         <z>0</z>
-                        <width>117</width>
-                        <height>7</height>
+                        <width>32</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1488,15 +1488,6 @@
                         <initial-visibility>Visible</initial-visibility>
                         <hotspot>Top-left</hotspot>
                     </properties>
-                    <effect-instances>
-                        <effect-instance type="SetColor">
-                            <parameters>
-                                <blue>1</blue>
-                                <green>1</green>
-                                <red>0.09</red>
-                            </parameters>
-                        </effect-instance>
-                    </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -1576,20 +1567,21 @@
                         <dy>0</dy>
                         <reqDx>0</reqDx>
                         <reqDy>0</reqDy>
-                        <speed>400</speed>
+                        <speed>80</speed>
                         <canMoveHorizontal>false</canMoveHorizontal>
                         <canMoveVertical>false</canMoveVertical>
                         <controlFunction>ghostController</controlFunction>
-                        <animationFunction>dummyFunction</animationFunction>
+                        <animationFunction>ghostAnimator</animationFunction>
                         <lastWasNotJunction>false</lastWasNotJunction>
-                        <brains>1</brains>
+                        <brains>0.8</brains>
                         <attractDirection>1</attractDirection>
+                        <standardAnimation></standardAnimation>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>96</x>
-                        <y>224</y>
+                        <x>320</x>
+                        <y>416</y>
                         <z>0</z>
                         <width>52</width>
                         <height>52</height>
@@ -1634,20 +1626,21 @@
                         <dy>0</dy>
                         <reqDx>0</reqDx>
                         <reqDy>0</reqDy>
-                        <speed>400</speed>
+                        <speed>80</speed>
                         <canMoveHorizontal>false</canMoveHorizontal>
                         <canMoveVertical>false</canMoveVertical>
                         <controlFunction>ghostController</controlFunction>
-                        <animationFunction>dummyFunction</animationFunction>
+                        <animationFunction>ghostAnimator</animationFunction>
                         <lastWasNotJunction>false</lastWasNotJunction>
-                        <brains>1</brains>
+                        <brains>0.8</brains>
                         <attractDirection>1</attractDirection>
+                        <standardAnimation></standardAnimation>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>544</x>
-                        <y>96</y>
+                        <x>320</x>
+                        <y>416</y>
                         <z>0</z>
                         <width>52</width>
                         <height>52</height>
@@ -1670,20 +1663,21 @@
                         <dy>0</dy>
                         <reqDx>0</reqDx>
                         <reqDy>0</reqDy>
-                        <speed>400</speed>
+                        <speed>80</speed>
                         <canMoveHorizontal>false</canMoveHorizontal>
                         <canMoveVertical>false</canMoveVertical>
                         <controlFunction>ghostController</controlFunction>
-                        <animationFunction>dummyFunction</animationFunction>
+                        <animationFunction>ghostAnimator</animationFunction>
                         <lastWasNotJunction>false</lastWasNotJunction>
-                        <brains>1</brains>
+                        <brains>0.8</brains>
                         <attractDirection>1</attractDirection>
+                        <standardAnimation></standardAnimation>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>64</x>
-                        <y>608</y>
+                        <x>288</x>
+                        <y>416</y>
                         <z>0</z>
                         <width>52</width>
                         <height>52</height>
@@ -1706,20 +1700,21 @@
                         <dy>0</dy>
                         <reqDx>0</reqDx>
                         <reqDy>0</reqDy>
-                        <speed>400</speed>
+                        <speed>80</speed>
                         <canMoveHorizontal>false</canMoveHorizontal>
                         <canMoveVertical>false</canMoveVertical>
                         <controlFunction>ghostController</controlFunction>
-                        <animationFunction>dummyFunction</animationFunction>
+                        <animationFunction>ghostAnimator</animationFunction>
                         <lastWasNotJunction>false</lastWasNotJunction>
-                        <brains>1</brains>
+                        <brains>0.8</brains>
                         <attractDirection>1</attractDirection>
+                        <standardAnimation></standardAnimation>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>544</x>
-                        <y>672</y>
+                        <x>352</x>
+                        <y>416</y>
                         <z>0</z>
                         <width>52</width>
                         <height>52</height>

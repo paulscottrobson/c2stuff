@@ -21,6 +21,10 @@
                     <param id="0" name="Name">&quot;resetDotsAndPills&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Call function" sid="1709665035390325" type="Function">
+                    <param id="0" name="Name">&quot;resetGhosts&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
             </actions>
             <sub-events>
                 <variable comment="temporary for size of cloned object" constant="0" name="size" sid="858012323270944" static="0" type="number">0</variable>
@@ -250,6 +254,109 @@
                     <actions>
                         <action id="-25" name="Move to bottom" sid="1711067255907645" type="PowerPill" />
                         <action id="-25" name="Move to bottom" sid="2562781108534079" type="Dot" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Reset All the Ghosts</comment>
+        <event-block sid="4328354081649981">
+            <conditions>
+                <condition id="0" name="On function" sid="2460664917448638" type="Function">
+                    <param id="0" name="Name">&quot;resetGhosts&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7144344682060293">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="9260451680879507" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9312373981359442" type="Ghost" />
+                    </actions>
+                </event-block>
+                <event-block sid="5035552413881371">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="2988683053428998" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6476579926414006" type="System">
+                            <param id="0" name="Object to create">Ghost</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">choose(5,6)*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">7*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7472994670690527" type="Ghost">
+                            <param id="0" name="Instance variable">standardAnimation</param>
+                            <param id="1" name="Value">&quot;Red&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4497324882953658" type="Ghost">
+                            <param id="0" name="Instance variable">brains</param>
+                            <param id="1" name="Value">0.8</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3970127796518819">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3702613147841112" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="47155741316132" type="System">
+                            <param id="0" name="Object to create">Ghost</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">choose(5,6)*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">7*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2479222053375083" type="Ghost">
+                            <param id="0" name="Instance variable">standardAnimation</param>
+                            <param id="1" name="Value">&quot;Pink&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4179392126757879" type="Ghost">
+                            <param id="0" name="Instance variable">brains</param>
+                            <param id="1" name="Value">0.6</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4286728035024569">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1750542633787085" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="7655270492950026" type="System">
+                            <param id="0" name="Object to create">Ghost</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">choose(5,6)*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">7*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6903930651192887" type="Ghost">
+                            <param id="0" name="Instance variable">standardAnimation</param>
+                            <param id="1" name="Value">&quot;Cyan&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3546217675748742" type="Ghost">
+                            <param id="0" name="Instance variable">brains</param>
+                            <param id="1" name="Value">0.4</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7936669513417521">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3435402306226024" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="1903369038386946" type="System">
+                            <param id="0" name="Object to create">Ghost</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">choose(5,6)*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                            <param id="3" name="Y">7*MAZE_BOX_SIZE-MAZE_BOX_SIZE/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6898592040206579" type="Ghost">
+                            <param id="0" name="Instance variable">standardAnimation</param>
+                            <param id="1" name="Value">&quot;Orange&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9496917732493305" type="Ghost">
+                            <param id="0" name="Instance variable">brains</param>
+                            <param id="1" name="Value">0.1</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>

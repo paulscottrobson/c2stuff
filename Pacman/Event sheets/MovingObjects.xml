@@ -225,6 +225,11 @@
                                                     <param id="1" name="Offset X">2*Moveable.dx</param>
                                                     <param id="2" name="Offset Y">2*Moveable.dy</param>
                                                 </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="9489302172220994" type="Moveable">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
                                             </conditions>
                                             <actions>
                                                 <action id="-10" name="Set value" sid="8547789345449707" type="Moveable">
@@ -408,6 +413,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <comment>Pick the ghost being controlled</comment>
                         <event-block sid="4871721313030593">
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" sid="6361144389278266" type="Ghost">
@@ -416,6 +422,7 @@
                             </conditions>
                             <actions />
                             <sub-events>
+                                <comment>If at a junction and previous wasn&apos;t, 1 in 4 chance of a random direction change</comment>
                                 <event-block sid="2150080499932407">
                                     <conditions>
                                         <condition id="-8" name="Is boolean instance variable set" sid="6331500244951175" type="Ghost">
@@ -435,7 +442,7 @@
                                                 <condition id="-8" name="Compare two values" sid="9297876918851794" type="System">
                                                     <param id="0" name="First value">random(0,1)</param>
                                                     <param id="1" name="Comparison">2</param>
-                                                    <param id="2" name="Second value">0.1</param>
+                                                    <param id="2" name="Second value">0.25</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
@@ -451,6 +458,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
+                                <comment>Set the lastWasNotJunction value</comment>
                                 <event-block sid="1023524473635861">
                                     <conditions>
                                         <condition id="-8" name="Is boolean instance variable set" sid="5645232296627978" type="Ghost">
@@ -478,6 +486,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <comment>If direction change required.</comment>
                                 <event-block sid="9438788110752476">
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" sid="1944096213263557" type="Ghost">
@@ -493,6 +502,7 @@
                                     </conditions>
                                     <actions />
                                     <sub-events>
+                                        <comment>Pick vertical or horizontal, then choose chasing (or running away) or random move based on Brains of ghost.</comment>
                                         <event-block sid="3905808549289053">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="3354523938460656" type="System">
@@ -553,6 +563,23 @@
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
+                                        <event-block sid="7673942222540546">
+                                            <conditions>
+                                                <condition id="1" name="Is overlapping another object" sid="5104928371062348" type="Ghost">
+                                                    <param id="0" name="Object">NoDot</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="8332228024275129" type="Ghost">
+                                                    <param id="0" name="Instance variable">reqDx</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="6156677362050635" type="Ghost">
+                                                    <param id="0" name="Instance variable">reqDy</param>
+                                                    <param id="1" name="Value">-1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
                                     </sub-events>
                                 </event-block>
                             </sub-events>
@@ -561,5 +588,85 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <comment>Pacman Animator</comment>
+        <event-block sid="1653683583173676">
+            <conditions>
+                <condition id="0" name="On function" sid="6633649991656903" type="Function">
+                    <param id="0" name="Name">&quot;ghostAnimator&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable comment="Number of animation" constant="0" name="animation" sid="8363055522920574" static="0" type="number">0</variable>
+                <comment>Find ghost, process left/right</comment>
+                <event-block sid="1386621624791246">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="1572693854092332" type="Ghost">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1376959033416141" type="System">
+                            <param id="0" name="Variable">animation</param>
+                            <param id="1" name="Value">Ghost.dx &lt; 0 ? 4 : 0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Process up/down</comment>
+                        <event-block sid="9708987549546733">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3935020175982786" type="Ghost">
+                                    <param id="0" name="Instance variable">dy</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="6088518084592685" type="System">
+                                    <param id="0" name="Variable">animation</param>
+                                    <param id="1" name="Value">Ghost.dy &lt; 0 ? 6 : 2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>If running away use that animation</comment>
+                        <event-block sid="3954821132599014">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2008251781245031" type="Ghost">
+                                    <param id="0" name="Instance variable">attractDirection</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="6096404292136504" type="Ghost">
+                                    <param id="0" name="Animation">&quot;Chased&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="2" name="Stop" sid="9326526932611154" type="Ghost" />
+                                <action id="5" name="Set frame" sid="9362998154864694" type="Ghost">
+                                    <param id="0" name="Frame number">floor(time*16) % 4</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Otherwise stock eyes following animation in colours</comment>
+                        <event-block sid="5995800978887544">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="2744187088716346" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="4688962412498834" type="Ghost">
+                                    <param id="0" name="Animation">Ghost.standardAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="2" name="Stop" sid="4494761764124459" type="Ghost" />
+                                <action id="5" name="Set frame" sid="9485650629065825" type="Ghost">
+                                    <param id="0" name="Frame number">animation+floor(time*8) % 2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>
