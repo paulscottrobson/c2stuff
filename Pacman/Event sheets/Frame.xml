@@ -283,7 +283,7 @@
                         </action>
                         <action id="-10" name="Set value" sid="4497324882953658" type="Ghost">
                             <param id="0" name="Instance variable">brains</param>
-                            <param id="1" name="Value">0.8</param>
+                            <param id="1" name="Value">0.9</param>
                         </action>
                     </actions>
                 </event-block>
@@ -304,7 +304,7 @@
                         </action>
                         <action id="-10" name="Set value" sid="4179392126757879" type="Ghost">
                             <param id="0" name="Instance variable">brains</param>
-                            <param id="1" name="Value">0.6</param>
+                            <param id="1" name="Value">0.7</param>
                         </action>
                     </actions>
                 </event-block>
@@ -325,7 +325,7 @@
                         </action>
                         <action id="-10" name="Set value" sid="3546217675748742" type="Ghost">
                             <param id="0" name="Instance variable">brains</param>
-                            <param id="1" name="Value">0.4</param>
+                            <param id="1" name="Value">0.5</param>
                         </action>
                     </actions>
                 </event-block>

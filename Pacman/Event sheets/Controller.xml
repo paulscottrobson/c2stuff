@@ -6,7 +6,7 @@
         <comment>New Controller, Restart a new Level</comment>
         <event-block sid="8971395287947577">
             <conditions>
-                <condition id="-18" name="On created" sid="9074026740570051" type="Controller" />
+                <condition id="-2" name="On start of layout" sid="9074026740570051" type="System" />
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="5638070283574098" type="Function">
@@ -31,10 +31,11 @@
                     <param id="0" name="Audio file">Low Siren</param>
                     <param id="2" name="Loop">1</param>
                     <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                    <param id="1" name="Tag (optional)">&quot;background&quot;</param>
                 </action>
             </actions>
         </event-block>
+        <comment>Hit dot</comment>
         <event-block sid="1534232288726434">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="3836127642768702" type="Pacman">
@@ -49,11 +50,225 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
-                <action id="-11" name="Add to" sid="8169058824668977" type="Controller">
-                    <param id="0" name="Instance variable">score</param>
-                    <param id="1" name="Value">10</param>
+                <action id="0" name="Call function" sid="8169058824668977" type="Function">
+                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">10</param>
                 </action>
             </actions>
+        </event-block>
+        <comment>Hit Power pill</comment>
+        <event-block sid="824778676239735">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1598119371772273" type="Pacman">
+                    <param id="0" name="Object">PowerPill</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="9804960633383812" type="PowerPill" />
+                <action id="0" name="Call function" sid="7566315156439332" type="Function">
+                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">250</param>
+                </action>
+                <action id="6" name="Stop" sid="8641790558501354" type="Audio">
+                    <param id="0" name="Tag">&quot;background&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="9507898623479816" type="Audio">
+                    <param id="0" name="Audio file">Chasing Sound</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;background&quot;</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="7861148326731854" type="Controller">
+                    <param id="0" name="Duration">max(3,12-Controller.level)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;chasingEnded&quot;</param>
+                </action>
+                <action id="-10" name="Set value" sid="8313329459726434" type="Controller">
+                    <param id="0" name="Instance variable">nextGhostEastScore</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6244362360066903">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="7426345899925564" type="System">
+                            <param id="0" name="Object">Ghost</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="2121998674197037" type="Ghost">
+                            <param id="0" name="Instance variable">attractDirection</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Power Pill timed out / all ghosts eaten</comment>
+        <event-block any="1" sid="8517059737118962">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="6262794737249767" type="Controller">
+                    <param id="0" name="Tag">&quot;chasingEnded&quot;</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="3451123166832778" type="Controller">
+                    <param id="0" name="Instance variable">nextGhostEastScore</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1600</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="9887369967997883" type="Audio">
+                    <param id="0" name="Tag">&quot;background&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="5888636391523203" type="Audio">
+                    <param id="0" name="Audio file">Low Siren</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;background&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1268205158282834">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="3446622002742935" type="System">
+                            <param id="0" name="Object">Ghost</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="7978282787318333" type="Ghost">
+                            <param id="0" name="Instance variable">attractDirection</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Collision with controlled ghost (e.g. it isn&apos;t a pair of eyes returning to the middle)</comment>
+        <event-block sid="1277514736152174">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7573284711691916" type="Pacman">
+                    <param id="0" name="Object">Ghost</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9040429677829439">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="5346931756446111" type="Ghost">
+                            <param id="0" name="Instance variable">isControlled</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="3092318366846348" type="Audio">
+                            <param id="0" name="Audio file">Eat Ghost</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3687856418463243" type="Function">
+                            <param id="0" name="Name">&quot;ghostReturn&quot;</param>
+                            <param id="1" name="Parameter {n}">Ghost.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Level Completed</comment>
+        <event-block sid="5403060521018531">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="9110168227194062" type="System">
+                    <param id="0" name="First value">Dot.Count+PowerPill.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="6504375151263936" type="System" />
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="4707490235155192" type="Controller">
+                    <param id="0" name="Instance variable">isGameRunning</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="3015264632695975" type="Controller">
+                    <param id="0" name="Instance variable">flashCount</param>
+                    <param id="1" name="Value">8</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="8958829469638289" type="Controller">
+                    <param id="0" name="Duration">0.4</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;flashMaze&quot;</param>
+                </action>
+                <action id="33" name="Stop all" sid="9615220841386273" type="Audio" />
+                <action id="-9" name="Destroy" sid="7288064321554948" type="Moveable" />
+            </actions>
+        </event-block>
+        <comment>On timer flashing maze, flash it</comment>
+        <event-block sid="7461171916823803">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4480821970401993" type="Controller">
+                    <param id="0" name="Tag">&quot;flashMaze&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="788266460160586" type="Controller">
+                    <param id="0" name="Instance variable">flashCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2836105098977245" type="Frames">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">Controller.flashCount % 2 = 0 ? 0 : 100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="2169591012145802" type="Frames">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">Controller.flashCount % 2 = 0 ? 0 : 100</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Complete</comment>
+                <event-block sid="3667281727012952">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="6685123634951357" type="Controller">
+                            <param id="0" name="Instance variable">flashCount</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Timer" id="1" name="Stop timer" sid="3290268811123853" type="Controller">
+                            <param id="0" name="Tag">&quot;flashMaze&quot;</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="5330603799122872" type="Controller">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Go to special level ?</comment>
+                        <event-block sid="7852463604018414">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="5854803781318269" type="Controller">
+                                    <param id="0" name="Instance variable">level</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-26" name="Restart layout" sid="243583879333462" type="System" />
+                            </actions>
+                        </event-block>
+                        <comment>Start next level</comment>
+                        <event-block sid="43443901288513">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6628825003336833" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-26" name="Restart layout" sid="293759165881199" type="System" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Start a new level</comment>
         <event-block sid="1514091084316405">
@@ -78,6 +293,14 @@
                 <action id="-10" name="Set value" sid="3111026175616118" type="Controller">
                     <param id="0" name="Instance variable">speedScalar</param>
                     <param id="1" name="Value">1+(min(Controller.level-1,13))*0.12</param>
+                </action>
+                <action id="0" name="Call function" sid="9306541591511845" type="Function">
+                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">0</param>
+                </action>
+                <action id="0" name="Call function" sid="3119056478071306" type="Function">
+                    <param id="0" name="Name">&quot;updateLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
             <sub-events>
@@ -117,17 +340,93 @@
                             <param id="0" name="Audio file">Low Siren</param>
                             <param id="2" name="Loop">1</param>
                             <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                            <param id="1" name="Tag (optional)">&quot;background&quot;</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-block>
-        <comment>TODO: Display Score</comment>
-        <comment>TODO: Power pill collision etc.</comment>
-        <comment>TODO: Power pill end</comment>
+        <comment>TODO: Manage High Score saving/loading</comment>
         <comment>TODO: Ghost collision and scoring</comment>
         <comment>TODO: Death</comment>
         <comment>TODO: Collections</comment>
+        <comment>Function to add to and update the score</comment>
+        <event-block sid="7518038246733477">
+            <conditions>
+                <condition id="0" name="On function" sid="711650932495418" type="Function">
+                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="6874119435759511" type="Controller">
+                    <param id="0" name="Instance variable">score</param>
+                    <param id="1" name="Value">Function.Param(0)</param>
+                </action>
+                <action id="-10" name="Set value" sid="6789131115815369" type="Controller">
+                    <param id="0" name="Instance variable">highScore</param>
+                    <param id="1" name="Value">max(Controller.score,Controller.highScore)</param>
+                </action>
+                <action id="0" name="Set text" sid="4543205914919738" type="ScoreText">
+                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.score,6)</param>
+                </action>
+                <action id="0" name="Set text" sid="6381116520017305" type="HighScoreText">
+                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
+                </action>
+                <action disabled="1" id="0" name="Set text" sid="993184520829155" type="HighScoreText">
+                    <param id="0" name="Text">&quot;LV:&quot; &amp; Controller.level</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Function to update the lives at the bottom of the screen.</comment>
+        <event-block sid="6076047359978053">
+            <conditions>
+                <condition id="0" name="On function" sid="5249078766988028" type="Function">
+                    <param id="0" name="Name">&quot;updateLives&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3228446266131601">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6916284184639733" type="PacmanLives">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">LayoutHeight-MAZE_BOX_SIZE</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="3437341699658156" type="PacmanLives" />
+                    </actions>
+                </event-block>
+                <event-block sid="1288614583066533">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8296294861704252" type="Controller">
+                            <param id="0" name="Instance variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2177842884693068">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5289558502555689" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">Controller.lives</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="9962187131006209" type="System">
+                                    <param id="0" name="Object to create">PacmanLives</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">(loopindex-1) * MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
+                                    <param id="3" name="Y">LayoutHeight-MAZE_BOX_SIZE/2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

@@ -14,10 +14,12 @@
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects>
@@ -570,7 +572,15 @@
                 <instance-variable comment="Current Number of Lives" name="lives" sid="8720130912523041" type="number" />
                 <instance-variable comment="Current level" name="level" sid="8577793678232501" type="number" />
                 <instance-variable comment="Movement speed scalar" name="speedScalar" sid="9961204717816525" type="number" />
+                <instance-variable comment="High Score so far" name="highScore" sid="7646628331735305" type="number" />
+                <instance-variable comment="No of times left to flash maze" name="flashCount" sid="7315179508249742" type="number" />
+                <instance-variable comment="Next score for eaten ghost" name="nextGhostEastScore" sid="2265949741798997" type="number" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="5863022658326676">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6697367393854527" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -579,6 +589,33 @@
         </object-type>
         <object-type name="Audio" sid="7143309549732974">
             <plugin id="Audio" />
+        </object-type>
+        <object-type name="StaticText" sid="7910744815108654">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="ScoreText" sid="1528769017565201">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="HighScoreText" sid="8081219365266319">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
+        </object-type>
+        <object-type name="PacmanLives" sid="6242416164768405">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="7203706323416869" speed="9">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open1.png">
+                        <collision-poly>
+                            <point x="0.96875" y="0.957386" />
+                            <point x="0.028409" y="0.971591" />
+                            <point x="0.025568" y="0.0340909" />
+                            <point x="0.971591" y="0.03125" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>
