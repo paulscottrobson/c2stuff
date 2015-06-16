@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>IntermissionEvents</name>
+    <events>
+        <comment>On start, start ToLeft objects moving and play tune</comment>
+        <event-block sid="2605790019436437">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="4192004279750218" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="41641407994803" type="Intermission1">
+                    <param id="0" name="Speed">LayoutWidth/4.2</param>
+                </action>
+                <action id="0" name="Play" sid="2967882189262621" type="Audio">
+                    <param id="0" name="Audio file">Intermission</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;rtol&quot;</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="181958153292885" type="GhostToLeft">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="9735332813062306" type="PacmanToLeft">
+                    <param id="0" name="Angle">180</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When tune finished (only once) have a little pause, play the tune again with a different tag and start the to right objects</comment>
+        <event-block sid="9207078418083595">
+            <conditions>
+                <condition id="5" inverted="1" name="Is tag playing" sid="2307206702322621" type="Audio">
+                    <param id="0" name="Tag">&quot;rtol&quot;</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="2465169858413637" type="System" />
+            </conditions>
+            <actions>
+                <action id="33" name="Stop all" sid="8628148887213653" type="Audio" />
+                <action id="-16" name="Wait" sid="5787251012187596" type="System">
+                    <param id="0" name="Seconds">0.1</param>
+                </action>
+                <action id="0" name="Play" sid="3091771058064171" type="Audio">
+                    <param id="0" name="Audio file">Intermission</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;ltor&quot;</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="4715244552493814" type="PacmanToRight">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="8274188850256576" type="GhostToRight">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When the big Pacman is off to the right, then return to the game screen</comment>
+        <event-block sid="8567307543316695">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="5490380934676915" type="System">
+                    <param id="0" name="First value">PacmanToRight.BBoxLeft </param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">LayoutWidth</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="6597416988452039" type="System">
+                    <param id="0" name="Layout">Game Screen</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

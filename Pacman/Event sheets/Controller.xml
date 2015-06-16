@@ -3,6 +3,37 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Controller</name>
     <events>
+        <comment>TODO: Manage High Score saving/loading</comment>
+        <comment>TODO: Collections</comment>
+        <comment>TODO: Title Screen</comment>
+        <comment></comment>
+        <comment>Starting a new game ? To start a new game set isResetRequired in the controller and switch to this layout.</comment>
+        <event-block sid="3146690504509919">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="2886759777074795" type="System" />
+                <condition id="-8" name="Is boolean instance variable set" sid="745978847834384" type="Controller">
+                    <param id="0" name="Instance variable">isResetRequired</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="5649249479603597" type="Controller">
+                    <param id="0" name="Instance variable">score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="7470340851470076" type="Controller">
+                    <param id="0" name="Instance variable">lives</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+                <action id="-10" name="Set value" sid="7524336882100014" type="Controller">
+                    <param id="0" name="Instance variable">level</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5905071607312187" type="Controller">
+                    <param id="0" name="Instance variable">isResetRequired</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
         <comment>New Controller, Restart a new Level</comment>
         <event-block sid="8971395287947577">
             <conditions>
@@ -152,6 +183,7 @@
             </conditions>
             <actions />
             <sub-events>
+                <comment>is not controlled when eyes returning the the centre</comment>
                 <event-block sid="9040429677829439">
                     <conditions>
                         <condition id="-8" name="Is boolean instance variable set" sid="5346931756446111" type="Ghost">
@@ -165,11 +197,111 @@
                             <param id="3" name="Volume">0</param>
                             <param id="1" name="Tag (optional)">&quot;&quot;</param>
                         </action>
-                        <action id="0" name="Call function" sid="3687856418463243" type="Function">
-                            <param id="0" name="Name">&quot;ghostReturn&quot;</param>
-                            <param id="1" name="Parameter {n}">Ghost.UID</param>
+                    </actions>
+                    <sub-events>
+                        <comment>Are we chasing the ghosts ? If so, return the ghost, add the score, double the score and create a little score</comment>
+                        <event-block sid="4963603569782335">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="5988421638245359" type="Ghost">
+                                    <param id="0" name="Instance variable">attractDirection</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="3687856418463243" type="Function">
+                                    <param id="0" name="Name">&quot;ghostReturn&quot;</param>
+                                    <param id="1" name="Parameter {n}">Ghost.UID</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2115644737209406" type="Function">
+                                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">Controller.nextGhostEastScore</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="8427161387147739" type="Ghost">
+                                    <param id="0" name="Object">MicroScore</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Set text" sid="2634896226893004" type="MicroScore">
+                                    <param id="0" name="Text">Controller.nextGhostEastScore</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8937230966983253" type="Controller">
+                                    <param id="0" name="Instance variable">nextGhostEastScore</param>
+                                    <param id="1" name="Value">Controller.nextGhostEastScore * 2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>If this is the case, we are dead.</comment>
+                        <event-block sid="7135178722114879">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="8385104322466898" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="2208594684707979" type="Moveable">
+                                    <param id="0" name="Instance variable">isControlled</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="863643765922691" type="Pacman">
+                                    <param id="0" name="Animation">&quot;Death&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="33" name="Stop all" sid="2708989605940697" type="Audio" />
+                                <action id="0" name="Play" sid="2661080507002612" type="Audio">
+                                    <param id="0" name="Audio file">Death</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;deathSound&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>We have died</comment>
+        <event-block sid="5871159577100545">
+            <conditions>
+                <condition id="0" name="On ended" sid="9400173201018698" type="Audio">
+                    <param id="0" name="Tag">&quot;deathSound&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="4865504182563606" type="Controller">
+                    <param id="0" name="Instance variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>We have a life left, reset the ghosts and Pacman and play on.</comment>
+                <event-block sid="2459708444717169">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="4474532343281037" type="Controller">
+                            <param id="0" name="Instance variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="6507757769045301" type="Function">
+                            <param id="0" name="Name">&quot;resetGhosts&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="0" name="Call function" sid="2860549839138653" type="Function">
+                            <param id="0" name="Name">&quot;resetPacman&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="0" name="Call function" sid="4255417149206949" type="Function">
+                            <param id="0" name="Name">&quot;updateLives&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
+                </event-block>
+                <comment>We do not have a life. Go to the start screen.</comment>
+                <event-block sid="9198843540448213">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="4686980958381968" type="System" />
+                    </conditions>
+                    <actions />
                 </event-block>
             </sub-events>
         </event-block>
@@ -254,7 +386,9 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-26" name="Restart layout" sid="243583879333462" type="System" />
+                                <action id="-2" name="Go to layout" sid="243583879333462" type="System">
+                                    <param id="0" name="Layout">Intermission</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>Start next level</comment>
@@ -346,10 +480,6 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <comment>TODO: Manage High Score saving/loading</comment>
-        <comment>TODO: Ghost collision and scoring</comment>
-        <comment>TODO: Death</comment>
-        <comment>TODO: Collections</comment>
         <comment>Function to add to and update the score</comment>
         <event-block sid="7518038246733477">
             <conditions>
@@ -418,7 +548,7 @@
                             <actions>
                                 <action id="-3" name="Create object" sid="9962187131006209" type="System">
                                     <param id="0" name="Object to create">PacmanLives</param>
-                                    <param id="1" name="Layer">0</param>
+                                    <param id="1" name="Layer">2</param>
                                     <param id="2" name="X">(loopindex-1) * MAZE_BOX_SIZE+MAZE_BOX_SIZE/2</param>
                                     <param id="3" name="Y">LayoutHeight-MAZE_BOX_SIZE/2</param>
                                 </action>

@@ -15,6 +15,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="2">Frame</event-sheet>
         <event-sheet order="3">MovingObjects</event-sheet>
         <event-sheet active="1" order="4">Controller</event-sheet>
+        <event-sheet order="5">IntermissionEvents</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -26,6 +27,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="0" name="Collectable" />
         <family expanded="1" name="Moveable" />
         <family expanded="1" name="Frames" />
+        <family expanded="1" name="Intermission1" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
@@ -44,5 +46,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/NoDot/" />
         <folder expanded="1" path="animation-folder/Controller/" />
         <folder expanded="1" path="animation-folder/PacmanLives/" />
+        <folder expanded="1" path="animation-folder/GhostToLeft/" />
+        <folder expanded="1" path="animation-folder/GhostToRight/" />
+        <folder expanded="1" path="animation-folder/PacmanToLeft/" />
+        <folder expanded="1" path="animation-folder/PacmanToRight/" />
     </folders-expanded>
 </c2uistate>

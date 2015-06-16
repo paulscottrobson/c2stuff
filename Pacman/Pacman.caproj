@@ -18,6 +18,8 @@
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
@@ -575,6 +577,7 @@
                 <instance-variable comment="High Score so far" name="highScore" sid="7646628331735305" type="number" />
                 <instance-variable comment="No of times left to flash maze" name="flashCount" sid="7315179508249742" type="number" />
                 <instance-variable comment="Next score for eaten ghost" name="nextGhostEastScore" sid="2265949741798997" type="number" />
+                <instance-variable comment="True if reset required" name="isResetRequired" sid="185608063632421" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Timer" sid="5863022658326676">
@@ -616,6 +619,140 @@
                     </frame>
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="GhostToLeft" sid="9396570572431105">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True if last move was not at a junction" name="lastWasNotJunction" sid="3002721712273475" type="boolean" />
+                <instance-variable comment="Chance (0-1) of making a smart decision" name="brains" sid="6903569912419823" type="number" />
+                <instance-variable comment="if 1 then chase player, if -1 run away" name="attractDirection" sid="4176372753690854" type="number" />
+                <instance-variable comment="The normal animation (e.g. not chasing)" name="standardAnimation" sid="9053694680079835" type="string" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Red" pingpong="0" repeatcount="1" repeatto="0" sid="5195268103932079" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="GhostToRight" sid="1118664231591352">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True if last move was not at a junction" name="lastWasNotJunction" sid="667454775921623" type="boolean" />
+                <instance-variable comment="Chance (0-1) of making a smart decision" name="brains" sid="3860072970973521" type="number" />
+                <instance-variable comment="if 1 then chase player, if -1 run away" name="attractDirection" sid="5554744330848214" type="number" />
+                <instance-variable comment="The normal animation (e.g. not chasing)" name="standardAnimation" sid="4484564077684161" type="string" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Chased" pingpong="0" repeatcount="1" repeatto="0" sid="6580204619052466" speed="8">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0182292" y="0.0426136" />
+                            <point x="0.971354" y="0.0426136" />
+                            <point x="0.966146" y="0.951704" />
+                            <point x="0.0260417" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="PacmanToLeft" sid="9836697136095575">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="396377724070802" speed="9">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_closed.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open1.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open2.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="PacmanToRight" sid="3783872107266652">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="3546816183840358" speed="9">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_closed.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open1.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Pacman\pacman_open2.png">
+                        <collision-poly>
+                            <point x="0.0284091" y="0.03125" />
+                            <point x="0.974432" y="0.0340909" />
+                            <point x="0.971591" y="0.971591" />
+                            <point x="0.03125" y="0.957386" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MicroScore" sid="891627178321422">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="2863284135053171">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Practice\Docs\Galaxians\tester.png" />
         </object-type>
     </object-folder>
     <families>
@@ -665,15 +802,30 @@
                 </effect-type>
             </effects>
         </family>
+        <family name="Intermission1" plugin-id="Sprite" sid="9301659301401454">
+            <members>
+                <member>GhostToLeft</member>
+                <member>GhostToRight</member>
+                <member>PacmanToLeft</member>
+                <member>PacmanToRight</member>
+            </members>
+            <behaviors>
+                <behavior-type name="Bullet" sid="7313041524256794">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+        </family>
     </families>
     <layout-folder>
         <layout>Game Screen.xml</layout>
+        <layout>Intermission.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Game Events.xml</event-sheet>
         <event-sheet>Frame.xml</event-sheet>
         <event-sheet>MovingObjects.xml</event-sheet>
         <event-sheet>Controller.xml</event-sheet>
+        <event-sheet>IntermissionEvents.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="66" />
