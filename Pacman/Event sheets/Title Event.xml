@@ -3,21 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Title Event</name>
     <events>
-        <comment>Any key starts the game</comment>
-        <event-block sid="2449472721766733">
-            <conditions>
-                <condition id="1" name="On any key pressed" sid="750420115755026" type="Keyboard" />
-            </conditions>
-            <actions>
-                <action id="-2" name="Go to layout" sid="5989942912686079" type="System">
-                    <param id="0" name="Layout">Game Screen</param>
-                </action>
-                <action id="-13" name="Set boolean" sid="4793917259277348" type="Controller">
-                    <param id="0" name="Instance variable">isResetRequired</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-            </actions>
-        </event-block>
+        <comment>Key for local storage</comment>
+        <variable comment="key for localstorage" constant="1" name="STOREKEY" sid="8672086282322975" static="0" type="text">PaulRobsonPacman.HighScore</variable>
         <comment>On start, update high score and score and stop ghost animation</comment>
         <event-block sid="3978707527815892">
             <conditions>
@@ -31,6 +18,72 @@
                     <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
                 </action>
                 <action id="2" name="Stop" sid="4390381550479241" type="Ghost" />
+                <action id="5" name="Check item exists" sid="9394820528622974" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If store key exists, retrieve it.</comment>
+        <event-block sid="1836440964859093">
+            <conditions>
+                <condition id="9" name="On item exists" sid="5391685459064022" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="9990487829063616" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If it is missing, set the default - this must be a first run, so there won&apos;t be a score to update.</comment>
+        <event-block sid="4668822344128433">
+            <conditions>
+                <condition id="10" name="On item missing" sid="19269852418137" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="8264651284967175" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                    <param id="1" name="Value">1000</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If store key is retrieved, update the high score and write it out</comment>
+        <event-block sid="2198723947496503">
+            <conditions>
+                <condition id="1" name="On item get" sid="3060827948810058" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="332352346802575" type="Controller">
+                    <param id="0" name="Instance variable">highScore</param>
+                    <param id="1" name="Value">max(LocalStorage.ItemValue,Controller.score)</param>
+                </action>
+                <action id="0" name="Set text" sid="3162571323947797" type="HighScoreText">
+                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
+                </action>
+                <action id="0" name="Set item" sid="5468092555665601" type="LocalStorage">
+                    <param id="0" name="Key">STOREKEY</param>
+                    <param id="1" name="Value">Controller.highScore</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Any key starts the game</comment>
+        <event-block sid="2449472721766733">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="750420115755026" type="Keyboard" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="5989942912686079" type="System">
+                    <param id="0" name="Layout">Game Screen</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="4793917259277348" type="Controller">
+                    <param id="0" name="Instance variable">isResetRequired</param>
+                    <param id="1" name="Value">1</param>
+                </action>
             </actions>
         </event-block>
         <comment>When a blanker is created, start timer to show underneath by removing it</comment>

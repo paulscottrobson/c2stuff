@@ -3,10 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Controller</name>
     <events>
-        <comment>TODO: Manage High Score saving/loading</comment>
-        <comment>TODO: Collections</comment>
-        <comment>TODO: Title Screen</comment>
-        <comment></comment>
         <comment>Debugging feature. Global is created on Title Screen, but if run from here create one to use.</comment>
         <event-block sid="1283037572570142">
             <conditions>
@@ -313,6 +309,13 @@
                             <param id="0" name="Name">&quot;updateLives&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
+                        <action id="-15" name="Set visible" sid="7557872244238744" type="Fruit">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6582758157426223" type="Fruit">
+                            <param id="0" name="Instance variable">nextFruit</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>We do not have a life. Go to the start screen.</comment>
@@ -427,6 +430,87 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Time for a new fruit</comment>
+        <event-block sid="5686939060797911">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="240984772334519" type="Fruit">
+                    <param id="0" name="Tag">&quot;create&quot;</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="9765753989158483" type="Pacman">
+                    <param id="0" name="Instance variable">isControlled</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="4993450681502857" type="Fruit">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="6015673058678797" type="Fruit">
+                    <param id="0" name="Frame number">Fruit.nextFruit</param>
+                </action>
+                <action id="-10" name="Set value" sid="1375470993148794" type="Fruit">
+                    <param id="0" name="Instance variable">nextFruit</param>
+                    <param id="1" name="Value">min(8,Fruit.nextFruit+1)</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="4141647184972136" type="Fruit">
+                    <param id="0" name="Duration">10</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;removeFruit&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Fruit to disappear</comment>
+        <event-block sid="8359814023983519">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="3164009587977486" type="Fruit">
+                    <param id="0" name="Tag">&quot;removeFruit&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If it has disappeared it has been eaten. If it is still visible it hasn&apos;t, so go back to first fruit.</comment>
+                <event-block sid="3708199308560405">
+                    <conditions>
+                        <condition id="-9" name="Is visible" sid="1318391091628899" type="Fruit" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="2894217535408016" type="Fruit">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7100102590587908" type="Fruit">
+                            <param id="0" name="Instance variable">nextFruit</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Eaten a fruit</comment>
+        <event-block sid="9802721315493444">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="656092432303238" type="Fruit">
+                    <param id="0" name="Object">Pacman</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="8656383243099316" type="Pacman">
+                    <param id="0" name="Instance variable">isControlled</param>
+                </condition>
+                <condition id="-9" name="Is visible" sid="1003728886083365" type="Fruit" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="6115329571946219" type="Fruit">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="0" name="Call function" sid="8603386168738548" type="Function">
+                    <param id="0" name="Name">&quot;addToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">2^(Fruit.nextFruit-1) * 100</param>
+                </action>
+                <action id="0" name="Play" sid="6862982829752511" type="Audio">
+                    <param id="0" name="Audio file">Eat Fruit</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
         <comment>Start a new level</comment>
         <event-block sid="1514091084316405">
             <conditions>
@@ -458,6 +542,19 @@
                 <action id="0" name="Call function" sid="3119056478071306" type="Function">
                     <param id="0" name="Name">&quot;updateLives&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="2" name="Stop" sid="9852629397466946" type="Fruit" />
+                <action id="-15" name="Set visible" sid="7840489633569069" type="Fruit">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="2939553561336445" type="Fruit">
+                    <param id="0" name="Duration">random(12,20)</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;create&quot;</param>
+                </action>
+                <action id="-10" name="Set value" sid="465253049086365" type="Fruit">
+                    <param id="0" name="Instance variable">nextFruit</param>
+                    <param id="1" name="Value">1</param>
                 </action>
             </actions>
             <sub-events>
@@ -510,25 +607,60 @@
                     <param id="0" name="Name">&quot;addToScore&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="-11" name="Add to" sid="6874119435759511" type="Controller">
-                    <param id="0" name="Instance variable">score</param>
-                    <param id="1" name="Value">Function.Param(0)</param>
-                </action>
-                <action id="-10" name="Set value" sid="6789131115815369" type="Controller">
-                    <param id="0" name="Instance variable">highScore</param>
-                    <param id="1" name="Value">max(Controller.score,Controller.highScore)</param>
-                </action>
-                <action id="0" name="Set text" sid="4543205914919738" type="ScoreText">
-                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.score,6)</param>
-                </action>
-                <action id="0" name="Set text" sid="6381116520017305" type="HighScoreText">
-                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
-                </action>
-                <action disabled="1" id="0" name="Set text" sid="993184520829155" type="HighScoreText">
-                    <param id="0" name="Text">&quot;LV:&quot; &amp; Controller.level</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <comment>Are the before and after score in different tens of thousands if so extra life</comment>
+                <event-block sid="4835439975974366">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="8518649005313021" type="System">
+                            <param id="0" name="First value">floor(Controller.score/10000)</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">floor((Controller.score+Function.Param(0))/10000)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="9628534488184272" type="Controller">
+                            <param id="0" name="Instance variable">lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="6333606456440911" type="Function">
+                            <param id="0" name="Name">&quot;updateLives&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="0" name="Play" sid="9806631112980756" type="Audio">
+                            <param id="0" name="Audio file">Extra Life</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Update scores</comment>
+                <event-block sid="4995915915622686">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="7635722873538119" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="6874119435759511" type="Controller">
+                            <param id="0" name="Instance variable">score</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6789131115815369" type="Controller">
+                            <param id="0" name="Instance variable">highScore</param>
+                            <param id="1" name="Value">max(Controller.score,Controller.highScore)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="4543205914919738" type="ScoreText">
+                            <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.score,6)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="6381116520017305" type="HighScoreText">
+                            <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
+                        </action>
+                        <action disabled="1" id="0" name="Set text" sid="993184520829155" type="HighScoreText">
+                            <param id="0" name="Text">&quot;LV:&quot; &amp; Controller.level</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Function to update the lives at the bottom of the screen.</comment>
         <event-block sid="6076047359978053">

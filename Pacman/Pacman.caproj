@@ -13,6 +13,7 @@
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -36,6 +37,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>Title Screen</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -374,6 +376,14 @@
         </object-type>
         <object-type name="Fruit" sid="8928759142874732">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Number of next fruit" name="nextFruit" sid="1001874222608938" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="7355903732512233">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="8" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4480442408543516" speed="5">
                     <frame duration="1" hotspotX="0.541667" hotspotY="0.5" />
@@ -775,6 +785,9 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="LocalStorage" sid="9200758469627716">
+            <plugin id="LocalStorage" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Collectable" plugin-id="Sprite" sid="3996633519157558">
@@ -867,6 +880,7 @@
                 <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
+        <global-instance type="LocalStorage" uid="120" />
     </global-instances>
     <sounds-folder>
         <file name="Death.m4a" />
@@ -889,6 +903,8 @@
         <file name="Extra Life.ogg" />
         <file name="Low Siren.m4a" />
         <file name="Low Siren.ogg" />
+        <file name="Eat Fruit.m4a" />
+        <file name="Eat Fruit.ogg" />
     </sounds-folder>
     <music-folder />
     <files-folder>
