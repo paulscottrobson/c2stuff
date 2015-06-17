@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Title Event</name>
+    <events>
+        <comment>Any key starts the game</comment>
+        <event-block sid="2449472721766733">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="750420115755026" type="Keyboard" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="5989942912686079" type="System">
+                    <param id="0" name="Layout">Game Screen</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="4793917259277348" type="Controller">
+                    <param id="0" name="Instance variable">isResetRequired</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On start, update high score and score and stop ghost animation</comment>
+        <event-block sid="3978707527815892">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3563553877359106" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="8817717716403541" type="ScoreText">
+                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.score,6)</param>
+                </action>
+                <action id="0" name="Set text" sid="1450466115020013" type="HighScoreText">
+                    <param id="0" name="Text">right(&quot;      &quot; &amp; Controller.highScore,6)</param>
+                </action>
+                <action id="2" name="Stop" sid="4390381550479241" type="Ghost" />
+            </actions>
+        </event-block>
+        <comment>When a blanker is created, start timer to show underneath by removing it</comment>
+        <event-block sid="526084908210675">
+            <conditions>
+                <condition id="-18" name="On created" sid="6419582465364387" type="Blanker" />
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="2307255070659292" type="Blanker">
+                    <param id="0" name="Duration">1.0*Blanker.seq</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Blanker timer destroys</comment>
+        <event-block sid="8556067384437289">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="5005054356318322" type="Blanker">
+                    <param id="0" name="Tag">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="7802987348173645" type="Blanker" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

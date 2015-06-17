@@ -7,6 +7,25 @@
         <comment>TODO: Collections</comment>
         <comment>TODO: Title Screen</comment>
         <comment></comment>
+        <comment>Debugging feature. Global is created on Title Screen, but if run from here create one to use.</comment>
+        <event-block sid="1283037572570142">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7652077045654202" type="System" />
+                <condition id="-8" name="Compare two values" sid="1044007860014301" type="System">
+                    <param id="0" name="First value">Controller.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action breakpoint="1" id="-3" name="Create object" sid="8925835628883291" type="System">
+                    <param id="0" name="Object to create">Controller</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+            </actions>
+        </event-block>
         <comment>Starting a new game ? To start a new game set isResetRequired in the controller and switch to this layout.</comment>
         <event-block sid="3146690504509919">
             <conditions>
@@ -301,7 +320,11 @@
                     <conditions>
                         <condition id="-22" name="Else" sid="4686980958381968" type="System" />
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="6670425177252065" type="System">
+                            <param id="0" name="Layout">Title Screen</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>
