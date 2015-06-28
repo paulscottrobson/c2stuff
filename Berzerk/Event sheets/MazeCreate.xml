@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>MazeCreate</name>
+    <events>
+        <comment>Create the inner walls from the seed</comment>
+        <event-block sid="4330393631600887">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="4469065936559572" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4653447199852582" type="System">
+                    <param id="0" name="Variable">sectionWidth</param>
+                    <param id="1" name="Value">floor(LayoutWidth/5)</param>
+                </action>
+                <action id="-9" name="Set value" sid="3794384204114823" type="System">
+                    <param id="0" name="Variable">sectionHeight</param>
+                    <param id="1" name="Value">floor(LayoutHeight-64)/3</param>
+                </action>
+                <action id="-9" name="Set value" sid="14026092861171" type="System">
+                    <param id="0" name="Variable">seed</param>
+                    <param id="1" name="Value">roomX+roomY*256</param>
+                </action>
+                <action id="0" name="Call function" sid="8525634756717585" type="Function">
+                    <param id="0" name="Name">&quot;advanceSeed&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Work through each row and column </comment>
+                <event-block sid="2155149063061562">
+                    <conditions>
+                        <condition id="-10" name="For" sid="4098604470141972" type="System">
+                            <param id="0" name="Name">&quot;col&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable comment="Wall number 0-3" constant="0" name="wall" sid="2612843755464357" static="0" type="number">0</variable>
+                        <comment>Advance seed twice. Extract wall, create wall vertical</comment>
+                        <event-block sid="6056585662949834">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7782530145732381" type="System">
+                                    <param id="0" name="Name">&quot;row&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="3876976124313772" type="Function">
+                                    <param id="0" name="Name">&quot;advanceSeed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="0" name="Call function" sid="3519254109330766" type="Function">
+                                    <param id="0" name="Name">&quot;advanceSeed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="-9" name="Set value" sid="5787476955592489" type="System">
+                                    <param id="0" name="Variable">wall</param>
+                                    <param id="1" name="Value">floor(seed/256) % 4</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="4809195329563045" type="System">
+                                    <param id="0" name="Object to create">Wall</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">loopindex(&quot;row&quot;)*sectionWidth</param>
+                                    <param id="3" name="Y">loopindex(&quot;col&quot;)*sectionHeight</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="3927224401596923" type="Wall">
+                                    <param id="0" name="Instance variable">isHorizontal</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action disabled="1" id="-3" name="Create object" sid="4211397222873876" type="System">
+                                    <param id="0" name="Object to create">debugText</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">loopindex(&quot;row&quot;)*sectionWidth</param>
+                                    <param id="3" name="Y">loopindex(&quot;col&quot;)*sectionHeight</param>
+                                </action>
+                                <action disabled="1" id="0" name="Set text" sid="3000469987311193" type="debugText">
+                                    <param id="0" name="Text">&quot;s &quot;&amp; seed &amp; &quot; &quot; &amp; wall</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Wall directions 2 + 3 are horizontal</comment>
+                                <event-block sid="5544901610147508">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="8141325212763643" type="System">
+                                            <param id="0" name="Variable">wall</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="4157634237442019" type="Wall">
+                                            <param id="0" name="Instance variable">isHorizontal</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Wall 3 is west, so move wall back one section</comment>
+                                <event-block sid="1857787075471819">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="476524438484075" type="System">
+                                            <param id="0" name="Variable">wall</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-1" name="Set X" sid="9933107140597488" type="Wall">
+                                            <param id="0" name="X">Wall.X-sectionHeight</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Wall 0 is north, so move wall up one section</comment>
+                                <event-block sid="4784955396931555">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="1382378190575454" type="System">
+                                            <param id="0" name="Variable">wall</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Set Y" sid="7277525540198272" type="Wall">
+                                            <param id="0" name="Y">Wall.Y-sectionWidth</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Tidy up the wall position and size</comment>
+        <event-block sid="5467301742100066">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7626830277094472" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Select each wall. Set its position on the grid accurately.</comment>
+                <event-block sid="9561956395252119">
+                    <conditions>
+                        <condition id="-19" name="Pick all" sid="6966515034532921" type="System">
+                            <param id="0" name="Object">Wall</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="6958707445488383" type="Wall">
+                            <param id="0" name="X">min(round(Wall.X/sectionWidth)*sectionWidth,LayoutWidth-4)</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="2153599531634281" type="Wall">
+                            <param id="0" name="Y">min(round(Wall.Y/sectionHeight)*sectionHeight,LayoutHeight-4)</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="8860805064210551" type="Wall">
+                            <param id="0" name="Width">4</param>
+                            <param id="1" name="Height">4</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Set width and height accordingly.</comment>
+                        <event-block sid="9784898750222332">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4227331283598415" type="Wall">
+                                    <param id="0" name="Instance variable">isHorizontal</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" sid="8561003996896355" type="Wall">
+                                    <param id="0" name="Width">sectionWidth</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5953000320995402">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8231273244524142" type="Wall">
+                                    <param id="0" name="Instance variable">isHorizontal</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="8952770760902551" type="Wall">
+                                    <param id="0" name="Height">sectionHeight</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Each wall has a door. Make this invisible if it&apos;s just for triggering exits, visible doors are fatal.</comment>
+                        <event-block sid="2169438017407087">
+                            <conditions>
+                                <condition id="-34" name="Pick by evaluate" sid="8911530909399009" type="System">
+                                    <param id="0" name="Object">Wall</param>
+                                    <param id="1" name="Expression">Wall.escapeBlock &gt; 0</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="1394533837443451" type="Wall">
+                                    <param id="0" name="Instance variable">escapeBlock</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">lastExit</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Set opacity" sid="9300107701149331" type="Wall">
+                                    <param id="0" name="Opacity">22</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="3144671754086906" type="Wall">
+                                    <param id="0" name="Instance variable">isFatal</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Remove extraneous objects on level creation</comment>
+        <event-block sid="147025278169005">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5396159518455844" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="635251170618842" type="Otto" />
+                <action id="-9" name="Destroy" sid="212767530901856" type="Robot" />
+                <action id="-9" name="Destroy" sid="9464103926286709" type="Lives" />
+            </actions>
+        </event-block>
+        <comment>Advance the random seed. Multiply by 7, add $3153 (hexadecimal) and modulo 65536</comment>
+        <event-block sid="6334180822948858">
+            <conditions>
+                <condition id="0" name="On function" sid="8423784891062514" type="Function">
+                    <param id="0" name="Name">&quot;advanceSeed&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5559887627259585" type="System">
+                    <param id="0" name="Variable">seed</param>
+                    <param id="1" name="Value">(seed * 7 + 3*4096+1*256+5*16+3) % 65536</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

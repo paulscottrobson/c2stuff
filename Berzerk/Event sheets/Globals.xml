@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <comment>Set to non zero to force complete restart of game</comment>
+        <variable comment="Set to non zero to reset game." constant="0" name="resetGame" sid="9558590020041788" static="0" type="number">-1</variable>
+        <comment>Current Score</comment>
+        <variable comment="Current score" constant="0" name="score" sid="4746522689696298" static="0" type="number">0</variable>
+        <comment>Number of lives remaining including the current one</comment>
+        <variable comment="Number of lives remaining" constant="0" name="lives" sid="4588083315170841" static="0" type="number">3</variable>
+        <comment>Current room number</comment>
+        <variable comment="Current room X" constant="0" name="roomX" sid="6046988865417475" static="0" type="number">0</variable>
+        <variable comment="Current room Y" constant="0" name="roomY" sid="9386467731506403" static="0" type="number">0</variable>
+        <comment>Room last exited (1 = left, 2 = down, 3 = right, 4 = up,0 = none), to block off automatic retreat</comment>
+        <variable comment="Last exited room" constant="0" name="lastExit" sid="7816422649239971" static="0" type="number">0</variable>
+        <comment>Seed value (see http://www.robotron2084guidebook.com/home/games/berzerk/mazegenerator/code/)</comment>
+        <variable comment="Random seed" constant="0" name="seed" sid="3950964126425579" static="0" type="number">0</variable>
+        <comment>Width + Height of one section, e.g. 1/6 or 1/3 of the game space</comment>
+        <variable comment="Width of ection (e.g. 1/6 layout width)" constant="0" name="sectionWidth" sid="3258581509224931" static="0" type="number">0</variable>
+        <variable comment="Height of section (e.g. 1/3 of game)" constant="0" name="sectionHeight" sid="7688938377943769" static="0" type="number">0</variable>
+        <comment>Check for game reset, if so, reset everything.</comment>
+        <event-block sid="9677678144227328">
+            <conditions>
+                <condition id="0" name="On function" sid="2855076518504872" type="Function">
+                    <param id="0" name="Name">&quot;resetCheck&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6874880242301474">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5096157744943309" type="System">
+                            <param id="0" name="Variable">resetGame</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1722602374743597" type="System">
+                            <param id="0" name="Variable">resetGame</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9226775197289482" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2780790532421098" type="System">
+                            <param id="0" name="Variable">roomX</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8871376098004099" type="System">
+                            <param id="0" name="Variable">roomY</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8213401669810681" type="System">
+                            <param id="0" name="Variable">lastExit</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2906612924276632" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="5325156685589743" type="Player">
+                            <param id="0" name="X">LayoutWidth/10</param>
+                            <param id="1" name="Y">LayoutHeight/2-32</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="175717205975099">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3735238964066079" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="7650632886914243" type="Function">
+                    <param id="0" name="Name">&quot;resetCheck&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

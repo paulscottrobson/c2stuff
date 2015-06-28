@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game</name>
+    <events>
+        <comment>Global variables</comment>
+        <include>Globals</include>
+        <comment>Creates inner wall from random numbers, and also tidies up fixed walls.</comment>
+        <include>MazeCreate</include>
+    </events>
+</c2eventsheet>
