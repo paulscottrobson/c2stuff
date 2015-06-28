@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Player</name>
+    <events>
+        <comment>On start up, put player in correct position.</comment>
+        <event-block sid="7520398528798429">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8763160624218605" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="9124652149118462" type="Player">
+                    <param id="0" name="X">playerX</param>
+                    <param id="1" name="Y">playerY</param>
+                </action>
+                <action disabled="1" id="0" name="Set text" sid="3254574337146223" type="debugText">
+                    <param id="0" name="Text">roomX &amp; &quot; , &quot; &amp; roomY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If was in firing, but key has been released, return to normal mode.</comment>
+        <event-block sid="117823656268634">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="1932556733505486" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                </condition>
+                <condition id="2" inverted="1" name="Key is down" sid="7477173178130052" type="Keyboard">
+                    <param id="0" name="Key">17 (Ctrl)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="3092040436379455" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If player not currently firing</comment>
+        <event-block sid="8040115768906534">
+            <conditions>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1006159535271727" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="254943181683617" type="Player">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>If moving, walk animation and remember last direction</comment>
+                <event-block sid="643279182734797">
+                    <conditions>
+                        <condition behavior="8Direction" id="0" name="Is moving" sid="7818476480755495" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="396713724207968" type="Player">
+                            <param id="0" name="Animation">&quot;walk&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="798138041874216" type="Player">
+                            <param id="0" name="Instance variable">lastVectorX</param>
+                            <param id="1" name="Value">Player.8Direction.VectorX</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="629718596231406" type="Player">
+                            <param id="0" name="Instance variable">lastVectorY</param>
+                            <param id="1" name="Value">Player.8Direction.VectorY</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2389518650206371">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7097526502053451" type="System">
+                                    <param id="0" name="First value">abs(Player.lastVectorX)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0.01</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="9892643788843882" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorX</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8361096008209575">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3232791899208738" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="5039323081555575" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorX</param>
+                                    <param id="1" name="Value">Player.lastVectorX/abs(Player.lastVectorX)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4282748158181494">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8007975421615498" type="System">
+                                    <param id="0" name="First value">abs(Player.lastVectorY)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0.01</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="8469860879440545" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorY</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="91647566051977">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="5613649539960154" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="6767965578840617" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorY</param>
+                                    <param id="1" name="Value">Player.lastVectorY/abs(Player.lastVectorY)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>If not moving, set to stop</comment>
+                <event-block sid="5122067306893136">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="1833738357112944" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="4655382149438428" type="Player">
+                            <param id="0" name="Animation">&quot;Stop&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Set direction based on last movement</comment>
+                <event-block sid="6620902784645988">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3165740585045485" type="Player">
+                            <param id="0" name="Instance variable">lastVectorX</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="1501896574126551" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5168459386706695">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="4040651105949062" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="9710254093404557" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If firing and *can* fire, set firing, work out correct animation to show and disable 8 direction</comment>
+        <event-block sid="4554462568983069">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="2464031332101308" type="Keyboard">
+                    <param id="0" name="Key">17 (Ctrl)</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="1760137716409781" type="System">
+                    <param id="0" name="First value">PlayerBullet.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="1433240583974099" type="Player">
+                    <param id="0" name="Instance variable">isFiring</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="7124469375696691" type="Player">
+                    <param id="0" name="Animation">&quot;ShootRight&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="8Direction" id="0" name="Stop" sid="3733798528687017" type="Player" />
+                <action behavior="8Direction" id="8" name="Set enabled" sid="965961724543449" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action disabled="1" id="0" name="Set text" sid="7070134232425938" type="debugText">
+                    <param id="0" name="Text">Player.lastVectorX &amp; &quot; &quot; &amp; Player.lastVectorY</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4235269724110054" type="Player">
+                    <param id="0" name="Object">PlayerBullet</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4940588873067034" type="PlayerBullet">
+                    <param id="0" name="Angle">angle(0,0,Player.lastVectorX,Player.lastVectorY)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Figure out correct animation, already flipped.</comment>
+                <event-block sid="6336658966759354">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="4653243483766652" type="Player">
+                            <param id="0" name="Instance variable">lastVectorY</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3977016531050405">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="6567263840413497" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorX</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="9169580312043823" type="Player">
+                                    <param id="0" name="Animation">&quot;ShootUpRight&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3996520075748075">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6607760442905858" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="1702926714796576" type="Player">
+                                    <param id="0" name="Animation">&quot;ShootUp&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9483629627628413">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="5302982997317518" type="Player">
+                            <param id="0" name="Instance variable">lastVectorY</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7618543710219869">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2031683717200696" type="Player">
+                                    <param id="0" name="Instance variable">lastVectorX</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="6307800624783754" type="Player">
+                                    <param id="0" name="Animation">&quot;ShootDownRight&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2720727478929688">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6513820828459578" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="56121170076651" type="Player">
+                                    <param id="0" name="Animation">&quot;ShootDown&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Collision with non fatal wall is shift to new room.</comment>
+        <event-block sid="6548540418274005">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="9722492519322353" type="Player">
+                    <param id="0" name="Object">Wall</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4332227203724871" type="Wall">
+                    <param id="0" name="Instance variable">isFatal</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9207377872906429" type="System">
+                    <param id="0" name="Variable">lastExit</param>
+                    <param id="1" name="Value">Wall.escapeBlock &lt;= 2 ? Wall.escapeBlock+2 : Wall.escapeBlock-2</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Are we going left/right</comment>
+                <event-block any="1" sid="3299007286556445">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="5513576832583989" type="Player">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth/4</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="3773698315381454" type="Player">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth * 3 / 4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8005182119168064" type="System">
+                            <param id="0" name="Variable">playerX</param>
+                            <param id="1" name="Value">player.X &lt; sectionWidth ? LayoutWidth-32 : 32</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6229966972373743" type="System">
+                            <param id="0" name="Variable">playerY</param>
+                            <param id="1" name="Value">Player.Y</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="5932663693374968" type="System">
+                            <param id="0" name="Variable">roomX</param>
+                            <param id="1" name="Value">(Player.X &lt; sectionWidth) ? -1 : 1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Else, going up/down</comment>
+                <event-block sid="2566912034381949">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="9486172924284652" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2642404411962307" type="System">
+                            <param id="0" name="Variable">playerX</param>
+                            <param id="1" name="Value">Player.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3905431762603428" type="System">
+                            <param id="0" name="Variable">playerY</param>
+                            <param id="1" name="Value">Player.Y &lt; sectionHeight ? sectionHeight*3-Player.Height/2-8 : Player.Height/2+8</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="5861419583585248" type="System">
+                            <param id="0" name="Variable">roomY</param>
+                            <param id="1" name="Value">(Player.Y &lt; sectionHeight) ? -1 : 1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Finally, adjust roomX and roomY so in range 0-255</comment>
+                <event-block sid="805755569374424">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="5183602697793758" type="System" />
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-9" name="Set value" sid="1165074646726252" type="System">
+                            <param id="0" name="Variable">lastExit</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3540265127770988" type="System">
+                            <param id="0" name="Variable">roomX</param>
+                            <param id="1" name="Value">(roomX + 256) % 256</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9069709883832741" type="System">
+                            <param id="0" name="Variable">roomY</param>
+                            <param id="1" name="Value">(roomY + 256) % 256</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="6870920375007217" type="Player" />
+                        <action id="-26" name="Restart layout" sid="3329077957311708" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

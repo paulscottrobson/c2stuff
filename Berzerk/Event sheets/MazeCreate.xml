@@ -200,8 +200,8 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Set opacity" sid="9300107701149331" type="Wall">
-                                    <param id="0" name="Opacity">22</param>
+                                <action id="-15" name="Set visible" sid="9300107701149331" type="Wall">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
                                 <action id="-13" name="Set boolean" sid="3144671754086906" type="Wall">
                                     <param id="0" name="Instance variable">isFatal</param>
@@ -222,6 +222,7 @@
                 <action id="-9" name="Destroy" sid="635251170618842" type="Otto" />
                 <action id="-9" name="Destroy" sid="212767530901856" type="Robot" />
                 <action id="-9" name="Destroy" sid="9464103926286709" type="Lives" />
+                <action id="-9" name="Destroy" sid="3046920811728714" type="Bullets" />
             </actions>
         </event-block>
         <comment>Advance the random seed. Multiply by 7, add $3153 (hexadecimal) and modulo 65536</comment>

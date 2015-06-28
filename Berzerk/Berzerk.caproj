@@ -11,11 +11,16 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
-    <used-behaviors />
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+    </used-behaviors>
     <used-effects>
         <effect author="Scirra" id="setcolor">Set color</effect>
     </used-effects>
@@ -47,8 +52,18 @@
     <object-folder>
         <object-type name="Player" sid="478717304915788">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="vectorx for last non zero dx/dy" name="lastVectorX" sid="646716664865105" type="number" />
+                <instance-variable comment="last vector y for last non zero dx/dy" name="lastVectorY" sid="8755396122043678" type="number" />
+                <instance-variable comment="true when firing" name="isFiring" sid="8660176779793095" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="8Direction" sid="4372866402512101">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6673902144654524" speed="5">
+                <animation framecount="1" loop="0" name="Stop" pingpong="0" repeatcount="1" repeatto="0" sid="6673902144654524" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.520833" y="0.458333" />
                         <collision-poly>
@@ -248,6 +263,17 @@
         <object-type name="debugText" sid="2376205262191852">
             <plugin id="Text" />
         </object-type>
+        <object-type name="Keyboard" sid="2114471120302231">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="PlayerBullet" sid="810449565613538">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4365134737141506" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
@@ -262,6 +288,19 @@
                 </effect-type>
             </effects>
         </family>
+        <family name="Bullets" plugin-id="Sprite" sid="889985704573509">
+            <members>
+                <member>PlayerBullet</member>
+            </members>
+            <behaviors>
+                <behavior-type name="Bullet" sid="87764351469721">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="211607928782636">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+        </family>
     </families>
     <layout-folder>
         <layout>MainGame.xml</layout>
@@ -270,9 +309,12 @@
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>Game.xml</event-sheet>
         <event-sheet>MazeCreate.xml</event-sheet>
+        <event-sheet>Player.xml</event-sheet>
+        <event-sheet>Collisions.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="4" />
+        <global-instance type="Keyboard" uid="22" />
     </global-instances>
     <sounds-folder />
     <music-folder />

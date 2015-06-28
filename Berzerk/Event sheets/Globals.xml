@@ -12,6 +12,9 @@
         <comment>Current room number</comment>
         <variable comment="Current room X" constant="0" name="roomX" sid="6046988865417475" static="0" type="number">0</variable>
         <variable comment="Current room Y" constant="0" name="roomY" sid="9386467731506403" static="0" type="number">0</variable>
+        <comment>Player position in new room</comment>
+        <variable comment="Player X position new room" constant="0" name="playerX" sid="7350771935445864" static="0" type="number">0</variable>
+        <variable comment="Player Y position" constant="0" name="playerY" sid="3667148581184479" static="0" type="number">0</variable>
         <comment>Room last exited (1 = left, 2 = down, 3 = right, 4 = up,0 = none), to block off automatic retreat</comment>
         <variable comment="Last exited room" constant="0" name="lastExit" sid="7816422649239971" static="0" type="number">0</variable>
         <comment>Seed value (see http://www.robotron2084guidebook.com/home/games/berzerk/mazegenerator/code/)</comment>
@@ -61,9 +64,13 @@
                             <param id="0" name="Variable">lives</param>
                             <param id="1" name="Value">3</param>
                         </action>
-                        <action id="-3" name="Set position" sid="5325156685589743" type="Player">
-                            <param id="0" name="X">LayoutWidth/10</param>
-                            <param id="1" name="Y">LayoutHeight/2-32</param>
+                        <action id="-9" name="Set value" sid="1771472068705107" type="System">
+                            <param id="0" name="Variable">playerX</param>
+                            <param id="1" name="Value">LayoutWidth/10</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2976254845887992" type="System">
+                            <param id="0" name="Variable">playerY</param>
+                            <param id="1" name="Value">LayoutHeight/2-32</param>
                         </action>
                     </actions>
                 </event-block>

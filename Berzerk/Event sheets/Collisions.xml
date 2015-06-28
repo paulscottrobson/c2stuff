@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Collisions</name>
+    <events>
+        <event-block sid="4638863309051263">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4256038641625926" type="PlayerBullet">
+                    <param id="0" name="Object">Wall</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5782847181166279" type="PlayerBullet" />
+            </actions>
+        </event-block>
+        <event-block sid="3848276239929857">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7536105084788015" type="Player">
+                    <param id="0" name="Object">Wall</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="5371306632381376" type="Wall">
+                    <param id="0" name="Instance variable">isFatal</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="126673175711479" type="Player" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

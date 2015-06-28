@@ -7,5 +7,9 @@
         <include>Globals</include>
         <comment>Creates inner wall from random numbers, and also tidies up fixed walls.</comment>
         <include>MazeCreate</include>
+        <comment>Player control and animation</comment>
+        <include>Player</include>
+        <comment>Collisions</comment>
+        <include>Collisions</include>
     </events>
 </c2eventsheet>
