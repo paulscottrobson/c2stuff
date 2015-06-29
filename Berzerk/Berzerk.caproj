@@ -19,9 +19,11 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
     <used-effects>
+        <effect author="Brad Larson" id="radialpixellate">Radial pixellate</effect>
         <effect author="Scirra" id="setcolor">Set color</effect>
     </used-effects>
     <configurations>
@@ -67,10 +69,14 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.520833" y="0.458333" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -78,10 +84,14 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.770833" y="0.25" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -89,10 +99,14 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.770833" y="0.0833333" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -100,10 +114,14 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.770833" y="0.416667" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -111,10 +129,14 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.645833" y="0.0625" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -122,23 +144,53 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.645833" y="0.458333" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
                 <animation framecount="3" loop="1" name="Walk" pingpong="0" repeatcount="1" repeatto="0" sid="1606528735482184" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
+                        </collision-poly>
+                    </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                         <image-point name="Shootpoint" x="0.520833" y="0.458333" />
                         <collision-poly>
-                            <point x="0.333333" y="0" />
-                            <point x="0.666667" y="0" />
-                            <point x="0.666667" y="1" />
-                            <point x="0.333333" y="1" />
+                            <point x="0.244792" y="0.372396" />
+                            <point x="0.5" y="0.0208333" />
+                            <point x="0.700521" y="0.356771" />
+                            <point x="0.583333" y="0.5" />
+                            <point x="0.729167" y="1" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.231771" y="0.997396" />
+                            <point x="0.416667" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -162,6 +214,12 @@
         </object-type>
         <object-type name="Robot" sid="6052543145573784">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Number of bullets allowed" name="maxBullets" sid="4467069158402963" type="number" />
+                <instance-variable comment="Number of bullets left to fire" name="bulletsLeft" sid="8735578109592322" type="number" />
+                <instance-variable comment="True if fast shooter" name="isFastShot" sid="5625844033176145" type="boolean" />
+                <instance-variable comment="True when moving" name="isMoving" sid="1188812055875027" type="boolean" />
+            </instance-variables>
             <animation-folder>
                 <animation framecount="2" loop="1" name="Down" pingpong="0" repeatcount="1" repeatto="0" sid="3456700460730348" speed="5">
                     <frame duration="1" hotspotX="0.52" hotspotY="0.516129" original-source="C:\Construct2\Practice\Docs\Berzerk\Graphics\robot-updown-2.PNG">
@@ -274,6 +332,17 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="RobotBullet" sid="5154221178977465">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="UID of bullet owner (so bullet can be recycled)" name="bulletOwnerUID" sid="9295408385304627" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4148854952099971" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
@@ -282,15 +351,28 @@
                 <member>Player</member>
                 <member>Robot</member>
             </members>
+            <instance-variables>
+                <instance-variable comment="Temp value for fx" name="fxTemp" sid="2852742488705018" type="number" />
+                <instance-variable comment="Name of object class" name="class" sid="6483850406470694" type="string" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="4844790676858745">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <effects>
                 <effect-type name="SetColor">
                     <effect id="setcolor" />
+                </effect-type>
+                <effect-type name="RadialPixellate">
+                    <effect id="radialpixellate" />
                 </effect-type>
             </effects>
         </family>
         <family name="Bullets" plugin-id="Sprite" sid="889985704573509">
             <members>
                 <member>PlayerBullet</member>
+                <member>RobotBullet</member>
             </members>
             <behaviors>
                 <behavior-type name="Bullet" sid="87764351469721">
@@ -311,6 +393,7 @@
         <event-sheet>MazeCreate.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>
         <event-sheet>Collisions.xml</event-sheet>
+        <event-sheet>Robots.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="4" />

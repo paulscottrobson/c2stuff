@@ -42,11 +42,7 @@
                     <param id="0" name="Instance variable">isFiring</param>
                 </condition>
             </conditions>
-            <actions>
-                <action behavior="8Direction" id="8" name="Set enabled" sid="254943181683617" type="Player">
-                    <param id="0" name="State">1</param>
-                </action>
-            </actions>
+            <actions />
             <sub-events>
                 <comment>If moving, walk animation and remember last direction</comment>
                 <event-block sid="643279182734797">
@@ -183,9 +179,6 @@
                     <param id="1" name="From">1</param>
                 </action>
                 <action behavior="8Direction" id="0" name="Stop" sid="3733798528687017" type="Player" />
-                <action behavior="8Direction" id="8" name="Set enabled" sid="965961724543449" type="Player">
-                    <param id="0" name="State">0</param>
-                </action>
                 <action disabled="1" id="0" name="Set text" sid="7070134232425938" type="debugText">
                     <param id="0" name="Text">Player.lastVectorX &amp; &quot; &quot; &amp; Player.lastVectorY</param>
                 </action>

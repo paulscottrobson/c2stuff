@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Robots</name>
+    <events>
+        <comment>First, create your robots</comment>
+        <event-block sid="9799686340373195">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5211289470836006" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6824315767399423" type="Otto" />
+                <action id="-9" name="Destroy" sid="5281030641205169" type="Robot" />
+            </actions>
+            <sub-events>
+                <comment>For each square in the effective 5 x 3 grid, 1 in 3 chance of a robot being there. They don&apos;t start moving immediately.</comment>
+                <event-block sid="907759400687304">
+                    <conditions>
+                        <condition id="-10" name="For" sid="7461066781381567" type="System">
+                            <param id="0" name="Name">&quot;row&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">4</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7815562254053181">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7736696079529768" type="System">
+                                    <param id="0" name="Name">&quot;col&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">2</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="3071833825018598">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="9424002308868875" type="System">
+                                            <param id="0" name="First value">random(0,1)</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">0.33</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="5745077204117151" type="System">
+                                            <param id="0" name="Object to create">Robot</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">(loopIndex(&quot;row&quot;)+random(0.3,0.7)) * sectionWidth</param>
+                                            <param id="3" name="Y">(loopindex(&quot;col&quot;)+random(0.3,0.7))*sectionHeight</param>
+                                        </action>
+                                        <action behavior="Timer" id="0" name="Start timer" sid="4826332989614382" type="Robot">
+                                            <param id="0" name="Duration">random(0.5,2.0)</param>
+                                            <param id="1" name="Type">0</param>
+                                            <param id="2" name="Tag">&quot;startRobot&quot;</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>If too close to the player, destroy </comment>
+                                        <event-block sid="1909719563523911">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="4432775456548734" type="System">
+                                                    <param id="0" name="First value">distance(Player.X,Player.Y,Robot.X,Robot.Y)</param>
+                                                    <param id="1" name="Comparison">2</param>
+                                                    <param id="2" name="Second value">sectionWidth/3+sectionHeight/3</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="2483924795649166" type="Robot" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>When received the &apos;start&apos; instruction, start animation and moving and firing</comment>
+        <event-block sid="7410818229448463">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="9000361385892119" type="Robot">
+                    <param id="0" name="Tag">&quot;startRobot&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Start" sid="1196192034683308" type="Robot">
+                    <param id="0" name="From">0</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="748592871812148" type="Robot">
+                    <param id="0" name="Instance variable">isMoving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Once robots have been created, set their difficulty level (bullets, speed of bullet) and colour based on the score - from strategywiki.org</comment>
+        <event-block sid="1647447595783073">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8053005558311728" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable comment="Adjusted score" constant="0" name="aScore" sid="5969303303047577" static="0" type="number">0</variable>
+                <event-block sid="7824301040986798">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="7544383414919729" type="System">
+                            <param id="0" name="Object">Robot</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5080272464354462" type="System">
+                            <param id="0" name="Variable">aScore</param>
+                            <param id="1" name="Value">score &lt; 20000 ? score % 12000 : 12000</param>
+                        </action>
+                        <action disabled="1" id="-9" name="Set value" sid="7311663072371095" type="System">
+                            <param id="0" name="Variable">aScore</param>
+                            <param id="1" name="Value">11111</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="4696989045734257" type="Robot">
+                            <param id="0" name="Speed">1</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="7740578108469329" type="Robot">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="4415158499651233" type="Robot">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="2647579397130636" type="Robot">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">0</param>
+                        </action>
+                        <action id="2" name="Stop" sid="5125663233162244" type="Robot" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9070202310901072">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="9199367144508192" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">260</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="3073668993313798" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="2268728369350007" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="9684610505647924" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="2809832283710227" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2025076863397743">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="7053498307999804" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">1200</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="7180323133401796" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="8488791559892975" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="474931244019232" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5371018711791565" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5720526044029424">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="6738502670167513" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">3000</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="9985288669447286" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="7223116399121642" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="9403335689048306" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="39082183572988" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">3</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="295787163192058">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="8430351852394056" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">4500</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="200004364931077" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="3506528039521898" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="2776099218299329" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="3023473853636822" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">4</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9967731797580263">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="6566044171296384" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">6000</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="113335384353069" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="9085024669755897" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="5453331749394401" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7617363204412671" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9321240479999106">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3788073093485534" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">8000</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="1482528610552118" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="9778001949699228" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="9432419256123368" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="9188124957615903" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="2489951591208318" type="Robot">
+                                    <param id="0" name="Instance variable">isFastShot</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1609824171909306">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="936925802457957" type="System">
+                                    <param id="0" name="Variable">aScore</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">10000</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="7991302880326783" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="5634852269139259" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="6826236196464552" type="Robot">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7432641056897827" type="Robot">
+                                    <param id="0" name="Instance variable">maxBullets</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="394797302173742" type="Robot">
+                                    <param id="0" name="Instance variable">isFastShot</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

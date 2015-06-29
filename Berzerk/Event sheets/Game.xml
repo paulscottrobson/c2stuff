@@ -9,7 +9,16 @@
         <include>MazeCreate</include>
         <comment>Player control and animation</comment>
         <include>Player</include>
+        <comment>Robots</comment>
+        <include>Robots</include>
         <comment>Collisions</comment>
         <include>Collisions</include>
+        <comment>Scoring display, lives display, scoring by hitting robots</comment>
+        <comment>High Score</comment>
+        <comment>Moving Robots</comment>
+        <comment>Firing Robots and bullet # recycling on destroy</comment>
+        <comment>Player collisions with Robot Bullets etc. lives lost</comment>
+        <comment>Evil Otto code, scoring by hitting him (it ?)</comment>
+        <comment>***** TODO List ******</comment>
     </events>
 </c2eventsheet>

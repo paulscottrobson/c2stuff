@@ -3,6 +3,64 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Collisions</name>
     <events>
+        <comment>Player collisions with Robot / Otto </comment>
+        <event-block sid="3848276239929857">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7536105084788015" type="Player">
+                    <param id="0" name="Object">GameObject</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="1111537367053622" type="Player">
+                    <param id="0" name="Duration">0.06</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;shocked&quot;</param>
+                </action>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="6529705329656683" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Player collision with Robot&apos;s bullet</comment>
+        <event-block sid="1172229053341243">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7995831394710495" type="Player">
+                    <param id="0" name="Object">RobotBullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="5296431708366387" type="Player">
+                    <param id="0" name="Duration">0.06</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;shocked&quot;</param>
+                </action>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="5180034753249378" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Player collision with Wall which must be fatal</comment>
+        <event-block sid="2308146474954998">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="9970156778175588" type="Player">
+                    <param id="0" name="Object">Wall</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="7473872513715327" type="Wall">
+                    <param id="0" name="Instance variable">isFatal</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="6114787967090605" type="Player">
+                    <param id="0" name="Duration">0.06</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;shocked&quot;</param>
+                </action>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="1182282313320822" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Player Bullet hitting wall, just destroys</comment>
         <event-block sid="4638863309051263">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="4256038641625926" type="PlayerBullet">
@@ -13,18 +71,51 @@
                 <action id="-9" name="Destroy" sid="5782847181166279" type="PlayerBullet" />
             </actions>
         </event-block>
-        <event-block sid="3848276239929857">
+        <comment>Robot bullet is cancelled out by a player bullet or another robot bullet</comment>
+        <event-block sid="7701418196968537">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="7536105084788015" type="Player">
-                    <param id="0" name="Object">Wall</param>
-                </condition>
-                <condition id="-8" name="Is boolean instance variable set" sid="5371306632381376" type="Wall">
-                    <param id="0" name="Instance variable">isFatal</param>
+                <condition id="0" name="On collision with another object" sid="2528756609927514" type="RobotBullet">
+                    <param id="0" name="Object">Bullets</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="126673175711479" type="Player" />
+                <action id="-9" name="Destroy" sid="31407343531082" type="RobotBullet" />
+                <action id="-9" name="Destroy" sid="9747631613711886" type="Bullets" />
             </actions>
+        </event-block>
+        <comment>For about 10 times, use the RadialPixellate F/X to seem like the &apos;shock&apos; effect</comment>
+        <event-block sid="9692647791224943">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4192754497367046" type="GameObject">
+                    <param id="0" name="Tag">&quot;shocked&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="619595316826397" type="GameObject">
+                    <param id="0" name="Instance variable">fxTemp</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="468571279159109" type="GameObject">
+                    <param id="0" name="Effect">&quot;RadialPixellate&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">GameObject.fxTemp % 2 = 0 ? 1 : 8</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>And on the tenth, destroy the game object</comment>
+                <event-block sid="9281762413082597">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8860160405407664" type="GameObject">
+                            <param id="0" name="Instance variable">fxTemp</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="76441844584736" type="GameObject" />
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>

@@ -39,8 +39,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>736</x>
-                        <y>128</y>
+                        <x>576</x>
+                        <y>96</y>
                         <z>0</z>
                         <width>16</width>
                         <height>16</height>
@@ -649,11 +649,14 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
+                        <fxTemp>0</fxTemp>
+                        <class>player</class>
                         <lastVectorX>1</lastVectorX>
                         <lastVectorY>0</lastVectorY>
                         <isFiring>false</isFiring>
                     </instance-variables>
                     <behavior-instances>
+                        <behavior-instance type="Timer" />
                         <behavior-instance type="8Direction">
                             <properties>
                                 <max-speed>500</max-speed>
@@ -674,12 +677,17 @@
                                 <red>0</red>
                             </parameters>
                         </effect-instance>
+                        <effect-instance type="RadialPixellate">
+                            <parameters>
+                                <size>1</size>
+                            </parameters>
+                        </effect-instance>
                     </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>704</x>
-                        <y>96</y>
+                        <x>160</x>
+                        <y>160</y>
                         <z>0</z>
                         <width>48</width>
                         <height>40</height>
@@ -697,6 +705,13 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <fxTemp>0</fxTemp>
+                        <class>otto</class>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                    </behavior-instances>
                     <effect-instances>
                         <effect-instance type="SetColor">
                             <parameters>
@@ -705,12 +720,17 @@
                                 <red>1</red>
                             </parameters>
                         </effect-instance>
+                        <effect-instance type="RadialPixellate">
+                            <parameters>
+                                <size>1</size>
+                            </parameters>
+                        </effect-instance>
                     </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>736</x>
-                        <y>0</y>
+                        <x>416</x>
+                        <y>96</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>
@@ -728,20 +748,36 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <fxTemp>0</fxTemp>
+                        <class>robot</class>
+                        <maxBullets>0</maxBullets>
+                        <bulletsLeft>0</bulletsLeft>
+                        <isFastShot>false</isFastShot>
+                        <isMoving>false</isMoving>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                    </behavior-instances>
                     <effect-instances>
                         <effect-instance type="SetColor">
                             <parameters>
                                 <blue>0</blue>
                                 <green>0</green>
-                                <red>1</red>
+                                <red>0</red>
+                            </parameters>
+                        </effect-instance>
+                        <effect-instance type="RadialPixellate">
+                            <parameters>
+                                <size>1</size>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>736</x>
-                        <y>192</y>
+                        <x>480</x>
+                        <y>160</y>
                         <z>0</z>
                         <width>25</width>
                         <height>31</height>
@@ -777,6 +813,44 @@
                     <world>
                         <x>768</x>
                         <y>256</y>
+                        <z>0</z>
+                        <width>8</width>
+                        <height>3</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="RobotBullet" uid="24">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <bulletOwnerUID>0</bulletOwnerUID>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>400</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>Yes</set-angle>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="DestroyOutsideLayout" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>672</x>
+                        <y>192</y>
                         <z>0</z>
                         <width>8</width>
                         <height>3</height>

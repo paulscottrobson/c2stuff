@@ -11,11 +11,12 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">MainGame</layout>
-        <event-sheet order="1">Game</event-sheet>
+        <event-sheet active="1" order="1">Game</event-sheet>
         <event-sheet order="2">MazeCreate</event-sheet>
         <event-sheet order="3">Globals</event-sheet>
-        <event-sheet active="1" order="4">Player</event-sheet>
+        <event-sheet order="4">Player</event-sheet>
         <event-sheet order="5">Collisions</event-sheet>
+        <event-sheet order="6">Robots</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -25,7 +26,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </properties>
     <families-expanded root="1">
         <family expanded="0" name="GameObject" />
-        <family expanded="0" name="Bullets" />
+        <family expanded="1" name="Bullets" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
@@ -40,5 +41,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Lives/" />
         <folder expanded="1" path="animation-folder/Robot/" />
         <folder expanded="1" path="animation-folder/PlayerBullet/" />
+        <folder expanded="1" path="animation-folder/RobotBullet/" />
     </folders-expanded>
 </c2uistate>
