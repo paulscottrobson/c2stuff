@@ -13,11 +13,9 @@
         <include>Robots</include>
         <comment>Collisions</comment>
         <include>Collisions</include>
-        <comment>Scroll maze out movement</comment>
-        <comment>Bonus scoring</comment>
+        <comment>Life losing / Explosion code.</comment>
         <comment>Moving Robots</comment>
         <comment>Firing Robots and bullet # recycling on destroy</comment>
-        <comment>Life losing / Explosion code.</comment>
         <comment>Evil Otto code, scoring by hitting him (it ?)</comment>
         <comment>Sound effects</comment>
         <comment>***** TODO List ******</comment>

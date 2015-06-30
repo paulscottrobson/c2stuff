@@ -20,6 +20,7 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
@@ -58,6 +59,9 @@
                 <instance-variable comment="vectorx for last non zero dx/dy" name="lastVectorX" sid="646716664865105" type="number" />
                 <instance-variable comment="last vector y for last non zero dx/dy" name="lastVectorY" sid="8755396122043678" type="number" />
                 <instance-variable comment="true when firing" name="isFiring" sid="8660176779793095" type="boolean" />
+                <instance-variable comment="Scroll position when exiting" name="scrollPos" sid="7122271979855367" type="number" />
+                <instance-variable comment="room change x" name="changeX" sid="5040707809258858" type="number" />
+                <instance-variable comment="room change Y" name="changeY" sid="6900138616394145" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="4372866402512101">
@@ -334,8 +338,13 @@
             </effects>
             <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
         </object-type>
-        <object-type name="ScoreText2" sid="2366847331052493">
+        <object-type name="BonusText" sid="2366847331052493">
             <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="2860225323543811">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
             <effects>
                 <effect-type name="SetColor">
                     <effect id="setcolor" />

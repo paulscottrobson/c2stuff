@@ -11,7 +11,7 @@
         <horizontal>500</horizontal>
         <vertical>500</vertical>
     </margins>
-    <unbounded-scrolling>0</unbounded-scrolling>
+    <unbounded-scrolling>1</unbounded-scrolling>
     <layers>
         <layer name="Background" sid="3792936186787741">
             <initially-visible>1</initially-visible>
@@ -632,6 +632,9 @@
                         <lastVectorX>1</lastVectorX>
                         <lastVectorY>0</lastVectorY>
                         <isFiring>false</isFiring>
+                        <scrollPos>0</scrollPos>
+                        <changeX>0</changeX>
+                        <changeY>0</changeY>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -885,14 +888,14 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ScoreText2" uid="26">
+                <instance type="BonusText" uid="26">
                     <properties>
                         <character-width>48</character-width>
                         <character-height>64</character-height>
                         <character-set>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#&quot;&apos;&amp;()[]|`\/@°+=*$£€&lt;&gt;</character-set>
                         <text>Bonus 99</text>
                         <scale>0.6</scale>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <horizontal-alignment>Right</horizontal-alignment>
                         <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
@@ -900,6 +903,17 @@
                         <character-spacing>0</character-spacing>
                         <line-height>0</line-height>
                     </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>No</active-at-start>
+                                <fade-in-time>0.1</fade-in-time>
+                                <wait-time>2</wait-time>
+                                <fade-out-time>0.3</fade-out-time>
+                                <destroy>No</destroy>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <effect-instances>
                         <effect-instance type="SetColor">
                             <parameters>
@@ -912,16 +926,16 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>365</x>
+                        <x>301</x>
                         <y>416</y>
                         <z>0</z>
-                        <width>256</width>
+                        <width>320</width>
                         <height>64</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0</opacity>
                     </world>
                 </instance>
             </instances>

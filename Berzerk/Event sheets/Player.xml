@@ -9,12 +9,12 @@
                 <condition id="-2" name="On start of layout" sid="8763160624218605" type="System" />
             </conditions>
             <actions>
+                <action disabled="1" id="0" name="Set text" sid="3254574337146223" type="debugText">
+                    <param id="0" name="Text">roomX &amp; &quot; , &quot; &amp; roomY</param>
+                </action>
                 <action id="-3" name="Set position" sid="9124652149118462" type="Player">
                     <param id="0" name="X">playerX</param>
                     <param id="1" name="Y">playerY</param>
-                </action>
-                <action disabled="1" id="0" name="Set text" sid="3254574337146223" type="debugText">
-                    <param id="0" name="Text">roomX &amp; &quot; , &quot; &amp; roomY</param>
                 </action>
                 <action id="-9" name="Set value" sid="5168867319131151" type="System">
                     <param id="0" name="Variable">gameInPlay</param>
@@ -52,6 +52,11 @@
             <conditions>
                 <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1006159535271727" type="Player">
                     <param id="0" name="Instance variable">isFiring</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7231914816562868" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
                 </condition>
             </conditions>
             <actions />
@@ -180,6 +185,11 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Second value">0</param>
                 </condition>
+                <condition id="-14" name="Compare variable" sid="4704470995286721" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
             </conditions>
             <actions>
                 <action id="-13" name="Set boolean" sid="1433240583974099" type="Player">
@@ -298,8 +308,18 @@
                     <param id="0" name="Variable">lastExit</param>
                     <param id="1" name="Value">Wall.escapeBlock &lt;= 2 ? Wall.escapeBlock+2 : Wall.escapeBlock-2</param>
                 </action>
+                <action id="-10" name="Set value" sid="1510645885533414" type="Player">
+                    <param id="0" name="Instance variable">changeX</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="4813837081322724" type="Player">
+                    <param id="0" name="Instance variable">changeY</param>
+                    <param id="1" name="Value">0</param>
+                </action>
             </actions>
             <sub-events>
+                <variable constant="0" name="changeY" sid="2310951355542892" static="0" type="number">0</variable>
+                <variable constant="0" name="changeX" sid="5192045261193669" static="0" type="number">0</variable>
                 <comment>Are we going left/right</comment>
                 <event-block any="1" sid="3299007286556445">
                     <conditions>
@@ -321,8 +341,8 @@
                             <param id="0" name="Variable">playerY</param>
                             <param id="1" name="Value">Player.Y</param>
                         </action>
-                        <action id="-10" name="Add to" sid="5932663693374968" type="System">
-                            <param id="0" name="Variable">roomX</param>
+                        <action id="-10" name="Set value" sid="5932663693374968" type="Player">
+                            <param id="0" name="Instance variable">changeX</param>
                             <param id="1" name="Value">(Player.X &lt; sectionWidth) ? -1 : 1</param>
                         </action>
                     </actions>
@@ -341,8 +361,8 @@
                             <param id="0" name="Variable">playerY</param>
                             <param id="1" name="Value">Player.Y &lt; sectionHeight ? sectionHeight*3-Player.Height/2-8 : Player.Height/2+8</param>
                         </action>
-                        <action id="-10" name="Add to" sid="5861419583585248" type="System">
-                            <param id="0" name="Variable">roomY</param>
+                        <action id="-11" name="Add to" sid="5861419583585248" type="Player">
+                            <param id="0" name="Instance variable">changeY</param>
                             <param id="1" name="Value">(Player.Y &lt; sectionHeight) ? -1 : 1</param>
                         </action>
                     </actions>
@@ -363,17 +383,80 @@
                         </action>
                         <action id="-9" name="Set value" sid="3540265127770988" type="System">
                             <param id="0" name="Variable">roomX</param>
-                            <param id="1" name="Value">(roomX + 256) % 256</param>
+                            <param id="1" name="Value">(roomX + 256 + Player.changeX) % 256</param>
                         </action>
                         <action id="-9" name="Set value" sid="9069709883832741" type="System">
                             <param id="0" name="Variable">roomY</param>
-                            <param id="1" name="Value">(roomY + 256) % 256</param>
+                            <param id="1" name="Value">(roomY + 256 + Player.changeY) % 256</param>
                         </action>
-                        <action id="-26" name="Restart layout" sid="3329077957311708" type="System" />
+                        <action id="-10" name="Set value" sid="4475869642504788" type="Player">
+                            <param id="0" name="Instance variable">scrollPos</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="8Direction" id="0" name="Stop" sid="3104728449090207" type="Player" />
+                        <action id="-15" name="Set visible" sid="7760974545976334" type="GameObject">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="9467688801084389" type="Bullets" />
+                        <action id="-9" name="Destroy" sid="432151868100244" type="ScoreText" />
+                        <action id="-9" name="Destroy" sid="3396201904245079" type="BonusText" />
+                        <action id="-9" name="Destroy" sid="8036350443021914" type="Lives" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Are we scrolling the screen, if so advance position and scroll</comment>
+        <event-block sid="1236386039866353">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="1473771519221892" type="Player">
+                    <param id="0" name="Instance variable">scrollPos</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="5655783696365997" type="Player">
+                    <param id="0" name="Instance variable">scrollPos</param>
+                    <param id="1" name="Value">Player.scrollPos+dt*LayoutWidth/4</param>
+                </action>
+                <action id="-5" name="Scroll to X" sid="7427972855814009" type="System">
+                    <param id="0" name="X">(50+Player.changeX*Player.scrollPos)/100*LayoutWidth</param>
+                </action>
+                <action id="-6" name="Scroll to Y" sid="7198138109557627" type="System">
+                    <param id="0" name="Y">(50+Player.changeY*Player.scrollPos)/100*LayoutHeight</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>And if scrolled off restart the layout</comment>
+                <event-block sid="7315254616820386">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2415121626267595" type="Player">
+                            <param id="0" name="Instance variable">scrollPos</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Restart layout" sid="8758052295185654" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Every second decrement the bonus count</comment>
+        <event-block sid="3576196235377765">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="9247968015143488" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8634764065437802" type="System">
+                    <param id="0" name="Variable">bonusSeconds</param>
+                    <param id="1" name="Value">max(0,bonusSeconds-1)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Update score function</comment>
         <event-block sid="5033111412787099">
             <conditions>
                 <condition id="0" name="On function" sid="2774614137961291" type="Function">
@@ -386,6 +469,7 @@
                 </action>
             </actions>
         </event-block>
+        <comment>Update lives function</comment>
         <event-block sid="9018289045180638">
             <conditions>
                 <condition id="0" name="On function" sid="1384709079046537" type="Function">
@@ -408,7 +492,7 @@
                         <action id="-3" name="Create object" sid="2856660933637132" type="System">
                             <param id="0" name="Object to create">Lives</param>
                             <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">224+(loopindex-1)*24</param>
+                            <param id="2" name="X">240+(loopindex-1)*24</param>
                             <param id="3" name="Y">LayoutHeight-32</param>
                         </action>
                     </actions>

@@ -99,7 +99,12 @@
             <conditions>
                 <condition id="-2" name="On start of layout" sid="8053005558311728" type="System" />
             </conditions>
-            <actions />
+            <actions>
+                <action id="-9" name="Set value" sid="1539754855861591" type="System">
+                    <param id="0" name="Variable">bonusSeconds</param>
+                    <param id="1" name="Value">Robot.Count * 10</param>
+                </action>
+            </actions>
             <sub-events>
                 <variable comment="Adjusted score" constant="0" name="aScore" sid="5969303303047577" static="0" type="number">0</variable>
                 <event-block sid="7824301040986798">
