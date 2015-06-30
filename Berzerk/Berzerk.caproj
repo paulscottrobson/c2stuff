@@ -12,6 +12,7 @@
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -351,6 +352,18 @@
                 </effect-type>
             </effects>
             <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
+        </object-type>
+        <object-type name="Explosion" sid="3277817470153325">
+            <plugin id="Particles" />
+            <instance-variables>
+                <instance-variable comment="true if player exploding" name="losesLife" sid="7109472430776514" type="boolean" />
+            </instance-variables>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture />
         </object-type>
     </object-folder>
     <families>

@@ -13,11 +13,11 @@
         <include>Robots</include>
         <comment>Collisions</comment>
         <include>Collisions</include>
-        <comment>Life losing / Explosion code.</comment>
-        <comment>Moving Robots</comment>
-        <comment>Firing Robots and bullet # recycling on destroy</comment>
+        <comment>Moving Robots (have an alternate direction pref changes randomly)</comment>
+        <comment>Firing Robots and bullet # recycling on destroy check</comment>
         <comment>Evil Otto code, scoring by hitting him (it ?)</comment>
         <comment>Sound effects</comment>
+        <comment>Title page (and return to it)</comment>
         <comment>***** TODO List ******</comment>
     </events>
 </c2eventsheet>

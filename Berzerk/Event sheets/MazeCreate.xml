@@ -223,6 +223,7 @@
                 <action id="-9" name="Destroy" sid="212767530901856" type="Robot" />
                 <action id="-9" name="Destroy" sid="9464103926286709" type="Lives" />
                 <action id="-9" name="Destroy" sid="3046920811728714" type="Bullets" />
+                <action id="-9" name="Destroy" sid="3754601355239097" type="Explosion" />
             </actions>
         </event-block>
         <comment>Advance the random seed. Multiply by 7, add $3153 (hexadecimal) and modulo 65536</comment>
