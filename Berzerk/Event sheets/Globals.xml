@@ -9,6 +9,8 @@
         <variable comment="Current score" constant="0" name="score" sid="4746522689696298" static="0" type="number">0</variable>
         <comment>Number of lives remaining including the current one</comment>
         <variable comment="Number of lives remaining" constant="0" name="lives" sid="4588083315170841" static="0" type="number">3</variable>
+        <comment>Non zero when game actually running - check for process ondestroy() events</comment>
+        <variable comment="Non zero when game running" constant="0" name="gameInPlay" sid="6886776524681858" static="0" type="number">0</variable>
         <comment>Current room number</comment>
         <variable comment="Current room X" constant="0" name="roomX" sid="6046988865417475" static="0" type="number">0</variable>
         <variable comment="Current room Y" constant="0" name="roomY" sid="9386467731506403" static="0" type="number">0</variable>

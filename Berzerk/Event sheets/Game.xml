@@ -13,12 +13,13 @@
         <include>Robots</include>
         <comment>Collisions</comment>
         <include>Collisions</include>
-        <comment>Scoring display, lives display, scoring by hitting robots</comment>
-        <comment>High Score</comment>
+        <comment>Scroll maze out movement</comment>
+        <comment>Bonus scoring</comment>
         <comment>Moving Robots</comment>
         <comment>Firing Robots and bullet # recycling on destroy</comment>
-        <comment>Player collisions with Robot Bullets etc. lives lost</comment>
+        <comment>Life losing / Explosion code.</comment>
         <comment>Evil Otto code, scoring by hitting him (it ?)</comment>
+        <comment>Sound effects</comment>
         <comment>***** TODO List ******</comment>
     </events>
 </c2eventsheet>

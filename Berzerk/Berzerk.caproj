@@ -13,6 +13,7 @@
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
@@ -23,7 +24,6 @@
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
     <used-effects>
-        <effect author="Brad Larson" id="radialpixellate">Radial pixellate</effect>
         <effect author="Scirra" id="setcolor">Set color</effect>
     </used-effects>
     <configurations>
@@ -34,7 +34,7 @@
         <height>480</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
-    <preview-effects>1</preview-effects>
+    <preview-effects>0</preview-effects>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -224,78 +224,60 @@
                 <animation framecount="2" loop="1" name="Down" pingpong="0" repeatcount="1" repeatto="0" sid="3456700460730348" speed="5">
                     <frame duration="1" hotspotX="0.52" hotspotY="0.516129" original-source="C:\Construct2\Practice\Docs\Berzerk\Graphics\robot-updown-2.PNG">
                         <collision-poly>
-                            <point x="0.297872" y="0.311111" />
-                            <point x="0.489362" y="0.155556" />
-                            <point x="0.765957" y="0.244444" />
-                            <point x="0.702128" y="0.488889" />
-                            <point x="0.723404" y="0.711111" />
-                            <point x="0.489362" y="0.622222" />
-                            <point x="0.425532" y="0.555556" />
-                            <point x="0.425532" y="0.488889" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.48" hotspotY="0.516129">
                         <collision-poly>
-                            <point x="0.574468" y="0.488889" />
-                            <point x="0.574468" y="0.555556" />
-                            <point x="0.510638" y="0.622222" />
-                            <point x="0.276596" y="0.711111" />
-                            <point x="0.297872" y="0.488889" />
-                            <point x="0.234043" y="0.244444" />
-                            <point x="0.510638" y="0.155556" />
-                            <point x="0.702128" y="0.311111" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                 </animation>
                 <animation framecount="2" loop="1" name="Up" pingpong="0" repeatcount="1" repeatto="0" sid="7594343525528026" speed="5">
                     <frame duration="1" hotspotX="0.52" hotspotY="0.516129">
                         <collision-poly>
-                            <point x="0.297872" y="0.311111" />
-                            <point x="0.489362" y="0.155556" />
-                            <point x="0.765957" y="0.244444" />
-                            <point x="0.702128" y="0.488889" />
-                            <point x="0.723404" y="0.711111" />
-                            <point x="0.489362" y="0.622222" />
-                            <point x="0.425532" y="0.555556" />
-                            <point x="0.425532" y="0.488889" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.48" hotspotY="0.516129">
                         <collision-poly>
-                            <point x="0.574468" y="0.488889" />
-                            <point x="0.574468" y="0.555556" />
-                            <point x="0.510638" y="0.622222" />
-                            <point x="0.276596" y="0.711111" />
-                            <point x="0.297872" y="0.488889" />
-                            <point x="0.234043" y="0.244444" />
-                            <point x="0.510638" y="0.155556" />
-                            <point x="0.702128" y="0.311111" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                 </animation>
                 <animation framecount="2" loop="1" name="Right" pingpong="0" repeatcount="1" repeatto="0" sid="3831685808407252" speed="5">
                     <frame duration="1" hotspotX="0.52" hotspotY="0.516129">
                         <collision-poly>
-                            <point x="0.297872" y="0.311111" />
-                            <point x="0.489362" y="0.155556" />
-                            <point x="0.765957" y="0.244444" />
-                            <point x="0.702128" y="0.488889" />
-                            <point x="0.723404" y="0.711111" />
-                            <point x="0.489362" y="0.622222" />
-                            <point x="0.425532" y="0.555556" />
-                            <point x="0.425532" y="0.488889" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.52" hotspotY="0.516129">
                         <collision-poly>
-                            <point x="0.297872" y="0.311111" />
-                            <point x="0.489362" y="0.155556" />
-                            <point x="0.765957" y="0.244444" />
-                            <point x="0.702128" y="0.488889" />
-                            <point x="0.723404" y="0.711111" />
-                            <point x="0.489362" y="0.622222" />
-                            <point x="0.425532" y="0.555556" />
-                            <point x="0.425532" y="0.488889" />
+                            <point x="0.005" y="0.211693" />
+                            <point x="0.505" y="0" />
+                            <point x="0.9825" y="0.189516" />
+                            <point x="0.79" y="0.997984" />
+                            <point x="0.2025" y="1" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -343,6 +325,24 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="ScoreText" sid="6141011190593509">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
+        </object-type>
+        <object-type name="ScoreText2" sid="2366847331052493">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
+        </object-type>
     </object-folder>
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
@@ -363,9 +363,6 @@
             <effects>
                 <effect-type name="SetColor">
                     <effect id="setcolor" />
-                </effect-type>
-                <effect-type name="RadialPixellate">
-                    <effect id="radialpixellate" />
                 </effect-type>
             </effects>
         </family>
