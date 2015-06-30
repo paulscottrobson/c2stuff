@@ -208,6 +208,12 @@
                 <action behavior="Bullet" id="3" name="Set angle of motion" sid="4940588873067034" type="PlayerBullet">
                     <param id="0" name="Angle">angle(0,0,Player.lastVectorX,Player.lastVectorY)</param>
                 </action>
+                <action id="0" name="Play" sid="3750230894249255" type="Audio">
+                    <param id="0" name="Audio file">Bullet Fire</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
             <sub-events>
                 <comment>Figure out correct animation, already flipped.</comment>

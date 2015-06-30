@@ -135,6 +135,12 @@
                     <param id="0" name="Instance variable">losesLife</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="0" name="Play" sid="8275865079962533" type="Audio">
+                    <param id="0" name="Audio file">Got Humanoid</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <comment>If robot bullet destroyed, increment the firer&apos;s bullet count available, so they can fire it again</comment>
@@ -202,6 +208,12 @@
                     <param id="0" name="Effect">&quot;SetColor&quot;</param>
                     <param id="1" name="Parameter index">2</param>
                     <param id="2" name="Value">50</param>
+                </action>
+                <action id="0" name="Play" sid="585339383302061" type="Audio">
+                    <param id="0" name="Audio file">Robot Destroy</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
             <sub-events>

@@ -10,6 +10,7 @@
     <unique-id>2ncrtdptoujp3</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
@@ -365,6 +366,9 @@
             </effects>
             <texture />
         </object-type>
+        <object-type name="Audio" sid="8820447525517193">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
@@ -417,8 +421,39 @@
     <global-instances>
         <global-instance type="Function" uid="4" />
         <global-instance type="Keyboard" uid="22" />
+        <global-instance type="Audio" uid="28">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
+    <sounds-folder>
+        <file name="Bullet Fire.m4a" />
+        <file name="Chicken.m4a" />
+        <file name="Coins Detected.m4a" />
+        <file name="Destroy the Humanoid.m4a" />
+        <file name="Intruder Alert.m4a" />
+        <file name="Must not Escape.m4a" />
+        <file name="Robot Destroy.m4a" />
+        <file name="Bullet Fire.ogg" />
+        <file name="Chicken.ogg" />
+        <file name="Coins Detected.ogg" />
+        <file name="Destroy the Humanoid.ogg" />
+        <file name="Intruder Alert.ogg" />
+        <file name="Must not Escape.ogg" />
+        <file name="Robot Destroy.ogg" />
+        <file name="Got Humanoid.m4a" />
+        <file name="Got Humanoid.ogg" />
+    </sounds-folder>
     <music-folder />
     <files-folder>
         <file-folder name="Icons">
