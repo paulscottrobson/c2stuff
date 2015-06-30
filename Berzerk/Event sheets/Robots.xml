@@ -77,7 +77,7 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <comment>When received the &apos;start&apos; instruction, start animation and moving and firing</comment>
+        <comment>When received the &apos;start&apos; instruction, start animation and moving and firing - pick a random axis for chasing</comment>
         <event-block sid="7410818229448463">
             <conditions>
                 <condition behavior="Timer" id="0" name="On timer" sid="9000361385892119" type="Robot">
@@ -92,7 +92,28 @@
                     <param id="0" name="Instance variable">isMoving</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="-13" name="Set boolean" sid="3737579259290399" type="Robot">
+                    <param id="0" name="Instance variable">isChasingHorizontally</param>
+                    <param id="1" name="Value">0</param>
+                </action>
             </actions>
+            <sub-events>
+                <event-block sid="2014341886268087">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="1610814656123956" type="System">
+                            <param id="0" name="First value">random(0,1)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">0.5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="6924824766642853" type="Robot">
+                            <param id="0" name="Instance variable">isChasingHorizontally</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Once robots have been created, set their difficulty level (bullets, speed of bullet) and colour based on the score - from strategywiki.org</comment>
         <event-block sid="1647447595783073">

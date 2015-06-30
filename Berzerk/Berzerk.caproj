@@ -225,6 +225,9 @@
                 <instance-variable comment="Number of bullets left to fire" name="bulletsLeft" sid="8735578109592322" type="number" />
                 <instance-variable comment="True if fast shooter" name="isFastShot" sid="5625844033176145" type="boolean" />
                 <instance-variable comment="True when moving" name="isMoving" sid="1188812055875027" type="boolean" />
+                <instance-variable comment="true if horizontal chase, false if vertical" name="isChasingHorizontally" sid="2809452067447641" type="boolean" />
+                <instance-variable comment="movement in x" name="dx" sid="9644387316597381" type="number" />
+                <instance-variable comment="Movement in dy" name="dy" sid="6994440959624232" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="2" loop="1" name="Down" pingpong="0" repeatcount="1" repeatto="0" sid="3456700460730348" speed="5">

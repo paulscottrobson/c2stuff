@@ -304,6 +304,11 @@
                 <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4332227203724871" type="Wall">
                     <param id="0" name="Instance variable">isFatal</param>
                 </condition>
+                <condition id="-14" name="Compare variable" sid="3772672518263694" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
             </conditions>
             <actions>
                 <action id="-9" name="Set value" sid="9207377872906429" type="System">
@@ -320,18 +325,16 @@
                 </action>
             </actions>
             <sub-events>
-                <variable constant="0" name="changeY" sid="2310951355542892" static="0" type="number">0</variable>
-                <variable constant="0" name="changeX" sid="5192045261193669" static="0" type="number">0</variable>
                 <comment>Are we going left/right</comment>
                 <event-block any="1" sid="3299007286556445">
                     <conditions>
                         <condition id="-1" name="Compare X" sid="5513576832583989" type="Player">
                             <param id="0" name="Comparison">2</param>
-                            <param id="1" name="X co-ordinate">LayoutWidth/4</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth/5</param>
                         </condition>
                         <condition id="-1" name="Compare X" sid="3773698315381454" type="Player">
                             <param id="0" name="Comparison">5</param>
-                            <param id="1" name="X co-ordinate">LayoutWidth * 3 / 4</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth * 4/5</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -341,7 +344,7 @@
                         </action>
                         <action id="-9" name="Set value" sid="6229966972373743" type="System">
                             <param id="0" name="Variable">playerY</param>
-                            <param id="1" name="Value">Player.Y</param>
+                            <param id="1" name="Value">sectionHeight*3/2</param>
                         </action>
                         <action id="-10" name="Set value" sid="5932663693374968" type="Player">
                             <param id="0" name="Instance variable">changeX</param>
@@ -357,7 +360,7 @@
                     <actions>
                         <action id="-9" name="Set value" sid="2642404411962307" type="System">
                             <param id="0" name="Variable">playerX</param>
-                            <param id="1" name="Value">Player.X</param>
+                            <param id="1" name="Value">sectionWidth*5/2</param>
                         </action>
                         <action id="-9" name="Set value" sid="3905431762603428" type="System">
                             <param id="0" name="Variable">playerY</param>
@@ -404,6 +407,38 @@
                         <action id="-9" name="Destroy" sid="3396201904245079" type="BonusText" />
                         <action id="-9" name="Destroy" sid="8036350443021914" type="Lives" />
                     </actions>
+                    <sub-events>
+                        <event-block sid="4933793169526363">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8880097427982795" type="System">
+                                    <param id="0" name="First value">Robot.Count</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="9322725484329918" type="Audio">
+                                    <param id="0" name="Audio file">Must not Escape</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9580721278165689">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6277482459116531" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="4072051409056736" type="Audio">
+                                    <param id="0" name="Audio file">Chicken</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

@@ -15,9 +15,8 @@
         <include>Collisions</include>
         <comment>Moving Robots (have an alternate direction pref changes randomly)</comment>
         <comment>Firing Robots and bullet # recycling on destroy check</comment>
-        <comment>Evil Otto code, scoring by hitting him (it ?)</comment>
-        <comment>Sound effects</comment>
-        <comment>Title page (and return to it)</comment>
+        <comment>Evil Otto code, scoring by hitting him (it ?)  + sound effects</comment>
+        <comment>Title page (and return to it) + coin SFX</comment>
         <comment>***** TODO List ******</comment>
     </events>
 </c2eventsheet>

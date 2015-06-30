@@ -726,6 +726,9 @@
                         <bulletsLeft>0</bulletsLeft>
                         <isFastShot>false</isFastShot>
                         <isMoving>false</isMoving>
+                        <isChasingHorizontally>false</isChasingHorizontally>
+                        <dx>0</dx>
+                        <dy>0</dy>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
