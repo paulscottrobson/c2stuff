@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>SetUp</name>
+    <events>
+        <event-block sid="5321217816070884">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="2253907318852397" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6663919037527485" type="System">
+                    <param id="0" name="Variable">cellSize</param>
+                    <param id="1" name="Value">floor(0.43*min(LayoutWidth/levelWidth,(LayoutHeight-64)*0.66/levelHeight))*2</param>
+                </action>
+                <action id="-9" name="Set value" sid="7179299650375177" type="System">
+                    <param id="0" name="Variable">xOrigin</param>
+                    <param id="1" name="Value">(LayoutWidth-(levelWidth-1)*cellSize)/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="2487405278943892" type="System">
+                    <param id="0" name="Variable">yOrigin</param>
+                    <param id="1" name="Value">64+cellSize/2</param>
+                </action>
+                <action id="-9" name="Destroy" sid="4159535458921173" type="Launcher" />
+                <action id="-9" name="Destroy" sid="3926265077377905" type="Item" />
+                <action id="-9" name="Destroy" sid="7401432402434727" type="Blocker" />
+                <action behavior="Physics" id="12" name="Set world gravity" sid="9868546565892258" type="Item">
+                    <param id="0" name="Gravity">5</param>
+                </action>
+            </actions>
+            <sub-events>
+                <variable constant="0" name="x" sid="7383725873156636" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="571168282964921" static="0" type="number">0</variable>
+                <event-block sid="9662321745991025">
+                    <conditions>
+                        <condition id="-10" name="For" sid="9563961388775016" type="System">
+                            <param id="0" name="Name">&quot;row&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">levelHeight</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6446389925019658">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7916526370582526" type="System">
+                                    <param id="0" name="Name">&quot;col&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">levelWidth</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="1631733319134995" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * cellSize+xOrigin</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="5189097444964678" type="System">
+                                    <param id="0" name="Variable">y</param>
+                                    <param id="1" name="Value">(loopIndex(&quot;row&quot;)-1) * cellSize + yOrigin</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5126216923726864">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="5623015566946846" type="System">
+                                            <param id="0" name="First value">mid(levelDefinition,(loopindex(&quot;row&quot;)-1)*(levelWidth+1)+loopindex(&quot;col&quot;),1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;.&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="1526883446487204" type="System">
+                                            <param id="0" name="Object to create">Launcher</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">x</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="7390635536669243" type="Launcher">
+                                            <param id="0" name="Width">cellSize</param>
+                                            <param id="1" name="Height">cellSize</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="7316133706451756" type="System">
+                                            <param id="0" name="Object to create">Blocker</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">x</param>
+                                            <param id="3" name="Y">y-cellSize/2</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="4526733235454091" type="Blocker">
+                                            <param id="0" name="Width">cellSize</param>
+                                            <param id="1" name="Height">4</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="2076704587574524">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="3875125711709441" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="8829405706693362" type="System">
+                                            <param id="0" name="Object to create">BackTile</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">x</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="1111142462175172" type="BackTile">
+                                            <param id="0" name="Width">cellSize</param>
+                                            <param id="1" name="Height">cellSize</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="5857950318523384">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5778312196324067" type="System">
+                            <param id="0" name="Name">&quot;col&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">levelWidth</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5185774160032134" type="System">
+                            <param id="0" name="Variable">x</param>
+                            <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * cellSize+xOrigin</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="5814899558210466" type="System">
+                            <param id="0" name="Object to create">Launcher</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">x</param>
+                            <param id="3" name="Y">yOrigin-cellSize</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="5027021098280117" type="Launcher">
+                            <param id="0" name="Width">cellSize</param>
+                            <param id="1" name="Height">cellSize</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="7475138393513089" type="System">
+                            <param id="0" name="Object to create">Blocker</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">x</param>
+                            <param id="3" name="Y">yOrigin+cellSize*levelHeight-cellSize/2</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="6999776436187914" type="Blocker">
+                            <param id="0" name="Width">cellSize</param>
+                            <param id="1" name="Height">4</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9234116283450143">
+            <conditions>
+                <condition id="1" inverted="1" name="Is overlapping another object" sid="5885560156388182" type="Launcher">
+                    <param id="0" name="Object">Item</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1896828046100112" type="Launcher">
+                    <param id="0" name="Object">Item</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="9228830973891195" type="Item">
+                    <param id="0" name="Width">0.9*cellSize</param>
+                    <param id="1" name="Height">cellSize</param>
+                </action>
+                <action id="2" name="Stop" sid="2653795627051332" type="Item" />
+                <action behavior="Physics" id="21" name="Set immovable" sid="3228447198063581" type="Item">
+                    <param id="0" name="Setting">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="657011690981308" type="Item">
+                    <param id="0" name="Instance variable">typeID</param>
+                    <param id="1" name="Value">floor(random(0,6))</param>
+                </action>
+                <action id="5" name="Set frame" sid="3028736428709543" type="Item">
+                    <param id="0" name="Frame number">Item.typeID</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="167073008995766" type="Item">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4240952660586685">
+            <conditions>
+                <condition id="-10" name="Compare opacity" sid="1504716520543732" type="Item">
+                    <param id="0" name="Comparison">1</param>
+                    <param id="1" name="Opacity">100</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5876685626580711">
+                    <conditions>
+                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="4197533224024837" type="Item">
+                            <param id="0" name="Object">Launcher</param>
+                            <param id="1" name="Offset X">0</param>
+                            <param id="2" name="Offset Y">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="4923120872871192" type="Item">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
