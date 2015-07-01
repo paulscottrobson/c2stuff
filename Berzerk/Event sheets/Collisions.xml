@@ -310,7 +310,11 @@
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="5151598635129908" type="System">
+                            <param id="0" name="Layout">TitleScreen</param>
+                        </action>
+                    </actions>
                 </event-block>
                 <event-block sid="930981274949104">
                     <conditions>

@@ -10,9 +10,11 @@
     <unique-id>2ncrtdptoujp3</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
@@ -39,6 +41,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>0</preview-effects>
+    <first-layout>TitleScreen</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -388,6 +391,39 @@
         <object-type name="Audio" sid="8820447525517193">
             <plugin id="Audio" />
         </object-type>
+        <object-type name="Label" sid="2546958538187939">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
+        </object-type>
+        <object-type name="Bar" sid="2378597868551471">
+            <plugin id="TiledBg" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture />
+        </object-type>
+        <object-type name="ScoreText2" sid="8857859883900477">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\anon.png" />
+        </object-type>
+        <object-type global="1" name="HighScore" sid="7200538984072288">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="LocalStorage" sid="6842698026339005">
+            <plugin id="LocalStorage" />
+        </object-type>
     </object-folder>
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
@@ -427,6 +463,7 @@
     </families>
     <layout-folder>
         <layout>MainGame.xml</layout>
+        <layout>TitleScreen.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Globals.xml</event-sheet>
@@ -435,6 +472,7 @@
         <event-sheet>Player.xml</event-sheet>
         <event-sheet>Collisions.xml</event-sheet>
         <event-sheet>Robots.xml</event-sheet>
+        <event-sheet>Title Events.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="4" />
@@ -453,6 +491,7 @@
                 <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
+        <global-instance type="LocalStorage" uid="35" />
     </global-instances>
     <sounds-folder>
         <file name="Bullet Fire.m4a" />

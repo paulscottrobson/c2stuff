@@ -30,6 +30,10 @@
         <variable comment="Speed of robots, pixels/s" constant="1" name="ROBOT_SPEED" sid="8555404301018462" static="0" type="number">5</variable>
         <comment>Speed of standard otto</comment>
         <variable comment="Otto standard speed" constant="1" name="OTTO_STD_SPEED" sid="3155774850096144" static="0" type="number">40</variable>
+        <comment>Berzerk key name for L/S</comment>
+        <variable comment="Key for Localstorage" constant="1" name="BERZERK_KEY" sid="7551382851038537" static="0" type="text">&quot;BerzerkPaulRobson&quot;</variable>
+        <comment>Non zero if should play coin message on title page</comment>
+        <variable comment="Non-zero if should play coin sound" constant="0" name="shouldPlayCoin" sid="2884536954730557" static="0" type="number">1</variable>
         <comment>Check for game reset, if so, reset everything.</comment>
         <event-block sid="9677678144227328">
             <conditions>

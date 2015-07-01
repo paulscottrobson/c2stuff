@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Title Events</name>
+    <events>
+        <comment>Play coins detected only *once*</comment>
+        <event-block sid="5060075786191012">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9780634871147532" type="System" />
+                <condition id="-14" name="Compare variable" sid="3693126808994727" type="System">
+                    <param id="0" name="Variable">shouldPlayCoin</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7248651427704995" type="System">
+                    <param id="0" name="Variable">shouldPlayCoin</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Play" sid="7678501688426761" type="Audio">
+                    <param id="0" name="Audio file">Coins Detected</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On any key, go to the main game</comment>
+        <event-block sid="927311329011883">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="8770878432701303" type="Keyboard" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6141385031197416" type="System">
+                    <param id="0" name="Variable">resetGame</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="7701334181601295" type="System">
+                    <param id="0" name="Layout">MainGame</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Update score on title page</comment>
+        <event-block sid="9582955716326277">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="704537637291976" type="System" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="-9" name="Set value" sid="662047207176461" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">floor(random(100,99990))</param>
+                </action>
+                <action id="0" name="Set text" sid="8782784716991833" type="ScoreText2">
+                    <param id="0" name="Text">score</param>
+                </action>
+                <action id="5" name="Check item exists" sid="4561263733335943" type="LocalStorage">
+                    <param id="0" name="Key">BERZERK_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If missing refresh with blank, must be first run.</comment>
+        <event-block sid="5936492770298836">
+            <conditions>
+                <condition id="10" name="On item missing" sid="5421263646362349" type="LocalStorage">
+                    <param id="0" name="Key">BERZERK_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="3167518760586295" type="Function">
+                    <param id="0" name="Name">&quot;refreshScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If exists, retrieve it.</comment>
+        <event-block sid="9411590556395273">
+            <conditions>
+                <condition id="9" name="On item exists" sid="4474213026867085" type="LocalStorage">
+                    <param id="0" name="Key">BERZERK_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="7616589404888607" type="LocalStorage">
+                    <param id="0" name="Key">BERZERK_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On high score data retreived.</comment>
+        <event-block sid="232854922926026">
+            <conditions>
+                <condition id="1" name="On item get" sid="8502562698976256" type="LocalStorage">
+                    <param id="0" name="Key">BERZERK_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="11" name="Load" sid="4863382532309335" type="HighScore">
+                    <param id="0" name="JSON">LocalStorage.ItemValue</param>
+                </action>
+                <action id="2" name="Set at X" sid="6096910236495207" type="HighScore">
+                    <param id="0" name="X">8</param>
+                    <param id="1" name="Value">score</param>
+                </action>
+                <action id="8" name="Sort" sid="6235871090479808" type="HighScore">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="7" name="Reverse" sid="5864270066345725" type="HighScore">
+                    <param id="0" name="Axis">0</param>
+                </action>
+                <action id="0" name="Call function" sid="1036977480194041" type="Function">
+                    <param id="0" name="Name">&quot;refreshScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Refresh the high score display and update high score</comment>
+        <event-block sid="3052501846460068">
+            <conditions>
+                <condition id="0" name="On function" sid="3352828259705899" type="Function">
+                    <param id="0" name="Name">&quot;refreshScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="x" sid="4050922624651042" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="1851616906677311" static="0" type="number">0</variable>
+                <event-block sid="9162050238622904">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1931277319138241" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4318404841244082">
+                            <conditions>
+                                <condition id="-10" name="For" sid="3339123769140856" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">8</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block any="1" sid="1917026340692289">
+                                    <conditions>
+                                        <condition id="0" name="Compare at X" sid="3273220679768146" type="HighScore">
+                                            <param id="0" name="X">loopIndex-1</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" sid="2807961634705643" type="System">
+                                            <param id="0" name="First value">loopindex</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="8745901180527691" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Value">165</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="8609429776230308" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Value">LayoutHeight/2+(loopindex-1) * Label.Height - 5 * Label.Height</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="7683373948036535" type="System">
+                                            <param id="0" name="Object to create">Label</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">x</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="8593820353145888" type="Label">
+                                            <param id="0" name="Text">loopindex</param>
+                                        </action>
+                                        <action id="7" name="Set horizontal alignment" sid="7902171889108796" type="Label">
+                                            <param id="0" name="Horizontal alignment">0</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="7855808289873285" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">0</param>
+                                            <param id="2" name="Value">100</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="892796807846487" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="3701723846025777" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">2</param>
+                                            <param id="2" name="Value">0</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="659121600561433" type="System">
+                                            <param id="0" name="Object to create">Label</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">x+70</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="9272165544404124" type="Label">
+                                            <param id="0" name="Text">right(&quot;000000&quot; &amp; HighScore.At(loopIndex-1),6)</param>
+                                        </action>
+                                        <action id="7" name="Set horizontal alignment" sid="965669639733481" type="Label">
+                                            <param id="0" name="Horizontal alignment">0</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="4397899926196395" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">0</param>
+                                            <param id="2" name="Value">100</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="7125688146916392" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">1</param>
+                                            <param id="2" name="Value">100</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="1264747526729706" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">2</param>
+                                            <param id="2" name="Value">0</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="1728468525960873" type="System">
+                                            <param id="0" name="Object to create">Label</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">x+240</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="5223689261627612" type="Label">
+                                            <param id="0" name="Text">&quot;AAA&quot;</param>
+                                        </action>
+                                        <action id="7" name="Set horizontal alignment" sid="8967155527789747" type="Label">
+                                            <param id="0" name="Horizontal alignment">0</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="3602675318240208" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">0</param>
+                                            <param id="2" name="Value">100</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="7774694268913986" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </action>
+                                        <action id="-28" name="Set effect parameter" sid="6932484917231262" type="Label">
+                                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                            <param id="1" name="Parameter index">2</param>
+                                            <param id="2" name="Value">100</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Update local storage</comment>
+                        <event-block sid="3912147009659303">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="3972231099142897" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set item" sid="4688165650355247" type="LocalStorage">
+                                    <param id="0" name="Key">BERZERK_KEY</param>
+                                    <param id="1" name="Value">HighScore.AsJSON</param>
+                                </action>
+                                <action disabled="1" id="2" name="Remove item" sid="6618202088274871" type="LocalStorage">
+                                    <param id="0" name="Key">BERZERK_KEY</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
