@@ -36,16 +36,32 @@
                 <action id="-9" name="Destroy" sid="3585220363337341" type="Bullets" />
             </actions>
         </event-block>
-        <comment>Robot bullets kill any object</comment>
+        <comment>Robot bullets kill any object - except their owner</comment>
         <event-block sid="5366183507669827">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="5862448416534395" type="RobotBullet">
-                    <param id="0" name="Object">GameObject</param>
+                    <param id="0" name="Object">Player</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="5404153597994213" type="Bullets" />
-                <action id="-9" name="Destroy" sid="1647135070550259" type="GameObject" />
+                <action id="-9" name="Destroy" sid="1647135070550259" type="Player" />
+            </actions>
+        </event-block>
+        <event-block sid="9801005377175577">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8713043889134223" type="RobotBullet">
+                    <param id="0" name="Object">Robot</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="8274516704921491" type="RobotBullet">
+                    <param id="0" name="Instance variable">bulletOwnerUID</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">Robot.UID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1155812673350305" type="Bullets" />
+                <action id="-9" name="Destroy" sid="4217280452415691" type="Robot" />
             </actions>
         </event-block>
         <comment>Player bullets kill robots</comment>

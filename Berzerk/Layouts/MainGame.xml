@@ -729,6 +729,7 @@
                         <isChasingHorizontally>false</isChasingHorizontally>
                         <dx>0</dx>
                         <dy>0</dy>
+                        <fireAngle>0</fireAngle>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -767,7 +768,7 @@
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>150</speed>
+                                <speed>400</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>
@@ -805,7 +806,7 @@
                     <behavior-instances>
                         <behavior-instance type="Bullet">
                             <properties>
-                                <speed>400</speed>
+                                <speed>100</speed>
                                 <acceleration>0</acceleration>
                                 <gravity>0</gravity>
                                 <bounce-off-solids>No</bounce-off-solids>

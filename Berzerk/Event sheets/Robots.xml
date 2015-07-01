@@ -113,6 +113,27 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="5993277207432805">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="7216501214286544" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="1738003494847683" type="Function">
+                            <param id="0" name="Name">&quot;evaluateMove&quot;</param>
+                            <param id="1" name="Parameter {n}">Robot.UID</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="5090314119195863" type="Robot">
+                            <param id="0" name="Duration">random(2,9)</param>
+                            <param id="1" name="Type">1</param>
+                            <param id="2" name="Tag">&quot;flipDirection&quot;</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="5947872223093562" type="Robot">
+                            <param id="0" name="Duration">1</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;attemptFire&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-block>
         <comment>Once robots have been created, set their difficulty level (bullets, speed of bullet) and colour based on the score - from strategywiki.org</comment>
@@ -379,6 +400,235 @@
                                 <action id="-13" name="Set boolean" sid="394797302173742" type="Robot">
                                     <param id="0" name="Instance variable">isFastShot</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9557393531144596">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="8578543759537116" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="1039538302647983" type="Robot">
+                                    <param id="0" name="Instance variable">bulletsLeft</param>
+                                    <param id="1" name="Value">Robot.maxBullets</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Move Robots if possible</comment>
+        <event-block sid="5014366955207489">
+            <conditions>
+                <condition id="-11" name="For Each" sid="6709329384400439" type="System">
+                    <param id="0" name="Object">Robot</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9007327332434248" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9040804355956917">
+                    <conditions>
+                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="1787619336840664" type="Robot">
+                            <param id="0" name="Object">Wall</param>
+                            <param id="1" name="Offset X">Robot.dx * (ROBOT_SPEED * dt + 5)</param>
+                            <param id="2" name="Offset Y">Robot.dy * (ROBOT_SPEED * dt + 5)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="3230574943509748" type="Robot">
+                            <param id="0" name="X">Robot.X + Robot.dx * dt * ROBOT_SPEED</param>
+                            <param id="1" name="Y">Robot.Y + Robot.dy * dt * ROBOT_SPEED</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="92877398466555">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="4773000512676993" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-14" name="Toggle boolean" sid="7976278147647205" type="Robot">
+                            <param id="0" name="Instance variable">isChasingHorizontally</param>
+                        </action>
+                        <action id="0" name="Call function" sid="4306897361588867" type="Function">
+                            <param id="0" name="Name">&quot;evaluateMove&quot;</param>
+                            <param id="1" name="Parameter {n}">Robot.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>On a random timer, flip the chasing direction</comment>
+        <event-block sid="2406338657184049">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4933232454964431" type="Robot">
+                    <param id="0" name="Tag">&quot;flipDirection&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-14" name="Toggle boolean" sid="4000295444042788" type="Robot">
+                    <param id="0" name="Instance variable">isChasingHorizontally</param>
+                </action>
+                <action id="0" name="Call function" sid="7250415445618488" type="Function">
+                    <param id="0" name="Name">&quot;evaluateMove&quot;</param>
+                    <param id="1" name="Parameter {n}">Robot.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Repeated attempt to fire</comment>
+        <event-block sid="9027350926268422">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="7980488483670834" type="Robot">
+                    <param id="0" name="Tag">&quot;attemptFire&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="6856297249150415" type="Robot">
+                    <param id="0" name="Duration">random(0.5,2.5)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;attemptFire&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>If any bullets left, then calculate angle</comment>
+                <event-block sid="128417464060994">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9639739074865715" type="Robot">
+                            <param id="0" name="Instance variable">bulletsLeft</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="3781226276373087" type="Robot">
+                            <param id="0" name="Instance variable">fireAngle</param>
+                            <param id="1" name="Value">(angle(Robot.X,Robot.Y,Player.X,Player.Y)+360) % 360</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>If angle roughly at 45 degrees fire.</comment>
+                        <event-block any="1" sid="7336762669972138">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="5796005268097518" type="System">
+                                    <param id="0" name="First value">(Robot.fireAngle % 45)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">4</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="8043041757567402" type="System">
+                                    <param id="0" name="First value">(Robot.fireAngle % 45)</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">41</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="4523952844085872" type="Robot">
+                                    <param id="0" name="Object">RobotBullet</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5902526010889167" type="RobotBullet">
+                                    <param id="0" name="Instance variable">bulletOwnerUID</param>
+                                    <param id="1" name="Value">Robot.UID</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="1182793991831536" type="RobotBullet">
+                                    <param id="0" name="Angle">floor((Robot.fireAngle+4)/45)*45</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="650190911702727" type="Robot">
+                                    <param id="0" name="Instance variable">bulletsLeft</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Play" sid="3704092292386821" type="Audio">
+                                    <param id="0" name="Audio file">Bullet Fire</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="592217292296202">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="9029814157790907" type="Robot">
+                                            <param id="0" name="Instance variable">isFastShot</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="0" name="Set speed" sid="1506024467785342" type="RobotBullet">
+                                            <param id="0" name="Speed">RobotBullet.Bullet.Speed*2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Work out move directions</comment>
+        <event-block sid="5809562615182875">
+            <conditions>
+                <condition id="0" name="On function" sid="4608481333147234" type="Function">
+                    <param id="0" name="Name">&quot;evaluateMove&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1178966430892658">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="3826626069541756" type="Robot">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="7533155303521309" type="Robot">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9226213801020337">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="7732764569244074" type="Robot">
+                                    <param id="0" name="Instance variable">isChasingHorizontally</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="2606750833154243" type="Robot">
+                                    <param id="0" name="Instance variable">dx</param>
+                                    <param id="1" name="Value">(Player.X = Robot.X) ? 0 : ((Player.X &lt; Robot.X) ? -1 : 1)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="9841466131583011" type="Robot">
+                                    <param id="0" name="Instance variable">dy</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="679163912558088" type="Robot">
+                                    <param id="0" name="Animation">&quot;Right&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="5297969147401565" type="Robot">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9847277745925647">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="680201816652514" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="4481377658659561" type="Robot">
+                                    <param id="0" name="Instance variable">dx</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7693415884548545" type="Robot">
+                                    <param id="0" name="Instance variable">dy</param>
+                                    <param id="1" name="Value">(Player.Y = Robot.Y) ? 0 : ((Player.Y &lt; Robot.Y) ? -1 : 1)</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="7733981142693581" type="Robot">
+                                    <param id="0" name="Animation">Robot.dy &gt; 0 ? &quot;Down&quot;:&quot;Up&quot;</param>
+                                    <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>

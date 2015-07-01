@@ -15,8 +15,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="2">MazeCreate</event-sheet>
         <event-sheet order="3">Globals</event-sheet>
         <event-sheet order="4">Player</event-sheet>
-        <event-sheet active="1" order="5">Collisions</event-sheet>
-        <event-sheet order="6">Robots</event-sheet>
+        <event-sheet order="5">Collisions</event-sheet>
+        <event-sheet active="1" order="6">Robots</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
