@@ -76,17 +76,6 @@
                 <action id="-9" name="Destroy" sid="9050011580569009" type="Robot" />
             </actions>
         </event-block>
-        <event-block sid="2811634826676687">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="7097353084619996" type="PlayerBullet">
-                    <param id="0" name="Object">Otto</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="3148780902807194" type="PlayerBullet" />
-                <action id="-9" name="Destroy" sid="3584144073943341" type="Otto" />
-            </actions>
-        </event-block>
         <comment>Player running into wall</comment>
         <event-block sid="981963136081402">
             <conditions>
@@ -104,6 +93,22 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="6244797603285488" type="Player" />
+            </actions>
+        </event-block>
+        <comment>Player colliding with Otto</comment>
+        <event-block sid="8640310519655979">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4198067911385064" type="Player">
+                    <param id="0" name="Object">Otto</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="8417885308416104" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5109365096583234" type="Player" />
             </actions>
         </event-block>
         <comment>Robot running into robot or player kills both</comment>

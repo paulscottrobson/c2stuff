@@ -13,7 +13,6 @@
         <include>Robots</include>
         <comment>Collisions</comment>
         <include>Collisions</include>
-        <comment>Evil Otto code, scoring by hitting him (it ?)  + sound effects</comment>
         <comment>Title page (and return to it) + coin SFX</comment>
         <comment>***** TODO List ******</comment>
     </events>

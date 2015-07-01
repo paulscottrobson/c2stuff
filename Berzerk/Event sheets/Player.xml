@@ -406,6 +406,7 @@
                         <action id="-9" name="Destroy" sid="432151868100244" type="ScoreText" />
                         <action id="-9" name="Destroy" sid="3396201904245079" type="BonusText" />
                         <action id="-9" name="Destroy" sid="8036350443021914" type="Lives" />
+                        <action id="-9" name="Destroy" sid="7688997111706275" type="Otto" />
                     </actions>
                     <sub-events>
                         <event-block sid="4933793169526363">

@@ -636,5 +636,74 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Timer to launch Otto</comment>
+        <event-block sid="5161280447420402">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9464129610097677" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="5215711703988951" type="Player">
+                    <param id="0" name="Duration">10+Robot.Count * 7</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;launchOtto&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Start Otto</comment>
+        <event-block sid="4126562230534228">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="9698002400072089" type="Player">
+                    <param id="0" name="Tag">&quot;launchOtto&quot;</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="1434490477788775" type="System">
+                    <param id="0" name="First value">Otto.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6579613662962549" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="4126947048898405" type="System">
+                    <param id="0" name="Object to create">Otto</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">(Player.X &lt; LayoutWidth/2) ? LayoutWidth : 0</param>
+                    <param id="3" name="Y">sectionHeight*3/2</param>
+                </action>
+                <action behavior="Sine" id="2" name="Set magnitude" sid="1865954968819131" type="Otto">
+                    <param id="0" name="Magnitude">sectionHeight*3/2</param>
+                </action>
+                <action id="0" name="Play" sid="4762821245534416" type="Audio">
+                    <param id="0" name="Audio file">Intruder Alert</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Adjust Otto&apos;s horizontal position</comment>
+        <event-block sid="3982717795189997">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="607447705989433" type="System" />
+                <condition id="-14" name="Compare variable" sid="4905066361147255" type="System">
+                    <param id="0" name="Variable">gameInPlay</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3612434714878593" type="System">
+                    <param id="0" name="First value">Otto.Count</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="4501187339847475" type="Otto">
+                    <param id="0" name="X">Otto.X + ((Player.X &gt; Otto.X) ? 1 : -1) * dt * OTTO_STD_SPEED * ((Robot.Count = 0) ? 2 : 1)</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

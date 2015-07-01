@@ -23,6 +23,7 @@
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
@@ -204,6 +205,11 @@
         </object-type>
         <object-type name="Otto" sid="1231471744909262">
             <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Sine" sid="3880202024197152">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="731272544085646" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -386,7 +392,6 @@
     <families>
         <family name="GameObject" plugin-id="Sprite" sid="5889919185043894">
             <members>
-                <member>Otto</member>
                 <member>Player</member>
                 <member>Robot</member>
             </members>
