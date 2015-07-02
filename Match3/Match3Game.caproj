@@ -10,9 +10,11 @@
     <unique-id>3j6btcgehidgr</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
@@ -58,6 +60,7 @@
             <instance-variables>
                 <instance-variable comment="Type of item for comparison" name="typeID" sid="3874290680909446" type="number" />
                 <instance-variable name="newY" sid="5159004374326045" type="number" />
+                <instance-variable comment="True if in game" name="isInGame" sid="2143979114277046" type="boolean" />
                 <instance-variable comment="True if moving" name="isMoving" sid="5886843086222982" type="boolean" />
                 <instance-variable name="isCollision" sid="7862281863111797" type="boolean" />
                 <instance-variable comment="Start position" name="yStart" sid="1524763484593444" type="number" />
@@ -179,12 +182,19 @@
                 <instance-variable name="cellSize" sid="9354636111774443" type="number" />
                 <instance-variable comment="True when pulsing" name="isPulsing" sid="949937637740543" type="boolean" />
                 <instance-variable comment="True when dropping" name="isDropping" sid="1301948325965387" type="boolean" />
+                <instance-variable comment="Number of moving objects currently" name="movingCount" sid="4721976051298966" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4952324060783771" speed="5">
                     <frame duration="1" hotspotX="0.545455" hotspotY="0.533333" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="Touch" sid="9988277357982581">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Function" sid="8889624673898388">
+            <plugin id="Function" />
         </object-type>
     </object-folder>
     <families>
@@ -207,8 +217,16 @@
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>SetUp.xml</event-sheet>
+        <event-sheet>Matches.xml</event-sheet>
     </event-folder>
-    <global-instances />
+    <global-instances>
+        <global-instance type="Touch" uid="7">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Function" uid="9" />
+    </global-instances>
     <sounds-folder />
     <music-folder />
     <files-folder>

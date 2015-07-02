@@ -84,6 +84,7 @@
                         <cellSize>0</cellSize>
                         <isPulsing>true</isPulsing>
                         <isDropping>true</isDropping>
+                        <movingCount>0</movingCount>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -96,6 +97,33 @@
                         <depth>0</depth>
                         <hotspotX>0.545454562</hotspotX>
                         <hotspotY>0.533333361</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="debugText" uid="8">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-21,700,0</font>
+                        <color>153,51,204</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
+                        <hotspot>Center</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>96</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>128</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -129,6 +157,7 @@
                     <instance-variables>
                         <typeID>-1</typeID>
                         <newY>0</newY>
+                        <isInGame>false</isInGame>
                         <isMoving>true</isMoving>
                         <isCollision>false</isCollision>
                         <yStart>0</yStart>
@@ -138,8 +167,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>704</x>
-                        <y>224</y>
+                        <x>416</x>
+                        <y>64</y>
                         <z>0</z>
                         <width>24.575998306</width>
                         <height>27.64799881</height>
@@ -160,8 +189,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>704</x>
-                        <y>352</y>
+                        <x>544</x>
+                        <y>64</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>
@@ -189,8 +218,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>704</x>
-                        <y>288</y>
+                        <x>480</x>
+                        <y>64</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>

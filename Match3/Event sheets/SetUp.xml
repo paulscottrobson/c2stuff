@@ -3,13 +3,23 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>SetUp</name>
     <events>
+        <comment>Tidy up at start</comment>
+        <event-block sid="8757912393061795">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6636338049061304" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1147914480160713" type="Item" />
+                <action id="-9" name="Destroy" sid="8923637230489268" type="Blocker" />
+                <action id="-9" name="Destroy" sid="2758678759089145" type="Launcher" />
+            </actions>
+        </event-block>
         <comment>Start of layout - create the grid, launchers and blockers</comment>
         <event-block sid="5321217816070884">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="2253907318852397" type="System" />
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="8472288465437643" type="Item" />
                 <action id="-10" name="Set value" sid="8001186439690489" type="Manager">
                     <param id="0" name="Instance variable">cellSize</param>
                     <param id="1" name="Value">floor(min(GameArea.Width/levelWidth,GameArea.Height/levelHeight))</param>
@@ -272,7 +282,7 @@
                                         </action>
                                         <action id="-11" name="Add to" sid="6453936719550355" type="Item">
                                             <param id="0" name="Instance variable">dy</param>
-                                            <param id="1" name="Value">3</param>
+                                            <param id="1" name="Value">ITEM_GRAVITY</param>
                                         </action>
                                         <action id="-10" name="Set value" sid="3197638716308649" type="Item">
                                             <param id="0" name="Instance variable">newY</param>
@@ -365,13 +375,17 @@
                                                     <actions>
                                                         <action id="-10" name="Set value" sid="6985875988581623" type="Item">
                                                             <param id="0" name="Instance variable">typeID</param>
-                                                            <param id="1" name="Value">floor(random(0,6))</param>
+                                                            <param id="1" name="Value">floor(random(0,differentItems))</param>
                                                         </action>
                                                         <action id="5" name="Set frame" sid="6499201278670203" type="Item">
                                                             <param id="0" name="Frame number">Item.typeID</param>
                                                         </action>
                                                         <action id="-16" name="Set opacity" sid="2577350128518771" type="Item">
                                                             <param id="0" name="Opacity">100</param>
+                                                        </action>
+                                                        <action id="-13" name="Set boolean" sid="1152464241700451" type="Item">
+                                                            <param id="0" name="Instance variable">isInGame</param>
+                                                            <param id="1" name="Value">1</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -418,6 +432,97 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Debugging code - touching an item destroys it and starts things moving again.</comment>
+        <event-block disabled="1" sid="8910594169464254">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4202055534805441" type="Touch">
+                    <param id="0" name="Object">Item</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="2428255516038493" type="Item" />
+                <action id="0" name="Call function" sid="9286948313880337" type="Function">
+                    <param id="0" name="Name">&quot;startMoving&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Counts the number of moving objects</comment>
+        <event-block sid="5202117633096565">
+            <conditions>
+                <condition id="0" name="On function" sid="4594200996683415" type="Function">
+                    <param id="0" name="Name">&quot;countMoving&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1453768204964213" type="Manager">
+                    <param id="0" name="Instance variable">movingCount</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="4229808447075283">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="4040248795232353" type="System">
+                            <param id="0" name="Object">Item</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4683952224128029">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="580011133278625" type="Item">
+                                    <param id="0" name="Instance variable">isMoving</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="3241488746748673" type="Item">
+                                    <param id="0" name="Instance variable">isInGame</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="4884513309901243" type="Manager">
+                                    <param id="0" name="Instance variable">movingCount</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="9608618361249148">
+                                    <conditions />
+                                    <actions />
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Start everything moving to fill spaces</comment>
+        <event-block sid="9985019927011269">
+            <conditions>
+                <condition id="0" name="On function" sid="9149014286124606" type="Function">
+                    <param id="0" name="Name">&quot;startMoving&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7407619609650088">
+                    <conditions>
+                        <condition id="-19" name="Pick all" sid="1555721233027837" type="System">
+                            <param id="0" name="Object">Item</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="3042052728588787" type="Item">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="7495571938612741" type="Manager">
+                            <param id="0" name="Instance variable">isDropping</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

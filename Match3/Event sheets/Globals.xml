@@ -13,5 +13,9 @@
         <variable comment="Required Score" constant="0" name="levelRequiredScore" sid="3974579574902346" static="0" type="number">1000</variable>
         <comment>Level definition string.</comment>
         <variable comment="Slash seperated list of X., X defines game square" constant="0" name="levelDefinition" sid="8129883283274798" static="0" type="text">&quot;.XXXXXX./XXXXXXXX/XXX..XXX/.XX..XX./XXXXXXXX/XXXXXXXX/XXXXXXXX/..XXXX..&quot;</variable>
+        <comment>Gravity for dropping items</comment>
+        <variable comment="Item gravity" constant="1" name="ITEM_GRAVITY" sid="691433338900599" static="0" type="number">33</variable>
+        <comment>Number of different items in game</comment>
+        <variable comment="Number of different items allowed" constant="0" name="differentItems" sid="380431459029183" static="0" type="number">4</variable>
     </events>
 </c2eventsheet>
