@@ -12,8 +12,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <open-tabs>
         <layout order="0">Game</layout>
         <event-sheet order="1">Main</event-sheet>
-        <event-sheet active="1" order="2">Globals</event-sheet>
-        <event-sheet order="3">SetUp</event-sheet>
+        <event-sheet order="2">Globals</event-sheet>
+        <event-sheet active="1" order="3">SetUp</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -22,7 +22,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="1" name="Configuration Settings" />
     </properties>
     <families-expanded root="1">
-        <family expanded="1" name="GameObject" />
+        <family expanded="1" name="Stoppers" />
+        <family expanded="1" name="ItemAlt" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />

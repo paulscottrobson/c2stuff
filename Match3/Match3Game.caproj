@@ -11,10 +11,10 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
-        <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects />
@@ -56,15 +56,61 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable comment="Type of item for comparison" name="typeID" sid="3874290680909446" type="number" />
+                <instance-variable name="newY" sid="5159004374326045" type="number" />
+                <instance-variable comment="True if moving" name="isMoving" sid="5886843086222982" type="boolean" />
+                <instance-variable name="isCollision" sid="7862281863111797" type="boolean" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image1.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image2.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image3.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image4.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image5.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image1.png">
+                        <image-point name="Launch" x="0.5" y="1" />
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image2.png">
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image3.png">
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image4.png">
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image5.png">
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image6.png">
+                        <collision-poly>
+                            <point x="0.171875" y="0" />
+                            <point x="0.740234" y="0" />
+                            <point x="0.744141" y="1" />
+                            <point x="0.160156" y="1" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -73,6 +119,7 @@
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6833326078654917" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Launcher.png">
+                        <image-point name="Launch" x="0.5" y="0.71875" />
                         <collision-poly>
                             <point x="0.21875" y="0.21875" />
                             <point x="0.5" y="0.1875" />
@@ -89,9 +136,14 @@
         </object-type>
         <object-type name="Blocker" sid="4577738192003744">
             <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2586690540008678">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9214307663251283" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Blocker.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Blocker.png" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -108,21 +160,21 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="debugText" sid="4388270398549199">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families>
-        <family name="GameObject" plugin-id="Sprite" sid="6742468586474257">
+        <family name="Stoppers" plugin-id="Sprite" sid="3045874669009772">
             <members>
                 <member>Blocker</member>
+                <member>Launcher</member>
+            </members>
+        </family>
+        <family name="ItemAlt" plugin-id="Sprite" sid="9565132514523001">
+            <members>
                 <member>Item</member>
             </members>
-            <behaviors>
-                <behavior-type name="Physics" sid="3527565189654374">
-                    <behavior id="Physics" />
-                </behavior-type>
-                <behavior-type name="Solid" sid="7710813057870963">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
         </family>
     </families>
     <layout-folder>

@@ -18,14 +18,9 @@
                 </action>
                 <action id="-9" name="Set value" sid="2487405278943892" type="System">
                     <param id="0" name="Variable">yOrigin</param>
-                    <param id="1" name="Value">64+cellSize/2</param>
+                    <param id="1" name="Value">128</param>
                 </action>
-                <action id="-9" name="Destroy" sid="4159535458921173" type="Launcher" />
-                <action id="-9" name="Destroy" sid="3926265077377905" type="Item" />
-                <action id="-9" name="Destroy" sid="7401432402434727" type="Blocker" />
-                <action behavior="Physics" id="12" name="Set world gravity" sid="9868546565892258" type="Item">
-                    <param id="0" name="Gravity">5</param>
-                </action>
+                <action id="-9" name="Destroy" sid="8472288465437643" type="Item" />
             </actions>
             <sub-events>
                 <variable constant="0" name="x" sid="7383725873156636" static="0" type="number">0</variable>
@@ -38,7 +33,12 @@
                             <param id="2" name="End index">levelHeight</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="5189097444964678" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">(loopIndex(&quot;row&quot;)-1) * cellSize + yOrigin</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <event-block sid="6446389925019658">
                             <conditions>
@@ -52,10 +52,6 @@
                                 <action id="-9" name="Set value" sid="1631733319134995" type="System">
                                     <param id="0" name="Variable">x</param>
                                     <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * cellSize+xOrigin</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="5189097444964678" type="System">
-                                    <param id="0" name="Variable">y</param>
-                                    <param id="1" name="Value">(loopIndex(&quot;row&quot;)-1) * cellSize + yOrigin</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -77,16 +73,6 @@
                                         <action id="-7" name="Set size" sid="7390635536669243" type="Launcher">
                                             <param id="0" name="Width">cellSize</param>
                                             <param id="1" name="Height">cellSize</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="7316133706451756" type="System">
-                                            <param id="0" name="Object to create">Blocker</param>
-                                            <param id="1" name="Layer">1</param>
-                                            <param id="2" name="X">x</param>
-                                            <param id="3" name="Y">y-cellSize/2</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="4526733235454091" type="Blocker">
-                                            <param id="0" name="Width">cellSize</param>
-                                            <param id="1" name="Height">4</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -138,70 +124,207 @@
                             <param id="0" name="Object to create">Blocker</param>
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="X">x</param>
-                            <param id="3" name="Y">yOrigin+cellSize*levelHeight-cellSize/2</param>
+                            <param id="3" name="Y">yOrigin+cellSize*levelHeight</param>
                         </action>
                         <action id="-7" name="Set size" sid="6999776436187914" type="Blocker">
                             <param id="0" name="Width">cellSize</param>
-                            <param id="1" name="Height">4</param>
+                            <param id="1" name="Height">cellSize</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-block>
-        <event-block sid="9234116283450143">
+        <event-block sid="1995477797402297">
             <conditions>
-                <condition id="1" inverted="1" name="Is overlapping another object" sid="5885560156388182" type="Launcher">
-                    <param id="0" name="Object">Item</param>
-                </condition>
+                <condition id="-2" name="On start of layout" sid="9265371930254365" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="7108391047325797">
+                    <conditions>
+                        <condition id="9" name="Is overlapping at offset" sid="1107455035208607" type="Launcher">
+                            <param id="0" name="Object">Stoppers</param>
+                            <param id="1" name="Offset X">0</param>
+                            <param id="2" name="Offset Y">cellSize/2</param>
+                        </condition>
+                        <condition id="9" name="Is overlapping at offset" sid="2486407039867143" type="Launcher">
+                            <param id="0" name="Object">Launcher</param>
+                            <param id="1" name="Offset X">0</param>
+                            <param id="2" name="Offset Y">cellSize/2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="6944509364177969" type="Launcher">
+                            <param id="0" name="Object">Blocker</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="183207408585631" type="Launcher" />
+                        <action id="-7" name="Set size" sid="8772330085814704" type="Blocker">
+                            <param id="0" name="Width">cellSize</param>
+                            <param id="1" name="Height">cellSize</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block disabled="1" sid="1572548102051493">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9953610645578381" type="System" />
             </conditions>
             <actions>
-                <action id="0" name="Spawn another object" sid="1896828046100112" type="Launcher">
-                    <param id="0" name="Object">Item</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="Image point">0</param>
+                <action id="-15" name="Set visible" sid="6924913296200441" type="Blocker">
+                    <param id="0" name="Visibility">0</param>
                 </action>
-                <action id="-7" name="Set size" sid="9228830973891195" type="Item">
-                    <param id="0" name="Width">0.9*cellSize</param>
-                    <param id="1" name="Height">cellSize</param>
-                </action>
-                <action id="2" name="Stop" sid="2653795627051332" type="Item" />
-                <action behavior="Physics" id="21" name="Set immovable" sid="3228447198063581" type="Item">
-                    <param id="0" name="Setting">0</param>
-                </action>
-                <action id="-10" name="Set value" sid="657011690981308" type="Item">
-                    <param id="0" name="Instance variable">typeID</param>
-                    <param id="1" name="Value">floor(random(0,6))</param>
-                </action>
-                <action id="5" name="Set frame" sid="3028736428709543" type="Item">
-                    <param id="0" name="Frame number">Item.typeID</param>
-                </action>
-                <action id="-16" name="Set opacity" sid="167073008995766" type="Item">
-                    <param id="0" name="Opacity">0</param>
+                <action id="-15" name="Set visible" sid="5137002631674574" type="Launcher">
+                    <param id="0" name="Visibility">0</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="4240952660586685">
+        <comment>Reseed the launchers</comment>
+        <event-block sid="6132066619457864">
             <conditions>
-                <condition id="-10" name="Compare opacity" sid="1504716520543732" type="Item">
-                    <param id="0" name="Comparison">1</param>
-                    <param id="1" name="Opacity">100</param>
+                <condition id="-19" name="Pick all" sid="6470239956399276" type="System">
+                    <param id="0" name="Object">Launcher</param>
                 </condition>
             </conditions>
             <actions />
             <sub-events>
-                <event-block sid="5876685626580711">
+                <comment>+16 here because +8 below - otherwise it fires collision straight away, else create a new object</comment>
+                <event-block sid="9234116283450143">
                     <conditions>
-                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="4197533224024837" type="Item">
-                            <param id="0" name="Object">Launcher</param>
+                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="5885560156388182" type="Launcher">
+                            <param id="0" name="Object">Item</param>
                             <param id="1" name="Offset X">0</param>
-                            <param id="2" name="Offset Y">10</param>
+                            <param id="2" name="Offset Y">16</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" sid="4923120872871192" type="Item">
-                            <param id="0" name="Opacity">100</param>
+                        <action id="-3" name="Create object" sid="1896828046100112" type="System">
+                            <param id="0" name="Object to create">Item</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">Launcher.X</param>
+                            <param id="3" name="Y">Launcher.Y</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="9228830973891195" type="Item">
+                            <param id="0" name="Width">cellSize</param>
+                            <param id="1" name="Height">cellSize</param>
+                        </action>
+                        <action id="2" name="Stop" sid="2653795627051332" type="Item" />
+                        <action id="-16" name="Set opacity" sid="8488979867933196" type="Item">
+                            <param id="0" name="Opacity">33</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3259735656873157" type="Item">
+                            <param id="0" name="Instance variable">typeID</param>
+                            <param id="1" name="Value">-Item.UID</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="4528590404552792" type="Item">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>For all items, if moving</comment>
+        <event-block sid="9266720973400883">
+            <conditions>
+                <condition id="-11" name="For Each" sid="4862113409481554" type="System">
+                    <param id="0" name="Object">Item</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Clear collision and set new Y value</comment>
+                <event-block sid="2763335040189774">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="468706785162705" type="Item">
+                            <param id="0" name="Instance variable">isMoving</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="7000335786609394" type="Item">
+                            <param id="0" name="Instance variable">isCollision</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3197638716308649" type="Item">
+                            <param id="0" name="Instance variable">newY</param>
+                            <param id="1" name="Value">Item.Y+dt*100</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Hit blocker / launcher, stop if not the one above</comment>
+                        <event-block sid="8808067509922739">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="4379533890024169" type="System">
+                                    <param id="0" name="Object">Stoppers</param>
+                                    <param id="1" name="X">Item.X</param>
+                                    <param id="2" name="Y">Item.Y+cellSize/2+8</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="3148482285938554">
+                                    <conditions>
+                                        <condition id="-2" name="Compare Y" sid="7739730008792471" type="Item">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Y co-ordinate">Stoppers.Y-cellSize/2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="6038361339997715" type="Item">
+                                            <param id="0" name="Instance variable">isCollision</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Two items collide, stop</comment>
+                        <event-block sid="3477831564665062">
+                            <conditions>
+                                <condition id="-36" name="Pick overlapping point" sid="5775588003079932" type="System">
+                                    <param id="0" name="Object">ItemAlt</param>
+                                    <param id="1" name="X">Item.X</param>
+                                    <param id="2" name="Y">Item.Y+cellSize/2+8</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="2146712574096424" type="Item">
+                                    <param id="0" name="Instance variable">isCollision</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>On collision, stop moving and patch Y</comment>
+                        <event-block sid="3590866562711424">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="2022587263804596" type="Item">
+                                    <param id="0" name="Instance variable">isCollision</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="5156263558506454" type="Item">
+                                    <param id="0" name="Y">round((Item.Y-(yOrigin-cellSize))/cellSize)*cellSize+yOrigin-cellSize</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4061645592544753" type="Item">
+                                    <param id="0" name="Instance variable">isMoving</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Otherwise update Y</comment>
+                        <event-block sid="1786670036388917">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3968208964797992" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="8303095866445865" type="Item">
+                                    <param id="0" name="Y">Item.newY</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
