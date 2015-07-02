@@ -85,6 +85,8 @@
                         <isPulsing>true</isPulsing>
                         <isDropping>true</isDropping>
                         <movingCount>0</movingCount>
+                        <bestHorizontal>0</bestHorizontal>
+                        <bestVertical>0</bestVertical>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -106,7 +108,7 @@
                         <text>Text</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-21,700,0</font>
-                        <color>153,51,204</color>
+                        <color>0,0,0</color>
                         <horizontal-alignment>Center</horizontal-alignment>
                         <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Center</hotspot>
@@ -163,6 +165,8 @@
                         <yStart>0</yStart>
                         <dy>0</dy>
                         <pulseOffset>0</pulseOffset>
+                        <horizontalCount>0</horizontalCount>
+                        <verticalCount>0</verticalCount>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

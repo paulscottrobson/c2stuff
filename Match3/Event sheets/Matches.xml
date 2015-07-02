@@ -3,13 +3,36 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Matches</name>
     <events>
-        <variable constant="0" name="n" sid="8250743949376713" static="0" type="number">0</variable>
+        <event-block sid="5472041003308683">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="9487518323516861" type="Touch" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="4953723229212608" type="Function">
+                    <param id="0" name="Name">&quot;checkForMatches&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Check for matches across the whole grid. Return largest in either h or v direction</comment>
         <event-block sid="7163550041646378">
             <conditions>
-                <condition id="0" name="On any touch start" sid="5226504350923403" type="Touch" />
+                <condition id="0" name="On function" sid="5226504350923403" type="Function">
+                    <param id="0" name="Name">&quot;checkForMatches&quot;</param>
+                </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="-10" name="Set value" sid="7289014864626755" type="Manager">
+                    <param id="0" name="Instance variable">bestHorizontal</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="4894325125916279" type="Manager">
+                    <param id="0" name="Instance variable">bestVertical</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
             <sub-events>
+                <comment>Work through them in positional order</comment>
                 <event-block sid="5676652198826493">
                     <conditions>
                         <condition id="-24" name="For Each (ordered)" sid="3870269174149195" type="System">
@@ -18,27 +41,134 @@
                             <param id="2" name="Order">0</param>
                         </condition>
                     </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>If in the game, set the horizontal and vertical count for this item</comment>
+                        <event-block sid="9246307919695888">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4649449974367698" type="Item">
+                                    <param id="0" name="Instance variable">isInGame</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="1684730344561799" type="Item">
+                                    <param id="0" name="Instance variable">horizontalCount</param>
+                                    <param id="1" name="Value">Function.Call(&quot;countInDirection&quot;,Item.X,Item.Y,Item.typeID,1,0)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5557716498132208" type="Item">
+                                    <param id="0" name="Instance variable">verticalCount</param>
+                                    <param id="1" name="Value">Function.Call(&quot;countInDirection&quot;,Item.X,Item.Y,Item.typeID,0,1)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6140982155557876" type="Manager">
+                                    <param id="0" name="Instance variable">bestHorizontal</param>
+                                    <param id="1" name="Value">max(Manager.bestHorizontal,Item.horizontalCount)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6174607545983766" type="Manager">
+                                    <param id="0" name="Instance variable">bestVertical</param>
+                                    <param id="1" name="Value">max(Manager.bestVertical,Item.verticalCount)</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="3694474192064082" type="Item">
+                                    <param id="0" name="Object">debugText</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Set text" sid="7162036590863177" type="debugText">
+                                    <param id="0" name="Text">Item.horizontalCount &amp; &quot;,&quot; &amp; Item.verticalCount</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>At the end return the largest value</comment>
+                        <event-block sid="9740417385638158">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="3079674013444778" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="8542725744573981" type="Function">
+                                    <param id="0" name="Value">max(Manager.bestHorizontal,Manager.bestVertical)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Count duplicates in given direction (x , y, typeID, dx,dy) returns number</comment>
+        <event-block sid="1809227140562411">
+            <conditions>
+                <condition id="0" name="On function" sid="6282964153976445" type="Function">
+                    <param id="0" name="Name">&quot;countInDirection&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Set return value" sid="11364465781719" type="Function">
+                    <param id="0" name="Value">42</param>
+                </action>
+            </actions>
+            <sub-events>
+                <variable constant="0" name="x" sid="2545202950694416" static="0" type="number">0</variable>
+                <variable constant="0" name="count" sid="1620539802994085" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="2587111524963328" static="0" type="number">0</variable>
+                <comment>Set the search position to x and y</comment>
+                <event-block sid="1660670512845576">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="6964593340242297" type="System" />
+                    </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="3694474192064082" type="Item">
-                            <param id="0" name="Object">debugText</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">0</param>
+                        <action id="-9" name="Set value" sid="8670531991690072" type="System">
+                            <param id="0" name="Variable">x</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
                         </action>
-                        <action id="0" name="Set text" sid="7162036590863177" type="debugText">
-                            <param id="0" name="Text">n</param>
-                        </action>
-                        <action id="-10" name="Add to" sid="1562560797354524" type="System">
-                            <param id="0" name="Variable">n</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="0" name="Set text" sid="3360108870579618" type="debugText">
-                            <param id="0" name="Text">n</param>
-                        </action>
-                        <action id="-10" name="Add to" sid="2687448207755575" type="System">
-                            <param id="0" name="Variable">n</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="-9" name="Set value" sid="2475856239823706" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">Function.Param(1)</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <comment>While there&apos;s an item at x,y, it&apos;s the same type, and it is in the game add 1 to count and move the check position</comment>
+                        <event-block sid="7092326347444962">
+                            <conditions>
+                                <condition id="-23" name="While" sid="1478120230588456" type="System" />
+                                <condition id="-36" name="Pick overlapping point" sid="8438032363718371" type="System">
+                                    <param id="0" name="Object">Item</param>
+                                    <param id="1" name="X">x</param>
+                                    <param id="2" name="Y">y</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="9816840235365763" type="Item">
+                                    <param id="0" name="Instance variable">typeID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Function.Param(2)</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4977116948622528" type="Item">
+                                    <param id="0" name="Instance variable">isInGame</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="8879394976967701" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">Manager.cellSize*Function.Param(3)</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="249508885153321" type="System">
+                                    <param id="0" name="Variable">y</param>
+                                    <param id="1" name="Value">Manager.cellSize*Function.Param(4)</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="1047702781424092" type="System">
+                                    <param id="0" name="Variable">count</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Return the return value</comment>
+                        <event-block sid="8505865944614805">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="4937845293844904" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="8974764375537114" type="Function">
+                                    <param id="0" name="Value">count</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

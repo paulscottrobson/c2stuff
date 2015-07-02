@@ -66,6 +66,8 @@
                 <instance-variable comment="Start position" name="yStart" sid="1524763484593444" type="number" />
                 <instance-variable comment="Vertical velocity" name="dy" sid="9894629535921716" type="number" />
                 <instance-variable comment="Pulse offset for sin calculation" name="pulseOffset" sid="4125863799636299" type="number" />
+                <instance-variable comment="Number of horizontal copies" name="horizontalCount" sid="2779085812476576" type="number" />
+                <instance-variable comment="Number of duplicates going down" name="verticalCount" sid="4153902603120384" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
@@ -183,6 +185,8 @@
                 <instance-variable comment="True when pulsing" name="isPulsing" sid="949937637740543" type="boolean" />
                 <instance-variable comment="True when dropping" name="isDropping" sid="1301948325965387" type="boolean" />
                 <instance-variable comment="Number of moving objects currently" name="movingCount" sid="4721976051298966" type="number" />
+                <instance-variable name="bestHorizontal" sid="1025449072597683" type="number" />
+                <instance-variable name="bestVertical" sid="2306453593996419" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4952324060783771" speed="5">
