@@ -13,10 +13,5 @@
         <variable comment="Required Score" constant="0" name="levelRequiredScore" sid="3974579574902346" static="0" type="number">1000</variable>
         <comment>Level definition string.</comment>
         <variable comment="Slash seperated list of X., X defines game square" constant="0" name="levelDefinition" sid="8129883283274798" static="0" type="text">&quot;.XXXXXX./XXXXXXXX/XXX..XXX/.XX..XX./XXXXXXXX/XXXXXXXX/XXXXXXXX/..XXXX..&quot;</variable>
-        <comment>X,Y Origin of cells</comment>
-        <variable comment="X Origin of Cells" constant="0" name="xOrigin" sid="7214483703465043" static="0" type="number">0</variable>
-        <variable comment="Y Origin of cells" constant="0" name="yOrigin" sid="723966998434904" static="0" type="number">0</variable>
-        <comment>Size of each cell</comment>
-        <variable comment="Width/Height of cell in pixels" constant="0" name="cellSize" sid="625375362111652" static="0" type="number">32</variable>
     </events>
 </c2eventsheet>

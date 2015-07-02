@@ -12,6 +12,7 @@
     <used-plugins>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
@@ -59,6 +60,9 @@
                 <instance-variable name="newY" sid="5159004374326045" type="number" />
                 <instance-variable comment="True if moving" name="isMoving" sid="5886843086222982" type="boolean" />
                 <instance-variable name="isCollision" sid="7862281863111797" type="boolean" />
+                <instance-variable comment="Start position" name="yStart" sid="1524763484593444" type="number" />
+                <instance-variable comment="Vertical velocity" name="dy" sid="9894629535921716" type="number" />
+                <instance-variable comment="Pulse offset for sin calculation" name="pulseOffset" sid="4125863799636299" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
@@ -162,6 +166,25 @@
         </object-type>
         <object-type name="debugText" sid="4388270398549199">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="GameArea" sid="6764077833962428">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="Manager" sid="3089663041884529">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="xOrigin" sid="7095667583991899" type="number" />
+                <instance-variable name="yOrigin" sid="7927166874523146" type="number" />
+                <instance-variable name="cellSize" sid="9354636111774443" type="number" />
+                <instance-variable comment="True when pulsing" name="isPulsing" sid="949937637740543" type="boolean" />
+                <instance-variable comment="True when dropping" name="isDropping" sid="1301948325965387" type="boolean" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4952324060783771" speed="5">
+                    <frame duration="1" hotspotX="0.545455" hotspotY="0.533333" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>
