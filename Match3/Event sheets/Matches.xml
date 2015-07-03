@@ -3,7 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Matches</name>
     <events>
-        <event-block sid="5472041003308683">
+        <comment>This is debug code</comment>
+        <event-block disabled="1" sid="5472041003308683">
             <conditions>
                 <condition id="0" name="On any touch start" sid="9487518323516861" type="Touch" />
             </conditions>
@@ -67,12 +68,12 @@
                                     <param id="0" name="Instance variable">bestVertical</param>
                                     <param id="1" name="Value">max(Manager.bestVertical,Item.verticalCount)</param>
                                 </action>
-                                <action id="0" name="Spawn another object" sid="3694474192064082" type="Item">
+                                <action disabled="1" id="0" name="Spawn another object" sid="3694474192064082" type="Item">
                                     <param id="0" name="Object">debugText</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="Image point">0</param>
                                 </action>
-                                <action id="0" name="Set text" sid="7162036590863177" type="debugText">
+                                <action disabled="1" id="0" name="Set text" sid="7162036590863177" type="debugText">
                                     <param id="0" name="Text">Item.horizontalCount &amp; &quot;,&quot; &amp; Item.verticalCount</param>
                                 </action>
                             </actions>

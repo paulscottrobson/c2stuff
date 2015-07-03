@@ -11,6 +11,7 @@
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -69,6 +70,11 @@
                 <instance-variable comment="Number of horizontal copies" name="horizontalCount" sid="2779085812476576" type="number" />
                 <instance-variable comment="Number of duplicates going down" name="verticalCount" sid="4153902603120384" type="number" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Fade" sid="2891701879068091">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image1.png">
@@ -183,10 +189,20 @@
                 <instance-variable name="yOrigin" sid="7927166874523146" type="number" />
                 <instance-variable name="cellSize" sid="9354636111774443" type="number" />
                 <instance-variable comment="True when pulsing" name="isPulsing" sid="949937637740543" type="boolean" />
-                <instance-variable comment="True when dropping" name="isDropping" sid="1301948325965387" type="boolean" />
                 <instance-variable comment="Number of moving objects currently" name="movingCount" sid="4721976051298966" type="number" />
                 <instance-variable name="bestHorizontal" sid="1025449072597683" type="number" />
                 <instance-variable name="bestVertical" sid="2306453593996419" type="number" />
+                <instance-variable comment="Width of level" name="levelWidth" sid="5454813546526044" type="number" />
+                <instance-variable comment="Height of level" name="levelHeight" sid="2805404639499063" type="number" />
+                <instance-variable comment="Current game states" name="state" sid="6700515970614153" type="number" />
+                <instance-variable comment="Number of moves allowed" name="maxMoves" sid="9526280670217761" type="number" />
+                <instance-variable comment="Required score to complete level" name="requiredScore" sid="9134647897204183" type="number" />
+                <instance-variable comment="Number of items used" name="discreteItems" sid="3190780774531124" type="number" />
+                <instance-variable comment="text of level definition" name="levelDefinition" sid="5286117642297379" type="string" />
+                <instance-variable comment="Number of items when grid full" name="fullCount" sid="7423196433469881" type="number" />
+                <instance-variable name="bonusMultiplier" sid="8141870463406204" type="number" />
+                <instance-variable comment="Count of running explosions" name="explosionCount" sid="9193867397450124" type="number" />
+                <instance-variable comment="True when first pass (e.g. no scoring)" name="isFirstPass" sid="6156136562421671" type="boolean" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4952324060783771" speed="5">
@@ -199,6 +215,10 @@
         </object-type>
         <object-type name="Function" sid="8889624673898388">
             <plugin id="Function" />
+        </object-type>
+        <object-type name="ExplodingItems" sid="3261479012833371">
+            <plugin id="Particles" />
+            <texture />
         </object-type>
     </object-folder>
     <families>
@@ -222,6 +242,7 @@
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>SetUp.xml</event-sheet>
         <event-sheet>Matches.xml</event-sheet>
+        <event-sheet>Control.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="7">

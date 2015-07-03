@@ -3,19 +3,15 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
-        <comment>Width of level in cells</comment>
-        <variable comment="Level Width (defaults to 8)" constant="0" name="levelWidth" sid="9143404960492381" static="0" type="number">8</variable>
-        <comment>Height of level in Cells</comment>
-        <variable comment="Level Height (defaults to 8)" constant="0" name="levelHeight" sid="8722500675167346" static="0" type="number">8</variable>
-        <comment>Moves allowed to complete</comment>
-        <variable comment="Number of moves" constant="0" name="levelMoves" sid="8635529047163537" static="0" type="number">20</variable>
-        <comment>Score required to complete</comment>
-        <variable comment="Required Score" constant="0" name="levelRequiredScore" sid="3974579574902346" static="0" type="number">1000</variable>
-        <comment>Level definition string.</comment>
-        <variable comment="Slash seperated list of X., X defines game square" constant="0" name="levelDefinition" sid="8129883283274798" static="0" type="text">&quot;.XXXXXX./XXXXXXXX/XXX..XXX/.XX..XX./XXXXXXXX/XXXXXXXX/XXXXXXXX/..XXXX..&quot;</variable>
         <comment>Gravity for dropping items</comment>
         <variable comment="Item gravity" constant="1" name="ITEM_GRAVITY" sid="691433338900599" static="0" type="number">33</variable>
-        <comment>Number of different items in game</comment>
-        <variable comment="Number of different items allowed" constant="0" name="differentItems" sid="380431459029183" static="0" type="number">4</variable>
+        <comment>Game states</comment>
+        <variable comment="State : Pieces are dropping" constant="1" name="STATE_DROPPING" sid="7119960588942614" static="0" type="number">1</variable>
+        <variable comment="Remove the best and score it" constant="1" name="STATE_REMOVE" sid="8718997514963279" static="0" type="number">2</variable>
+        <variable comment="Waiting for a swap to start" constant="1" name="STATE_WAITSWAP" sid="4804371683760533" static="0" type="number">3</variable>
+        <variable comment="A new collection of drops is starting" constant="1" name="STATE_NEWBLOCK" sid="6946469496154758" static="0" type="number">4</variable>
+        <comment>---------------------------------------------------------------------------------------</comment>
+        <comment>Add scoring with bonus multiplier to removal code</comment>
+        <comment>---------------------------------------------------------------------------------------</comment>
     </events>
 </c2eventsheet>

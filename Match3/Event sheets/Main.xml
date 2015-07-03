@@ -6,5 +6,6 @@
         <include>Globals</include>
         <include>SetUp</include>
         <include>Matches</include>
+        <include>Control</include>
     </events>
 </c2eventsheet>

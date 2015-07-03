@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>SetUp</name>
     <events>
-        <comment>Tidy up at start</comment>
+        <comment>Tidy up at start, remove prototypes needed for compilation</comment>
         <event-block sid="8757912393061795">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="6636338049061304" type="System" />
@@ -12,382 +12,406 @@
                 <action id="-9" name="Destroy" sid="1147914480160713" type="Item" />
                 <action id="-9" name="Destroy" sid="8923637230489268" type="Blocker" />
                 <action id="-9" name="Destroy" sid="2758678759089145" type="Launcher" />
+                <action id="-9" name="Destroy" sid="6953387952516341" type="ExplodingItems" />
             </actions>
         </event-block>
-        <comment>Start of layout - create the grid, launchers and blockers</comment>
-        <event-block sid="5321217816070884">
-            <conditions>
-                <condition id="-2" name="On start of layout" sid="2253907318852397" type="System" />
-            </conditions>
-            <actions>
-                <action id="-10" name="Set value" sid="8001186439690489" type="Manager">
-                    <param id="0" name="Instance variable">cellSize</param>
-                    <param id="1" name="Value">floor(min(GameArea.Width/levelWidth,GameArea.Height/levelHeight))</param>
-                </action>
-                <action id="-10" name="Set value" sid="6282630974170584" type="Manager">
-                    <param id="0" name="Instance variable">xOrigin</param>
-                    <param id="1" name="Value">GameArea.X+GameArea.Width/2-(levelWidth-1)*Manager.cellSize/2</param>
-                </action>
-                <action id="-10" name="Set value" sid="1323988512889754" type="Manager">
-                    <param id="0" name="Instance variable">yOrigin</param>
-                    <param id="1" name="Value">GameArea.Y+GameArea.Height/2-(levelHeight-1)*Manager.cellSize/2</param>
-                </action>
-            </actions>
+        <event-group description="These events take the textual level descriptor and convert it into a physical empty grid with launchers and blockers" sid="1491018562839225" title="Create Grid from the level information">
             <sub-events>
-                <variable constant="0" name="x" sid="7383725873156636" static="0" type="number">0</variable>
-                <variable constant="0" name="y" sid="571168282964921" static="0" type="number">0</variable>
-                <event-block sid="9662321745991025">
+                <comment>Start of layout - create the grid, launchers and blockers</comment>
+                <event-block sid="5321217816070884">
                     <conditions>
-                        <condition id="-10" name="For" sid="9563961388775016" type="System">
-                            <param id="0" name="Name">&quot;row&quot;</param>
-                            <param id="1" name="Start index">1</param>
-                            <param id="2" name="End index">levelHeight</param>
-                        </condition>
+                        <condition id="-2" name="On start of layout" sid="2253907318852397" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="5189097444964678" type="System">
-                            <param id="0" name="Variable">y</param>
-                            <param id="1" name="Value">(loopIndex(&quot;row&quot;)-1) * Manager.cellSize + Manager.yOrigin</param>
+                        <action id="-10" name="Set value" sid="365330513047152" type="Manager">
+                            <param id="0" name="Instance variable">levelHeight</param>
+                            <param id="1" name="Value">tokencount(Manager.levelDefinition,&quot;/&quot;)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1839674536686477" type="Manager">
+                            <param id="0" name="Instance variable">levelWidth</param>
+                            <param id="1" name="Value">round(len(Manager.levelDefinition)/(Manager.levelHeight+1))</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="8001186439690489" type="Manager">
+                            <param id="0" name="Instance variable">cellSize</param>
+                            <param id="1" name="Value">floor(min(GameArea.Width/Manager.levelWidth,GameArea.Height/Manager.levelHeight))</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6282630974170584" type="Manager">
+                            <param id="0" name="Instance variable">xOrigin</param>
+                            <param id="1" name="Value">GameArea.X+GameArea.Width/2-(Manager.levelWidth-1)*Manager.cellSize/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1323988512889754" type="Manager">
+                            <param id="0" name="Instance variable">yOrigin</param>
+                            <param id="1" name="Value">GameArea.Y+GameArea.Height/2-(Manager.levelHeight-1)*Manager.cellSize/2</param>
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block sid="6446389925019658">
+                        <variable constant="0" name="x" sid="7383725873156636" static="0" type="number">0</variable>
+                        <variable constant="0" name="y" sid="571168282964921" static="0" type="number">0</variable>
+                        <event-block sid="9662321745991025">
                             <conditions>
-                                <condition id="-10" name="For" sid="7916526370582526" type="System">
-                                    <param id="0" name="Name">&quot;col&quot;</param>
+                                <condition id="-10" name="For" sid="9563961388775016" type="System">
+                                    <param id="0" name="Name">&quot;row&quot;</param>
                                     <param id="1" name="Start index">1</param>
-                                    <param id="2" name="End index">levelWidth</param>
+                                    <param id="2" name="End index">Manager.levelHeight</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="1631733319134995" type="System">
-                                    <param id="0" name="Variable">x</param>
-                                    <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * Manager.cellSize+Manager.xOrigin</param>
+                                <action id="-9" name="Set value" sid="5189097444964678" type="System">
+                                    <param id="0" name="Variable">y</param>
+                                    <param id="1" name="Value">(loopIndex(&quot;row&quot;)-1) * Manager.cellSize + Manager.yOrigin</param>
                                 </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="5126216923726864">
+                                <event-block sid="6446389925019658">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="5623015566946846" type="System">
-                                            <param id="0" name="First value">mid(levelDefinition,(loopindex(&quot;row&quot;)-1)*(levelWidth+1)+loopindex(&quot;col&quot;),1)</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">&quot;.&quot;</param>
+                                        <condition id="-10" name="For" sid="7916526370582526" type="System">
+                                            <param id="0" name="Name">&quot;col&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">Manager.levelWidth</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-3" name="Create object" sid="1526883446487204" type="System">
-                                            <param id="0" name="Object to create">Launcher</param>
-                                            <param id="1" name="Layer">1</param>
-                                            <param id="2" name="X">x</param>
-                                            <param id="3" name="Y">y</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="7390635536669243" type="Launcher">
-                                            <param id="0" name="Width">Manager.cellSize</param>
-                                            <param id="1" name="Height">Manager.cellSize</param>
+                                        <action id="-9" name="Set value" sid="1631733319134995" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * Manager.cellSize+Manager.xOrigin</param>
                                         </action>
                                     </actions>
-                                </event-block>
-                                <event-block sid="2076704587574524">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="3875125711709441" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-3" name="Create object" sid="8829405706693362" type="System">
-                                            <param id="0" name="Object to create">BackTile</param>
-                                            <param id="1" name="Layer">0</param>
-                                            <param id="2" name="X">x</param>
-                                            <param id="3" name="Y">y</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="1111142462175172" type="BackTile">
-                                            <param id="0" name="Width">Manager.cellSize</param>
-                                            <param id="1" name="Height">Manager.cellSize</param>
-                                        </action>
-                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="5126216923726864">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="5623015566946846" type="System">
+                                                    <param id="0" name="First value">mid(Manager.levelDefinition,(loopindex(&quot;row&quot;)-1)*(Manager.levelWidth+1)+loopindex(&quot;col&quot;),1)</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">&quot;.&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Create object" sid="1526883446487204" type="System">
+                                                    <param id="0" name="Object to create">Launcher</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="X">x</param>
+                                                    <param id="3" name="Y">y</param>
+                                                </action>
+                                                <action id="-7" name="Set size" sid="7390635536669243" type="Launcher">
+                                                    <param id="0" name="Width">Manager.cellSize</param>
+                                                    <param id="1" name="Height">Manager.cellSize</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="2076704587574524">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="3875125711709441" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Create object" sid="8829405706693362" type="System">
+                                                    <param id="0" name="Object to create">BackTile</param>
+                                                    <param id="1" name="Layer">0</param>
+                                                    <param id="2" name="X">x</param>
+                                                    <param id="3" name="Y">y</param>
+                                                </action>
+                                                <action id="-7" name="Set size" sid="1111142462175172" type="BackTile">
+                                                    <param id="0" name="Width">Manager.cellSize</param>
+                                                    <param id="1" name="Height">Manager.cellSize</param>
+                                                </action>
+                                                <action id="-11" name="Add to" sid="1914382606066837" type="Manager">
+                                                    <param id="0" name="Instance variable">fullCount</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <event-block sid="5857950318523384">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5778312196324067" type="System">
+                                    <param id="0" name="Name">&quot;col&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">Manager.levelWidth</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="5185774160032134" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * Manager.cellSize+Manager.xOrigin</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="5814899558210466" type="System">
+                                    <param id="0" name="Object to create">Launcher</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">x</param>
+                                    <param id="3" name="Y">Manager.yOrigin-Manager.cellSize</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="5027021098280117" type="Launcher">
+                                    <param id="0" name="Width">Manager.cellSize</param>
+                                    <param id="1" name="Height">Manager.cellSize</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="7475138393513089" type="System">
+                                    <param id="0" name="Object to create">Blocker</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">x</param>
+                                    <param id="3" name="Y">Manager.yOrigin+Manager.cellSize*Manager.levelHeight</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="6999776436187914" type="Blocker">
+                                    <param id="0" name="Width">Manager.cellSize</param>
+                                    <param id="1" name="Height">Manager.cellSize</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="5857950318523384">
+                <comment>Start of layout - replace unnecessary launchers and stoppers</comment>
+                <event-block sid="1995477797402297">
                     <conditions>
-                        <condition id="-10" name="For" sid="5778312196324067" type="System">
-                            <param id="0" name="Name">&quot;col&quot;</param>
-                            <param id="1" name="Start index">1</param>
-                            <param id="2" name="End index">levelWidth</param>
-                        </condition>
+                        <condition id="-2" name="On start of layout" sid="9265371930254365" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block any="1" sid="7108391047325797">
+                            <conditions>
+                                <condition id="9" name="Is overlapping at offset" sid="1107455035208607" type="Launcher">
+                                    <param id="0" name="Object">Stoppers</param>
+                                    <param id="1" name="Offset X">0</param>
+                                    <param id="2" name="Offset Y">Manager.cellSize/2</param>
+                                </condition>
+                                <condition id="9" name="Is overlapping at offset" sid="2486407039867143" type="Launcher">
+                                    <param id="0" name="Object">Launcher</param>
+                                    <param id="1" name="Offset X">0</param>
+                                    <param id="2" name="Offset Y">Manager.cellSize/2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="6944509364177969" type="Launcher">
+                                    <param id="0" name="Object">Blocker</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="183207408585631" type="Launcher" />
+                                <action id="-7" name="Set size" sid="8772330085814704" type="Blocker">
+                                    <param id="0" name="Width">Manager.cellSize</param>
+                                    <param id="1" name="Height">Manager.cellSize</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Make control objects invisible</comment>
+                <event-block sid="1572548102051493">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="9953610645578381" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="5185774160032134" type="System">
-                            <param id="0" name="Variable">x</param>
-                            <param id="1" name="Value">(loopindex(&quot;col&quot;)-1) * Manager.cellSize+Manager.xOrigin</param>
+                        <action id="-15" name="Set visible" sid="6924913296200441" type="Blocker">
+                            <param id="0" name="Visibility">0</param>
                         </action>
-                        <action id="-3" name="Create object" sid="5814899558210466" type="System">
-                            <param id="0" name="Object to create">Launcher</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">x</param>
-                            <param id="3" name="Y">Manager.yOrigin-Manager.cellSize</param>
+                        <action id="-15" name="Set visible" sid="5137002631674574" type="Launcher">
+                            <param id="0" name="Visibility">0</param>
                         </action>
-                        <action id="-7" name="Set size" sid="5027021098280117" type="Launcher">
-                            <param id="0" name="Width">Manager.cellSize</param>
-                            <param id="1" name="Height">Manager.cellSize</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="7475138393513089" type="System">
-                            <param id="0" name="Object to create">Blocker</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">x</param>
-                            <param id="3" name="Y">Manager.yOrigin+Manager.cellSize*levelHeight</param>
-                        </action>
-                        <action id="-7" name="Set size" sid="6999776436187914" type="Blocker">
-                            <param id="0" name="Width">Manager.cellSize</param>
-                            <param id="1" name="Height">Manager.cellSize</param>
+                        <action id="-15" name="Set visible" sid="1066688592499221" type="GameArea">
+                            <param id="0" name="Visibility">0</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
-        </event-block>
-        <comment>Start of layout - replace unnecessary launchers and stoppers</comment>
-        <event-block sid="1995477797402297">
-            <conditions>
-                <condition id="-2" name="On start of layout" sid="9265371930254365" type="System" />
-            </conditions>
-            <actions />
-            <sub-events>
-                <event-block any="1" sid="7108391047325797">
-                    <conditions>
-                        <condition id="9" name="Is overlapping at offset" sid="1107455035208607" type="Launcher">
-                            <param id="0" name="Object">Stoppers</param>
-                            <param id="1" name="Offset X">0</param>
-                            <param id="2" name="Offset Y">Manager.cellSize/2</param>
-                        </condition>
-                        <condition id="9" name="Is overlapping at offset" sid="2486407039867143" type="Launcher">
-                            <param id="0" name="Object">Launcher</param>
-                            <param id="1" name="Offset X">0</param>
-                            <param id="2" name="Offset Y">Manager.cellSize/2</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Spawn another object" sid="6944509364177969" type="Launcher">
-                            <param id="0" name="Object">Blocker</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="183207408585631" type="Launcher" />
-                        <action id="-7" name="Set size" sid="8772330085814704" type="Blocker">
-                            <param id="0" name="Width">Manager.cellSize</param>
-                            <param id="1" name="Height">Manager.cellSize</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <event-block sid="1572548102051493">
-            <conditions>
-                <condition id="-1" name="Every tick" sid="9953610645578381" type="System" />
-            </conditions>
-            <actions>
-                <action id="-15" name="Set visible" sid="6924913296200441" type="Blocker">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="5137002631674574" type="Launcher">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="1066688592499221" type="GameArea">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-            </actions>
-        </event-block>
+        </event-group>
         <comment>Dropping mode. Firstly reseed the launchers if necessary, then drop things</comment>
-        <event-block sid="6474511274632066">
-            <conditions>
-                <condition id="-8" name="Is boolean instance variable set" sid="6241981666270433" type="Manager">
-                    <param id="0" name="Instance variable">isDropping</param>
-                </condition>
-            </conditions>
-            <actions />
+        <event-group description="These events handle the piece dropping" sid="7127993897118926" title="Dropping Events">
             <sub-events>
-                <comment>Reseed the launchers</comment>
-                <event-block sid="6132066619457864">
+                <event-block sid="6474511274632066">
                     <conditions>
-                        <condition disabled="1" id="-16" name="Pick random instance" sid="6470239956399276" type="System">
-                            <param id="0" name="Object">Launcher</param>
-                        </condition>
-                        <condition id="-19" name="Pick all" sid="9040845046740023" type="System">
-                            <param id="0" name="Object">Launcher</param>
+                        <condition id="-7" name="Compare instance variable" sid="6241981666270433" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_DROPPING</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <comment>+16 here because +8 below - otherwise it fires collision straight away, else create a new object</comment>
-                        <event-block sid="9234116283450143">
+                        <comment>Reseed the launchers</comment>
+                        <event-block sid="6132066619457864">
                             <conditions>
-                                <condition id="9" inverted="1" name="Is overlapping at offset" sid="5885560156388182" type="Launcher">
-                                    <param id="0" name="Object">Item</param>
-                                    <param id="1" name="Offset X">0</param>
-                                    <param id="2" name="Offset Y">16</param>
+                                <condition disabled="1" id="-16" name="Pick random instance" sid="6470239956399276" type="System">
+                                    <param id="0" name="Object">Launcher</param>
                                 </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="1896828046100112" type="System">
-                                    <param id="0" name="Object to create">Item</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Launcher.X</param>
-                                    <param id="3" name="Y">Launcher.Y</param>
-                                </action>
-                                <action id="-7" name="Set size" sid="9228830973891195" type="Item">
-                                    <param id="0" name="Width">Manager.cellSize</param>
-                                    <param id="1" name="Height">Manager.cellSize</param>
-                                </action>
-                                <action id="2" name="Stop" sid="2653795627051332" type="Item" />
-                                <action id="-16" name="Set opacity" sid="8488979867933196" type="Item">
-                                    <param id="0" name="Opacity">0</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="3259735656873157" type="Item">
-                                    <param id="0" name="Instance variable">typeID</param>
-                                    <param id="1" name="Value">-Item.UID</param>
-                                </action>
-                                <action id="-13" name="Set boolean" sid="4528590404552792" type="Item">
-                                    <param id="0" name="Instance variable">isMoving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="9633127641946694" type="Item">
-                                    <param id="0" name="Instance variable">yStart</param>
-                                    <param id="1" name="Value">Item.Y</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="1578092434957673" type="Item">
-                                    <param id="0" name="Instance variable">pulseOffset</param>
-                                    <param id="1" name="Value">random(360)</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>For all items, if moving</comment>
-                        <event-block sid="9266720973400883">
-                            <conditions>
-                                <condition id="-11" name="For Each" sid="4862113409481554" type="System">
-                                    <param id="0" name="Object">Item</param>
+                                <condition id="-19" name="Pick all" sid="9040845046740023" type="System">
+                                    <param id="0" name="Object">Launcher</param>
                                 </condition>
                             </conditions>
                             <actions />
                             <sub-events>
-                                <comment>Clear collision and set new Y value</comment>
-                                <event-block sid="2763335040189774">
+                                <comment>+16 here because +8 below - otherwise it fires collision straight away, else create a new object</comment>
+                                <event-block sid="9234116283450143">
                                     <conditions>
-                                        <condition id="-8" name="Is boolean instance variable set" sid="468706785162705" type="Item">
-                                            <param id="0" name="Instance variable">isMoving</param>
+                                        <condition id="9" inverted="1" name="Is overlapping at offset" sid="5885560156388182" type="Launcher">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="Offset X">0</param>
+                                            <param id="2" name="Offset Y">16</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-13" name="Set boolean" sid="7000335786609394" type="Item">
-                                            <param id="0" name="Instance variable">isCollision</param>
-                                            <param id="1" name="Value">0</param>
+                                        <action id="-3" name="Create object" sid="1896828046100112" type="System">
+                                            <param id="0" name="Object to create">Item</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="X">Launcher.X</param>
+                                            <param id="3" name="Y">Launcher.Y</param>
                                         </action>
-                                        <action id="-11" name="Add to" sid="6453936719550355" type="Item">
-                                            <param id="0" name="Instance variable">dy</param>
-                                            <param id="1" name="Value">ITEM_GRAVITY</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="3197638716308649" type="Item">
-                                            <param id="0" name="Instance variable">newY</param>
-                                            <param id="1" name="Value">Item.Y+dt*Item.dy</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="2457241767262478" type="Item">
+                                        <action id="-7" name="Set size" sid="9228830973891195" type="Item">
                                             <param id="0" name="Width">Manager.cellSize</param>
                                             <param id="1" name="Height">Manager.cellSize</param>
                                         </action>
+                                        <action id="2" name="Stop" sid="2653795627051332" type="Item" />
+                                        <action id="-16" name="Set opacity" sid="8488979867933196" type="Item">
+                                            <param id="0" name="Opacity">0</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="3259735656873157" type="Item">
+                                            <param id="0" name="Instance variable">typeID</param>
+                                            <param id="1" name="Value">-Item.UID</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="4528590404552792" type="Item">
+                                            <param id="0" name="Instance variable">isMoving</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="9633127641946694" type="Item">
+                                            <param id="0" name="Instance variable">yStart</param>
+                                            <param id="1" name="Value">Item.Y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="1578092434957673" type="Item">
+                                            <param id="0" name="Instance variable">pulseOffset</param>
+                                            <param id="1" name="Value">random(360)</param>
+                                        </action>
                                     </actions>
+                                </event-block>
+                                <comment>For all items, if moving</comment>
+                                <event-block sid="9266720973400883">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="4862113409481554" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
                                     <sub-events>
-                                        <comment>Hit blocker / launcher, stop if not the one above</comment>
-                                        <event-block sid="8808067509922739">
+                                        <comment>Clear collision and set new Y value</comment>
+                                        <event-block sid="2763335040189774">
                                             <conditions>
-                                                <condition id="-36" name="Pick overlapping point" sid="4379533890024169" type="System">
-                                                    <param id="0" name="Object">Stoppers</param>
-                                                    <param id="1" name="X">Item.X</param>
-                                                    <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="468706785162705" type="Item">
+                                                    <param id="0" name="Instance variable">isMoving</param>
                                                 </condition>
                                             </conditions>
-                                            <actions />
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="7000335786609394" type="Item">
+                                                    <param id="0" name="Instance variable">isCollision</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-11" name="Add to" sid="6453936719550355" type="Item">
+                                                    <param id="0" name="Instance variable">dy</param>
+                                                    <param id="1" name="Value">ITEM_GRAVITY</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="3197638716308649" type="Item">
+                                                    <param id="0" name="Instance variable">newY</param>
+                                                    <param id="1" name="Value">Item.Y+dt*Item.dy</param>
+                                                </action>
+                                                <action id="-7" name="Set size" sid="2457241767262478" type="Item">
+                                                    <param id="0" name="Width">Manager.cellSize</param>
+                                                    <param id="1" name="Height">Manager.cellSize</param>
+                                                </action>
+                                            </actions>
                                             <sub-events>
-                                                <event-block sid="3148482285938554">
-                                                    <conditions />
+                                                <comment>Hit blocker / launcher, stop if not the one above</comment>
+                                                <event-block sid="8808067509922739">
+                                                    <conditions>
+                                                        <condition id="-36" name="Pick overlapping point" sid="4379533890024169" type="System">
+                                                            <param id="0" name="Object">Stoppers</param>
+                                                            <param id="1" name="X">Item.X</param>
+                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="3148482285938554">
+                                                            <conditions />
+                                                            <actions>
+                                                                <action id="-13" name="Set boolean" sid="6038361339997715" type="Item">
+                                                                    <param id="0" name="Instance variable">isCollision</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <comment>Two items collide, stop</comment>
+                                                <event-block sid="3477831564665062">
+                                                    <conditions>
+                                                        <condition id="-36" name="Pick overlapping point" sid="5775588003079932" type="System">
+                                                            <param id="0" name="Object">ItemAlt</param>
+                                                            <param id="1" name="X">Item.X</param>
+                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
+                                                        </condition>
+                                                    </conditions>
                                                     <actions>
-                                                        <action id="-13" name="Set boolean" sid="6038361339997715" type="Item">
+                                                        <action id="-13" name="Set boolean" sid="2146712574096424" type="Item">
                                                             <param id="0" name="Instance variable">isCollision</param>
                                                             <param id="1" name="Value">1</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
-                                            </sub-events>
-                                        </event-block>
-                                        <comment>Two items collide, stop</comment>
-                                        <event-block sid="3477831564665062">
-                                            <conditions>
-                                                <condition id="-36" name="Pick overlapping point" sid="5775588003079932" type="System">
-                                                    <param id="0" name="Object">ItemAlt</param>
-                                                    <param id="1" name="X">Item.X</param>
-                                                    <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-13" name="Set boolean" sid="2146712574096424" type="Item">
-                                                    <param id="0" name="Instance variable">isCollision</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>On collision, stop moving and patch Y</comment>
-                                        <event-block sid="3590866562711424">
-                                            <conditions>
-                                                <condition id="-8" name="Is boolean instance variable set" sid="2022587263804596" type="Item">
-                                                    <param id="0" name="Instance variable">isCollision</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-13" name="Set boolean" sid="4061645592544753" type="Item">
-                                                    <param id="0" name="Instance variable">isMoving</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-2" name="Set Y" sid="827922110391457" type="Item">
-                                                    <param id="0" name="Y">round((Item.Y-Manager.yOrigin)/Manager.cellSize)*Manager.cellSize+Manager.yOrigin</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Otherwise update Y</comment>
-                                        <event-block sid="1786670036388917">
-                                            <conditions>
-                                                <condition id="-22" name="Else" sid="3968208964797992" type="System" />
-                                            </conditions>
-                                            <actions>
-                                                <action id="-2" name="Set Y" sid="8303095866445865" type="Item">
-                                                    <param id="0" name="Y">Item.newY</param>
-                                                </action>
-                                            </actions>
-                                            <sub-events>
-                                                <event-block sid="3973390247072142">
+                                                <comment>On collision, stop moving and patch Y</comment>
+                                                <event-block sid="3590866562711424">
                                                     <conditions>
-                                                        <condition id="-2" name="Compare Y" sid="9932510070299867" type="Item">
-                                                            <param id="0" name="Comparison">4</param>
-                                                            <param id="1" name="Y co-ordinate">Item.yStart+Manager.cellSize/2</param>
-                                                        </condition>
-                                                        <condition id="-7" name="Compare instance variable" sid="5531552221839551" type="Item">
-                                                            <param id="0" name="Instance variable">typeID</param>
-                                                            <param id="1" name="Comparison">2</param>
-                                                            <param id="2" name="Value">0</param>
+                                                        <condition id="-8" name="Is boolean instance variable set" sid="2022587263804596" type="Item">
+                                                            <param id="0" name="Instance variable">isCollision</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-10" name="Set value" sid="6985875988581623" type="Item">
-                                                            <param id="0" name="Instance variable">typeID</param>
-                                                            <param id="1" name="Value">floor(random(0,differentItems))</param>
+                                                        <action id="-13" name="Set boolean" sid="4061645592544753" type="Item">
+                                                            <param id="0" name="Instance variable">isMoving</param>
+                                                            <param id="1" name="Value">0</param>
                                                         </action>
-                                                        <action id="5" name="Set frame" sid="6499201278670203" type="Item">
-                                                            <param id="0" name="Frame number">Item.typeID</param>
-                                                        </action>
-                                                        <action id="-16" name="Set opacity" sid="2577350128518771" type="Item">
-                                                            <param id="0" name="Opacity">100</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" sid="1152464241700451" type="Item">
-                                                            <param id="0" name="Instance variable">isInGame</param>
-                                                            <param id="1" name="Value">1</param>
+                                                        <action id="-2" name="Set Y" sid="827922110391457" type="Item">
+                                                            <param id="0" name="Y">round((Item.Y-Manager.yOrigin)/Manager.cellSize)*Manager.cellSize+Manager.yOrigin</param>
                                                         </action>
                                                     </actions>
+                                                </event-block>
+                                                <comment>Otherwise update Y</comment>
+                                                <event-block sid="1786670036388917">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="3968208964797992" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-2" name="Set Y" sid="8303095866445865" type="Item">
+                                                            <param id="0" name="Y">Item.newY</param>
+                                                        </action>
+                                                    </actions>
+                                                    <sub-events>
+                                                        <event-block sid="3973390247072142">
+                                                            <conditions>
+                                                                <condition id="-2" name="Compare Y" sid="9932510070299867" type="Item">
+                                                                    <param id="0" name="Comparison">4</param>
+                                                                    <param id="1" name="Y co-ordinate">Item.yStart+Manager.cellSize/2</param>
+                                                                </condition>
+                                                                <condition id="-7" name="Compare instance variable" sid="5531552221839551" type="Item">
+                                                                    <param id="0" name="Instance variable">typeID</param>
+                                                                    <param id="1" name="Comparison">2</param>
+                                                                    <param id="2" name="Value">0</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Set value" sid="6985875988581623" type="Item">
+                                                                    <param id="0" name="Instance variable">typeID</param>
+                                                                    <param id="1" name="Value">floor(random(0,Manager.discreteItems))</param>
+                                                                </action>
+                                                                <action id="5" name="Set frame" sid="6499201278670203" type="Item">
+                                                                    <param id="0" name="Frame number">Item.typeID</param>
+                                                                </action>
+                                                                <action id="-16" name="Set opacity" sid="2577350128518771" type="Item">
+                                                                    <param id="0" name="Opacity">100</param>
+                                                                </action>
+                                                                <action id="-13" name="Set boolean" sid="1152464241700451" type="Item">
+                                                                    <param id="0" name="Instance variable">isInGame</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
@@ -398,133 +422,114 @@
                     </sub-events>
                 </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
         <comment>Make each item pulse</comment>
-        <event-block sid="8417824025249543">
-            <conditions>
-                <condition id="-8" name="Is boolean instance variable set" sid="7241928143256615" type="Manager">
-                    <param id="0" name="Instance variable">isPulsing</param>
-                </condition>
-            </conditions>
-            <actions />
+        <event-group description="These events handle item pulsing and a debug mode to test the dropping. There is a function to count the number of objects" sid="6097914480499881" title="Utility">
             <sub-events>
-                <event-block sid="1631860843267442">
+                <comment>Control pulsing of objects. Note this can be done only when moving.</comment>
+                <event-block sid="8417824025249543">
                     <conditions>
-                        <condition id="-11" name="For Each" sid="7327498007222899" type="System">
-                            <param id="0" name="Object">Item</param>
+                        <condition id="-8" name="Is boolean instance variable set" sid="7241928143256615" type="Manager">
+                            <param id="0" name="Instance variable">isPulsing</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="5449396777963038">
+                        <event-block sid="1631860843267442">
                             <conditions>
-                                <condition disabled="1" id="-8" inverted="1" name="Is boolean instance variable set" sid="8203998976856481" type="Item">
-                                    <param id="0" name="Instance variable">isMoving</param>
+                                <condition id="-11" name="For Each" sid="7327498007222899" type="System">
+                                    <param id="0" name="Object">Item</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-5" name="Set width" sid="43986550728242" type="Item">
-                                    <param id="0" name="Width">Manager.cellSize*0.94+(Manager.cellSize*0.06)*sin(time*400+Item.pulseOffset)</param>
-                                </action>
-                                <action id="-6" name="Set height" sid="9391284231248461" type="Item">
-                                    <param id="0" name="Height">Item.Width</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <comment>Debugging code - touching an item destroys it and starts things moving again.</comment>
-        <event-block disabled="1" sid="8910594169464254">
-            <conditions>
-                <condition id="3" name="On touched object" sid="4202055534805441" type="Touch">
-                    <param id="0" name="Object">Item</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="2428255516038493" type="Item" />
-                <action id="0" name="Call function" sid="9286948313880337" type="Function">
-                    <param id="0" name="Name">&quot;startMoving&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-            </actions>
-        </event-block>
-        <comment>Counts the number of moving objects</comment>
-        <event-block sid="5202117633096565">
-            <conditions>
-                <condition id="0" name="On function" sid="4594200996683415" type="Function">
-                    <param id="0" name="Name">&quot;countMoving&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-10" name="Set value" sid="1453768204964213" type="Manager">
-                    <param id="0" name="Instance variable">movingCount</param>
-                    <param id="1" name="Value">0</param>
-                </action>
-            </actions>
-            <sub-events>
-                <event-block sid="4229808447075283">
-                    <conditions>
-                        <condition id="-11" name="For Each" sid="4040248795232353" type="System">
-                            <param id="0" name="Object">Item</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="4683952224128029">
-                            <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" sid="580011133278625" type="Item">
-                                    <param id="0" name="Instance variable">isMoving</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" sid="3241488746748673" type="Item">
-                                    <param id="0" name="Instance variable">isInGame</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-11" name="Add to" sid="4884513309901243" type="Manager">
-                                    <param id="0" name="Instance variable">movingCount</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
-                                <event-block sid="9608618361249148">
-                                    <conditions />
-                                    <actions />
+                                <event-block sid="5449396777963038">
+                                    <conditions>
+                                        <condition disabled="1" id="-8" inverted="1" name="Is boolean instance variable set" sid="8203998976856481" type="Item">
+                                            <param id="0" name="Instance variable">isMoving</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-5" name="Set width" sid="43986550728242" type="Item">
+                                            <param id="0" name="Width">Manager.cellSize*0.94+(Manager.cellSize*0.06)*sin(time*400+Item.pulseOffset)</param>
+                                        </action>
+                                        <action id="-6" name="Set height" sid="9391284231248461" type="Item">
+                                            <param id="0" name="Height">Item.Width</param>
+                                        </action>
+                                    </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
-            </sub-events>
-        </event-block>
-        <comment>Start everything moving to fill spaces</comment>
-        <event-block sid="9985019927011269">
-            <conditions>
-                <condition id="0" name="On function" sid="9149014286124606" type="Function">
-                    <param id="0" name="Name">&quot;startMoving&quot;</param>
-                </condition>
-            </conditions>
-            <actions />
-            <sub-events>
-                <event-block sid="7407619609650088">
+                <comment>Counts the number of moving objects</comment>
+                <event-block sid="5202117633096565">
                     <conditions>
-                        <condition id="-19" name="Pick all" sid="1555721233027837" type="System">
+                        <condition id="0" name="On function" sid="4594200996683415" type="Function">
+                            <param id="0" name="Name">&quot;countMoving&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1453768204964213" type="Manager">
+                            <param id="0" name="Instance variable">movingCount</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="4229808447075283">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="4040248795232353" type="System">
+                                    <param id="0" name="Object">Item</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="4683952224128029">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="580011133278625" type="Item">
+                                            <param id="0" name="Instance variable">isMoving</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="3241488746748673" type="Item">
+                                            <param id="0" name="Instance variable">isInGame</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Add to" sid="4884513309901243" type="Manager">
+                                            <param id="0" name="Instance variable">movingCount</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="3063553860464126">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="701738651913249" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="1093893186423824" type="Function">
+                                    <param id="0" name="Value">Manager.movingCount</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Debugging code - touching an item destroys it and starts things moving again.</comment>
+                <event-block disabled="1" sid="8910594169464254">
+                    <conditions>
+                        <condition id="3" name="On touched object" sid="4202055534805441" type="Touch">
                             <param id="0" name="Object">Item</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" sid="3042052728588787" type="Item">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-13" name="Set boolean" sid="7495571938612741" type="Manager">
-                            <param id="0" name="Instance variable">isDropping</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="-9" name="Destroy" sid="2428255516038493" type="Item" />
+                        <action id="0" name="Call function" sid="9286948313880337" type="Function">
+                            <param id="0" name="Name">&quot;startMoving&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
     </events>
 </c2eventsheet>

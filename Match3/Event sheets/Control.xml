@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Control</name>
+    <events>
+        <comment>Initially, start dropping to fill the level up.</comment>
+        <event-block sid="178687712115192">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3233162176906579" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="4878268714729931" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Value">STATE_NEWBLOCK</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="9492938083561484" type="Manager">
+                    <param id="0" name="Instance variable">isFirstPass</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>New block state. Reset the bonus multiplier</comment>
+        <event-group description="Beginning of a new group of drop/removes. Resets the bonus multiplier" sid="1962139565408725" title="NewBlock State" />
+        <event-block sid="1369947289269103">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="1956586980416619" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_NEWBLOCK</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1792058546545744" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Value">STATE_DROPPING</param>
+                </action>
+                <action id="-10" name="Set value" sid="7109739488957709" type="Manager">
+                    <param id="0" name="Instance variable">bonusMultiplier</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Dropping state.</comment>
+        <event-group description="The objects are dropping. Switches into STATE_REMOVE or STATE_WAITSWAP depending on Match 3 line sizes at the end of the drop." sid="6340343081269546" title="Dropping State">
+            <sub-events>
+                <event-block sid="8533342118688637">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7943610449771517" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_DROPPING</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Check to see if the dropping has finished. No moving objects, at least 8 of them (optimisation) then check the grid is full</comment>
+                        <event-block sid="2080768164750727">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="590960563249491" type="System">
+                                    <param id="0" name="First value">Function.Call(&quot;CountMoving&quot;)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="306860607598425" type="System">
+                                    <param id="0" name="First value">Item.Count</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">8</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="5081645222143383">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="6082449216980114" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="Expression">Item.isInGame</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="9354437912172459">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="7921274217998106" type="Manager">
+                                                    <param id="0" name="Instance variable">fullCount</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">Item.PickedCount</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>Check for matches. If there is a line of three or better, go to remove objects state.</comment>
+                                                <event-block sid="6155445179801435">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="2435525865094969" type="System">
+                                                            <param id="0" name="First value">Function.Call(&quot;checkForMatches&quot;)</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Second value">3</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="4902548684135356" type="Manager">
+                                                            <param id="0" name="Instance variable">state</param>
+                                                            <param id="1" name="Value">STATE_REMOVE</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>No line of 3 or better, so we give the option to swap two adjacent objects around</comment>
+                                                <event-block sid="7059879369124103">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="5653190790852187" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="9990412620228836" type="Manager">
+                                                            <param id="0" name="Instance variable">state</param>
+                                                            <param id="1" name="Value">STATE_WAITSWAP</param>
+                                                        </action>
+                                                        <action id="-13" name="Set boolean" sid="9927197328639934" type="Manager">
+                                                            <param id="0" name="Instance variable">isFirstPass</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="This is the state that &apos;processes&apos; removals." sid="6869276307549298" title="Removing State">
+            <sub-events>
+                <comment>Run this the first time. Decide H or V randomly initially</comment>
+                <variable comment="H or V depending on choosing H or V" constant="0" name="chooseType" sid="5057616018636441" static="0" type="text"></variable>
+                <event-block sid="328084820921499">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="5865595833456205" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_REMOVE</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="9014733823565795" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3527331373553397" type="System">
+                            <param id="0" name="Variable">chooseType</param>
+                            <param id="1" name="Value">choose(&quot;H&quot;,&quot;V&quot;)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="244627960037685" type="Manager">
+                            <param id="0" name="Instance variable">explosionCount</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Set text" sid="2036333855065861" type="debugText">
+                            <param id="0" name="Text">&quot;BN:&quot; &amp; Manager.bonusMultiplier</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>If H longer than V choose H</comment>
+                        <event-block sid="4826496487786836">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="1554875346934241" type="Manager">
+                                    <param id="0" name="Instance variable">bestHorizontal</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">Manager.bestVertical</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="837154974872795" type="System">
+                                    <param id="0" name="Variable">chooseType</param>
+                                    <param id="1" name="Value">&quot;H&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>If V longer than H choose V</comment>
+                        <event-block sid="2579165221065362">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="4537821990192207" type="Manager">
+                                    <param id="0" name="Instance variable">bestHorizontal</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">Manager.bestVertical</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="6946368624085767" type="System">
+                                    <param id="0" name="Variable">chooseType</param>
+                                    <param id="1" name="Value">&quot;V&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>These process H and V - pick any item with that number of copies, pick one of them randomly, then call function to delete them.</comment>
+                        <event-block sid="2938405998172465">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="2104957032083537" type="System">
+                                    <param id="0" name="Variable">chooseType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;H&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="2986044955961583">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="6431340298043759" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="Expression">Item.horizontalCount = Manager.bestHorizontal</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="6865151046532167">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="2945005817116231" type="System">
+                                                    <param id="0" name="Object">Item</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="3817140098254252" type="Function">
+                                                    <param id="0" name="Name">&quot;destroyChunk&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Item.X{###}Item.Y{###}Manager.bestHorizontal{###}1{###}0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="9821020520538376">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="8022616385617699" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="3949217725716871">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="3210852996674277" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="Expression">Item.verticalCount = Manager.bestVertical</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="5472044496448038">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="4171752879537392" type="System">
+                                                    <param id="0" name="Object">Item</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="6012085827361083" type="Function">
+                                                    <param id="0" name="Name">&quot;destroyChunk&quot;</param>
+                                                    <param id="1" name="Parameter {n}">Item.X{###}Item.Y{###}Manager.bestVertical{###}0{###}1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>When all explosions complete, go back to dropping state</comment>
+                <event-block sid="2746247081275011">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="6178826300936626" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_REMOVE</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="365826897451729" type="Manager">
+                            <param id="0" name="Instance variable">explosionCount</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="4443488384490187" type="Manager">
+                            <param id="0" name="Instance variable">bonusMultiplier</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="9750748126242894" type="Item">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4654637502517046" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">STATE_DROPPING</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>When particle is destroyed, reduce the counter. </comment>
+                <event-block sid="5077843687248459">
+                    <conditions>
+                        <condition id="-19" name="On destroyed" sid="4986536813341552" type="ExplodingItems" />
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="6447406379491188" type="Manager">
+                            <param id="0" name="Instance variable">explosionCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8703458704666775">
+                    <conditions>
+                        <condition id="0" name="On function" sid="1360306353444709" type="Function">
+                            <param id="0" name="Name">&quot;destroyChunk&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7914339205422504">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5848820219651694" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">Function.Param(2)-1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="7050389446291588">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="562937507277877" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="X">Function.Param(0)+Function.Param(3) * Manager.cellSize * loopindex</param>
+                                            <param id="2" name="Y">Function.Param(1)+Function.Param(4) * Manager.cellSize * loopindex</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="6194185741865024">
+                                            <conditions>
+                                                <condition id="-8" name="Is boolean instance variable set" sid="7708788542528407" type="Manager">
+                                                    <param id="0" name="Instance variable">isFirstPass</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="4409352154928282" type="Item" />
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="7147092924202717">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="9399571784611472" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-11" name="Add to" sid="9833557203740378" type="Manager">
+                                                    <param id="0" name="Instance variable">explosionCount</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="7059299416171745" type="System">
+                                                    <param id="0" name="Seconds">0.6*loopindex</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="2079238585385417" type="Item">
+                                                    <param id="0" name="Object">ExplodingItems</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action behavior="Fade" id="1" name="Start fade" sid="2546188650393255" type="Item" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

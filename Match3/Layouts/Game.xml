@@ -83,10 +83,20 @@
                         <yOrigin>0</yOrigin>
                         <cellSize>0</cellSize>
                         <isPulsing>true</isPulsing>
-                        <isDropping>true</isDropping>
                         <movingCount>0</movingCount>
                         <bestHorizontal>0</bestHorizontal>
                         <bestVertical>0</bestVertical>
+                        <levelWidth>0</levelWidth>
+                        <levelHeight>0</levelHeight>
+                        <state>0</state>
+                        <maxMoves>20</maxMoves>
+                        <requiredScore>1000</requiredScore>
+                        <discreteItems>4</discreteItems>
+                        <levelDefinition>&quot;.XXXXXX./XXXXXXXX/XXX..XXX/.XX..XX./XXXXXXXX/XXXXXXXX/XXXXXXXX/..XXXX..&quot;</levelDefinition>
+                        <fullCount>0</fullCount>
+                        <bonusMultiplier>0</bonusMultiplier>
+                        <explosionCount>0</explosionCount>
+                        <isFirstPass>true</isFirstPass>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -130,6 +140,45 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="ExplodingItems" uid="11">
+                    <properties>
+                        <rate>90</rate>
+                        <spray-cone>360</spray-cone>
+                        <type>One-shot</type>
+                        <initial-particle-properties></initial-particle-properties>
+                        <speed>100</speed>
+                        <size>3</size>
+                        <opacity>100</opacity>
+                        <grow-rate>11</grow-rate>
+                        <x-randomiser>0</x-randomiser>
+                        <y-randomiser>0</y-randomiser>
+                        <speed-randomiser->100</speed-randomiser->
+                        <size-randomiser>4</size-randomiser>
+                        <grow-rate-randomiser>2</grow-rate-randomiser>
+                        <particle-lifetime-properties></particle-lifetime-properties>
+                        <acceleration>-100</acceleration>
+                        <gravity>0</gravity>
+                        <angle-randomiser>0</angle-randomiser>
+                        <speed-randomiser>800</speed-randomiser>
+                        <opacity-randomiser>0</opacity-randomiser>
+                        <destroy-mode>Fade to invisible</destroy-mode>
+                        <timeout>1</timeout>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>448</x>
+                        <y>768</y>
+                        <z>0</z>
+                        <width>128</width>
+                        <height>128</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -168,6 +217,17 @@
                         <horizontalCount>0</horizontalCount>
                         <verticalCount>0</verticalCount>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>No</active-at-start>
+                                <fade-in-time>0</fade-in-time>
+                                <wait-time>0</wait-time>
+                                <fade-out-time>0.5</fade-out-time>
+                                <destroy>After fade out</destroy>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
