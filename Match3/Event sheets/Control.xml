@@ -93,13 +93,17 @@
                                             <param id="1" name="Expression">Item.isInGame</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
+                                    <actions>
+                                        <action disabled="1" id="0" name="Set text" sid="4203868466011847" type="debugText">
+                                            <param id="0" name="Text">Item.PickedCount</param>
+                                        </action>
+                                    </actions>
                                     <sub-events>
                                         <event-block sid="9354437912172459">
                                             <conditions>
                                                 <condition id="-7" name="Compare instance variable" sid="7921274217998106" type="Manager">
                                                     <param id="0" name="Instance variable">fullCount</param>
-                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="1" name="Comparison">3</param>
                                                     <param id="2" name="Value">Item.PickedCount</param>
                                                 </condition>
                                             </conditions>
@@ -111,7 +115,7 @@
                                                         <condition id="-8" name="Compare two values" sid="2435525865094969" type="System">
                                                             <param id="0" name="First value">Function.Call(&quot;checkForMatches&quot;)</param>
                                                             <param id="1" name="Comparison">5</param>
-                                                            <param id="2" name="Second value">3</param>
+                                                            <param id="2" name="Second value">MIN_MATCH</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
@@ -170,7 +174,7 @@
                             <param id="0" name="Instance variable">explosionCount</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="0" name="Set text" sid="2036333855065861" type="debugText">
+                        <action disabled="1" id="0" name="Set text" sid="2036333855065861" type="debugText">
                             <param id="0" name="Text">&quot;BN:&quot; &amp; Manager.bonusMultiplier</param>
                         </action>
                     </actions>
@@ -297,9 +301,9 @@
                             <param id="0" name="Instance variable">bonusMultiplier</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" sid="9750748126242894" type="Item">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="0" name="Call function" sid="8568544366470005" type="Function">
+                            <param id="0" name="Name">&quot;setAllMoving&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
                         <action id="-10" name="Set value" sid="4654637502517046" type="Manager">
                             <param id="0" name="Instance variable">state</param>
@@ -379,7 +383,7 @@
                                                     <param id="1" name="Layer">1</param>
                                                     <param id="2" name="Image point">0</param>
                                                 </action>
-                                                <action behavior="Fade" id="1" name="Start fade" sid="2546188650393255" type="Item" />
+                                                <action id="-9" name="Destroy" sid="2546188650393255" type="Item" />
                                                 <action id="0" name="Play" sid="8761996862015182" type="Audio">
                                                     <param id="0" name="Audio file">Matched</param>
                                                     <param id="2" name="Loop">0</param>
@@ -643,13 +647,13 @@
                                                 <condition id="-8" name="Compare two values" sid="891772474195347" type="System">
                                                     <param id="0" name="First value">Function.Call(&quot;checkForMatches&quot;)</param>
                                                     <param id="1" name="Comparison">5</param>
-                                                    <param id="2" name="Second value">3</param>
+                                                    <param id="2" name="Second value">MIN_MATCH</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-13" name="Set boolean" sid="2474299054154738" type="Item">
-                                                    <param id="0" name="Instance variable">isMoving</param>
-                                                    <param id="1" name="Value">1</param>
+                                                <action id="0" name="Call function" sid="2474299054154738" type="Function">
+                                                    <param id="0" name="Name">&quot;setAllMoving&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
                                                 </action>
                                                 <action id="-10" name="Set value" sid="3901914270614038" type="Manager">
                                                     <param id="0" name="Instance variable">state</param>
@@ -795,6 +799,30 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Set all items moving</comment>
+        <event-block sid="3399441571350718">
+            <conditions>
+                <condition id="0" name="On function" sid="7776286616523331" type="Function">
+                    <param id="0" name="Name">&quot;setAllMoving&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="976768077520375">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="9045373458160231" type="System">
+                            <param id="0" name="Object">Item</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="4493399349703744" type="Item">
+                            <param id="0" name="Instance variable">isMoving</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

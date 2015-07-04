@@ -245,7 +245,6 @@
                         <isMoving>true</isMoving>
                         <isCollision>false</isCollision>
                         <yStart>0</yStart>
-                        <dy>0</dy>
                         <pulseOffset>0</pulseOffset>
                         <horizontalCount>0</horizontalCount>
                         <verticalCount>0</verticalCount>

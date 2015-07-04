@@ -66,7 +66,6 @@
                 <instance-variable comment="True if moving" name="isMoving" sid="5886843086222982" type="boolean" />
                 <instance-variable name="isCollision" sid="7862281863111797" type="boolean" />
                 <instance-variable comment="Start position" name="yStart" sid="1524763484593444" type="number" />
-                <instance-variable comment="Vertical velocity" name="dy" sid="9894629535921716" type="number" />
                 <instance-variable comment="Pulse offset for sin calculation" name="pulseOffset" sid="4125863799636299" type="number" />
                 <instance-variable comment="Number of horizontal copies" name="horizontalCount" sid="2779085812476576" type="number" />
                 <instance-variable comment="Number of duplicates going down" name="verticalCount" sid="4153902603120384" type="number" />
@@ -82,82 +81,82 @@
                 <animation framecount="10" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image1.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image2.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image3.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image4.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image5.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image6.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image7.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image8.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image9.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image10.png">
                         <collision-poly>
-                            <point x="0.232422" y="0" />
-                            <point x="0.839844" y="0" />
-                            <point x="0.828125" y="1" />
-                            <point x="0.21875" y="1" />
+                            <point x="0.353516" y="0" />
+                            <point x="0.720703" y="0" />
+                            <point x="0.734375" y="0.998264" />
+                            <point x="0.361328" y="0.996528" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -170,14 +169,10 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Launcher.png">
                         <image-point name="Launch" x="0.5" y="0.71875" />
                         <collision-poly>
-                            <point x="0.21875" y="0.21875" />
-                            <point x="0.5" y="0.1875" />
-                            <point x="0.75" y="0.25" />
-                            <point x="0.96875" y="0.5" />
-                            <point x="0.75" y="0.75" />
-                            <point x="0.5" y="0.96875" />
-                            <point x="0.25" y="0.75" />
-                            <point x="0" y="0.5" />
+                            <point x="0.238281" y="0" />
+                            <point x="0.746094" y="0.00195313" />
+                            <point x="0.728515" y="1" />
+                            <point x="0.232422" y="1" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -192,7 +187,14 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9214307663251283" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Blocker.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Blocker.png">
+                        <collision-poly>
+                            <point x="0.378906" y="0" />
+                            <point x="0.65625" y="0.00195313" />
+                            <point x="0.652344" y="0.998047" />
+                            <point x="0.388672" y="0.998047" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>

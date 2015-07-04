@@ -3,10 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
+        <comment>Descriptor : &lt;Number of item types&gt;,&lt;required score&gt;,&lt;Moves allowed&gt;,&lt;layout&gt;</comment>
+        <variable comment="Description of level" constant="0" name="levelDescriptor" sid="1294051936247756" static="0" type="text">6,10000,15,.XXXXXX.:XXXXXXXX:XXX..XXX:.XX..XX.:XXXXXXXX:XXXXXXXX:XXXXXXXX:..XXXX..</variable>
         <comment>When items moving due to swap/return this is the speed</comment>
         <variable comment="Movement speed when arranging" constant="0" name="MOVE_SPEED" sid="6181861891222611" static="0" type="number">256</variable>
-        <comment>Gravity for dropping items</comment>
-        <variable comment="Item gravity" constant="1" name="ITEM_GRAVITY" sid="691433338900599" static="0" type="number">33</variable>
+        <comment>Speed of dropping objects</comment>
+        <variable comment="Speed of dropping objects" constant="1" name="DROP_SPEED" sid="6460522922841784" static="0" type="number">200</variable>
+        <comment>Minimum match for a row</comment>
+        <variable comment="Min match for a row" constant="1" name="MIN_MATCH" sid="7635460982325205" static="0" type="number">3</variable>
         <comment>Game states</comment>
         <variable comment="State : Pieces are dropping" constant="1" name="STATE_DROPPING" sid="7119960588942614" static="0" type="number">1</variable>
         <variable comment="Remove the best and score it" constant="1" name="STATE_REMOVE" sid="8718997514963279" static="0" type="number">2</variable>

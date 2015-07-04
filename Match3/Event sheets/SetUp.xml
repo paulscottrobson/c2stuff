@@ -17,6 +17,34 @@
         </event-block>
         <event-group description="These events take the textual level descriptor and convert it into a physical empty grid with launchers and blockers" sid="1491018562839225" title="Create Grid from the level information">
             <sub-events>
+                <comment>Expand leveldescriptor global to fill Manager structure</comment>
+                <event-block sid="7821605577970774">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="7746018850565763" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1353687918623035" type="Manager">
+                            <param id="0" name="Instance variable">levelDefinition</param>
+                            <param id="1" name="Value">trim(tokenat(levelDescriptor,3,&quot;,&quot;))</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1371671981262619" type="Manager">
+                            <param id="0" name="Instance variable">discreteItems</param>
+                            <param id="1" name="Value">int(tokenat(levelDescriptor,0,&quot;,&quot;))</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9066206507378871" type="Manager">
+                            <param id="0" name="Instance variable">requiredScore</param>
+                            <param id="1" name="Value">int(tokenat(levelDescriptor,1,&quot;,&quot;))</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6867175461771462" type="Manager">
+                            <param id="0" name="Instance variable">maxMoves</param>
+                            <param id="1" name="Value">int(tokenat(levelDescriptor,2,&quot;,&quot;))</param>
+                        </action>
+                        <action disabled="1" id="-10" name="Set value" sid="6470597581086004" type="Manager">
+                            <param id="0" name="Instance variable">discreteItems</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <comment>Start of layout - create the grid, launchers and blockers</comment>
                 <event-block sid="5321217816070884">
                     <conditions>
@@ -25,7 +53,7 @@
                     <actions>
                         <action id="-10" name="Set value" sid="365330513047152" type="Manager">
                             <param id="0" name="Instance variable">levelHeight</param>
-                            <param id="1" name="Value">tokencount(Manager.levelDefinition,&quot;/&quot;)</param>
+                            <param id="1" name="Value">tokencount(Manager.levelDefinition,&quot;:&quot;)</param>
                         </action>
                         <action id="-10" name="Set value" sid="1839674536686477" type="Manager">
                             <param id="0" name="Instance variable">levelWidth</param>
@@ -80,7 +108,7 @@
                                         <event-block sid="5126216923726864">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="5623015566946846" type="System">
-                                                    <param id="0" name="First value">mid(Manager.levelDefinition,(loopindex(&quot;row&quot;)-1)*(Manager.levelWidth+1)+loopindex(&quot;col&quot;),1)</param>
+                                                    <param id="0" name="First value">mid(Manager.levelDefinition,(loopindex(&quot;row&quot;)-1)*(Manager.levelWidth+1)+loopindex(&quot;col&quot;)-1,1)</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;.&quot;</param>
                                                 </condition>
@@ -196,7 +224,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Make control objects invisible</comment>
-                <event-block sid="1572548102051493">
+                <event-block disabled="1" sid="1572548102051493">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="9953610645578381" type="System" />
                     </conditions>
@@ -284,8 +312,10 @@
                                 <comment>For all items, if moving</comment>
                                 <event-block sid="9266720973400883">
                                     <conditions>
-                                        <condition id="-11" name="For Each" sid="4862113409481554" type="System">
+                                        <condition id="-24" name="For Each (ordered)" sid="4862113409481554" type="System">
                                             <param id="0" name="Object">Item</param>
+                                            <param id="1" name="Expression">Item.X+Item.Y*9999</param>
+                                            <param id="2" name="Order">1</param>
                                         </condition>
                                     </conditions>
                                     <actions />
@@ -302,13 +332,9 @@
                                                     <param id="0" name="Instance variable">isCollision</param>
                                                     <param id="1" name="Value">0</param>
                                                 </action>
-                                                <action id="-11" name="Add to" sid="6453936719550355" type="Item">
-                                                    <param id="0" name="Instance variable">dy</param>
-                                                    <param id="1" name="Value">ITEM_GRAVITY</param>
-                                                </action>
                                                 <action id="-10" name="Set value" sid="3197638716308649" type="Item">
                                                     <param id="0" name="Instance variable">newY</param>
-                                                    <param id="1" name="Value">Item.Y+dt*Item.dy</param>
+                                                    <param id="1" name="Value">item.Y+dt*DROP_SPEED*(Manager.isFirstPass ? 2 : 1)</param>
                                                 </action>
                                                 <action id="-7" name="Set size" sid="2457241767262478" type="Item">
                                                     <param id="0" name="Width">Manager.cellSize</param>
@@ -322,7 +348,7 @@
                                                         <condition id="-36" name="Pick overlapping point" sid="4379533890024169" type="System">
                                                             <param id="0" name="Object">Stoppers</param>
                                                             <param id="1" name="X">Item.X</param>
-                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
+                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+1</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions />
@@ -344,7 +370,7 @@
                                                         <condition id="-36" name="Pick overlapping point" sid="5775588003079932" type="System">
                                                             <param id="0" name="Object">ItemAlt</param>
                                                             <param id="1" name="X">Item.X</param>
-                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+4</param>
+                                                            <param id="2" name="Y">Item.Y+Manager.cellSize/2+1</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
@@ -445,13 +471,13 @@
                             <sub-events>
                                 <event-block sid="5449396777963038">
                                     <conditions>
-                                        <condition disabled="1" id="-8" inverted="1" name="Is boolean instance variable set" sid="8203998976856481" type="Item">
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8203998976856481" type="Item">
                                             <param id="0" name="Instance variable">isMoving</param>
                                         </condition>
                                     </conditions>
                                     <actions>
                                         <action id="-5" name="Set width" sid="43986550728242" type="Item">
-                                            <param id="0" name="Width">Manager.cellSize*0.94+(Manager.cellSize*0.06)*sin(time*400+Item.pulseOffset)</param>
+                                            <param id="0" name="Width">Manager.cellSize*0.94+(Manager.cellSize*0.04)*sin(time*400+Item.pulseOffset)</param>
                                         </action>
                                         <action id="-6" name="Set height" sid="9391284231248461" type="Item">
                                             <param id="0" name="Height">Item.Width</param>
