@@ -91,7 +91,7 @@
                         <state>0</state>
                         <maxMoves>20</maxMoves>
                         <requiredScore>1000</requiredScore>
-                        <discreteItems>4</discreteItems>
+                        <discreteItems>10</discreteItems>
                         <levelDefinition>&quot;.XXXXXX./XXXXXXXX/XXX..XXX/.XX..XX./XXXXXXXX/XXXXXXXX/XXXXXXXX/..XXXX..&quot;</levelDefinition>
                         <fullCount>0</fullCount>
                         <bonusMultiplier>0</bonusMultiplier>
@@ -179,6 +179,39 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="ItemMover" uid="12">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <itemIID>0</itemIID>
+                        <itemUID>0</itemUID>
+                        <xStart>0</xStart>
+                        <yStart>0</yStart>
+                        <xEnd>0</xEnd>
+                        <yEnd>0</yEnd>
+                        <totalTime>2</totalTime>
+                        <startTime>0</startTime>
+                        <identifier></identifier>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>384</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>15</width>
+                        <height>15</height>
+                        <depth>0</depth>
+                        <hotspotX>0.533333361</hotspotX>
+                        <hotspotY>0.533333361</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -216,6 +249,8 @@
                         <pulseOffset>0</pulseOffset>
                         <horizontalCount>0</horizontalCount>
                         <verticalCount>0</verticalCount>
+                        <dragOriginX>0</dragOriginX>
+                        <dragOriginY>0</dragOriginY>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Fade">
@@ -325,6 +360,39 @@
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>0</opacity>
+                    </world>
+                </instance>
+                <instance type="TouchManager" uid="10">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <xItem>0</xItem>
+                        <yItem>0</yItem>
+                        <isRunning>false</isRunning>
+                        <itemUID>0</itemUID>
+                        <xTouchOffset>0</xTouchOffset>
+                        <yTouchOffset>0</yTouchOffset>
+                        <xDrop>0</xDrop>
+                        <yDrop>0</yDrop>
+                        <dropUID>0</dropUID>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>544</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
             </instances>

@@ -10,6 +10,7 @@
     <unique-id>3j6btcgehidgr</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -69,6 +70,8 @@
                 <instance-variable comment="Pulse offset for sin calculation" name="pulseOffset" sid="4125863799636299" type="number" />
                 <instance-variable comment="Number of horizontal copies" name="horizontalCount" sid="2779085812476576" type="number" />
                 <instance-variable comment="Number of duplicates going down" name="verticalCount" sid="4153902603120384" type="number" />
+                <instance-variable comment="Where drag started" name="dragOriginX" sid="90572650055834" type="number" />
+                <instance-variable comment="Where drag started" name="dragOriginY" sid="566044196487052" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Fade" sid="2891701879068091">
@@ -76,54 +79,85 @@
                 </behavior-type>
             </behaviors>
             <animation-folder>
-                <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
+                <animation framecount="10" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4708081412665525" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image1.png">
-                        <image-point name="Launch" x="0.5" y="1" />
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image2.png">
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image3.png">
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image4.png">
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image5.png">
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image6.png">
                         <collision-poly>
-                            <point x="0.171875" y="0" />
-                            <point x="0.740234" y="0" />
-                            <point x="0.744141" y="1" />
-                            <point x="0.160156" y="1" />
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image7.png">
+                        <collision-poly>
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image8.png">
+                        <collision-poly>
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image9.png">
+                        <collision-poly>
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Match3\Sprites\Image10.png">
+                        <collision-poly>
+                            <point x="0.232422" y="0" />
+                            <point x="0.839844" y="0" />
+                            <point x="0.828125" y="1" />
+                            <point x="0.21875" y="1" />
                         </collision-poly>
                     </frame>
                 </animation>
@@ -220,6 +254,47 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
+        <object-type name="TouchManager" sid="5503270291809062">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Touch start, item x" name="xItem" sid="2807845460849477" type="number" />
+                <instance-variable comment="Touch item, start Y position" name="yItem" sid="2609712349976849" type="number" />
+                <instance-variable comment="True if running" name="isRunning" sid="6331057009281947" type="boolean" />
+                <instance-variable comment="IID of object being dragged" name="itemUID" sid="9765700311427869" type="number" />
+                <instance-variable comment="x offset from touch position" name="xTouchOffset" sid="2524844152454877" type="number" />
+                <instance-variable comment="y offset from touch position" name="yTouchOffset" sid="786628446302786" type="number" />
+                <instance-variable name="xDrop" sid="6189185617485487" type="number" />
+                <instance-variable name="yDrop" sid="42941570005055" type="number" />
+                <instance-variable name="dropUID" sid="7515436933250007" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6916483206518542" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ItemMover" sid="4784705257009568">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="itemIID" sid="4254328039606363" type="number" />
+                <instance-variable name="itemUID" sid="6382196873698384" type="number" />
+                <instance-variable name="xStart" sid="2503245836104028" type="number" />
+                <instance-variable name="yStart" sid="498927068776941" type="number" />
+                <instance-variable name="xEnd" sid="4099455208430708" type="number" />
+                <instance-variable name="yEnd" sid="6473075049863389" type="number" />
+                <instance-variable name="totalTime" sid="3634453114182541" type="number" />
+                <instance-variable name="startTime" sid="9844473563249314" type="number" />
+                <instance-variable comment="Identifier for mover" name="identifier" sid="39379618390327" type="string" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9563245601971417" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="7910851219049162">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Stoppers" plugin-id="Sprite" sid="3045874669009772">
@@ -251,9 +326,33 @@
             </properties>
         </global-instance>
         <global-instance type="Function" uid="9" />
+        <global-instance type="Audio" uid="13">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
-    <music-folder />
+    <sounds-folder>
+        <file name="Cant Swap.m4a" />
+        <file name="Cant Swap.ogg" />
+        <file name="Matched.m4a" />
+        <file name="Matched.ogg" />
+        <file name="Swapped.m4a" />
+        <file name="Swapped.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Kevin MacLeod - Mining by Moonlight.m4a" />
+        <file name="Kevin MacLeod - Mining by Moonlight.ogg" />
+    </music-folder>
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />

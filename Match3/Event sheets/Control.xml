@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Control</name>
     <events>
-        <comment>Initially, start dropping to fill the level up.</comment>
+        <comment>Initially, start dropping to fill the level up, and marking it first pass so the first lot of &apos;scores&apos; don&apos;t count, it&apos;s just whittling randomly generated lines out.</comment>
         <event-block sid="178687712115192">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="3233162176906579" type="System" />
@@ -17,29 +17,46 @@
                     <param id="0" name="Instance variable">isFirstPass</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="0" name="Play" sid="516224912996222" type="Audio">
+                    <param id="0" name="Audio file">Kevin MacLeod - Mining by Moonlight</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;muzak&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3347193823183988">
+            <conditions>
+                <condition id="-3" name="On end of layout" sid="4024869414346121" type="System" />
+            </conditions>
+            <actions>
+                <action id="33" name="Stop all" sid="1583223557539791" type="Audio" />
             </actions>
         </event-block>
         <comment>New block state. Reset the bonus multiplier</comment>
-        <event-group description="Beginning of a new group of drop/removes. Resets the bonus multiplier" sid="1962139565408725" title="NewBlock State" />
-        <event-block sid="1369947289269103">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="1956586980416619" type="Manager">
-                    <param id="0" name="Instance variable">state</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">STATE_NEWBLOCK</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-10" name="Set value" sid="1792058546545744" type="Manager">
-                    <param id="0" name="Instance variable">state</param>
-                    <param id="1" name="Value">STATE_DROPPING</param>
-                </action>
-                <action id="-10" name="Set value" sid="7109739488957709" type="Manager">
-                    <param id="0" name="Instance variable">bonusMultiplier</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group description="Beginning of a new group of drop/removes. Resets the bonus multiplier" sid="1962139565408725" title="NewBlock State">
+            <sub-events>
+                <event-block sid="1369947289269103">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1956586980416619" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_NEWBLOCK</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1792058546545744" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Value">STATE_DROPPING</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7109739488957709" type="Manager">
+                            <param id="0" name="Instance variable">bonusMultiplier</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <comment>Dropping state.</comment>
         <event-group description="The objects are dropping. Switches into STATE_REMOVE or STATE_WAITSWAP depending on Match 3 line sizes at the end of the drop." sid="6340343081269546" title="Dropping State">
             <sub-events>
@@ -130,6 +147,7 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <comment>Removing objects that are now aligned, then re-enters the dropping state</comment>
         <event-group description="This is the state that &apos;processes&apos; removals." sid="6869276307549298" title="Removing State">
             <sub-events>
                 <comment>Run this the first time. Decide H or V randomly initially</comment>
@@ -301,6 +319,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>Function destroys items from (x,y) in direction (dx,dy), n times : params are (x,y,n,dx,dy)</comment>
                 <event-block sid="8703458704666775">
                     <conditions>
                         <condition id="0" name="On function" sid="1360306353444709" type="Function">
@@ -309,6 +328,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <comment>For each of the values of n</comment>
                         <event-block sid="7914339205422504">
                             <conditions>
                                 <condition id="-10" name="For" sid="5848820219651694" type="System">
@@ -319,6 +339,7 @@
                             </conditions>
                             <actions />
                             <sub-events>
+                                <comment>Find the item there</comment>
                                 <event-block sid="7050389446291588">
                                     <conditions>
                                         <condition id="-36" name="Pick overlapping point" sid="562937507277877" type="System">
@@ -329,6 +350,7 @@
                                     </conditions>
                                     <actions />
                                     <sub-events>
+                                        <comment>First time round, just destroy it. We zip through this.</comment>
                                         <event-block sid="6194185741865024">
                                             <conditions>
                                                 <condition id="-8" name="Is boolean instance variable set" sid="7708788542528407" type="Manager">
@@ -339,6 +361,7 @@
                                                 <action id="-9" name="Destroy" sid="4409352154928282" type="Item" />
                                             </actions>
                                         </event-block>
+                                        <comment>Otherwise increment explosion count, wait a little while, fade the item and start an explosion</comment>
                                         <event-block sid="7147092924202717">
                                             <conditions>
                                                 <condition id="-22" name="Else" sid="9399571784611472" type="System" />
@@ -349,7 +372,7 @@
                                                     <param id="1" name="Value">1</param>
                                                 </action>
                                                 <action id="-16" name="Wait" sid="7059299416171745" type="System">
-                                                    <param id="0" name="Seconds">0.6*loopindex</param>
+                                                    <param id="0" name="Seconds">0.4*loopindex</param>
                                                 </action>
                                                 <action id="0" name="Spawn another object" sid="2079238585385417" type="Item">
                                                     <param id="0" name="Object">ExplodingItems</param>
@@ -357,6 +380,12 @@
                                                     <param id="2" name="Image point">0</param>
                                                 </action>
                                                 <action behavior="Fade" id="1" name="Start fade" sid="2546188650393255" type="Item" />
+                                                <action id="0" name="Play" sid="8761996862015182" type="Audio">
+                                                    <param id="0" name="Audio file">Matched</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
                                             </actions>
                                         </event-block>
                                     </sub-events>
@@ -367,5 +396,407 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="This handles the drag and drop up till the point where a legal drop is performed." sid="8327332788599296" title="Wait for Swap state">
+            <sub-events>
+                <event-block sid="5370189365171504">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="5309710671587619" type="Manager">
+                            <param id="0" name="Instance variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_WAITSWAP</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>First time only, mark as not running (no touch in progress) and destroy any movers</comment>
+                        <event-block sid="2265378893904393">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="6801611229214298" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="7701094401541837" type="TouchManager">
+                                    <param id="0" name="Instance variable">isRunning</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="4616276714499173" type="ItemMover" />
+                            </actions>
+                        </event-block>
+                        <comment>On touch start</comment>
+                        <event-block sid="5806074293789972">
+                            <conditions>
+                                <condition id="0" name="On any touch start" sid="5720524199606572" type="Touch" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Pick an item orientated around the centre adjustment of the touch point (due to collision box size) bring item to top</comment>
+                                <event-block sid="3097800895787117">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="4409297858433556" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="X">round((Touch.X-Manager.xOrigin)/Manager.cellSize)*Manager.cellSize+Manager.xOrigin</param>
+                                            <param id="2" name="Y">round((Touch.Y-Manager.yOrigin)/Manager.cellSize)*Manager.cellSize+Manager.yOrigin</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="7846603985367848" type="TouchManager">
+                                            <param id="0" name="Instance variable">isRunning</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="2207429027940539" type="TouchManager">
+                                            <param id="0" name="Instance variable">xItem</param>
+                                            <param id="1" name="Value">Item.X</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="6046709821961138" type="TouchManager">
+                                            <param id="0" name="Instance variable">yItem</param>
+                                            <param id="1" name="Value">Item.Y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="3156349309172421" type="TouchManager">
+                                            <param id="0" name="Instance variable">itemUID</param>
+                                            <param id="1" name="Value">Item.UID</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="5395366282236933" type="TouchManager">
+                                            <param id="0" name="Instance variable">xTouchOffset</param>
+                                            <param id="1" name="Value">Touch.X - TouchManager.xItem</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="6922186008731718" type="TouchManager">
+                                            <param id="0" name="Instance variable">yTouchOffset</param>
+                                            <param id="1" name="Value">Touch.Y - TouchManager.yItem</param>
+                                        </action>
+                                        <action id="-24" name="Move to top" sid="177394008875893" type="Item" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>If we are dragging, update the position</comment>
+                        <event-block sid="7340639932228626">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4664899195879331" type="TouchManager">
+                                    <param id="0" name="Instance variable">isRunning</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" sid="3180366357274946" type="Item">
+                                    <param id="0" name="Unique ID">TouchManager.itemUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="7321277997526247" type="Item">
+                                    <param id="0" name="X">Touch.X-TouchManager.xTouchOffset</param>
+                                    <param id="1" name="Y">Touch.Y-TouchManager.yTouchOffset</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Touch end</comment>
+                        <event-block sid="6723625206294176">
+                            <conditions>
+                                <condition id="1" name="On any touch end" sid="4309905060274206" type="Touch" />
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="1138841184838378" type="TouchManager">
+                                    <param id="0" name="Instance variable">isRunning</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="9510672675495319" type="TouchManager">
+                                    <param id="0" name="Instance variable">xDrop</param>
+                                    <param id="1" name="Value">999999</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Pick an item which is at the touch point (centre adjusted again)</comment>
+                                <event-block sid="2364418617008294">
+                                    <conditions>
+                                        <condition id="-36" name="Pick overlapping point" sid="928110471745127" type="System">
+                                            <param id="0" name="Object">Item</param>
+                                            <param id="1" name="X">round((Touch.X-Manager.xOrigin)/Manager.cellSize)*Manager.cellSize+Manager.xOrigin</param>
+                                            <param id="2" name="Y">round((Touch.Y-Manager.yOrigin)/Manager.cellSize)*Manager.cellSize+Manager.yOrigin</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>Eliminate the dragged one, this probably picks two. If so, then mark details about the item to swap with</comment>
+                                        <event-block sid="9900698255928749">
+                                            <conditions>
+                                                <condition id="-34" name="Pick by evaluate" sid="4605698385286793" type="System">
+                                                    <param id="0" name="Object">Item</param>
+                                                    <param id="1" name="Expression">Item.UID &lt;&gt; TouchManager.itemUID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="9143023169828428" type="TouchManager">
+                                                    <param id="0" name="Instance variable">xDrop</param>
+                                                    <param id="1" name="Value">Item.X</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="9220666686384231" type="TouchManager">
+                                                    <param id="0" name="Instance variable">yDrop</param>
+                                                    <param id="1" name="Value">Item.Y</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="971214630064466" type="TouchManager">
+                                                    <param id="0" name="Instance variable">dropUID</param>
+                                                    <param id="1" name="Value">Item.UID</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <comment>If it is only one space horizontal or vertical, swap them over</comment>
+                                                <event-block sid="5279754915826116">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="9861170004184626" type="System">
+                                                            <param id="0" name="First value">abs(TouchManager.xItem-TouchManager.xDrop)+abs(TouchManager.yItem-TouchManager.yDrop)</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">Manager.cellSize</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Call function" sid="225520148453994" type="Function">
+                                                            <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                            <param id="1" name="Parameter {n}">TouchManager.itemUID{###}TouchManager.xDrop{###}TouchManager.yDrop{###}MOVE_SPEED{###}&quot;swapped&quot;</param>
+                                                        </action>
+                                                        <action id="0" name="Call function" sid="360205161558037" type="Function">
+                                                            <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                            <param id="1" name="Parameter {n}">TouchManager.dropUID{###}TouchManager.xItem{###}TouchManager.yItem{###}MOVE_SPEED{###}&quot;swapped&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>If more than one space or diagonal, return original item</comment>
+                                                <event-block sid="3245858723100936">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="8894296498884851" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Call function" sid="6850757515955152" type="Function">
+                                                            <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                            <param id="1" name="Parameter {n}">TouchManager.itemUID{###}TouchManager.xItem{###}TouchManager.yItem{###}MOVE_SPEED{###}&quot;return&quot;</param>
+                                                        </action>
+                                                        <action id="0" name="Play" sid="2482908203482461" type="Audio">
+                                                            <param id="0" name="Audio file">Cant Swap</param>
+                                                            <param id="2" name="Loop">0</param>
+                                                            <param id="3" name="Volume">0</param>
+                                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <comment>If not dragged over item, return original item</comment>
+                                        <event-block sid="5312917898040126">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="7538730218340276" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="4035775430650316" type="Function">
+                                                    <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                    <param id="1" name="Parameter {n}">TouchManager.itemUID{###}TouchManager.xItem{###}TouchManager.yItem{###}MOVE_SPEED{###}&quot;return&quot;</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="6947204497460013" type="Audio">
+                                                    <param id="0" name="Audio file">Cant Swap</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Wasn&apos;t over an item, return original piece</comment>
+                                <event-block sid="7192984027811978">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="4806388579170687" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="321737542705702" type="Function">
+                                            <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                            <param id="1" name="Parameter {n}">TouchManager.itemUID{###}TouchManager.xItem{###}TouchManager.yItem{###}MOVE_SPEED{###}&quot;return&quot;</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="8305957309076918" type="Audio">
+                                            <param id="0" name="Audio file">Cant Swap</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>On destroying the moving object manager</comment>
+                        <event-block sid="4488849967105703">
+                            <conditions>
+                                <condition id="-19" name="On destroyed" sid="4681631011895595" type="ItemMover" />
+                                <condition id="-8" name="Compare two values" sid="2606973482092463" type="System">
+                                    <param id="0" name="First value">ItemMover.Count</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>If swapped</comment>
+                                <event-block sid="5084054119329403">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="6287828282847338" type="ItemMover">
+                                            <param id="0" name="Instance variable">identifier</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;swapped&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>Check to see if it creates a match 3, if so, start dropping and scoring</comment>
+                                        <event-block sid="2326489278004231">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="891772474195347" type="System">
+                                                    <param id="0" name="First value">Function.Call(&quot;checkForMatches&quot;)</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">3</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="2474299054154738" type="Item">
+                                                    <param id="0" name="Instance variable">isMoving</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="3901914270614038" type="Manager">
+                                                    <param id="0" name="Instance variable">state</param>
+                                                    <param id="1" name="Value">STATE_NEWBLOCK</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="6707484642130908" type="Audio">
+                                                    <param id="0" name="Audio file">Swapped</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Otherwise return the two items to their original point</comment>
+                                        <event-block sid="9054041891129218">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="813487420140881" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="2968030908216495" type="Function">
+                                                    <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                    <param id="1" name="Parameter {n}">TouchManager.itemUID{###}TouchManager.xItem{###}TouchManager.yItem{###}MOVE_SPEED{###}&quot;return&quot;</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="3702195629136158" type="Function">
+                                                    <param id="0" name="Name">&quot;moveItem&quot;</param>
+                                                    <param id="1" name="Parameter {n}">TouchManager.dropUID{###}TouchManager.xDrop{###}TouchManager.yDrop{###}MOVE_SPEED{###}&quot;return&quot;</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="899813512892101" type="Audio">
+                                                    <param id="0" name="Audio file">Cant Swap</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <comment>Object who moves item from one place to another</comment>
+        <event-block sid="1730465519216809">
+            <conditions>
+                <condition id="0" name="On function" sid="3610078370379279" type="Function">
+                    <param id="0" name="Name">&quot;moveItem&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7556544709271057">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="8332922238643213" type="Item">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="9393367808463741" type="System">
+                            <param id="0" name="Object to create">ItemMover</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">32+32*ItemMover.Count</param>
+                            <param id="3" name="Y">32</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1163573041045636" type="ItemMover">
+                            <param id="0" name="Instance variable">itemUID</param>
+                            <param id="1" name="Value">Item.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7535786374479874" type="ItemMover">
+                            <param id="0" name="Instance variable">xStart</param>
+                            <param id="1" name="Value">Item.X</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3222103226220846" type="ItemMover">
+                            <param id="0" name="Instance variable">yStart</param>
+                            <param id="1" name="Value">Item.Y</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9317865281186974" type="ItemMover">
+                            <param id="0" name="Instance variable">xEnd</param>
+                            <param id="1" name="Value">Function.Param(1)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="8751503162518251" type="ItemMover">
+                            <param id="0" name="Instance variable">yEnd</param>
+                            <param id="1" name="Value">Function.Param(2)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="8193576366557043" type="ItemMover">
+                            <param id="0" name="Instance variable">startTime</param>
+                            <param id="1" name="Value">time</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1069597751168145" type="ItemMover">
+                            <param id="0" name="Instance variable">totalTime</param>
+                            <param id="1" name="Value">distance(Item.X,Item.Y,Function.Param(1),Function.Param(2))/Function.Param(3)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5956452240149574" type="ItemMover">
+                            <param id="0" name="Instance variable">identifier</param>
+                            <param id="1" name="Value">Function.Param(4)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>This actually moves it</comment>
+        <event-block sid="2170590592856982">
+            <conditions>
+                <condition id="-11" name="For Each" sid="5540991272046201" type="System">
+                    <param id="0" name="Object">ItemMover</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="lv" sid="5349449843012145" static="0" type="number">0</variable>
+                <event-block sid="8675895934920835">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="3293612016492461" type="Item">
+                            <param id="0" name="Unique ID">ItemMover.itemUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3161722194312584" type="System">
+                            <param id="0" name="Variable">lv</param>
+                            <param id="1" name="Value">min(1,(time-ItemMover.startTime)/ItemMover.totalTime)</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="8493706244396271" type="Item">
+                            <param id="0" name="X">lerp(ItemMover.xStart,ItemMover.xEnd,lv)</param>
+                            <param id="1" name="Y">lerp(ItemMover.yStart,ItemMover.yEnd,lv)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="4365156377126673">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="6439982187653927" type="System">
+                                    <param id="0" name="Variable">lv</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="1008123717021478" type="Item">
+                                    <param id="0" name="X">ItemMover.xEnd</param>
+                                    <param id="1" name="Y">ItemMover.yEnd</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="211220045654759" type="ItemMover" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

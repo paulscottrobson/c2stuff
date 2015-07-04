@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
+        <comment>When items moving due to swap/return this is the speed</comment>
+        <variable comment="Movement speed when arranging" constant="0" name="MOVE_SPEED" sid="6181861891222611" static="0" type="number">256</variable>
         <comment>Gravity for dropping items</comment>
         <variable comment="Item gravity" constant="1" name="ITEM_GRAVITY" sid="691433338900599" static="0" type="number">33</variable>
         <comment>Game states</comment>

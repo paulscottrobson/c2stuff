@@ -84,6 +84,9 @@
                                 <condition id="-1" name="Every tick" sid="3079674013444778" type="System" />
                             </conditions>
                             <actions>
+                                <action disabled="1" id="0" name="Set text" sid="4713775698504825" type="debugText">
+                                    <param id="0" name="Text">Manager.bestHorizontal &amp; &quot; &quot; &amp; Manager.bestVertical</param>
+                                </action>
                                 <action id="1" name="Set return value" sid="8542725744573981" type="Function">
                                     <param id="0" name="Value">max(Manager.bestHorizontal,Manager.bestVertical)</param>
                                 </action>
