@@ -36,7 +36,7 @@
                             <param id="1" name="Value">int(tokenat(levelDescriptor,1,&quot;,&quot;))</param>
                         </action>
                         <action id="-10" name="Set value" sid="6867175461771462" type="Manager">
-                            <param id="0" name="Instance variable">maxMoves</param>
+                            <param id="0" name="Instance variable">movesRemaining</param>
                             <param id="1" name="Value">int(tokenat(levelDescriptor,2,&quot;,&quot;))</param>
                         </action>
                         <action disabled="1" id="-10" name="Set value" sid="6470597581086004" type="Manager">
@@ -224,7 +224,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Make control objects invisible</comment>
-                <event-block disabled="1" sid="1572548102051493">
+                <event-block sid="1572548102051493">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="9953610645578381" type="System" />
                     </conditions>

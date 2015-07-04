@@ -12,8 +12,10 @@
     <used-plugins>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
@@ -22,7 +24,9 @@
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="setcolor">Set color</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
@@ -31,7 +35,7 @@
         <height>960</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
-    <preview-effects>1</preview-effects>
+    <preview-effects>0</preview-effects>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -231,7 +235,7 @@
                 <instance-variable comment="Width of level" name="levelWidth" sid="5454813546526044" type="number" />
                 <instance-variable comment="Height of level" name="levelHeight" sid="2805404639499063" type="number" />
                 <instance-variable comment="Current game states" name="state" sid="6700515970614153" type="number" />
-                <instance-variable comment="Number of moves allowed" name="maxMoves" sid="9526280670217761" type="number" />
+                <instance-variable comment="Number of moves allowed" name="movesRemaining" sid="9526280670217761" type="number" />
                 <instance-variable comment="Required score to complete level" name="requiredScore" sid="9134647897204183" type="number" />
                 <instance-variable comment="Number of items used" name="discreteItems" sid="3190780774531124" type="number" />
                 <instance-variable comment="text of level definition" name="levelDefinition" sid="5286117642297379" type="string" />
@@ -296,6 +300,65 @@
         </object-type>
         <object-type name="Audio" sid="7910851219049162">
             <plugin id="Audio" />
+        </object-type>
+        <object-type name="Label" sid="4006651189833986">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="ScoreText" sid="6455238858643137">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="MovesText" sid="7384431676604128">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="TargetText" sid="6831370721828228">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="Frame" sid="1670552857819073">
+            <plugin id="NinePatch" />
+            <texture original-source="C:\Users\Paul\Downloads\Gold-Frame.png" />
+        </object-type>
+        <object-type name="BackButton" sid="5137721992772503">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4137130402913116" speed="5">
+                    <frame duration="1" hotspotX="0.501779" hotspotY="0.5" original-source="C:\Users\Paul\Downloads\Red-button.png">
+                        <collision-poly>
+                            <point x="0.0462633" y="0.0485075" />
+                            <point x="0.498221" y="0.0223881" />
+                            <point x="0.957295" y="0.0447761" />
+                            <point x="0.996441" y="0.5" />
+                            <point x="0.967972" y="0.966418" />
+                            <point x="0.498221" y="1" />
+                            <point x="0.0355872" y="0.962687" />
+                            <point x="0.00711744" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>

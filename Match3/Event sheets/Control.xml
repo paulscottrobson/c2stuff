@@ -23,6 +23,13 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;muzak&quot;</param>
                 </action>
+                <action id="-9" name="Set value" sid="9641704394645644" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Set text" sid="9805149054936765" type="MovesText">
+                    <param id="0" name="Text">Manager.movesRemaining</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="3347193823183988">
@@ -390,6 +397,16 @@
                                                     <param id="3" name="Volume">0</param>
                                                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                                 </action>
+                                                <action id="-10" name="Add to" sid="4667251356084924" type="System">
+                                                    <param id="0" name="Variable">score</param>
+                                                    <param id="1" name="Value">POINTS_PER_REMOVE*Manager.bonusMultiplier</param>
+                                                </action>
+                                                <action id="0" name="Set text" sid="9846352185470417" type="ScoreText">
+                                                    <param id="0" name="Text">score</param>
+                                                </action>
+                                                <action id="0" name="Set text" sid="8305082361862762" type="TargetText">
+                                                    <param id="0" name="Text">Manager.requiredScore</param>
+                                                </action>
                                             </actions>
                                         </event-block>
                                     </sub-events>
@@ -664,6 +681,13 @@
                                                     <param id="2" name="Loop">0</param>
                                                     <param id="3" name="Volume">0</param>
                                                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="3492408047108109" type="Manager">
+                                                    <param id="0" name="Instance variable">movesRemaining</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Set text" sid="1093195688974353" type="MovesText">
+                                                    <param id="0" name="Text">Manager.movesRemaining</param>
                                                 </action>
                                             </actions>
                                         </event-block>

@@ -3,10 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
+        <comment>Current score</comment>
+        <variable comment="Game score" constant="0" name="score" sid="9687173155441814" static="0" type="number">0</variable>
         <comment>Descriptor : &lt;Number of item types&gt;,&lt;required score&gt;,&lt;Moves allowed&gt;,&lt;layout&gt;</comment>
         <variable comment="Description of level" constant="0" name="levelDescriptor" sid="1294051936247756" static="0" type="text">6,10000,15,.XXXXXX.:XXXXXXXX:XXX..XXX:.XX..XX.:XXXXXXXX:XXXXXXXX:XXXXXXXX:..XXXX..</variable>
         <comment>When items moving due to swap/return this is the speed</comment>
         <variable comment="Movement speed when arranging" constant="0" name="MOVE_SPEED" sid="6181861891222611" static="0" type="number">256</variable>
+        <comment>Points per removed object</comment>
+        <variable constant="1" name="POINTS_PER_REMOVE" sid="3072210815237332" static="0" type="number">60</variable>
         <comment>Speed of dropping objects</comment>
         <variable comment="Speed of dropping objects" constant="1" name="DROP_SPEED" sid="6460522922841784" static="0" type="number">200</variable>
         <comment>Minimum match for a row</comment>
