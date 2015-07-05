@@ -15,7 +15,7 @@
     <layers>
         <layer name="Layer 0" sid="2696310247190692">
             <initially-visible>1</initially-visible>
-            <background-color>0,0,64</background-color>
+            <background-color>0,64,0</background-color>
             <transparent>0</transparent>
             <parallax>
                 <x>1</x>
@@ -127,7 +127,23 @@
                     <instance-variables>
                         <level>1</level>
                         <targetX>0</targetX>
+                        <angleOffset>0</angleOffset>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Sine">
+                            <properties>
+                                <active-on-start>Yes</active-on-start>
+                                <movement>Angle</movement>
+                                <wave>Sine</wave>
+                                <period>1.5</period>
+                                <period-random>1.5</period-random>
+                                <period-offset>0</period-offset>
+                                <period-offset-random>0</period-offset-random>
+                                <magnitude>10</magnitude>
+                                <magnitude-random>0</magnitude-random>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -161,9 +177,9 @@
                     <effect-instances>
                         <effect-instance type="SetColor">
                             <parameters>
-                                <blue>0</blue>
+                                <blue>1</blue>
                                 <green>1</green>
-                                <red>1</red>
+                                <red>0</red>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
@@ -201,8 +217,8 @@
                         <effect-instance type="SetColor">
                             <parameters>
                                 <blue>0</blue>
-                                <green>1</green>
-                                <red>0</red>
+                                <green>0.5</green>
+                                <red>1</red>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
@@ -217,6 +233,26 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Road" uid="41">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>0</x>
+                        <y>-64</y>
+                        <z>0</z>
+                        <width>640</width>
+                        <height>31</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

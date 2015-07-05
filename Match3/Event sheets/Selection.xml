@@ -13,8 +13,31 @@
                     <param id="0" name="Text">&quot;C&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;ndy Cr&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;sh&quot;</param>
                 </action>
                 <action id="-9" name="Destroy" sid="51473482937255" type="Selector" />
+                <action id="5" name="Check item exists" sid="3625143261005836" type="LocalStorage">
+                    <param id="0" name="Key">STORAGE_KEY</param>
+                </action>
             </actions>
             <sub-events>
+                <comment>If previous level completed update available levels if appropriate and set the storage key in Local storage</comment>
+                <event-block sid="7379207859073823">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2252313981794853" type="System">
+                            <param id="0" name="Variable">levelComplete</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="3907146091916075" type="SelectCtrl">
+                            <param id="0" name="Instance variable">levelAvailable</param>
+                            <param id="1" name="Value">max(levelNumber+1,SelectCtrl.levelAvailable)</param>
+                        </action>
+                        <action id="0" name="Set item" sid="9879826283773607" type="LocalStorage">
+                            <param id="0" name="Key">STORAGE_KEY</param>
+                            <param id="1" name="Value">SelectCtrl.levelAvailable</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <comment>Create all the selector, memorising the first and last one</comment>
                 <event-block sid="3419188307317507">
                     <conditions>
@@ -44,6 +67,10 @@
                         <action id="-10" name="Set value" sid="4339024938597718" type="Selector">
                             <param id="0" name="Instance variable">targetX</param>
                             <param id="1" name="Value">Selector.X</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4670189340594978" type="Selector">
+                            <param id="0" name="Instance variable">angleOffset</param>
+                            <param id="1" name="Value">random(0,360)</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -77,9 +104,58 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="4594712423655983">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="9131262733759793" type="System">
+                                    <param id="0" name="First value">floor(loopIndex/3)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">4</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="5943774262464297" type="System">
+                                    <param id="0" name="First value">loopindex%3</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="6190801626766883" type="System">
+                                    <param id="0" name="Object to create">Road</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">Selector.BBoxBottom</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-block>
+        <comment>If found, retrieve it</comment>
+        <event-block sid="896692655663407">
+            <conditions>
+                <condition id="9" name="On item exists" sid="2494701562416597" type="LocalStorage">
+                    <param id="0" name="Key">STORAGE_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="3277879893172032" type="LocalStorage">
+                    <param id="0" name="Key">STORAGE_KEY</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If retrieved, set to level available</comment>
+        <event-block sid="2435794198679477">
+            <conditions>
+                <condition id="1" name="On item get" sid="1655520568012719" type="LocalStorage">
+                    <param id="0" name="Key">STORAGE_KEY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="8078563056593293" type="SelectCtrl">
+                    <param id="0" name="Instance variable">levelAvailable</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
         </event-block>
         <comment>Update each selector on the fly</comment>
         <event-block sid="4132157271361813">
@@ -93,11 +169,35 @@
                 <comment>First move towards target if specified</comment>
                 <event-block sid="6969039113212873">
                     <conditions>
-                        <condition id="-1" name="Every tick" sid="828705489593724" type="System" />
+                        <condition id="-7" name="Compare instance variable" sid="828705489593724" type="Selector">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Sine" id="0" name="Set active" sid="6047188630682761" type="Selector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5212650112434951">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="6266223611858253" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Sine" id="0" name="Set active" sid="1420122278754426" type="Selector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Near to target, mov to target</comment>
+                <event-block sid="9758545785346936">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="131849378427607" type="System" />
                     </conditions>
                     <actions />
                     <sub-events>
-                        <comment>Near to target, mov to target</comment>
                         <event-block sid="1992310916273179">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="6662490559404483" type="System">
@@ -178,26 +278,55 @@
             </sub-events>
         </event-block>
         <comment>If tapped an available one, start the game</comment>
-        <event-block sid="6168911180640584">
+        <event-block any="1" sid="6168911180640584">
             <conditions>
                 <condition id="17" name="On tap object" sid="5534833860136729" type="Touch">
                     <param id="0" name="Object">Selector</param>
                 </condition>
-                <condition id="-7" name="Compare instance variable" sid="2364477086818955" type="Selector">
-                    <param id="0" name="Instance variable">level</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                <condition id="17" name="On tap object" sid="2578014479583983" type="Touch">
+                    <param id="0" name="Object">Cross</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="6098837623084258" type="System">
-                    <param id="0" name="Variable">levelNumber</param>
-                    <param id="1" name="Value">Selector.level</param>
-                </action>
-                <action id="-2" name="Go to layout" sid="6243239388933317" type="System">
-                    <param id="0" name="Layout">Game</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="8591723967666491">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2364477086818955" type="Selector">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="6098837623084258" type="System">
+                            <param id="0" name="Variable">levelNumber</param>
+                            <param id="1" name="Value">Selector.level</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="6243239388933317" type="System">
+                            <param id="0" name="Layout">Game</param>
+                        </action>
+                        <action id="0" name="Play" sid="7233211070258318" type="Audio">
+                            <param id="0" name="Audio file">start</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1340439591879047">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="629571281789845" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="5415200180240308" type="Audio">
+                            <param id="0" name="Audio file">selectfail</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>On a touch end, check if we are moving (for swipes)</comment>
         <event-block sid="7599998239999393">

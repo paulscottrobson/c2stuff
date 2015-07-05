@@ -11,6 +11,8 @@
         <comment>Descriptor : &lt;Number of item types&gt;,&lt;required score&gt;,&lt;Moves allowed&gt;,&lt;layout&gt;</comment>
         <variable comment="Description of level" constant="0" name="levelDescriptor" sid="1294051936247756" static="0" type="text">6,1000,15,.XXXXXX.:XXXXXXXX:XXX..XXX:.XX..XX.:XXXXXXXX:XXXXXXXX:XXXXXXXX:..XXXX..</variable>
         <event-group description="" sid="2200373077943642" title="Constants" />
+        <comment>Local Storage Key</comment>
+        <variable comment="Local Storage Key" constant="1" name="STORAGE_KEY" sid="5262501286860499" static="0" type="text">uk.robsons.org.construct2.match3</variable>
         <comment>Levels in game</comment>
         <variable comment="Number of levels in game" constant="1" name="LEVEL_COUNT" sid="6008234760331154" static="0" type="number">32</variable>
         <comment>When items moving due to swap/return this is the speed</comment>

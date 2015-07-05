@@ -12,6 +12,7 @@
     <used-plugins>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -22,6 +23,7 @@
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects>
@@ -420,7 +422,13 @@
             <instance-variables>
                 <instance-variable name="level" sid="3503570656401891" type="number" />
                 <instance-variable name="targetX" sid="84603772915918" type="number" />
+                <instance-variable name="angleOffset" sid="2082017466140765" type="number" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Sine" sid="6766144430171596">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
             <container>
                 <type>Selector</type>
                 <type>Cross</type>
@@ -480,6 +488,13 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="LocalStorage" sid="1202235168809454">
+            <plugin id="LocalStorage" />
+        </object-type>
+        <object-type name="Road" sid="3119881973755452">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
     </object-folder>
     <families>
         <family name="Stoppers" plugin-id="Sprite" sid="3045874669009772">
@@ -528,6 +543,7 @@
                 <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
+        <global-instance type="LocalStorage" uid="40" />
     </global-instances>
     <sounds-folder>
         <file name="Cant Swap.m4a" />
@@ -536,6 +552,10 @@
         <file name="Matched.ogg" />
         <file name="Swapped.m4a" />
         <file name="Swapped.ogg" />
+        <file name="selectfail.m4a" />
+        <file name="selectfail.ogg" />
+        <file name="start.m4a" />
+        <file name="start.ogg" />
     </sounds-folder>
     <music-folder>
         <file name="Kevin MacLeod - Mining by Moonlight.m4a" />

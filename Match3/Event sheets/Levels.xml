@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Levels</name>
     <events>
+        <comment>Function returns &lt;discrete items&gt;,&lt;max moves&gt;,&lt;required score&gt;,&lt;layout&gt;</comment>
         <event-block sid="6045165482796544">
             <conditions>
                 <condition id="0" name="On function" sid="4694543545850499" type="Function">
@@ -10,7 +11,7 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="1" name="Set return value" sid="9740337093871285" type="Function">
+                <action disabled="1" id="1" name="Set return value" sid="9740337093871285" type="Function">
                     <param id="0" name="Value">&quot;6,1000,15,&quot; &amp; Function.Call(&quot;getLevelLayout&quot;,3)</param>
                 </action>
             </actions>
@@ -45,6 +46,10 @@
                             <param id="0" name="Variable">score</param>
                             <param id="1" name="Value">round(score/100)*100</param>
                         </action>
+                        <action disabled="1" id="-9" name="Set value" sid="1683527932718877" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
                         <action id="1" name="Set return value" sid="8853494598187909" type="Function">
                             <param id="0" name="Value">&quot;6,&quot; &amp; score &amp; &quot;,&quot; &amp; moves &amp; &quot;,&quot; &amp; Function.Call(&quot;getLevelLayout&quot;,level % LAYOUT_COUNT)</param>
                         </action>
@@ -52,6 +57,7 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Get one of the level layouts</comment>
         <event-block sid="2655240096639864">
             <conditions>
                 <condition id="0" name="On function" sid="8896934895481242" type="Function">
@@ -98,7 +104,7 @@
                     </conditions>
                     <actions>
                         <action id="1" name="Set return value" sid="8556438109391078" type="Function">
-                            <param id="0" name="Value">&quot;XX..X..XX:X..XXX..X:..XXXXX..:.XXX.XXX.:XXX...XXX:.XXX.XXX.:..XXXXX..:X..XXX..X:XX..X..XX&quot;&#x0D;&#x0A;</param>
+                            <param id="0" name="Value">&quot;...XXX...:...XXX...:..XXXXX..:.XXX.XXX.:XXXX.XXXX:.XXXXXXX.:..XXXXX..:XX.XXX.XX:XXXXXXXXX&quot;&#x0D;&#x0A;</param>
                         </action>
                     </actions>
                 </event-block>
