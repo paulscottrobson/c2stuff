@@ -7,5 +7,6 @@
         <include>SetUp</include>
         <include>Matches</include>
         <include>Control</include>
+        <include>Levels</include>
     </events>
 </c2eventsheet>

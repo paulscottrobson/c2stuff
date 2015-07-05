@@ -23,12 +23,19 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;muzak&quot;</param>
                 </action>
-                <action id="-9" name="Set value" sid="9641704394645644" type="System">
-                    <param id="0" name="Variable">score</param>
+                <action id="-10" name="Set value" sid="9641704394645644" type="Manager">
+                    <param id="0" name="Instance variable">score</param>
                     <param id="1" name="Value">0</param>
                 </action>
                 <action id="0" name="Set text" sid="9805149054936765" type="MovesText">
                     <param id="0" name="Text">Manager.movesRemaining</param>
+                </action>
+                <action id="-9" name="Set value" sid="6639039711325931" type="System">
+                    <param id="0" name="Variable">levelComplete</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Set text" sid="6734361001174897" type="TargetText">
+                    <param id="0" name="Text">Manager.requiredScore</param>
                 </action>
             </actions>
         </event-block>
@@ -397,17 +404,34 @@
                                                     <param id="3" name="Volume">0</param>
                                                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                                 </action>
-                                                <action id="-10" name="Add to" sid="4667251356084924" type="System">
-                                                    <param id="0" name="Variable">score</param>
+                                                <action id="-11" name="Add to" sid="4667251356084924" type="Manager">
+                                                    <param id="0" name="Instance variable">score</param>
                                                     <param id="1" name="Value">POINTS_PER_REMOVE*Manager.bonusMultiplier</param>
                                                 </action>
                                                 <action id="0" name="Set text" sid="9846352185470417" type="ScoreText">
-                                                    <param id="0" name="Text">score</param>
+                                                    <param id="0" name="Text">Manager.score</param>
                                                 </action>
                                                 <action id="0" name="Set text" sid="8305082361862762" type="TargetText">
                                                     <param id="0" name="Text">Manager.requiredScore</param>
                                                 </action>
                                             </actions>
+                                            <sub-events>
+                                                <event-block sid="5396573159234049">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="2698632623841753" type="Manager">
+                                                            <param id="0" name="Instance variable">score</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Value">Manager.requiredScore</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" sid="2170133803378204" type="System">
+                                                            <param id="0" name="Variable">levelComplete</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
@@ -441,6 +465,23 @@
                                 </action>
                                 <action id="-9" name="Destroy" sid="4616276714499173" type="ItemMover" />
                             </actions>
+                            <sub-events>
+                                <event-block sid="1004569299373423">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="7135297334346245" type="Manager">
+                                            <param id="0" name="Instance variable">movesRemaining</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="7306747343684665" type="Manager">
+                                            <param id="0" name="Instance variable">state</param>
+                                            <param id="1" name="Value">STATE_EXIT</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <comment>On touch start</comment>
                         <event-block sid="5806074293789972">
@@ -849,6 +890,121 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-group description="This displays the final result on exit" sid="8466605956268522" title="Exit State" />
+        <event-block sid="3621957827019641">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="9087936828494598" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_EXIT</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1226636671797954">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="305627940322804" type="System" />
+                        <condition id="-4" name="Trigger once while true" sid="8887763857037696" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="7242568268806094" type="System">
+                            <param id="0" name="Layer">3</param>
+                            <param id="1" name="Visibility">1</param>
+                        </action>
+                        <action id="-18" name="Set layer opacity" sid="253450313521479" type="System">
+                            <param id="0" name="Layer">3</param>
+                            <param id="1" name="Opacity">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>First time, remove all the game items</comment>
+                        <event-block sid="6717587647966657">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="5958902498347612" type="System">
+                                    <param id="0" name="Object">Item</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="2145317666129062" type="Item">
+                                    <param id="0" name="Instance variable">isInGame</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="2053934075184574" type="Item">
+                                    <param id="0" name="Object">ExplodingItems</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="5923916952989601" type="Item" />
+                                <action id="0" name="Set text" sid="6932353278667285" type="ResultText">
+                                    <param id="0" name="Text">(levelComplete = 0) ? &quot;Failed&quot; : &quot;Complete&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="3314587322761396">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="2553201633918374" type="System">
+                                            <param id="0" name="Object">BackTile</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Fade" id="2" name="Set fade-in time" sid="5236614421582654" type="BackTile">
+                                            <param id="0" name="Fade-in time">0</param>
+                                        </action>
+                                        <action behavior="Fade" id="4" name="Set fade-out time" sid="87322137758666" type="BackTile">
+                                            <param id="0" name="Fade-out time">1</param>
+                                        </action>
+                                        <action behavior="Fade" id="0" name="Restart fade" sid="7960181648765692" type="BackTile" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="1551614773028107">
+                    <conditions>
+                        <condition id="-17" name="Compare opacity" sid="7720053602527256" type="System">
+                            <param id="0" name="Layer">3</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Opacity">100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-18" name="Set layer opacity" sid="8064943815377352" type="System">
+                            <param id="0" name="Layer">3</param>
+                            <param id="1" name="Opacity">min(100,LayerOpacity(3)+50*dt)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5991722538657981">
+                    <conditions>
+                        <condition id="0" name="On any touch start" sid="9863941644562778" type="Touch" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="7938643513000059" type="System">
+                            <param id="0" name="Layout">Select</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Red Button is short cut to exit state</comment>
+        <event-block sid="5514055573963285">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8699371763980308" type="Touch">
+                    <param id="0" name="Object">BackButton</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="2504001364011721" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">STATE_EXIT</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="3087125236882555" type="Manager">
+                    <param id="0" name="Instance variable">state</param>
+                    <param id="1" name="Value">STATE_EXIT</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

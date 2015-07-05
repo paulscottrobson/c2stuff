@@ -35,7 +35,8 @@
         <height>960</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
-    <preview-effects>0</preview-effects>
+    <preview-effects>1</preview-effects>
+    <first-layout>Select</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -243,6 +244,7 @@
                 <instance-variable name="bonusMultiplier" sid="8141870463406204" type="number" />
                 <instance-variable comment="Count of running explosions" name="explosionCount" sid="9193867397450124" type="number" />
                 <instance-variable comment="True when first pass (e.g. no scoring)" name="isFirstPass" sid="6156136562421671" type="boolean" />
+                <instance-variable comment="Game score" name="score" sid="665299122331147" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4952324060783771" speed="5">
@@ -339,6 +341,11 @@
         </object-type>
         <object-type name="Frame" sid="1670552857819073">
             <plugin id="NinePatch" />
+            <behaviors>
+                <behavior-type name="Fade" sid="576308532266557">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
             <texture original-source="C:\Users\Paul\Downloads\Gold-Frame.png" />
         </object-type>
         <object-type name="BackButton" sid="5137721992772503">
@@ -360,6 +367,38 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="ResultText" sid="6849264288323872">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="LevelText" sid="8855430772452105">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="1377203264264381">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="TitleText" sid="6833792725167708">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Stoppers" plugin-id="Sprite" sid="3045874669009772">
@@ -376,6 +415,7 @@
     </families>
     <layout-folder>
         <layout>Game.xml</layout>
+        <layout>Select.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Main.xml</event-sheet>
@@ -383,6 +423,8 @@
         <event-sheet>SetUp.xml</event-sheet>
         <event-sheet>Matches.xml</event-sheet>
         <event-sheet>Control.xml</event-sheet>
+        <event-sheet>Levels.xml</event-sheet>
+        <event-sheet>Selection.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="7">

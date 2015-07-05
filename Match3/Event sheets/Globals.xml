@@ -3,10 +3,16 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Globals</name>
     <events>
-        <comment>Current score</comment>
-        <variable comment="Game score" constant="0" name="score" sid="9687173155441814" static="0" type="number">0</variable>
+        <event-group description="" sid="5738125580675398" title="Globals" />
+        <comment>Current Level number</comment>
+        <variable comment="Current Level Number" constant="0" name="levelNumber" sid="8252783354171528" static="0" type="number">1</variable>
+        <comment>Level completed flag</comment>
+        <variable comment="Non-zero when level complete" constant="0" name="levelComplete" sid="4627150183735084" static="0" type="number">0</variable>
         <comment>Descriptor : &lt;Number of item types&gt;,&lt;required score&gt;,&lt;Moves allowed&gt;,&lt;layout&gt;</comment>
-        <variable comment="Description of level" constant="0" name="levelDescriptor" sid="1294051936247756" static="0" type="text">6,10000,15,.XXXXXX.:XXXXXXXX:XXX..XXX:.XX..XX.:XXXXXXXX:XXXXXXXX:XXXXXXXX:..XXXX..</variable>
+        <variable comment="Description of level" constant="0" name="levelDescriptor" sid="1294051936247756" static="0" type="text">6,1000,15,.XXXXXX.:XXXXXXXX:XXX..XXX:.XX..XX.:XXXXXXXX:XXXXXXXX:XXXXXXXX:..XXXX..</variable>
+        <event-group description="" sid="2200373077943642" title="Constants" />
+        <comment>Levels in game</comment>
+        <variable comment="Number of levels in game" constant="1" name="LEVEL_COUNT" sid="6008234760331154" static="0" type="number">32</variable>
         <comment>When items moving due to swap/return this is the speed</comment>
         <variable comment="Movement speed when arranging" constant="0" name="MOVE_SPEED" sid="6181861891222611" static="0" type="number">256</variable>
         <comment>Points per removed object</comment>
@@ -20,8 +26,10 @@
         <variable comment="Remove the best and score it" constant="1" name="STATE_REMOVE" sid="8718997514963279" static="0" type="number">2</variable>
         <variable comment="Waiting for a swap to start" constant="1" name="STATE_WAITSWAP" sid="4804371683760533" static="0" type="number">3</variable>
         <variable comment="A new collection of drops is starting" constant="1" name="STATE_NEWBLOCK" sid="6946469496154758" static="0" type="number">4</variable>
+        <variable comment="Exiting level" constant="1" name="STATE_EXIT" sid="8958280712142763" static="0" type="number">5</variable>
         <comment>---------------------------------------------------------------------------------------</comment>
-        <comment>Add scoring with bonus multiplier to removal code</comment>
+        <comment>Selection Screen w/Local Storage</comment>
+        <comment>Automatic Level generation</comment>
         <comment>---------------------------------------------------------------------------------------</comment>
     </events>
 </c2eventsheet>

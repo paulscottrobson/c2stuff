@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Selection</name>
+    <events>
+        <comment>Sneaky avoidance of copyright issues. (This is a joke, you can no more copyright Match 3 than you can breathing ....)</comment>
+        <event-block sid="6088363751607182">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1440108103025378" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="892497848348939" type="TitleText">
+                    <param id="0" name="Text">&quot;C&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;ndy Cr&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;sh&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
