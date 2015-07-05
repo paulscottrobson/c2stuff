@@ -37,6 +37,10 @@
                 <action id="0" name="Set text" sid="6734361001174897" type="TargetText">
                     <param id="0" name="Text">Manager.requiredScore</param>
                 </action>
+                <action id="-4" name="Set layer visible" sid="4579576826711523" type="System">
+                    <param id="0" name="Layer">3</param>
+                    <param id="1" name="Visibility">0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="3347193823183988">

@@ -61,6 +61,9 @@
                                 <action id="0" name="Set text" sid="969921148373529" type="LevelText">
                                     <param id="0" name="Text">&quot;Level &quot; &amp; levelNumber</param>
                                 </action>
+                                <action disabled="1" id="0" name="Set text" sid="3041151230103427" type="debugText">
+                                    <param id="0" name="Text">left(desc,20)</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>

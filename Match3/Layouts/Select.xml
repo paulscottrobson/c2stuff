@@ -98,7 +98,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <levelAvailable>5</levelAvailable>
+                        <levelAvailable>1</levelAvailable>
                         <firstUID>0</firstUID>
                         <lastUID>0</lastUID>
                     </instance-variables>

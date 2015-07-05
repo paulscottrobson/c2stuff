@@ -757,7 +757,7 @@
                 <instance type="debugText" uid="8">
                     <properties>
                         <text>Text</text>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-21,700,0</font>
                         <color>0,0,0</color>
                         <horizontal-alignment>Center</horizontal-alignment>
@@ -769,11 +769,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>496</x>
-                        <y>945</y>
+                        <x>960</x>
+                        <y>448</y>
                         <z>0</z>
-                        <width>288</width>
-                        <height>32</height>
+                        <width>544</width>
+                        <height>160</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
