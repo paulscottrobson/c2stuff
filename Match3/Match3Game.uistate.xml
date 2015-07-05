@@ -11,14 +11,14 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="5">Game</layout>
-        <layout order="7">Select</layout>
+        <layout active="1" order="7">Select</layout>
         <event-sheet order="0">Main</event-sheet>
         <event-sheet order="1">SetUp</event-sheet>
         <event-sheet order="2">Matches</event-sheet>
         <event-sheet order="3">Control</event-sheet>
         <event-sheet order="4">Globals</event-sheet>
         <event-sheet order="6">Levels</event-sheet>
-        <event-sheet active="1" order="8">Selection</event-sheet>
+        <event-sheet order="8">Selection</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -32,6 +32,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
+        <folder expanded="1" path="object-folder/Text/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -47,5 +48,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/TouchManager/" />
         <folder expanded="1" path="animation-folder/ItemMover/" />
         <folder expanded="1" path="animation-folder/BackButton/" />
+        <folder expanded="1" path="animation-folder/Selector/" />
+        <folder expanded="1" path="animation-folder/Cross/" />
+        <folder expanded="1" path="animation-folder/SelectCtrl/" />
     </folders-expanded>
 </c2uistate>

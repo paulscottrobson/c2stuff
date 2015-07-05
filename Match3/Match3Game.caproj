@@ -54,6 +54,90 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder>
+        <object-folder name="Text">
+            <object-type name="TitleText" sid="6833792725167708">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="Label" sid="4006651189833986">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="LevelText" sid="8855430772452105">
+                <plugin id="Spritefont2" />
+                <behaviors>
+                    <behavior-type name="Fade" sid="1377203264264381">
+                        <behavior id="Fade" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="ResultText" sid="6849264288323872">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="ScoreText" sid="6455238858643137">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="MovesText" sid="7384431676604128">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="TargetText" sid="6831370721828228">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+            <object-type name="Label2" sid="4643399836657318">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <container>
+                    <type>Selector</type>
+                    <type>Cross</type>
+                    <type>Label2</type>
+                </container>
+                <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+            </object-type>
+        </object-folder>
         <object-type name="Background" sid="3945885850664574">
             <plugin id="Sprite" />
             <animation-folder>
@@ -303,42 +387,6 @@
         <object-type name="Audio" sid="7910851219049162">
             <plugin id="Audio" />
         </object-type>
-        <object-type name="Label" sid="4006651189833986">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
-        </object-type>
-        <object-type name="ScoreText" sid="6455238858643137">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
-        </object-type>
-        <object-type name="MovesText" sid="7384431676604128">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
-        </object-type>
-        <object-type name="TargetText" sid="6831370721828228">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
-        </object-type>
         <object-type name="Frame" sid="1670552857819073">
             <plugin id="NinePatch" />
             <behaviors>
@@ -367,37 +415,69 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="ResultText" sid="6849264288323872">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        <object-type name="Selector" sid="2880745426249128">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="level" sid="3503570656401891" type="number" />
+            </instance-variables>
+            <container>
+                <type>Selector</type>
+                <type>Cross</type>
+                <type>Label2</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8011358443814173" speed="5">
+                    <frame duration="1" hotspotX="0.525" hotspotY="0.746667" original-source="C:\Users\Paul\Desktop\lolly.png">
+                        <image-point name="Imagepoint 1" x="0.5" y="0.246667" />
+                        <collision-poly>
+                            <point x="0.15625" y="0.0833333" />
+                            <point x="0.5" y="0.01" />
+                            <point x="0.8375" y="0.0866667" />
+                            <point x="0.65" y="0.5" />
+                            <point x="0.5625" y="0.766667" />
+                            <point x="0.5" y="1" />
+                            <point x="0.46875" y="0.75" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
         </object-type>
-        <object-type name="LevelText" sid="8855430772452105">
-            <plugin id="Spritefont2" />
-            <behaviors>
-                <behavior-type name="Fade" sid="1377203264264381">
-                    <behavior id="Fade" />
-                </behavior-type>
-            </behaviors>
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        <object-type name="Cross" sid="5722071448938126">
+            <plugin id="Sprite" />
+            <container>
+                <type>Selector</type>
+                <type>Cross</type>
+                <type>Label2</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7559495203791077" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\raemi-Cross-Out.png">
+                        <collision-poly>
+                            <point x="0.106667" y="0.106667" />
+                            <point x="0.5" y="0.28" />
+                            <point x="0.893333" y="0.106667" />
+                            <point x="0.723333" y="0.5" />
+                            <point x="0.893333" y="0.893333" />
+                            <point x="0.5" y="0.726667" />
+                            <point x="0.106667" y="0.893333" />
+                            <point x="0.276667" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
         </object-type>
-        <object-type name="TitleText" sid="6833792725167708">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        <object-type name="SelectCtrl" sid="4494198624956953">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Highest level available" name="levelAvailable" sid="4944471338546399" type="number" />
+                <instance-variable name="firstUID" sid="9914071595715516" type="number" />
+                <instance-variable name="lastUID" sid="1784390737495333" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6761973727004192" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>

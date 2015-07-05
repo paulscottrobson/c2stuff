@@ -12,7 +12,149 @@
                 <action id="0" name="Set text" sid="892497848348939" type="TitleText">
                     <param id="0" name="Text">&quot;C&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;ndy Cr&quot;&amp;choose(&quot;a&quot;,&quot;e&quot;,&quot;i&quot;,&quot;o&quot;,&quot;u&quot;)&amp;&quot;sh&quot;</param>
                 </action>
+                <action id="-9" name="Destroy" sid="51473482937255" type="Selector" />
             </actions>
+            <sub-events>
+                <event-block sid="3419188307317507">
+                    <conditions>
+                        <condition id="-10" name="For" sid="7082986248393386" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">LEVEL_COUNT-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="2249626834002597" type="System">
+                            <param id="0" name="Object to create">Selector</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6171992612708473" type="Selector">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Value">loopindex+1</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="1821809472686804" type="Selector">
+                            <param id="0" name="Y">floor(loopindex/3) % 4 *LayoutHeight/5+LayoutHeight*0.3</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="6462232789583856" type="Selector">
+                            <param id="0" name="X">(loopindex % 3)*LayoutWidth/3+floor(loopindex/12)*LayoutWidth+LayoutWidth/6</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="4291016522494108">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2172829717849509" type="System">
+                                    <param id="0" name="First value">loopindex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="1542247369606377" type="SelectCtrl">
+                                    <param id="0" name="Instance variable">firstUID</param>
+                                    <param id="1" name="Value">Selector.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3384131283300058">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7568340904237466" type="System">
+                                    <param id="0" name="First value">loopindex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">LEVEL_COUNT-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="5528267845992624" type="SelectCtrl">
+                                    <param id="0" name="Instance variable">lastUID</param>
+                                    <param id="1" name="Value">Selector.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Update each selector on the fly</comment>
+        <event-block sid="4132157271361813">
+            <conditions>
+                <condition id="-11" name="For Each" sid="8760107085655968" type="System">
+                    <param id="0" name="Object">Selector</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="6493267088894285" type="Cross">
+                    <param id="0" name="Object">Selector</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+                <action id="-24" name="Move to top" sid="446039968566542" type="Cross" />
+                <action id="-7" name="Set size" sid="6506780907191041" type="Cross">
+                    <param id="0" name="Width">Selector.Width*0.7</param>
+                    <param id="1" name="Height">Selector.Width*0.7</param>
+                </action>
+                <action id="0" name="Set text" sid="8067001534985011" type="Label2">
+                    <param id="0" name="Text">Selector.level</param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="8528557416841206" type="Label2">
+                    <param id="0" name="Object">Selector</param>
+                    <param id="1" name="Image point (optional)">1</param>
+                </action>
+                <action id="-24" name="Move to top" sid="1242647844141413" type="Label2" />
+            </actions>
+            <sub-events>
+                <event-block sid="9521510960312057">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="6214811017221581" type="Selector">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="8410700785713298" type="Cross">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4326230806208958">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="4472963377024044" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="2269655244744979" type="Cross">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="7599998239999393">
+            <conditions />
+            <actions />
+            <sub-events>
+                <event-block sid="6168911180640584">
+                    <conditions>
+                        <condition id="17" name="On tap object" sid="5534833860136729" type="Touch">
+                            <param id="0" name="Object">Selector</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="2364477086818955" type="Selector">
+                            <param id="0" name="Instance variable">level</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="6098837623084258" type="System">
+                            <param id="0" name="Variable">levelNumber</param>
+                            <param id="1" name="Value">Selector.level</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="6243239388933317" type="System">
+                            <param id="0" name="Layout">Game</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>
