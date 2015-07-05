@@ -419,6 +419,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="level" sid="3503570656401891" type="number" />
+                <instance-variable name="targetX" sid="84603772915918" type="number" />
             </instance-variables>
             <container>
                 <type>Selector</type>

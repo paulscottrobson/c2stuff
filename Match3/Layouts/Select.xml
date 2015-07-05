@@ -126,6 +126,7 @@
                     </properties>
                     <instance-variables>
                         <level>1</level>
+                        <targetX>0</targetX>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

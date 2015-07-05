@@ -15,6 +15,8 @@
         <variable comment="Number of levels in game" constant="1" name="LEVEL_COUNT" sid="6008234760331154" static="0" type="number">32</variable>
         <comment>When items moving due to swap/return this is the speed</comment>
         <variable comment="Movement speed when arranging" constant="0" name="MOVE_SPEED" sid="6181861891222611" static="0" type="number">256</variable>
+        <comment>Scrolling speed on selector menu</comment>
+        <variable comment="Scroll speed on menu" constant="1" name="SCROLL_SPEED" sid="6575890690376479" static="0" type="number">1700</variable>
         <comment>Points per removed object</comment>
         <variable constant="1" name="POINTS_PER_REMOVE" sid="3072210815237332" static="0" type="number">60</variable>
         <comment>Speed of dropping objects</comment>

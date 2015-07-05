@@ -15,6 +15,7 @@
                 <action id="-9" name="Destroy" sid="51473482937255" type="Selector" />
             </actions>
             <sub-events>
+                <comment>Create all the selector, memorising the first and last one</comment>
                 <event-block sid="3419188307317507">
                     <conditions>
                         <condition id="-10" name="For" sid="7082986248393386" type="System">
@@ -39,6 +40,10 @@
                         </action>
                         <action id="-1" name="Set X" sid="6462232789583856" type="Selector">
                             <param id="0" name="X">(loopindex % 3)*LayoutWidth/3+floor(loopindex/12)*LayoutWidth+LayoutWidth/6</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4339024938597718" type="Selector">
+                            <param id="0" name="Instance variable">targetX</param>
+                            <param id="1" name="Value">Selector.X</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -83,26 +88,69 @@
                     <param id="0" name="Object">Selector</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="-4" name="Set position to another object" sid="6493267088894285" type="Cross">
-                    <param id="0" name="Object">Selector</param>
-                    <param id="1" name="Image point (optional)">0</param>
-                </action>
-                <action id="-24" name="Move to top" sid="446039968566542" type="Cross" />
-                <action id="-7" name="Set size" sid="6506780907191041" type="Cross">
-                    <param id="0" name="Width">Selector.Width*0.7</param>
-                    <param id="1" name="Height">Selector.Width*0.7</param>
-                </action>
-                <action id="0" name="Set text" sid="8067001534985011" type="Label2">
-                    <param id="0" name="Text">Selector.level</param>
-                </action>
-                <action id="-4" name="Set position to another object" sid="8528557416841206" type="Label2">
-                    <param id="0" name="Object">Selector</param>
-                    <param id="1" name="Image point (optional)">1</param>
-                </action>
-                <action id="-24" name="Move to top" sid="1242647844141413" type="Label2" />
-            </actions>
+            <actions />
             <sub-events>
+                <comment>First move towards target if specified</comment>
+                <event-block sid="6969039113212873">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="828705489593724" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Near to target, mov to target</comment>
+                        <event-block sid="1992310916273179">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="6662490559404483" type="System">
+                                    <param id="0" name="First value">abs(Selector.X-Selector.targetX)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">SCROLL_SPEED*dt</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="2511192920436443" type="Selector">
+                                    <param id="0" name="X">Selector.targetX</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Approach target</comment>
+                        <event-block sid="6972564282159599">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6710486492185297" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="6783302323469956" type="Selector">
+                                    <param id="0" name="X">((Selector.targetX &lt; Selector.X) ? -1 : 1) * dt * SCROLL_SPEED+Selector.X</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Update cross and label from selector</comment>
+                <event-block sid="9242347900675554">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1212172945616668" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="6493267088894285" type="Cross">
+                            <param id="0" name="Object">Selector</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="446039968566542" type="Cross" />
+                        <action id="-7" name="Set size" sid="6506780907191041" type="Cross">
+                            <param id="0" name="Width">Selector.Width*0.7</param>
+                            <param id="1" name="Height">Selector.Width*0.7</param>
+                        </action>
+                        <action id="0" name="Set text" sid="8067001534985011" type="Label2">
+                            <param id="0" name="Text">Selector.level</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="8528557416841206" type="Label2">
+                            <param id="0" name="Object">Selector</param>
+                            <param id="1" name="Image point (optional)">1</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="1242647844141413" type="Label2" />
+                    </actions>
+                </event-block>
+                <comment>Show or hide cross depending</comment>
                 <event-block sid="9521510960312057">
                     <conditions>
                         <condition id="-7" name="Compare instance variable" sid="6214811017221581" type="Selector">
@@ -129,30 +177,110 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>If tapped an available one, start the game</comment>
+        <event-block sid="6168911180640584">
+            <conditions>
+                <condition id="17" name="On tap object" sid="5534833860136729" type="Touch">
+                    <param id="0" name="Object">Selector</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="2364477086818955" type="Selector">
+                    <param id="0" name="Instance variable">level</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6098837623084258" type="System">
+                    <param id="0" name="Variable">levelNumber</param>
+                    <param id="1" name="Value">Selector.level</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="6243239388933317" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On a touch end, check if we are moving (for swipes)</comment>
         <event-block sid="7599998239999393">
-            <conditions />
+            <conditions>
+                <condition id="1" name="On any touch end" sid="4309901129509878" type="Touch" />
+                <condition id="-8" name="Compare two values" sid="4715723601096404" type="System">
+                    <param id="0" name="First value">abs(Touch.SpeedAt(0))</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">5</param>
+                </condition>
+            </conditions>
             <actions />
             <sub-events>
-                <event-block sid="6168911180640584">
+                <comment>Same for left and right - check swipe angle, check not off the end and not moving</comment>
+                <event-block sid="5277816136596162">
                     <conditions>
-                        <condition id="17" name="On tap object" sid="5534833860136729" type="Touch">
-                            <param id="0" name="Object">Selector</param>
+                        <condition id="-8" name="Compare two values" sid="5043117650273286" type="System">
+                            <param id="0" name="First value">abs(anglediff(Touch.AngleAt(0),180))</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">40</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" sid="2364477086818955" type="Selector">
-                            <param id="0" name="Instance variable">level</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">SelectCtrl.levelAvailable</param>
+                        <condition id="-14" name="Pick by unique ID" sid="2109857773009788" type="Selector">
+                            <param id="0" name="Unique ID">SelectCtrl.lastUID</param>
+                        </condition>
+                        <condition id="-3" inverted="1" name="Is on-screen" sid="1574987977190804" type="Selector" />
+                        <condition id="-7" name="Compare instance variable" sid="9796953344356303" type="Selector">
+                            <param id="0" name="Instance variable">targetX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Selector.X</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" sid="6098837623084258" type="System">
-                            <param id="0" name="Variable">levelNumber</param>
-                            <param id="1" name="Value">Selector.level</param>
-                        </action>
-                        <action id="-2" name="Go to layout" sid="6243239388933317" type="System">
-                            <param id="0" name="Layout">Game</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <comment>And if all okay adjust the target</comment>
+                        <event-block sid="3968469832818411">
+                            <conditions>
+                                <condition id="-19" name="Pick all" sid="7550203326618226" type="System">
+                                    <param id="0" name="Object">Selector</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="5402406950623901" type="Selector">
+                                    <param id="0" name="Instance variable">targetX</param>
+                                    <param id="1" name="Value">Selector.X-LayoutWidth</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>This is the same but the other way round</comment>
+                <event-block sid="8913210089755621">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="558599804004909" type="System">
+                            <param id="0" name="First value">abs(anglediff(Touch.AngleAt(0),0))</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">40</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="6225407305332972" type="Selector">
+                            <param id="0" name="Unique ID">SelectCtrl.firstUID</param>
+                        </condition>
+                        <condition id="-3" inverted="1" name="Is on-screen" sid="4156223630484369" type="Selector" />
+                        <condition id="-7" name="Compare instance variable" sid="761621177302719" type="Selector">
+                            <param id="0" name="Instance variable">targetX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Selector.X</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7994044992055515">
+                            <conditions>
+                                <condition id="-19" name="Pick all" sid="8759895061689907" type="System">
+                                    <param id="0" name="Object">Selector</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="777284367448199" type="Selector">
+                                    <param id="0" name="Instance variable">targetX</param>
+                                    <param id="1" name="Value">Selector.X+LayoutWidth</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
