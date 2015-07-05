@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <comment>Calculate the pixel size and origin of each cell of the game from the purple &quot;GameArea&quot; object then hide it.</comment>
+        <event-block sid="760691821328082">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="4201260429102039" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1797061971104016" type="Ctrl">
+                    <param id="0" name="Instance variable">cellWidth</param>
+                    <param id="1" name="Value">floor(GameArea.Width/Ctrl.HCELLS)</param>
+                </action>
+                <action id="-10" name="Set value" sid="2412653028533243" type="Ctrl">
+                    <param id="0" name="Instance variable">cellHeight</param>
+                    <param id="1" name="Value">floor(GameArea.Height/Ctrl.VCELLS)</param>
+                </action>
+                <action id="-7" name="Set size" sid="8230742547590711" type="GameArea">
+                    <param id="0" name="Width">Ctrl.HCELLS*Ctrl.cellWidth</param>
+                    <param id="1" name="Height">Ctrl.VCELLS*Ctrl.cellHeight</param>
+                </action>
+                <action id="-10" name="Set value" sid="6480996301823303" type="Ctrl">
+                    <param id="0" name="Instance variable">xOrigin</param>
+                    <param id="1" name="Value">GameArea.BBoxLeft+Ctrl.cellWidth/2</param>
+                </action>
+                <action id="-10" name="Set value" sid="4999087278949671" type="Ctrl">
+                    <param id="0" name="Instance variable">yOrigin</param>
+                    <param id="1" name="Value">GameArea.BBoxTop+Ctrl.cellHeight/2</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1112317728965754" type="GameArea">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Show the boxes (debugging only)</comment>
+        <event-block sid="7206912813346756">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="943870938559405" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="91024765739585">
+                    <conditions>
+                        <condition id="-10" name="For" sid="1182976252323827" type="System">
+                            <param id="0" name="Name">&quot;col&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">Ctrl.HCELLS-1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2453279334251408">
+                            <conditions>
+                                <condition id="-10" name="For" sid="4036854126482051" type="System">
+                                    <param id="0" name="Name">&quot;row&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">Ctrl.VCELLS-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="2608167908831028" type="System">
+                                    <param id="0" name="Object to create">Box</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">loopindex(&quot;col&quot;)*Ctrl.cellWidth+Ctrl.xOrigin</param>
+                                    <param id="3" name="Y">loopindex(&quot;row&quot;)*Ctrl.cellHeight+ctrl.yOrigin</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="64566908092962" type="Box">
+                                    <param id="0" name="Width">Ctrl.cellWidth</param>
+                                    <param id="1" name="Height">Ctrl.cellHeight</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
