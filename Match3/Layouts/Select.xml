@@ -131,19 +131,19 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>864</x>
-                        <y>192</y>
+                        <x>847.199951172</x>
+                        <y>168.106658936</y>
                         <z>0</z>
-                        <width>96</width>
-                        <height>160</height>
+                        <width>108.800003052</width>
+                        <height>128</height>
                         <depth>0</depth>
-                        <hotspotX>0.524999976</hotspotX>
+                        <hotspotX>0.525735319</hotspotX>
                         <hotspotY>0.74666667</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Label2" uid="35">
+                <instance type="SelectorLabel" uid="35">
                     <properties>
                         <character-width>40</character-width>
                         <character-height>64</character-height>
@@ -162,8 +162,8 @@
                         <effect-instance type="SetColor">
                             <parameters>
                                 <blue>0</blue>
-                                <green>0</green>
-                                <red>0</red>
+                                <green>1</green>
+                                <red>1</red>
                             </parameters>
                         </effect-instance>
                     </effect-instances>

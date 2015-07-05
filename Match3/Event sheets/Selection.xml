@@ -140,14 +140,14 @@
                             <param id="0" name="Width">Selector.Width*0.7</param>
                             <param id="1" name="Height">Selector.Width*0.7</param>
                         </action>
-                        <action id="0" name="Set text" sid="8067001534985011" type="Label2">
+                        <action id="0" name="Set text" sid="8067001534985011" type="SelectorLabel">
                             <param id="0" name="Text">Selector.level</param>
                         </action>
-                        <action id="-4" name="Set position to another object" sid="8528557416841206" type="Label2">
+                        <action id="-4" name="Set position to another object" sid="8528557416841206" type="SelectorLabel">
                             <param id="0" name="Object">Selector</param>
                             <param id="1" name="Image point (optional)">1</param>
                         </action>
-                        <action id="-24" name="Move to top" sid="1242647844141413" type="Label2" />
+                        <action id="-24" name="Move to top" sid="1242647844141413" type="SelectorLabel" />
                     </actions>
                 </event-block>
                 <comment>Show or hide cross depending</comment>

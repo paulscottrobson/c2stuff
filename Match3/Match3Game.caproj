@@ -123,7 +123,7 @@
                 </effects>
                 <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
             </object-type>
-            <object-type name="Label2" sid="4643399836657318">
+            <object-type name="SelectorLabel" sid="4643399836657318">
                 <plugin id="Spritefont2" />
                 <effects>
                     <effect-type name="SetColor">
@@ -133,7 +133,7 @@
                 <container>
                     <type>Selector</type>
                     <type>Cross</type>
-                    <type>Label2</type>
+                    <type>SelectorLabel</type>
                 </container>
                 <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
             </object-type>
@@ -424,12 +424,12 @@
             <container>
                 <type>Selector</type>
                 <type>Cross</type>
-                <type>Label2</type>
+                <type>SelectorLabel</type>
             </container>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8011358443814173" speed="5">
-                    <frame duration="1" hotspotX="0.525" hotspotY="0.746667" original-source="C:\Users\Paul\Desktop\lolly.png">
-                        <image-point name="Imagepoint 1" x="0.5" y="0.246667" />
+                    <frame duration="1" hotspotX="0.525735" hotspotY="0.746667" original-source="C:\Users\Paul\Desktop\lolly.png">
+                        <image-point name="Imagepoint 1" x="1.11029" y="-0.0633333" />
                         <collision-poly>
                             <point x="0.15625" y="0.0833333" />
                             <point x="0.5" y="0.01" />
@@ -448,7 +448,7 @@
             <container>
                 <type>Selector</type>
                 <type>Cross</type>
-                <type>Label2</type>
+                <type>SelectorLabel</type>
             </container>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7559495203791077" speed="5">
