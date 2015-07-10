@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Mushrooms</name>
+    <events>
+        <event-group description="" sid="5922959786962543" title="Mushroom processing" />
+        <comment>At the start create some mushrooms in the playfield</comment>
+        <event-block sid="44781777341737">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1619610513821114" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7572136124212405">
+                    <conditions>
+                        <condition id="-10" name="For" sid="5700009959948545" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6121143904769029" type="System">
+                            <param id="0" name="Object to create">Mushroom</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">floor(loopindex/4*HCELLS+choose(-1,0,1))*CELLSIZE</param>
+                            <param id="3" name="Y">TOPMARGIN+CELLSIZE</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9475176507335015">
+                    <conditions>
+                        <condition id="-10" name="For" sid="7966465106239238" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">floor(PLAYFIELD*1.3)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="4279797247638198" type="System">
+                            <param id="0" name="Object to create">Mushroom</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">floor(random(1,HCELLS))*CELLSIZE</param>
+                            <param id="3" name="Y">floor(random(1,PLAYFIELD))*CELLSIZE+TOPMARGIN</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>If this causes a collision then remove them and recreate them.</comment>
+                        <event-block sid="421501742694711">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="2614113052215855" type="Mushroom">
+                                    <param id="0" name="Object">Mushroom</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="3199575090987691" type="Mushroom" />
+                                <action id="-3" name="Create object" sid="9082358897712935" type="System">
+                                    <param id="0" name="Object to create">Mushroom</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">floor(random(1,HCELLS))*CELLSIZE</param>
+                                    <param id="3" name="Y">floor(random(1,PLAYFIELD))*CELLSIZE+TOPMARGIN</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Mushroom shot, subtract one from kill count</comment>
+        <event-block sid="8362486356132355">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7974125217573093" type="Mushroom">
+                    <param id="0" name="Object">Missile</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="6421551506538332" type="Mushroom">
+                    <param id="0" name="Instance variable">hitsRequired</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6529364039830233" type="Missile" />
+            </actions>
+            <sub-events>
+                <comment>Mushroom kill count zero, destroy it.</comment>
+                <event-block sid="2938959381011608">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1905550346945834" type="Mushroom">
+                            <param id="0" name="Instance variable">hitsRequired</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4221712913926113" type="Mushroom" />
+                        <action id="0" name="Call function" sid="6835680050340202" type="Function">
+                            <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                            <param id="1" name="Parameter {n}">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Make sure newly created mushrooms are coloured correctly</comment>
+        <event-block sid="9321421512147271">
+            <conditions>
+                <condition id="-18" name="On created" sid="2602242475699361" type="Mushroom" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="40807210482113" type="Function">
+                    <param id="0" name="Name">&quot;ColourObject&quot;</param>
+                    <param id="1" name="Parameter {n}">Mushroom.UID</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

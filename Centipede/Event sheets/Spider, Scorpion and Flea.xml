@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Spider, Scorpion and Flea</name>
+    <events>
+        <event-group description="" sid="2306607502503909" title="Spider Code" />
+        <comment>Destroy prototype, don&apos;t want Spider outside layout. Set up spider timer</comment>
+        <event-block sid="4729952442555756">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1302981262189758" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5460955688419285" type="Spider" />
+                <action behavior="Timer" id="0" name="Start timer" sid="4028487339513862" type="Player">
+                    <param id="0" name="Duration">random(4,8)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;startspider&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Periodically create new spiders</comment>
+        <event-block sid="3660228683113414">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4006927428067627" type="Player">
+                    <param id="0" name="Tag">&quot;startspider&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="2572260119600854" type="Player">
+                    <param id="0" name="Duration">random(4,8)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;startspider&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6813363549135329">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7455535273334825" type="System">
+                            <param id="0" name="First value">Spider.Count</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="5531664497165379" type="System">
+                            <param id="0" name="Variable">isPlaying</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="2727776460038312" type="System">
+                            <param id="0" name="Object to create">Spider</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">0</param>
+                        </action>
+                        <action behavior="Sine" id="2" name="Set magnitude" sid="7851751463570587" type="Spider">
+                            <param id="0" name="Magnitude">CELLSIZE * 4</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="3899346402587549" type="Spider">
+                            <param id="0" name="X">choose(0,CELLSIZE*HCELLS)</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="8362117662422586" type="Spider">
+                            <param id="0" name="Y">TOPMARGIN+(PLAYERAREA+PLAYFIELD)*CELLSIZE-Spider.Sine.Magnitude+CELLSIZE/2</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2277003610461041" type="Spider">
+                            <param id="0" name="Instance variable">dx</param>
+                            <param id="1" name="Value">(Spider.X = 0) ? 1 : -1</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="4854892302850366" type="Player">
+                            <param id="0" name="Duration">random(3.0,8.0)</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;switchspider&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Move spiders in current X direction</comment>
+        <event-block sid="162394664851079">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="238237450579631" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="9952145059205383" type="Spider">
+                    <param id="0" name="X">Spider.X+Spider.Sine.Magnitude/Spider.Sine.Period*Spider.dx*Spider.dt</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Periodically, switch spider direction</comment>
+        <event-block sid="1959268392420311">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="150733517902122" type="Player">
+                    <param id="0" name="Tag">&quot;switchspider&quot;</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="4273008506116376" type="System">
+                    <param id="0" name="First value">Spider.Count</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="3921648761862768" type="Player">
+                    <param id="0" name="Duration">random(3.0,8.0)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;switchspider&quot;</param>
+                </action>
+                <action id="-10" name="Set value" sid="9486402738420643" type="Spider">
+                    <param id="0" name="Instance variable">dx</param>
+                    <param id="1" name="Value">(Spider.X &gt; Player.X) ? -1 : 1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Shoot spider</comment>
+        <event-block sid="7239981795741351">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3179562912713559" type="Spider">
+                    <param id="0" name="Object">Missile</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable comment="Distance from spider 0-2" constant="0" name="spiderdistance" sid="1155617342415849" static="0" type="number">0</variable>
+                <comment>Score depends on how far away you are</comment>
+                <event-block sid="2942088652415393">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="4444741266280439" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1827541296856055" type="System">
+                            <param id="0" name="Variable">spiderdistance</param>
+                            <param id="1" name="Value">floor(abs(Player.Y-Spider.Y)/(Spider.Sine.Magnitude*2)*3)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1532227624318073" type="System">
+                            <param id="0" name="Variable">spiderdistance</param>
+                            <param id="1" name="Value">max(1,3-spiderdistance)*300</param>
+                        </action>
+                        <action id="0" name="Call function" sid="9060399804282977" type="Function">
+                            <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                            <param id="1" name="Parameter {n}">spiderdistance</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="4291200558615158" type="Spider">
+                            <param id="0" name="Object">ScoreTransient</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3294563950071932" type="ScoreTransient">
+                            <param id="0" name="Text">spiderdistance</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="7696251179276189" type="Missile" />
+                        <action id="-9" name="Destroy" sid="8255878861152244" type="Spider" />
+                        <action id="0" name="Spawn another object" sid="7168575586402437" type="Spider">
+                            <param id="0" name="Object">Particles</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="4659535815649354" title="Flea Code" />
+        <comment>Destory prototype and fire first immediately</comment>
+        <event-block sid="1235971615346409">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6949268445322394" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1425423534986306" type="Flea" />
+                <action behavior="Timer" id="0" name="Start timer" sid="2629870458770789" type="Player">
+                    <param id="0" name="Duration">1</param>
+                    <param id="1" name="Type">1</param>
+                    <param id="2" name="Tag">&quot;startflea&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Fire if playing, no flea, level 2 or more, and insufficient mushrooms in player area</comment>
+        <event-block sid="4752299671646039">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="2840238250632318" type="Player">
+                    <param id="0" name="Tag">&quot;startflea&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9125181651812087" type="System">
+                    <param id="0" name="Variable">isPlaying</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7932960314986444" type="System">
+                    <param id="0" name="First value">Flea.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="716503511397684" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">2</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="count" sid="5566363685296789" static="0" type="number">0</variable>
+                <comment>Count the mushrooms in the player area</comment>
+                <event-block sid="2368407099700844">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="5008963697970819" type="System">
+                            <param id="0" name="Object">Mushroom</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="5191193950027563">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="4065382636031788" type="Mushroom">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate"> TOPMARGIN+PLAYFIELD*CELLSIZE</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="5538270178892398" type="System">
+                                    <param id="0" name="Variable">count</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>If insufficient, fire the flea</comment>
+                <event-block sid="3340498003059113">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8742066589907484" type="System">
+                            <param id="0" name="Variable">count</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">min(15,4+level)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="4733237303417858" type="System">
+                            <param id="0" name="Object to create">Flea</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">floor(random(1,HCELLS-1))*CELLSIZE</param>
+                            <param id="3" name="Y">TOPMARGIN</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="2209663332140854" type="Flea">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Randomly create mushrooms where they don&apos;t already exist</comment>
+        <event-block sid="3689170736154338">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="439070620245493" type="System">
+                    <param id="0" name="First value">random(0,1)*dt</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">0.0007</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="497018925554019" type="Flea">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Y co-ordinate">TOPMARGIN+(PLAYFIELD+PLAYERAREA)*CELLSIZE</param>
+                </condition>
+                <condition id="1" inverted="1" name="Is overlapping another object" sid="3290145543358456" type="Flea">
+                    <param id="0" name="Object">Mushroom</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="9828816773520313" type="System">
+                    <param id="0" name="Object to create">Mushroom</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">round(Flea.X/CELLSIZE)*CELLSIZE</param>
+                    <param id="3" name="Y">round(Flea.Y/CELLSIZE)*CELLSIZE</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Terminate when hits the bottom</comment>
+        <event-block sid="1853052037408042">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4623016240716804" type="Flea">
+                    <param id="0" name="Object">Bar</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6699155530699425" type="Flea" />
+            </actions>
+        </event-block>
+        <comment>Shoot flea</comment>
+        <event-block sid="6828521788082769">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4957986765480961" type="Flea">
+                    <param id="0" name="Object">Missile</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1078839463278593" type="Flea">
+                    <param id="0" name="Object">ScoreTransient</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Call function" sid="106434889693704" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">200</param>
+                </action>
+                <action id="0" name="Set text" sid="9746361899063742" type="ScoreTransient">
+                    <param id="0" name="Text">200</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5613753077244295" type="Missile" />
+                <action id="0" name="Spawn another object" sid="3673702369562218" type="Flea">
+                    <param id="0" name="Object">Particles</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="1543564989869263" type="Flea" />
+            </actions>
+        </event-block>
+        <event-group description="" sid="9925272121734686" title="Scorpion Code" />
+        <comment>Start Scorpion Timer</comment>
+        <event-block sid="7862370294183861">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6936834581816402" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="9793862108444799" type="Player">
+                    <param id="0" name="Duration">random(15,30)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;startScorpion&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On timer, restart it</comment>
+        <event-block sid="4499907773336706">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="9982877634782999" type="Player">
+                    <param id="0" name="Tag">&quot;startScorpion&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="4790760731963326" type="Player">
+                    <param id="0" name="Duration">random(15,30)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;startScorpion&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>If no scorpion, level is 3 or more, and game is inprogress spawn one moving l-&gt;R</comment>
+                <event-block sid="7473192093186483">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2156857928603879" type="System">
+                            <param id="0" name="First value">Scorpion.Count</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="1049288928019132" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="4005470261765508" type="System">
+                            <param id="0" name="Variable">isPlaying</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="9369138937555778" type="System">
+                            <param id="0" name="Object to create">Scorpion</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">TOPMARGIN+floor(random(0,PLAYFIELD-1))*CELLSIZE</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="4889409487444051" type="Scorpion">
+                            <param id="0" name="Angle">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>50/50 chance of moving R-&gt;L</comment>
+                        <event-block sid="8792800972406733">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7146496202636333" type="System">
+                                    <param id="0" name="First value">random(0,1)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0.5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5946755341606061" type="Scorpion">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="7802895065969599" type="Scorpion">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="493797093817204" type="Scorpion">
+                                    <param id="0" name="X">LayoutWidth</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Hit a mushroom, poison it</comment>
+        <event-block sid="8842349609273185">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2583563866339449" type="Scorpion">
+                    <param id="0" name="Object">Mushroom</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7810874228410371" type="Mushroom">
+                    <param id="0" name="Instance variable">isPoisoned</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="5429859789368348" type="Mushroom">
+                    <param id="0" name="Instance variable">isWhite</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="7085352699345639" type="Mushroom">
+                    <param id="0" name="Instance variable">isPoisoned</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Call function" sid="8570693284212693" type="Function">
+                    <param id="0" name="Name">&quot;ColourObject&quot;</param>
+                    <param id="1" name="Parameter {n}">Mushroom.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Hit a missile, score 1000</comment>
+        <event-block sid="9808965963398243">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5798560619438306" type="Scorpion">
+                    <param id="0" name="Object">Missile</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="915402533228696" type="Scorpion">
+                    <param id="0" name="Object">ScoreTransient</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Call function" sid="7185781545718639" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">1000</param>
+                </action>
+                <action id="0" name="Set text" sid="7423702924448147" type="ScoreTransient">
+                    <param id="0" name="Text">1000</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5604771094216667" type="Missile" />
+                <action id="0" name="Spawn another object" sid="8441819891038869" type="Scorpion">
+                    <param id="0" name="Object">Particles</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Also remove any mushrooms that are poisoned on the row the Scorpion was on (not technically correct but near enough :) )</comment>
+                <event-block sid="5217866627282303">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="2767035726181213" type="System">
+                            <param id="0" name="Object">Mushroom</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="2573180317569799" type="Mushroom">
+                            <param id="0" name="Instance variable">isPoisoned</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="3741695491193284" type="Mushroom">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Y co-ordinate">Scorpion.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="3873718429208499" type="Mushroom">
+                            <param id="0" name="Instance variable">isWhite</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="8542506871328274" type="Mushroom">
+                            <param id="0" name="Instance variable">isPoisoned</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3381697100943974" type="Function">
+                            <param id="0" name="Name">&quot;ColourObject&quot;</param>
+                            <param id="1" name="Parameter {n}">Mushroom.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Finally, destroy the Scorpion</comment>
+                <event-block sid="6811568041083129">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1708881262753672" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="8998968470053583" type="Scorpion" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

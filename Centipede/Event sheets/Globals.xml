@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <event-group description="" sid="6619635086023844" title="Constants" />
+        <comment>Size of one square in game</comment>
+        <variable comment="Size of one square" constant="1" name="CELLSIZE" sid="511561730656736" static="0" type="number">32</variable>
+        <comment>Number of cells in main playfield (not including player area)</comment>
+        <variable comment="Size of main game area with Mushrooms" constant="1" name="PLAYFIELD" sid="3875686879145738" static="0" type="number">19</variable>
+        <comment>Top Margin in Pixels to Playfield</comment>
+        <variable constant="1" name="TOPMARGIN" sid="2998782874880858" static="0" type="number">32</variable>
+        <comment>Number of cells in player area below main playfield</comment>
+        <variable comment="Number of cells in player area" constant="0" name="PLAYERAREA" sid="6264984748868876" static="0" type="number">7</variable>
+        <comment>Number of cells horizontally and vertically</comment>
+        <variable comment="Number of horizontal cells" constant="0" name="HCELLS" sid="3544107417686136" static="0" type="number">0</variable>
+        <variable comment="Number of horizontal cells" constant="0" name="VCELLS" sid="3755914290180877" static="0" type="number">0</variable>
+        <event-group description="" sid="6208201236163353" title="Globals" />
+        <comment>Game control, non zero when game is running.</comment>
+        <variable comment="Zero when cannot play (shoot move etc)" constant="0" name="isPlaying" sid="8267044495979782" static="0" type="number">1</variable>
+        <comment>Player score</comment>
+        <variable comment="Current Score" constant="0" name="score" sid="8002332141533595" static="0" type="number">0</variable>
+        <comment>Number of player lives</comment>
+        <variable comment="Number of lives remaining" constant="0" name="lives" sid="2249946692651031" static="0" type="number">0</variable>
+        <comment>Current Game level</comment>
+        <variable comment="Level in Game" constant="0" name="level" sid="684298525405413" static="0" type="number">1</variable>
+        <event-group description="" sid="5874541042859389" title="Initialisation" />
+        <event-block sid="845966213007287">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3265312199781696" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1340763976727043" type="System">
+                    <param id="0" name="Variable">HCELLS</param>
+                    <param id="1" name="Value">floor(LayoutWidth/CELLSIZE)</param>
+                </action>
+                <action id="-9" name="Set value" sid="5909290109893637" type="System">
+                    <param id="0" name="Variable">VCELLS</param>
+                    <param id="1" name="Value">floor(LayoutHeight/CELLSIZE)</param>
+                </action>
+                <action id="-9" name="Set value" sid="6144133790590038" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="9650820456351957" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+                <action id="0" name="Call function" sid="7043723654737872" type="Function">
+                    <param id="0" name="Name">&quot;RedrawLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="4623519384877935" type="Function">
+                    <param id="0" name="Name">&quot;RedrawScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-9" name="Set value" sid="5748620347834886" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="1279146875778908" type="GameOverText">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="1090173493595793" title="Utility Functions" />
+        <comment>Update the lives display</comment>
+        <event-block sid="7892565786517487">
+            <conditions>
+                <condition id="0" name="On function" sid="672411369711826" type="Function">
+                    <param id="0" name="Name">&quot;RedrawLives&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="201384770574452" type="LivesMarker" />
+            </actions>
+            <sub-events>
+                <event-block sid="9326482942235846">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9944924731249136" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4199195079123227">
+                            <conditions>
+                                <condition id="-10" name="For" sid="9020592287632606" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">lives</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="7757071158743072" type="System">
+                                    <param id="0" name="Object to create">LivesMarker</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">CELLSIZE+(loopindex-1)*CELLSIZE*1.2</param>
+                                    <param id="3" name="Y">LayoutHeight-CELLSIZE</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Redraw the score</comment>
+        <event-block sid="5464271606849422">
+            <conditions>
+                <condition id="0" name="On function" sid="7579517055667095" type="Function">
+                    <param id="0" name="Name">&quot;RedrawScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="734648274091656" type="ScoreText">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; score,6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Add a constant to the score</comment>
+        <event-block sid="6584037215030965">
+            <conditions>
+                <condition id="0" name="On function" sid="5434363799110408" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5860345675492677" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">Function.Param(0)</param>
+                </action>
+                <action id="0" name="Call function" sid="779525101320021" type="Function">
+                    <param id="0" name="Name">&quot;RedrawScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Randomise colour for transient score</comment>
+        <event-block sid="4842345678728716">
+            <conditions>
+                <condition id="-18" name="On created" sid="7251109439467998" type="ScoreTransient" />
+            </conditions>
+            <actions>
+                <action id="-28" name="Set effect parameter" sid="9315738521943339" type="ScoreTransient">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">choose(0,1,2)</param>
+                    <param id="2" name="Value">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="7244649723782058" type="ScoreTransient">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">choose(0,1,2)</param>
+                    <param id="2" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Colour a specific object a specific colour</comment>
+        <event-block sid="5374325060504112">
+            <conditions>
+                <condition id="0" name="On function" sid="4188153713658019" type="Function">
+                    <param id="0" name="Name">&quot;ColourObject&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="col" sid="4752389582873402" static="0" type="number">0</variable>
+                <event-block sid="9013228019728798">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="2133234425233119" type="Colourable">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1371138937176087" type="System">
+                            <param id="0" name="Variable">col</param>
+                            <param id="1" name="Value">(5-level+6000) % 6 + 1</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="5803740368034858" type="Colourable">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">getbit(col,0) * 100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="1498478135305934" type="Colourable">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">getbit(col,1) * 100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="8741489052941633" type="Colourable">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">getbit(col,2) * 100</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2728596308593258">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="4974044218385524" type="System">
+                                    <param id="0" name="Variable">col</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="325243166255183" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="3350898767762245" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">50</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="4537027305079341" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1634310338266233">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4138218053699114" type="Colourable">
+                                    <param id="0" name="Instance variable">isWhite</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-28" name="Set effect parameter" sid="2085560258317924" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="4990649469039604" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="5233945860204132" type="Colourable">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

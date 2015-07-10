@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Centipede</name>
+    <description>Atari 2600 Centipede</description>
+    <version>1.0.0.0</version>
+    <author>Paul Robson</author>
+    <author-email>paul@robsons.org.uk</author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>puoshb0ffol7</unique-id>
+    <saved-with-version>20600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+    </used-behaviors>
+    <used-effects>
+        <effect author="Scirra" id="setcolor">Set color</effect>
+    </used-effects>
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>640</width>
+        <height>960</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-folder name="New folder" />
+        <object-type name="Mushroom" sid="8322684665137737">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="No hits to destroy" name="hitsRequired" sid="3376544830683133" type="number" />
+                <instance-variable comment="True if poisoned by Scorpion" name="isPoisoned" sid="4469085767730701" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="4247780659798424">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3077746839833926" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.119141" y="0" />
+                            <point x="0.871094" y="0" />
+                            <point x="0.880859" y="1" />
+                            <point x="0.125" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Player" sid="3812442836930063">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Time of next fire" name="timeNextFire" sid="4487508119947473" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="BoundToLayout" sid="3277348571195169">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="8Direction" sid="7988442003302599">
+                    <behavior id="EightDir" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="7051453473379419">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4775025632553471" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Missile" sid="4306826595198935">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="1201195456711261">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="7888005035238358">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5933995595870829" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="1956994094445577">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="Segment" sid="9552291552944538">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="True if this is navigating" name="isLeader" sid="6984275542801032" type="boolean" />
+                <instance-variable comment="Centipede is poisoned" name="isPoisoned" sid="5372039094435429" type="boolean" />
+                <instance-variable comment="UID of next Centipede segment" name="nextUIDinChain" sid="2943147602258407" type="number" />
+                <instance-variable name="velocity" sid="8865874608648526" type="number" />
+                <instance-variable comment="Current moving direction" name="xDirection" sid="2891136794516411" type="number" />
+                <instance-variable name="yDirection" sid="1763662761681758" type="number" />
+                <instance-variable comment="Location heading for" name="xTarget" sid="2465495332578911" type="number" />
+                <instance-variable comment="Location heading for" name="yTarget" sid="95867388253523" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="9741330093626388">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Head" pingpong="0" repeatcount="1" repeatto="0" sid="8516887268434748" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="ScoreShowPoint" x="0.46875" y="0" />
+                        <collision-poly>
+                            <point x="0.15625" y="0.15625" />
+                            <point x="0.5" y="0" />
+                            <point x="0.84375" y="0.15625" />
+                            <point x="1" y="0.5" />
+                            <point x="0.84375" y="0.84375" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15625" y="0.84375" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Body" pingpong="0" repeatcount="1" repeatto="0" sid="8181953930516088" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Function" sid="2588763454779069">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="LivesMarker" sid="3197095520328199">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="4017437202517437">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8611196081762817" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ScoreText" sid="8603531755498819">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="Bar" sid="7709770908962512">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="ScoreTransient" sid="1829598219900091">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="4620203775814268">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="ScoreMushroom" sid="4854431811865745">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="No hits to destroy" name="hitsRequired" sid="3059370859533966" type="number" />
+                <instance-variable comment="True if poisoned by Scorpion" name="isPoisoned" sid="1652073354163538" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="3869104929141036">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="7431115431488445">
+                    <behavior id="Fade" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="4707900815821988">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7530164599166202" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.119141" y="0" />
+                            <point x="0.871094" y="0" />
+                            <point x="0.880859" y="1" />
+                            <point x="0.125" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="GameOverText" sid="6539265510940138">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="8720367127734947">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="Spider" sid="9780067291545361">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Spider delta x" name="dx" sid="1553845915618447" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Sine" sid="4163463730982339">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="580241237588385" speed="3">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\s1.PNG">
+                        <collision-poly>
+                            <point x="0.0703125" y="0.251953" />
+                            <point x="0.933594" y="0.251953" />
+                            <point x="0.941406" y="0.75" />
+                            <point x="0.0703125" y="0.75" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\s2.PNG">
+                        <collision-poly>
+                            <point x="0.0703125" y="0.251953" />
+                            <point x="0.933594" y="0.251953" />
+                            <point x="0.941406" y="0.75" />
+                            <point x="0.0703125" y="0.75" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Flea" sid="8773535887297267">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="3960167411757132">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="9891013835231312">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4248748490809131" speed="6">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\f1.png">
+                        <collision-poly>
+                            <point x="0.0390625" y="0.119141" />
+                            <point x="0.966797" y="0.126953" />
+                            <point x="0.976563" y="0.876953" />
+                            <point x="0.0351563" y="0.871094" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\f2.png">
+                        <collision-poly>
+                            <point x="0.0390625" y="0.119141" />
+                            <point x="0.966797" y="0.126953" />
+                            <point x="0.976563" y="0.876953" />
+                            <point x="0.0351563" y="0.871094" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Particles" sid="1635473041690754">
+            <plugin id="Particles" />
+            <texture />
+        </object-type>
+        <object-type name="Scorpion" sid="2112669669618818">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="3655045096655913">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="3495568311118815">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5386404130009824" speed="10">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\s1.PNG">
+                        <collision-poly>
+                            <point x="0.0625" y="0.125" />
+                            <point x="0.5" y="0.125" />
+                            <point x="1" y="0" />
+                            <point x="0.84375" y="0.5" />
+                            <point x="0.84375" y="0.6875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.09375" y="0.8125" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\s2.PNG">
+                        <collision-poly>
+                            <point x="0.0625" y="0.125" />
+                            <point x="0.5" y="0.125" />
+                            <point x="1" y="0" />
+                            <point x="0.84375" y="0.5" />
+                            <point x="0.84375" y="0.6875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.09375" y="0.8125" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families>
+        <family name="Colourable" plugin-id="Sprite" sid="3194471033942306">
+            <members>
+                <member>Missile</member>
+                <member>Mushroom</member>
+                <member>Player</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="Overrides colours (for poisoned mushroom)" name="isWhite" sid="1377217721863638" type="boolean" />
+            </instance-variables>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+        </family>
+        <family name="Animals" plugin-id="Sprite" sid="4541818442127682">
+            <members>
+                <member>Flea</member>
+                <member>Scorpion</member>
+                <member>Spider</member>
+            </members>
+        </family>
+    </families>
+    <layout-folder>
+        <layout>Game.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Main Game.xml</event-sheet>
+        <event-sheet>Globals.xml</event-sheet>
+        <event-sheet>Mushrooms.xml</event-sheet>
+        <event-sheet>Player.xml</event-sheet>
+        <event-sheet>Centipede.xml</event-sheet>
+        <event-sheet>TODO.xml</event-sheet>
+        <event-sheet>State.xml</event-sheet>
+        <event-sheet>Spider, Scorpion and Flea.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Keyboard" uid="3" />
+        <global-instance type="Function" uid="5" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

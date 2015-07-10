@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Main Game</name>
+    <events>
+        <include>Globals</include>
+        <include>Mushrooms</include>
+        <include>Player</include>
+        <include>Centipede</include>
+        <include>Spider, Scorpion and Flea</include>
+        <include>State</include>
+    </events>
+</c2eventsheet>

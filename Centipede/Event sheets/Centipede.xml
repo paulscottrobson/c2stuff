@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Centipede</name>
+    <events>
+        <event-group description="" sid="4374112071233998" title="Centipede management" />
+        <comment>Shot a segment of a centipede. First destroy the missile</comment>
+        <event-block sid="2773784483652715">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="779074031560596" type="Segment">
+                    <param id="0" name="Object">Missile</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="743842059360933" type="Missile" />
+            </actions>
+            <sub-events>
+                <comment>Pick one of the segments its hit, and remember which one it linked to (e.g. next one on), create mushroom here then destroy the segment</comment>
+                <variable constant="0" name="newHeadUID" sid="8321622137780304" static="0" type="number">0</variable>
+                <event-block sid="2667594108696969">
+                    <conditions>
+                        <condition id="-16" name="Pick random instance" sid="5908136145720243" type="System">
+                            <param id="0" name="Object">Segment</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9855025176400971" type="System">
+                            <param id="0" name="Variable">newHeadUID</param>
+                            <param id="1" name="Value">Segment.nextUIDinChain</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9075482848442239">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="5298188198443949" type="Segment">
+                                    <param id="0" name="Instance variable">isLeader</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="5141433675481783" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">100</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="7048367467707423" type="Segment">
+                                    <param id="0" name="Object">ScoreTransient</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="6323300271110814" type="ScoreTransient">
+                                    <param id="0" name="Text">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1807209156637418">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6222206091788445" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2328857563899316" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="9879049634888748">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="8543427267851056" type="System" />
+                                <condition id="-2" name="Compare Y" sid="9523664800782888" type="Segment">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Y co-ordinate">TOPMARGIN+(PLAYFIELD-1)*CELLSIZE</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="8296226953840531" type="System">
+                                    <param id="0" name="Object to create">Mushroom</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">round(Segment.X/CELLSIZE)*CELLSIZE</param>
+                                    <param id="3" name="Y">round(Segment.Y/CELLSIZE)*CELLSIZE</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9933164849623261">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="4177894441032753" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="2429066969608525" type="Segment" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Pick the next one in the list, the new head, and set it as the new head.</comment>
+                <event-block sid="8399020045940972">
+                    <conditions>
+                        <condition id="-19" name="Pick all" sid="9059768506590069" type="System">
+                            <param id="0" name="Object">Segment</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4382906674426104">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="9373688511616791" type="Segment">
+                                    <param id="0" name="Unique ID">newHeadUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="9738042967966134" type="Segment">
+                                    <param id="0" name="Instance variable">isLeader</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="474667484569712" type="Segment">
+                                    <param id="0" name="Animation">&quot;Head&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="2188598141090426" title="Create a centipede of a given size" />
+        <event-block sid="1945543426228794">
+            <conditions>
+                <condition id="0" name="On function" sid="7635456804870916" type="Function">
+                    <param id="0" name="Name">&quot;CreateCentipede&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="uid" sid="8363331997574466" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="1076874369070811" static="0" type="number">0</variable>
+                <variable constant="0" name="x" sid="6842909009159094" static="0" type="number">0</variable>
+                <event-block sid="9841319313374743">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="8953441127163899" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1216410347133167" type="System">
+                            <param id="0" name="Variable">x</param>
+                            <param id="1" name="Value">floor(random(1,HCELLS-1))*CELLSIZE</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2642968099320415" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">TOPMARGIN+CELLSIZE</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9469756722926703">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="3512153776089001" type="System">
+                            <param id="0" name="First value">Function.Param(0)</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="77250949377306">
+                            <conditions>
+                                <condition id="-10" name="For" sid="6677817432370729" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">Function.Param(0)-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="776300487149395" type="System">
+                                    <param id="0" name="Object to create">Segment</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">x</param>
+                                    <param id="3" name="Y">y</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4280094363432803" type="Segment">
+                                    <param id="0" name="Instance variable">nextUIDinChain</param>
+                                    <param id="1" name="Value">uid</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="5940700178599457" type="Segment">
+                                    <param id="0" name="Instance variable">isLeader</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2981789050484897" type="System">
+                                    <param id="0" name="Variable">uid</param>
+                                    <param id="1" name="Value">Segment.UID</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="7790090934247803" type="Segment">
+                                    <param id="0" name="Animation">&quot;Body&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="5053880341717843">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="306126534577456" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6945326282285464" type="System">
+                            <param id="0" name="Object to create">Segment</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">x</param>
+                            <param id="3" name="Y">y</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3168198080391808" type="Segment">
+                            <param id="0" name="Instance variable">nextUIDinChain</param>
+                            <param id="1" name="Value">uid</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9883597941568726" type="Segment">
+                            <param id="0" name="Animation">&quot;Head&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3079013897536398" type="Segment">
+                            <param id="0" name="Instance variable">xDirection</param>
+                            <param id="1" name="Value">choose(-1,1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If no target set, make the target the current square.</comment>
+        <event-block sid="2366254492291928">
+            <conditions>
+                <condition id="-18" name="On created" sid="1458252612859936" type="Segment" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1382932251091675" type="Segment">
+                    <param id="0" name="Instance variable">xTarget</param>
+                    <param id="1" name="Value">Segment.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="8132212127499519" type="Segment">
+                    <param id="0" name="Instance variable">yTarget</param>
+                    <param id="1" name="Value">Segment.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="3955713660041643" title="Segment Moving Code" />
+        <comment>Segment Moving Code. We do all the leader segments first so the new &apos;orders&apos; are transmitted before any of the follower segments move</comment>
+        <event-block sid="8156844315222886">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="326240752623304" type="System">
+                    <param id="0" name="Variable">isPlaying</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-24" name="For Each (ordered)" sid="1125066883246472" type="System">
+                    <param id="0" name="Object">Segment</param>
+                    <param id="1" name="Expression">Segment.isLeader ? 1 : 2</param>
+                    <param id="2" name="Order">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable comment="Zero means horizontal in current direction. Non zero means drop then horizontal in the value given" constant="0" name="isDownMove" sid="3801924950596067" static="0" type="number">0</variable>
+                <variable comment="Pixel distance can move" constant="0" name="pixDistance" sid="1951693379637355" static="0" type="number">0</variable>
+                <comment>Do we need a new direction ? If we do, are we allowed to figure it out (e.g. a leader, or centipede head)</comment>
+                <event-block sid="802311413989075">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="4662106177513" type="Segment">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="X co-ordinate">Segment.xTarget</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="9734382910216148" type="Segment">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Y co-ordinate">Segment.yTarget</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="8956489763649031" type="Segment">
+                            <param id="0" name="Instance variable">isLeader</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3188929693785693" type="System">
+                            <param id="0" name="Variable">isDownMove</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="2337861933224144" type="Function">
+                            <param id="0" name="Name">&quot;PassNewTargetDown&quot;</param>
+                            <param id="1" name="Parameter {n}">Segment.nextUIDinChain{###}Segment.X{###}Segment.Y</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="6482708477706162" type="Segment" />
+                    </actions>
+                    <sub-events>
+                        <comment>Moving horizontally. Check hit mushroom. Check hit edges. Check poisoned.</comment>
+                        <event-block any="1" sid="4364010313929249">
+                            <conditions>
+                                <condition id="9" name="Is overlapping at offset" sid="5836873955524896" type="Segment">
+                                    <param id="0" name="Object">Mushroom</param>
+                                    <param id="1" name="Offset X">0</param>
+                                    <param id="2" name="Offset Y">Segment.xDirection*4</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="7256000928319507" type="Segment">
+                                    <param id="0" name="Instance variable">isPoisoned</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="1388744197333108" type="System">
+                                    <param id="0" name="Variable">isDownMove</param>
+                                    <param id="1" name="Value">-Segment.xDirection</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9177028314982191">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="9166268085211778" type="Segment">
+                                    <param id="0" name="Object">Segment</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="7738040370060466" type="System">
+                                    <param id="0" name="Variable">isDownMove</param>
+                                    <param id="1" name="Value">choose(-1,1)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="982701734613631">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="7175160336206879" type="Segment">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="X co-ordinate">(HCELLS-1)*CELLSIZE</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="8585898182264057" type="Segment">
+                                    <param id="0" name="Instance variable">xDirection</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="6435234374442836" type="System">
+                                    <param id="0" name="Variable">isDownMove</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2360057668052302">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="9760046188105461" type="Segment">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="X co-ordinate">CELLSIZE</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="1364260564197087" type="Segment">
+                                    <param id="0" name="Instance variable">xDirection</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="9150860744248195" type="System">
+                                    <param id="0" name="Variable">isDownMove</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Moving left and right</comment>
+                        <event-block sid="5162352423994203">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="7507097896775781" type="System">
+                                    <param id="0" name="Variable">isDownMove</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="4329415253366311" type="Segment">
+                                    <param id="0" name="Instance variable">xTarget</param>
+                                    <param id="1" name="Value">CELLSIZE*Segment.xDirection</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Moving down</comment>
+                        <event-block sid="8058867984793349">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7280968669043524" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="5444275808669652" type="Segment">
+                                    <param id="0" name="Instance variable">yTarget</param>
+                                    <param id="1" name="Value">CELLSIZE*Segment.yDirection</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4674020307005057" type="Segment">
+                                    <param id="0" name="Instance variable">xDirection</param>
+                                    <param id="1" name="Value">isDownMove</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>At the bottom, must go up</comment>
+                                <event-block sid="3839007679597765">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="8697401980226284" type="Segment">
+                                            <param id="0" name="Instance variable">yTarget</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">TOPMARGIN+(PLAYERAREA+PLAYFIELD)*CELLSIZE</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="7560069919468897" type="Segment">
+                                            <param id="0" name="Instance variable">yDirection</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="833535936422022" type="Segment">
+                                            <param id="0" name="Instance variable">isPoisoned</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>At top of player area must go down</comment>
+                                <event-block sid="7678460499396271">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="7995163242973399" type="Segment">
+                                            <param id="0" name="Instance variable">yTarget</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">TOPMARGIN+(PLAYFIELD)*CELLSIZE</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="7935249499621653" type="Segment">
+                                            <param id="0" name="Instance variable">yDirection</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>No, so move towards current target</comment>
+                <event-block sid="1714510939234325">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1732899427491708" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3168856415509666" type="System">
+                            <param id="0" name="Variable">pixDistance</param>
+                            <param id="1" name="Value">dt * Segment.velocity</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="325119364298677" type="Segment">
+                            <param id="0" name="X">min(abs(Segment.X-Segment.xTarget),pixDistance)*((Segment.X &lt; Segment.xTarget) ? 1 : -1)+Segment.X</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="8032380077850442" type="Segment">
+                            <param id="0" name="Y">min(abs(Segment.Y-Segment.yTarget),pixDistance)*((Segment.Y &lt; Segment.yTarget) ? 1 : -1)+Segment.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="923421300243948">
+            <conditions>
+                <condition id="-22" name="Else" sid="6397786672683437" type="System" />
+            </conditions>
+            <actions />
+        </event-block>
+        <comment>This function passes the new target position down the chain recursively</comment>
+        <event-block sid="6459086499399471">
+            <conditions>
+                <condition id="0" name="On function" sid="3405063977533703" type="Function">
+                    <param id="0" name="Name">&quot;PassNewTargetDown&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9746974444388001">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="3596959214723996" type="Segment">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="6626065181678052" type="Segment">
+                            <param id="0" name="Instance variable">xTarget</param>
+                            <param id="1" name="Value">Function.Param(1)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9641366969204675" type="Segment">
+                            <param id="0" name="Instance variable">yTarget</param>
+                            <param id="1" name="Value">Function.Param(2)</param>
+                        </action>
+                        <action id="0" name="Call function" sid="7395279972881872" type="Function">
+                            <param id="0" name="Name">&quot;PassNewTargetDown&quot;</param>
+                            <param id="1" name="Parameter {n}">Segment.nextUIDinChain{###}Segment.X{###}Segment.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

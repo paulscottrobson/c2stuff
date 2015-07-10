@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>State</name>
+    <events>
+        <comment>Current Game State</comment>
+        <variable comment="Game State" constant="0" name="state" sid="1100030279975302" static="0" type="number">0</variable>
+        <comment>Game states</comment>
+        <variable comment="Create a new level" constant="1" name="STATE_NEWLEVEL" sid="112901376701243" static="0" type="number">1</variable>
+        <variable comment="Game is in play" constant="1" name="STATE_PLAY" sid="8253796642208267" static="0" type="number">2</variable>
+        <variable comment="Life lost and scoring mushrooms" constant="1" name="STATE_LIFELOST" sid="4928454921794473" static="0" type="number">3</variable>
+        <variable comment="Game is completed" constant="1" name="STATE_GAMEOVER" sid="6252016593313179" static="0" type="number">4</variable>
+        <event-group description="" sid="587382766469005" title="Initialisation and Tick" />
+        <event-block sid="6304000467246864">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6103121248593506" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2326058903097456" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_NEWLEVEL</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3095114140260128">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7031566285864558" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8706331584591539" type="System">
+                    <param id="0" name="Variable">isPlaying</param>
+                    <param id="1" name="Value">(state = STATE_PLAY)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="In this state to start a new level" sid="3670561232569367" title="New Level State" />
+        <comment>Bump level, create centipede(s) and set state to play</comment>
+        <event-block sid="2407466830677375">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5269604526905567" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_NEWLEVEL</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="8659972048250797" type="Function">
+                    <param id="0" name="Name">&quot;CreateCentipede&quot;</param>
+                    <param id="1" name="Parameter {n}">8</param>
+                </action>
+                <action id="-9" name="Set value" sid="4948625801002501" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_PLAY</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Recolour all objects</comment>
+                <event-block sid="5828185723458503">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="4836484579959233" type="System">
+                            <param id="0" name="Object">Colourable</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="1816466113292805" type="Function">
+                            <param id="0" name="Name">&quot;ColourObject&quot;</param>
+                            <param id="1" name="Parameter {n}">Colourable.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="Playing main game" sid="9773749229613197" title="Play State" />
+        <comment>Hit a segment</comment>
+        <event-block sid="9105625256140531">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3085903423965381" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="1394396437001554">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="2633385366433395" type="Player">
+                            <param id="0" name="Object">Segment</param>
+                        </condition>
+                        <condition id="0" name="On collision with another object" sid="1486016378717027" type="Player">
+                            <param id="0" name="Object">Animals</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9679740898046562" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_LIFELOST</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>If all destroyed, go to new level.</comment>
+        <event-block sid="6822886692871845">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5123870843734049" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2424517934105497">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="523807639241663" type="System">
+                            <param id="0" name="First value">Segment.Count</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6793753440148679" type="Animals" />
+                        <action id="-10" name="Add to" sid="4570970436910348" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="780668264278976" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_NEWLEVEL</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="Lost a life, score for mushrooms then restart level or end" sid="3100674138058094" title="Life Lost State" />
+        <comment>Reduce lives by one and remove all segments</comment>
+        <event-block sid="6062205535187968">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9204845683140423" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_LIFELOST</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="61312982583209" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="3127062117092281" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Call function" sid="725194260521904" type="Function">
+                    <param id="0" name="Name">&quot;RedrawLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-9" name="Destroy" sid="691335182213699" type="Animals" />
+                <action id="0" name="Spawn another object" sid="7959894346529058" type="Player">
+                    <param id="0" name="Object">Particles</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2171579552631957" type="Player">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1434414456007391">
+                    <conditions>
+                        <condition id="-19" name="Pick all" sid="5848083763057331" type="System">
+                            <param id="0" name="Object">Segment</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4914021378383853" type="Segment" />
+                    </actions>
+                </event-block>
+                <comment>For each mushroom spawn a &quot;ScoreMushroom&quot; with a timer to fire after a given time - does the &quot;scanning the mushrooms&quot; bit.</comment>
+                <variable constant="0" name="fireTime" sid="5873334596907422" static="0" type="number">0</variable>
+                <event-block sid="5939520836410084">
+                    <conditions>
+                        <condition id="-24" name="For Each (ordered)" sid="6586780062752757" type="System">
+                            <param id="0" name="Object">Mushroom</param>
+                            <param id="1" name="Expression">Mushroom.X+Mushroom.Y*9999</param>
+                            <param id="2" name="Order">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="7453282406364048" type="Mushroom">
+                            <param id="0" name="Object">ScoreMushroom</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="3278273080258053" type="System">
+                            <param id="0" name="Variable">fireTime</param>
+                            <param id="1" name="Value">0.1</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="722774423957296" type="ScoreMushroom">
+                            <param id="0" name="Duration">fireTime</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;start&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>ScoreMushroom starts, so make it visible and start its fade to destroy, and score 2</comment>
+        <event-block sid="2803854214015485">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4229891731433304" type="ScoreMushroom">
+                    <param id="0" name="Tag">&quot;start&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="5950850583969513" type="ScoreMushroom">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="7808218981222655" type="ScoreMushroom" />
+                <action id="0" name="Call function" sid="5826593381767593" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If there are no score mushrooms left, switch state to either new level or game over.</comment>
+        <event-block sid="3663774561040214">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="4952571097619199" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_LIFELOST</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3396194617748467" type="System">
+                    <param id="0" name="First value">ScoreMushroom.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="9746764436226887" type="Player">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6045764173302349">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4174073095487431" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="7595542592223907" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_NEWLEVEL</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9003353917628401">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="3030159683601515" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5074450056190119" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_GAMEOVER</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="3130911588759302" title="Game Over State" />
+        <comment>On entry, start fade in of game over</comment>
+        <event-block sid="4348406056604208">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5250762358141926" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_GAMEOVER</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="1480753138112566" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Fade" id="1" name="Start fade" sid="6224573571964361" type="GameOverText" />
+            </actions>
+        </event-block>
+        <comment>Space restarts game</comment>
+        <event-block sid="5009519820351795">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="5315804426065732" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="2742615838923765" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_GAMEOVER</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="8713680938004761" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
