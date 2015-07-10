@@ -4,8 +4,7 @@
     <name>TODO</name>
     <events>
         <event-group description="" sid="4454972161175255" title="ToDo List" />
-        <comment>Different centipedes etc. on different levels</comment>
-        <comment>Alternate Graphics</comment>
+        <comment>Title Screen a la Atari</comment>
         <comment>Sound Effects</comment>
     </events>
 </c2eventsheet>

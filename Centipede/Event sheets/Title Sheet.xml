@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Title Sheet</name>
+    <events>
+        <event-group description="" sid="6275554754515622" title="Title Screen" />
+        <event-block sid="6263693857908857">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="1096945431407551" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="c" sid="203150035912886" static="0" type="number">0</variable>
+                <comment>Create the ten circles with the word Centipede in it</comment>
+                <event-block sid="4263089475243272">
+                    <conditions>
+                        <condition id="-10" name="For" sid="194555110510582" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="7826884809270968" type="System">
+                            <param id="0" name="Object to create">CircleLetter</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">loopindex*CircleLetter.Height</param>
+                        </action>
+                        <action behavior="Sine" id="5" name="Set cycle position" sid="5727895283573766" type="CircleLetter">
+                            <param id="0" name="Cycle position">loopindex/4</param>
+                        </action>
+                        <action id="0" name="Set text" sid="7012964802547383" type="CircleCharacter">
+                            <param id="0" name="Text">mid(&quot; Centipede&quot;,loopindex-1,1)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Head graphic</comment>
+                        <event-block sid="9973708864671642">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8072403229255461" type="System">
+                                    <param id="0" name="First value">loopindex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7440522780506046" type="CircleLetter">
+                                    <param id="0" name="Animation">&quot;Head&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Pick colours</comment>
+                        <event-block sid="828218914658024">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="3419576023992376" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="7110253035860498" type="System">
+                                    <param id="0" name="Variable">c</param>
+                                    <param id="1" name="Value">(((loopindex-1)*17) % 6) + 1</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="4067138739498467" type="CircleLetter">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">getbit(c,0) ? 100 : 0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="3111731477180589" type="CircleLetter">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">getbit(c,1) ? 100 : 0</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="7189797829461109" type="CircleLetter">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">getbit(c,2) ? 100 : 0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Create lines that sort of make up an Atari symbol, very roughly.</comment>
+                        <event-block sid="3988187982878364">
+                            <conditions>
+                                <condition id="-10" name="For" sid="8159694351980046" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">floor(LayoutHeight*0.56)</param>
+                                    <param id="2" name="End index">floor(LayoutHeight*0.77)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <variable constant="0" name="s" sid="340726292775197" static="0" type="number">0</variable>
+                                <variable constant="0" name="w" sid="2339937305399634" static="0" type="number">12</variable>
+                                <event-block sid="7140594166520737">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="2412575730343742" type="System">
+                                            <param id="0" name="First value">loopindex % ColourBar.Height</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="9271306796499477" type="System">
+                                            <param id="0" name="Object to create">ColourBar</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">LayoutWidth/2</param>
+                                            <param id="3" name="Y">loopindex</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="3502049382290084" type="System">
+                                            <param id="0" name="Object to create">ColourBar</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">LayoutWidth/2+28</param>
+                                            <param id="3" name="Y">loopindex</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="52891723711784">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="3299449978763533" type="System">
+                                                    <param id="0" name="First value">loopindex </param>
+                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="2" name="Second value">LayoutHeight*0.67</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="3551402659674208" type="System">
+                                                    <param id="0" name="Variable">s</param>
+                                                    <param id="1" name="Value">1-(LayoutHeight*0.77-loopindex)/(LayoutHeight*0.1)</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="1859942805049234" type="System">
+                                                    <param id="0" name="Variable">s</param>
+                                                    <param id="1" name="Value">((s+1) ^ 3) - 1</param>
+                                                </action>
+                                                <action id="-1" name="Set X" sid="3182837513469536" type="ColourBar">
+                                                    <param id="0" name="X">s*10+ColourBar.X</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="4623979984754974" type="System">
+                                                    <param id="0" name="Variable">w</param>
+                                                    <param id="1" name="Value">s*8+12</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="2058305849311535">
+                                            <conditions>
+                                                <condition id="-1" name="Every tick" sid="8651410295226482" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-5" name="Set width" sid="6431548553452441" type="ColourBar">
+                                                    <param id="0" name="Width">w</param>
+                                                </action>
+                                                <action id="-3" name="Create object" sid="9321775341987417" type="System">
+                                                    <param id="0" name="Object to create">ColourBar</param>
+                                                    <param id="1" name="Layer">0</param>
+                                                    <param id="2" name="X">LayoutWidth-ColourBar.X</param>
+                                                    <param id="3" name="Y">loopindex</param>
+                                                </action>
+                                                <action id="-5" name="Set width" sid="1437328847341934" type="ColourBar">
+                                                    <param id="0" name="Width">w</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Create a random stack of mushrooms not overlapping the middle</comment>
+                <event-block sid="5209173272974477">
+                    <conditions>
+                        <condition id="-10" name="For" sid="9107755548602302" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">30</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="7026453660282045" type="System">
+                            <param id="0" name="Object to create">TitleMushroom</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">floor(random(1,LayoutWidth/32))*32</param>
+                            <param id="3" name="Y">floor(random(1,16))*32</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7361917581619999">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="40942462908706" type="System">
+                                    <param id="0" name="First value">abs(TitleMushroom.X-LayoutWidth/2)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">LayoutWidth/5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="1528335387877915" type="TitleMushroom" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="864211018714092">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="8256439291357648" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Fix the letter to the circle. We don&apos;t pin because the centreing isn&apos;t quite right</comment>
+                <event-block sid="8273666233101704">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="4467205782899383" type="System">
+                            <param id="0" name="Object">CircleLetter</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="2275665722089009" type="CircleCharacter">
+                            <param id="0" name="X">CircleLetter.X+4</param>
+                            <param id="1" name="Y">CircleLetter.Y</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Animate the colour bat</comment>
+                        <variable constant="0" name="c" sid="2742939595015832" static="0" type="number">0</variable>
+                        <event-block sid="6229343703078317">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="2975852984065787" type="System">
+                                    <param id="0" name="Object">ColourBar</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="670333511395211" type="System">
+                                    <param id="0" name="Variable">c</param>
+                                    <param id="1" name="Value">4095-((time*555+ColourBar.Y) % 4096)</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="6425517051068396" type="ColourBar">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">(c % 16)*6</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="3346263411644781" type="ColourBar">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">(floor(c/16) % 16)*6</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="7992357754419211" type="ColourBar">
+                                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">(floor(c/256) % 16)*6</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Pressed a key</comment>
+        <event-block sid="4967270971490248">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="1923181087137371" type="Keyboard" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="7472586638905596" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

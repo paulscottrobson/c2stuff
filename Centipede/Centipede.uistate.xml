@@ -11,14 +11,16 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">Game</layout>
+        <layout order="10">Title</layout>
         <event-sheet order="1">Main Game</event-sheet>
         <event-sheet order="2">Globals</event-sheet>
         <event-sheet order="3">Mushrooms</event-sheet>
         <event-sheet order="4">Player</event-sheet>
         <event-sheet order="5">Centipede</event-sheet>
-        <event-sheet active="1" order="6">TODO</event-sheet>
+        <event-sheet order="6">TODO</event-sheet>
         <event-sheet order="7">State</event-sheet>
         <event-sheet order="8">Spider, Scorpion and Flea</event-sheet>
+        <event-sheet active="1" order="9">Title Sheet</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -32,7 +34,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
-        <folder expanded="1" path="object-folder/New folder/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -48,5 +49,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Spider/" />
         <folder expanded="1" path="animation-folder/Flea/" />
         <folder expanded="1" path="animation-folder/Scorpion/" />
+        <folder expanded="1" path="animation-folder/CircleLetter/" />
+        <folder expanded="1" path="animation-folder/TitleMushroom/" />
+        <folder expanded="1" path="animation-folder/ColourBar/" />
     </folders-expanded>
 </c2uistate>

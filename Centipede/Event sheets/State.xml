@@ -45,8 +45,8 @@
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="8659972048250797" type="Function">
-                    <param id="0" name="Name">&quot;CreateCentipede&quot;</param>
-                    <param id="1" name="Parameter {n}">8</param>
+                    <param id="0" name="Name">&quot;CreateLevel&quot;</param>
+                    <param id="1" name="Parameter {n}">(level-1) % 19 + 1</param>
                 </action>
                 <action id="-9" name="Set value" sid="4948625801002501" type="System">
                     <param id="0" name="Variable">state</param>

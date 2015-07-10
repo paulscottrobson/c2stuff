@@ -38,6 +38,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>Title</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -55,7 +56,6 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder>
-        <object-folder name="New folder" />
         <object-type name="Mushroom" sid="8322684665137737">
             <plugin id="Sprite" />
             <instance-variables>
@@ -351,6 +351,80 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="CircleLetter" sid="312662938348032">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Sine" sid="9164243107058899">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <container>
+                <type>CircleLetter</type>
+                <type>CircleCharacter</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6197312046744089" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Head" pingpong="0" repeatcount="1" repeatto="0" sid="7595253815675949" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="CircleCharacter" sid="7583540286331678">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <container>
+                <type>CircleLetter</type>
+                <type>CircleCharacter</type>
+            </container>
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="TitleMushroom" sid="3734087725713067">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5674348411180841" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Paul\Desktop\m1.PNG">
+                        <collision-poly>
+                            <point x="0.0952381" y="0.142857" />
+                            <point x="0.5" y="0" />
+                            <point x="0.904762" y="0.142857" />
+                            <point x="1" y="0.5" />
+                            <point x="0.809524" y="0.714286" />
+                            <point x="0.5" y="1" />
+                            <point x="0.190476" y="0.714286" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Label" sid="5530763968793847">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Sprite Font Creator\pointfree.png" />
+        </object-type>
+        <object-type name="ColourBar" sid="6129615972542076">
+            <plugin id="Sprite" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8551127917566363" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Colourable" plugin-id="Sprite" sid="3194471033942306">
@@ -378,6 +452,7 @@
     </families>
     <layout-folder>
         <layout>Game.xml</layout>
+        <layout>Title.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Main Game.xml</event-sheet>
@@ -388,6 +463,7 @@
         <event-sheet>TODO.xml</event-sheet>
         <event-sheet>State.xml</event-sheet>
         <event-sheet>Spider, Scorpion and Flea.xml</event-sheet>
+        <event-sheet>Title Sheet.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="3" />

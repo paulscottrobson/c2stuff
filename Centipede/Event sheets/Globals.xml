@@ -24,6 +24,8 @@
         <variable comment="Number of lives remaining" constant="0" name="lives" sid="2249946692651031" static="0" type="number">0</variable>
         <comment>Current Game level</comment>
         <variable comment="Level in Game" constant="0" name="level" sid="684298525405413" static="0" type="number">1</variable>
+        <comment>If non-zero Centipede is fast</comment>
+        <variable comment="Non-zero if fast centipede" constant="0" name="fastSpeed" sid="9272243541632561" static="0" type="number">0</variable>
         <event-group description="" sid="5874541042859389" title="Initialisation" />
         <event-block sid="845966213007287">
             <conditions>
