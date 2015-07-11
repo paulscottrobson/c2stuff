@@ -117,7 +117,14 @@
                     <param id="0" name="Object">Missile</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="0" name="Play" sid="9566542914397445" type="Audio">
+                    <param id="0" name="Audio file">Centipede_Bonus</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
             <sub-events>
                 <variable comment="Distance from spider 0-2" constant="0" name="spiderdistance" sid="1155617342415849" static="0" type="number">0</variable>
                 <comment>Score depends on how far away you are</comment>
@@ -156,6 +163,30 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <comment>Add/Remove spider effects</comment>
+        <event-block sid="8307061493901892">
+            <conditions>
+                <condition id="-18" name="On created" sid="7936707587832741" type="Spider" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="5253256831608317" type="Audio">
+                    <param id="0" name="Audio file">Centipede_SpiderLoop</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;spider&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7615810665609157">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="6409613333596057" type="Spider" />
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="5503845774249763" type="Audio">
+                    <param id="0" name="Tag">&quot;spider&quot;</param>
+                </action>
+            </actions>
         </event-block>
         <event-group description="" sid="4659535815649354" title="Flea Code" />
         <comment>Destory prototype and fire first immediately</comment>
@@ -241,6 +272,12 @@
                         <action behavior="Bullet" id="3" name="Set angle of motion" sid="2209663332140854" type="Flea">
                             <param id="0" name="Angle">90</param>
                         </action>
+                        <action id="0" name="Play" sid="3179968536973526" type="Audio">
+                            <param id="0" name="Audio file">Centipede_Flea</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -308,6 +345,12 @@
                     <param id="2" name="Image point">0</param>
                 </action>
                 <action id="-9" name="Destroy" sid="1543564989869263" type="Flea" />
+                <action id="0" name="Play" sid="4062832874916077" type="Audio">
+                    <param id="0" name="Audio file">Centipede_Bonus</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="9925272121734686" title="Scorpion Code" />
@@ -445,6 +488,12 @@
                     <param id="0" name="Object">Particles</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Play" sid="8741677066395297" type="Audio">
+                    <param id="0" name="Audio file">Centipede_Bonus</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
             <sub-events>

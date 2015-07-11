@@ -16,11 +16,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="2">Globals</event-sheet>
         <event-sheet order="3">Mushrooms</event-sheet>
         <event-sheet order="4">Player</event-sheet>
-        <event-sheet order="5">Centipede</event-sheet>
+        <event-sheet active="1" order="5">Centipede</event-sheet>
         <event-sheet order="6">TODO</event-sheet>
         <event-sheet order="7">State</event-sheet>
         <event-sheet order="8">Spider, Scorpion and Flea</event-sheet>
-        <event-sheet active="1" order="9">Title Sheet</event-sheet>
+        <event-sheet order="9">Title Sheet</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />

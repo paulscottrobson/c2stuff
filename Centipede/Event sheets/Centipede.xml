@@ -13,6 +13,12 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="743842059360933" type="Missile" />
+                <action id="0" name="Play" sid="2834216267366572" type="Audio">
+                    <param id="0" name="Audio file">Centipede_Kill</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
             <sub-events>
                 <comment>Pick one of the segments its hit, and remember which one it linked to (e.g. next one on), create mushroom here then destroy the segment</comment>
@@ -189,7 +195,7 @@
                                 </action>
                                 <action id="-10" name="Set value" sid="45873340520385" type="Segment">
                                     <param id="0" name="Instance variable">velocity</param>
-                                    <param id="1" name="Value">(fastSpeed &lt;&gt; 0) ? 500:300</param>
+                                    <param id="1" name="Value">(fastSpeed &lt;&gt; 0) ? 400:300</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -220,7 +226,7 @@
                         </action>
                         <action id="-10" name="Set value" sid="7986130197554392" type="Segment">
                             <param id="0" name="Instance variable">velocity</param>
-                            <param id="1" name="Value">(fastSpeed &lt;&gt; 0) ? 500:300</param>
+                            <param id="1" name="Value">(fastSpeed &lt;&gt; 0) ? 400:300</param>
                         </action>
                     </actions>
                 </event-block>

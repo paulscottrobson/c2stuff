@@ -10,6 +10,7 @@
     <unique-id>puoshb0ffol7</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
@@ -425,6 +426,9 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="Audio" sid="4819462629047413">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Colourable" plugin-id="Sprite" sid="3194471033942306">
@@ -468,8 +472,37 @@
     <global-instances>
         <global-instance type="Keyboard" uid="3" />
         <global-instance type="Function" uid="5" />
+        <global-instance type="Audio" uid="23">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
+    <sounds-folder>
+        <file name="Centipede_Beat.m4a" />
+        <file name="Centipede_Beat.ogg" />
+        <file name="Centipede_Bonus.m4a" />
+        <file name="Centipede_Bonus.ogg" />
+        <file name="Centipede_Death.m4a" />
+        <file name="Centipede_Death.ogg" />
+        <file name="Centipede_Fire1.m4a" />
+        <file name="Centipede_Fire1.ogg" />
+        <file name="Centipede_Kill.m4a" />
+        <file name="Centipede_Kill.ogg" />
+        <file name="Centipede_SpiderLoop.m4a" />
+        <file name="Centipede_SpiderLoop.ogg" />
+        <file name="Centipede_Flea.m4a" />
+        <file name="Centipede_Flea.ogg" />
+    </sounds-folder>
     <music-folder />
     <files-folder>
         <file-folder name="Icons">

@@ -136,7 +136,7 @@
                                                 </action>
                                                 <action id="-9" name="Set value" sid="4623979984754974" type="System">
                                                     <param id="0" name="Variable">w</param>
-                                                    <param id="1" name="Value">s*8+12</param>
+                                                    <param id="1" name="Value">s*11+12</param>
                                                 </action>
                                             </actions>
                                         </event-block>
