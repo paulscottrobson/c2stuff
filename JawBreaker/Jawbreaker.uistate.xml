@@ -10,11 +10,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">Game</layout>
+        <layout active="1" order="0">Game</layout>
         <layout order="8">Title</layout>
         <event-sheet order="1">Main</event-sheet>
         <event-sheet order="2">Globals and Constants</event-sheet>
-        <event-sheet active="1" order="3">Setup</event-sheet>
+        <event-sheet order="3">Setup</event-sheet>
         <event-sheet order="4">Play State</event-sheet>
         <event-sheet order="5">Moveables</event-sheet>
         <event-sheet order="6">Other States</event-sheet>
