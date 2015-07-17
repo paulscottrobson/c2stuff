@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Play State</name>
+    <events>
+        <comment>On initialisation, reset the player base size to fit</comment>
+        <event-block sid="9892827628319366">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6148193599753369" type="System" />
+            </conditions>
+            <actions>
+                <action id="-7" name="Set size" sid="7328765696007246" type="PlayerBase">
+                    <param id="0" name="Width">ROWSPACE</param>
+                    <param id="1" name="Height">ROWSPACE</param>
+                </action>
+                <action id="0" name="Call function" sid="5281493549844813" type="Function">
+                    <param id="0" name="Name">&quot;RestartGame&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Turn 8-Direction off/on depending on state</comment>
+        <event-block sid="2780902058363694">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9687900520161066" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="492721454855082" type="PlayerBase">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6521033951701182">
+            <conditions>
+                <condition id="-22" name="Else" sid="208185004051782" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="8716942532879039" type="PlayerBase">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action behavior="8Direction" id="0" name="Stop" sid="9774411478221906" type="PlayerBase" />
+            </actions>
+        </event-block>
+        <comment>Handle in-play state stuff</comment>
+        <event-block sid="9382569827052277">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8495294150191458" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Clamp position into the game area only</comment>
+                <event-block sid="6368340580423155">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3189971929412317" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="3554233948500919" type="PlayerBase">
+                            <param id="0" name="X">clamp(PlayerBase.X,LEFTCOL,RIGHTCOL)</param>
+                            <param id="1" name="Y">clamp(PlayerBase.Y,YMIN,YMAX)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>If player not in either the far left or far right columns, where vertical movement is permitted</comment>
+                        <event-block sid="1240482451444515">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="1043343195564996" type="PlayerBase">
+                                    <param id="0" name="Comparison">1</param>
+                                    <param id="1" name="X co-ordinate">LEFTCOL</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="5112050553932185" type="PlayerBase">
+                                    <param id="0" name="Comparison">1</param>
+                                    <param id="1" name="X co-ordinate">RIGHTCOL</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Can go vertically if not in far left/right providing overlapping a gateway</comment>
+                                <event-block sid="6163974205163252">
+                                    <conditions>
+                                        <condition id="1" inverted="1" name="Is overlapping another object" sid="1577768271966525" type="PlayerBase">
+                                            <param id="0" name="Object">Gateway</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-2" name="Set Y" sid="798208240823742" type="PlayerBase">
+                                            <param id="0" name="Y">round((PlayerBase.Y-YMIN)/ROWHEIGHT)*ROWHEIGHT+YMIN</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="6683382419127737" type="PlayerBase">
+                                            <param id="0" name="Angle">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Eaten a sweet</comment>
+                <event-block sid="5222812693645526">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="4692868357085058" type="PlayerBase">
+                            <param id="0" name="Object">Sweet</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8074673265691293">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="3172487972222108" type="System">
+                                    <param id="0" name="First value">Sweet.AnimationFrame</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="3704735578636095" type="Sweet">
+                                    <param id="0" name="Object">SweetEatWhite</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4453081553910896">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7896995765226645" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="4337641290853686" type="Sweet">
+                                    <param id="0" name="Object">SweetEat</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7797005713529912">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="1417741975376894" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="9372153478790253" type="Sweet" />
+                                <action id="0" name="Call function" sid="9745456787246379" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Handle new level as eaten all the sweets</comment>
+                        <event-block sid="4975559189738201">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="9460904097728632" type="System">
+                                    <param id="0" name="First value">Sweet.Count</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="3185124831675562" type="System">
+                                    <param id="0" name="Variable">state</param>
+                                    <param id="1" name="Value">STATE_NEWLEVEL</param>
+                                </action>
+                                <action id="0" name="Call function" sid="160734248065611" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">500</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="2553325803865471" type="Monsters" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Make vitamin pill appear</comment>
+                <event-block sid="9906120265190568">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="7143883618579004" type="VitaminPill">
+                            <param id="0" name="Tag">&quot;Appear&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="1303015980966595" type="VitaminPill">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action behavior="Fade" id="0" name="Restart fade" sid="3853464269059244" type="VitaminPill" />
+                    </actions>
+                </event-block>
+                <comment>Eaten a vitamin pill</comment>
+                <event-block sid="8739488808048038">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7357686787464985" type="PlayerBase">
+                            <param id="0" name="Object">VitaminPill</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" sid="2086080566553678" type="VitaminPill" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="4426241199353856" type="VitaminPill">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="6757269767151042" type="VitaminPill">
+                            <param id="0" name="Object">VitraminEat</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8373051235465566" type="System">
+                            <param id="0" name="Variable">inChaseMode</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="4045840229283878" type="VitaminPill">
+                            <param id="0" name="Duration">CHASETIME</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;NormalMonsters&quot;</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="7450224375554315" type="VitaminPill">
+                            <param id="0" name="Duration">CHASETIME-WARNTIME</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;WarnMonsters&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="4317426623702699">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="3008006637117875" type="System">
+                                    <param id="0" name="Object">Monsters</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7138433120468386" type="Monsters">
+                                    <param id="0" name="Animation">&quot;Chaseable&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Entering &apos;warning&apos; phase where the monsters flash to indicate reaching end of chase</comment>
+                <event-block sid="5663429037530955">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="2136045518878876" type="VitaminPill">
+                            <param id="0" name="Tag">&quot;WarnMonsters&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="5885447996343174">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="93386439267907" type="System">
+                                    <param id="0" name="Object">Monsters</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="4918591742544661" type="Monsters">
+                                    <param id="0" name="Animation">&quot;EndChase&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="3" name="Start" sid="1172531153125845" type="Monsters">
+                                    <param id="0" name="From">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Return monsters to normal</comment>
+                <event-block sid="8981215481573817">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="721019749906486" type="VitaminPill">
+                            <param id="0" name="Tag">&quot;NormalMonsters&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Timer" id="0" name="Start timer" sid="8921321271370658" type="VitaminPill">
+                            <param id="0" name="Duration">random(MINVITAMINTIME,MAXVITAMINTIME)</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;Appear&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5104888664769853" type="System">
+                            <param id="0" name="Variable">inChaseMode</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="289970809184415">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="6666885975698576" type="System">
+                                    <param id="0" name="Object">Monsters</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="9025382461454751" type="Monsters">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="2" name="Stop" sid="8894770401620353" type="Monsters" />
+                                <action id="5" name="Set frame" sid="4401072921723257" type="Monsters">
+                                    <param id="0" name="Frame number">Monsters.colour</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Monsters have been eaten, spawn other end, fade back in</comment>
+                                <event-block sid="3959780087255387">
+                                    <conditions>
+                                        <condition id="-10" name="Compare opacity" sid="8543933312421698" type="Monsters">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Opacity">100</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Fade" id="2" name="Set fade-in time" sid="5427862063255129" type="Monsters">
+                                            <param id="0" name="Fade-in time">0.6</param>
+                                        </action>
+                                        <action behavior="Fade" id="4" name="Set fade-out time" sid="2811350557656032" type="Monsters">
+                                            <param id="0" name="Fade-out time">0</param>
+                                        </action>
+                                        <action behavior="Fade" id="0" name="Restart fade" sid="4866644834433732" type="Monsters" />
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="7229765386054471">
+                                            <conditions>
+                                                <condition id="-1" name="Compare X" sid="1596012728061023" type="PlayerBase">
+                                                    <param id="0" name="Comparison">2</param>
+                                                    <param id="1" name="X co-ordinate">LayoutWidth/2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-1" name="Set X" sid="6890526516900406" type="Monsters">
+                                                    <param id="0" name="X">RIGHTCOL-ROWSPACE*2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="6504202753450228">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="8506831758658773" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="-1" name="Set X" sid="9540729827858577" type="Monsters">
+                                                    <param id="0" name="X">LEFTCOL+ROWSPACE*2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Run into a monster</comment>
+                <event-block sid="6409979216647709">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="300588227715992" type="PlayerBase">
+                            <param id="0" name="Object">Monsters</param>
+                        </condition>
+                        <condition id="-10" name="Compare opacity" sid="1518634094539259" type="Monsters">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Opacity">100</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Lost a life</comment>
+                        <event-block sid="9283704991020359">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3990623265160773" type="System">
+                                    <param id="0" name="Variable">inChaseMode</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="3962441788055509" type="System">
+                                    <param id="0" name="Variable">state</param>
+                                    <param id="1" name="Value">STATE_LIFELOST</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Eaten a monster, score 200 and make it invisible (using opacity)</comment>
+                        <event-block sid="5217621915340487">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="6367154998443618" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Fade" id="2" name="Set fade-in time" sid="9702782755515773" type="Monsters">
+                                    <param id="0" name="Fade-in time">0</param>
+                                </action>
+                                <action behavior="Fade" id="4" name="Set fade-out time" sid="5546418462373521" type="Monsters">
+                                    <param id="0" name="Fade-out time">0.6</param>
+                                </action>
+                                <action behavior="Fade" id="0" name="Restart fade" sid="2372360630472962" type="Monsters" />
+                                <action id="0" name="Call function" sid="487645756988343" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Main</name>
+    <events>
+        <include>Other States</include>
+        <include>Globals and Constants</include>
+        <include>Setup</include>
+        <include>Play State</include>
+        <include>Moveables</include>
+    </events>
+</c2eventsheet>

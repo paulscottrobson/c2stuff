@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Moveables</name>
+    <events>
+        <event-block sid="906556512292784">
+            <conditions>
+                <condition id="0" name="On function" sid="7525673351505205" type="Function">
+                    <param id="0" name="Name">&quot;ResetMoveables&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5805165010396578" type="System">
+                    <param id="0" name="Variable">inChaseMode</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="8068090964752402">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="8392864454737201" type="System">
+                            <param id="0" name="Object">Moveables</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="9292212117676477" type="Moveables">
+                            <param id="0" name="X">floor(random(LayoutWidth/3,LayoutWidth*3/4))</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="6218203919934256">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="1122740410896931" type="System">
+                                    <param id="0" name="Object">Monsters</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="2486391455453009" type="Monsters">
+                                    <param id="0" name="Frame number">Monsters.colour</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="2455086237913839" type="Monsters">
+                                    <param id="0" name="Opacity">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

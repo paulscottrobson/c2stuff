@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Other States</name>
+    <events>
+        <event-group description="Animates toothbrush from the right" sid="5337265084512531" title="New Level state" />
+        <comment>On entering state, put toothbrush and right and use bullet to move in</comment>
+        <event-block sid="5935968680441437">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3577924286284135" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_NEWLEVEL</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="9833513087725143" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="858336352712528" type="Toothbrush">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action id="-3" name="Set position" sid="7411026113384594" type="Toothbrush">
+                    <param id="0" name="X">LayoutWidth+10</param>
+                    <param id="1" name="Y">PlayerBase.Y</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="3887814602183711" type="Toothbrush">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7876404722339166">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2784930027330505" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_NEWLEVEL</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If bullet has reached position and sine not already active, then stop bullet and start cleaning using sine</comment>
+                <event-block sid="1535849171116125">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="4442162296828005" type="Toothbrush">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">PlayerBase.X-PlayerBase.Width/2</param>
+                        </condition>
+                        <condition behavior="Sine" id="0" inverted="1" name="Is active" sid="8863976767644307" type="Toothbrush" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="2357157721633332" type="Toothbrush">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action behavior="Sine" id="0" name="Set active" sid="3823558541309704" type="Toothbrush">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="1645355096059549" type="Toothbrush">
+                            <param id="0" name="Duration">3</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;BrushOver&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Time up, disable sine, move toothbrush off screen, and start the next level</comment>
+                <event-block sid="8851055435439137">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="807578481449307" type="Toothbrush">
+                            <param id="0" name="Tag">&quot;BrushOver&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Sine" id="0" name="Set active" sid="1859721080581556" type="Toothbrush">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="2831185080096392" type="Toothbrush">
+                            <param id="0" name="X">LayoutWidth+32</param>
+                            <param id="1" name="Y">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4740474606946634" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_PLAY</param>
+                        </action>
+                        <action id="-26" name="Restart layout" sid="9161585108800049" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

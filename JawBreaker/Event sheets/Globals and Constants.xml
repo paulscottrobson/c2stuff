@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals and Constants</name>
+    <events>
+        <event-group description="" sid="4785046189182786" title="Constants" />
+        <comment>Horizontal Border on each side</comment>
+        <variable comment="Left and Right Borders" constant="1" name="XBORDER" sid="3569965072334676" static="0" type="number">32</variable>
+        <comment>Space at the top</comment>
+        <variable comment="Top" constant="1" name="TOPMARGIN" sid="7447154352162915" static="0" type="number">64</variable>
+        <comment>Number of rows in game vertically</comment>
+        <variable comment="Number of game rows" constant="1" name="CELLS" sid="6247188841279534" static="0" type="number">9</variable>
+        <comment>Height of each row (overall), must be even</comment>
+        <variable comment="Height of Row" constant="1" name="ROWHEIGHT" sid="7644024961028567" static="0" type="number">42</variable>
+        <comment>Size of object space, must be even</comment>
+        <variable comment="Height of objects in the row" constant="1" name="ROWSPACE" sid="9085166987079707" static="0" type="number">36</variable>
+        <comment>Number of sweets on each row</comment>
+        <variable comment="Number of sweets on each row, maximum" constant="1" name="SWEETSPERROW" sid="4816089217555681" static="0" type="number">15</variable>
+        <comment>Total time chaseable (including warning time)</comment>
+        <variable comment="Number of seconds of chasing time" constant="1" name="CHASETIME" sid="8763290689167311" static="0" type="number">8</variable>
+        <comment>Time chaseable is in warn mode (e.g. flashing)</comment>
+        <variable comment="Warning time" constant="1" name="WARNTIME" sid="8139756982697525" static="0" type="number">2</variable>
+        <comment>How long between vitamin pills (min,max)</comment>
+        <variable comment="Lowest repeat vitamin time" constant="1" name="MINVITAMINTIME" sid="6995852361457295" static="0" type="number">7</variable>
+        <variable comment="Highest repeat vitamin time" constant="1" name="MAXVITAMINTIME" sid="5385405002962924" static="0" type="number">11</variable>
+        <event-group description="Single assignment constants" sid="8168372306165384" title="Pseudo Constants" />
+        <comment>Extremities that the player can reach, also used to figure out if in the vertical ends or not.</comment>
+        <variable comment="Left limit" constant="0" name="LEFTCOL" sid="2041898739841989" static="0" type="number">0</variable>
+        <variable comment="Right limit" constant="0" name="RIGHTCOL" sid="9566847325773125" static="0" type="number">0</variable>
+        <variable comment="Top Value" constant="0" name="YMIN" sid="1317444578557551" static="0" type="number">0</variable>
+        <variable comment="Bottom value" constant="0" name="YMAX" sid="7310524587600559" static="0" type="number">0</variable>
+        <comment>Gap between the height of objects and the height of the row</comment>
+        <variable comment="Difference between height and space" constant="0" name="BARRIERGAP" sid="3223122226704143" static="0" type="number">0</variable>
+        <comment>Initialise pseudo-constants</comment>
+        <event-block sid="4063511312478343">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5815020012698042" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6503527777721297" type="System">
+                    <param id="0" name="Variable">BARRIERGAP</param>
+                    <param id="1" name="Value">ROWHEIGHT-ROWSPACE</param>
+                </action>
+                <action id="-9" name="Set value" sid="1025120368515097" type="System">
+                    <param id="0" name="Variable">LEFTCOL</param>
+                    <param id="1" name="Value">XBORDER+ROWSPACE/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="7583309438255582" type="System">
+                    <param id="0" name="Variable">RIGHTCOL</param>
+                    <param id="1" name="Value">LayoutWidth-XBORDER-ROWSPACE/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="8251243970176873" type="System">
+                    <param id="0" name="Variable">YMIN</param>
+                    <param id="1" name="Value">TOPMARGIN+ROWSPACE/2+BARRIERGAP/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="9730967766102362" type="System">
+                    <param id="0" name="Variable">YMAX</param>
+                    <param id="1" name="Value">TOPMARGIN+ROWHEIGHT*CELLS-ROWSPACE/2-BARRIERGAP/2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="9286206977848656" title="Variables" />
+        <comment>Game current score</comment>
+        <variable constant="0" name="score" sid="7369523152249943" static="0" type="number">0</variable>
+        <comment>Current level</comment>
+        <variable comment="Game level" constant="0" name="level" sid="1759528391087774" static="0" type="number">1</variable>
+        <comment>Non zero if monsters are being chased</comment>
+        <variable comment="Non-zero if monsters are being chased" constant="0" name="inChaseMode" sid="8442800057952611" static="0" type="number">0</variable>
+        <event-group description="" sid="2262816053891977" title="Utility Functions" />
+        <comment>Update the score</comment>
+        <event-block sid="2841093435250642">
+            <conditions>
+                <condition id="0" name="On function" sid="5256373228866402" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5891316634132773" type="Score">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; score,6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Add constant to score</comment>
+        <event-block sid="6458627300531235">
+            <conditions>
+                <condition id="0" name="On function" sid="6008581476625839" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="2174903247421391" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">Function.Param(0)</param>
+                </action>
+                <action id="0" name="Call function" sid="6022493430165759" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle a game restart (at the start, and when a life lost)</comment>
+        <event-block sid="1149162260479762">
+            <conditions>
+                <condition id="0" name="On function" sid="6216269438856237" type="Function">
+                    <param id="0" name="Name">&quot;RestartGame&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="7882591621327942" type="PlayerBase">
+                    <param id="0" name="X">LEFTCOL</param>
+                    <param id="1" name="Y">round((YMIN+YMAX)/2)</param>
+                </action>
+                <action id="0" name="Call function" sid="9711570867233853" type="Function">
+                    <param id="0" name="Name">&quot;ResetMoveables&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-15" name="Set visible" sid="4297685529048263" type="VitaminPill">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action behavior="Timer" id="1" name="Stop timer" sid="2253444507627994" type="VitaminPill">
+                    <param id="0" name="Tag">&quot;Appear&quot;</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="9621889668888171" type="VitaminPill">
+                    <param id="0" name="Duration">random(MINVITAMINTIME,MAXVITAMINTIME)</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;Appear&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="7813528440922781" title="State " />
+        <variable comment="Playing game" constant="1" name="STATE_PLAY" sid="1080900541243574" static="0" type="number">0</variable>
+        <variable comment="Playing game" constant="1" name="STATE_LIFELOST" sid="5185517992834153" static="0" type="number">1</variable>
+        <variable comment="Playing game" constant="1" name="STATE_GAMEOVER" sid="7101402545199705" static="0" type="number">2</variable>
+        <variable comment="Playing game" constant="1" name="STATE_NEWLEVEL" sid="1782953524616499" static="0" type="number">3</variable>
+        <comment>Current state</comment>
+        <variable comment="Current state" constant="0" name="state" sid="2905677256146666" static="0" type="number">0</variable>
+    </events>
+</c2eventsheet>

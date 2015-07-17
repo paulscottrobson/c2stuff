@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Setup</name>
+    <events>
+        <comment>Create the initial layout, starting with the frame</comment>
+        <event-block sid="1676699130023702">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7501394045126766" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="5831154101391092" type="Moveables" />
+                <action id="0" name="Call function" sid="9940262595399897" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-3" name="Create object" sid="5925662045821958" type="System">
+                    <param id="0" name="Object to create">Border</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">LEFTCOL-16-ROWSPACE/2</param>
+                    <param id="3" name="Y">YMIN-16-ROWSPACE/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="4209790759545328" type="Border">
+                    <param id="0" name="Width">16</param>
+                    <param id="1" name="Height">(YMAX-YMIN+32+ROWSPACE)</param>
+                </action>
+                <action id="-3" name="Create object" sid="8368223448573611" type="System">
+                    <param id="0" name="Object to create">Border</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">RIGHTCOL+ROWSPACE/2</param>
+                    <param id="3" name="Y">YMIN-16-ROWSPACE/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="1760828099240544" type="Border">
+                    <param id="0" name="Width">16</param>
+                    <param id="1" name="Height">(YMAX-YMIN+32+ROWSPACE)</param>
+                </action>
+                <action id="-3" name="Create object" sid="385017943693196" type="System">
+                    <param id="0" name="Object to create">Border</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">LEFTCOL-ROWSPACE/2</param>
+                    <param id="3" name="Y">YMIN-16-ROWSPACE/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="8917141372497552" type="Border">
+                    <param id="0" name="Width">RIGHTCOL-LEFTCOL+ROWSPACE</param>
+                    <param id="1" name="Height">16</param>
+                </action>
+                <action id="-3" name="Create object" sid="7225610031531061" type="System">
+                    <param id="0" name="Object to create">Border</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">LEFTCOL-ROWSPACE/2</param>
+                    <param id="3" name="Y">YMAX+ROWSPACE/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="2427486560484026" type="Border">
+                    <param id="0" name="Width">RIGHTCOL-LEFTCOL+ROWSPACE</param>
+                    <param id="1" name="Height">16</param>
+                </action>
+                <action id="-3" name="Set position" sid="2925917339404492" type="VitaminPill">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">floor((CELLS-1)/2)*ROWHEIGHT+TOPMARGIN+ROWHEIGHT/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="4029807672037354" type="VitaminPill">
+                    <param id="0" name="Width">ROWSPACE*0.7</param>
+                    <param id="1" name="Height">ROWSPACE*0.7</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Initialisation of the inbetween parts - the border and the gateways through which the player can pass</comment>
+                <event-block sid="2672229760240291">
+                    <conditions>
+                        <condition id="-10" name="For" sid="8486495948797705" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">CELLS-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="6540085233473757" type="System">
+                            <param id="0" name="Object to create">Border</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">XBORDER+ROWSPACE</param>
+                            <param id="3" name="Y">TOPMARGIN+loopindex*ROWHEIGHT-BARRIERGAP/2+1</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="786922359778076" type="Border">
+                            <param id="0" name="Width">LayoutWidth-XBORDER*2-ROWSPACE*2</param>
+                            <param id="1" name="Height">BARRIERGAP-2</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="5894984141432082" type="System">
+                            <param id="0" name="Object to create">Gateway</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">Border.X+Border.Width/2</param>
+                            <param id="3" name="Y">Border.Y</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="190950515013168" type="Gateway">
+                            <param id="0" name="Width">ROWSPACE+4</param>
+                            <param id="1" name="Height">Border.Height</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Initialisation of the collectables and monsters</comment>
+                <variable constant="0" name="y" sid="4447117644961868" static="0" type="number">0</variable>
+                <variable constant="0" name="sweetSpace" sid="5714266006306431" static="0" type="number">0</variable>
+                <event-block sid="9918189456113307">
+                    <conditions>
+                        <condition id="-10" name="For" sid="7922140659652363" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">CELLS-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1789549251430337" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">TOPMARGIN+loopindex*ROWHEIGHT+ROWHEIGHT/2</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="9565081043293551" type="System">
+                            <param id="0" name="Object to create">Monsters</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">round((LEFTCOL+RIGHTCOL)/2)</param>
+                            <param id="3" name="Y">y</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="2728055252743221" type="Monsters">
+                            <param id="0" name="Width">ROWSPACE</param>
+                            <param id="1" name="Height">ROWSPACE</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3811006503294078" type="Monsters">
+                            <param id="0" name="Instance variable">colour</param>
+                            <param id="1" name="Value">floor(random(0,Monsters.AnimationFrameCount))</param>
+                        </action>
+                        <action id="2" name="Stop" sid="5073152710250425" type="Monsters" />
+                        <action id="-9" name="Set value" sid="3587478747337757" type="System">
+                            <param id="0" name="Variable">sweetSpace</param>
+                            <param id="1" name="Value">round((RIGHTCOL-LEFTCOL-40)/SWEETSPERROW)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7792794343346178">
+                            <conditions>
+                                <condition id="-10" name="For" sid="2017205849338139" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">SWEETSPERROW-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="4976363187096269" type="System">
+                                    <param id="0" name="Object to create">Sweet</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">LayoutWidth/2-(loopindex-(SWEETSPERROW-1)/2)*sweetSpace</param>
+                                    <param id="3" name="Y">y</param>
+                                </action>
+                                <action id="2" name="Stop" sid="311212386274579" type="Sweet" />
+                                <action id="-7" name="Set size" sid="3210111301275621" type="Sweet">
+                                    <param id="0" name="Width">sweetSpace*0.45</param>
+                                    <param id="1" name="Height">sweetSpace*0.45</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="3973609168419708" type="Sweet">
+                                    <param id="0" name="Frame number">floor(random(0,Sweet.AnimationFrameCount))</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5139468606137358">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="8067836420673918" type="Sweet">
+                                            <param id="0" name="Object">VitaminPill</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="7132755615455899" type="Sweet" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Reset the moveables</comment>
+        <event-block sid="5490087312498158">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8118865078447895" type="System" />
+            </conditions>
+            <actions />
+        </event-block>
+    </events>
+</c2eventsheet>

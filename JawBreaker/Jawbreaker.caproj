@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Jawbreaker</name>
+    <description>Blitz Remake of Atari 2600 Game</description>
+    <version>1.0.0.0</version>
+    <author>Paul Robson</author>
+    <author-email>paul@robsons.org.uk</author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>2ig062qrwvt5o</unique-id>
+    <saved-with-version>20600</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>640</width>
+        <height>480</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-folder name="Particles">
+            <object-type name="SweetEat" sid="6244804936070108">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="VitraminEat" sid="6163301912114759">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="SweetEatWhite" sid="8513070330436052">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+        </object-folder>
+        <object-type name="Border" sid="9134191739060181">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="6301844348477112">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <texture />
+        </object-type>
+        <object-type name="PlayerBase" sid="1520385140400964">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="8Direction" sid="4928833778322012">
+                    <behavior id="EightDir" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="5" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="9073055112685672" speed="12">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_1.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_4.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Function" sid="2249742649586756">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Gateway" sid="1990096251195888">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8504610016870995" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0">
+                        <collision-poly>
+                            <point x="0.332031" y="0" />
+                            <point x="0.630859" y="0" />
+                            <point x="0.631836" y="1" />
+                            <point x="0.334961" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Monsters" sid="7823341096173753">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="Colour (animation frame index)" name="colour" sid="6377515991193192" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Fade" sid="9889703475907977">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="6" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9171733898951637" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Face.png">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.15" y="0.15" />
+                            <point x="0.5" y="0" />
+                            <point x="0.85" y="0.15" />
+                            <point x="1" y="0.5" />
+                            <point x="0.85" y="0.85" />
+                            <point x="0.5" y="1" />
+                            <point x="0.15" y="0.85" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Chaseable" pingpong="0" repeatcount="1" repeatto="0" sid="4177172600542993" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="2" loop="1" name="EndChase" pingpong="0" repeatcount="1" repeatto="0" sid="9337475893928543" speed="4">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="VitaminPill" sid="3937066761683998">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Timer" sid="4305582135014157">
+                    <behavior id="Timer" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="29853875098838">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9681176933429063" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Pill.png">
+                        <collision-poly>
+                            <point x="0.146667" y="0.146667" />
+                            <point x="0.5" y="0" />
+                            <point x="0.853333" y="0.146667" />
+                            <point x="1" y="0.5" />
+                            <point x="0.853333" y="0.853333" />
+                            <point x="0.5" y="1" />
+                            <point x="0.146667" y="0.853333" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sweet" sid="2931246303937774">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="5353388595855578">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9428019837752207" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Sweet1.png">
+                        <collision-poly>
+                            <point x="0.135135" y="0.144928" />
+                            <point x="0.5" y="0" />
+                            <point x="0.837838" y="0.173913" />
+                            <point x="0.986486" y="0.492754" />
+                            <point x="0.864865" y="0.855072" />
+                            <point x="0.5" y="1" />
+                            <point x="0.135135" y="0.855072" />
+                            <point x="0" y="0.492754" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Sweet2.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Sweet3.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Sweet4.png">
+                        <collision-poly>
+                            <point x="0.164557" y="0.188406" />
+                            <point x="0.493671" y="0.0144928" />
+                            <point x="0.848101" y="0.173913" />
+                            <point x="0.962025" y="0.492754" />
+                            <point x="0.860759" y="0.84058" />
+                            <point x="0.493671" y="1" />
+                            <point x="0.139241" y="0.84058" />
+                            <point x="0.0506329" y="0.492754" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Score" sid="8516691364288615">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
+        </object-type>
+        <object-type name="Toothbrush" sid="9980697310052994">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="5726340989057912">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="7975835966833258">
+                    <behavior id="Sin" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="2117964316898592">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3996994054311489" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\Toothbrush.png">
+                        <collision-poly>
+                            <point x="0.00672646" y="0.0416667" />
+                            <point x="0.5" y="0.611111" />
+                            <point x="0.894619" y="0.652778" />
+                            <point x="0.286996" y="0.5" />
+                            <point x="0.988789" y="0.930556" />
+                            <point x="0.5" y="0.958333" />
+                            <point x="0.029148" y="0.819444" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families>
+        <family name="Moveables" plugin-id="Sprite" sid="8170139443953773">
+            <members>
+                <member>Gateway</member>
+                <member>Monsters</member>
+            </members>
+        </family>
+    </families>
+    <layout-folder>
+        <layout>Game.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Main.xml</event-sheet>
+        <event-sheet>Globals and Constants.xml</event-sheet>
+        <event-sheet>Setup.xml</event-sheet>
+        <event-sheet>Play State.xml</event-sheet>
+        <event-sheet>Moveables.xml</event-sheet>
+        <event-sheet>Other States.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Function" uid="2" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
