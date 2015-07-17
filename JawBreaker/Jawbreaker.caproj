@@ -10,6 +10,7 @@
     <unique-id>2ig062qrwvt5o</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -352,6 +353,9 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="Audio" sid="1050476135768665">
+            <plugin id="Audio" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Moveables" plugin-id="Sprite" sid="8170139443953773">
@@ -375,16 +379,32 @@
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="2" />
+        <global-instance type="Audio" uid="15">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
     <sounds-folder>
         <file name="Eat 1.m4a" />
         <file name="Eat 1.ogg" />
-        <file name="Eat 2.m4a" />
-        <file name="Eat 2.ogg" />
         <file name="Game Over.m4a" />
         <file name="Game Over.ogg" />
         <file name="Warning.m4a" />
         <file name="Warning.ogg" />
+        <file name="Eat 2.m4a" />
+        <file name="Eat 2.ogg" />
+        <file name="Brush.m4a" />
+        <file name="Brush.ogg" />
     </sounds-folder>
     <music-folder>
         <file name="Music.m4a" />

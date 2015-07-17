@@ -25,6 +25,10 @@
                 <action behavior="Bullet" id="5" name="Set enabled" sid="3887814602183711" type="Toothbrush">
                     <param id="0" name="State">1</param>
                 </action>
+                <action id="-10" name="Add to" sid="1524424673666035" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">1</param>
+                </action>
             </actions>
             <sub-events>
                 <comment>On level 3,5,7,9 get an extra life</comment>
@@ -82,6 +86,12 @@
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;BrushOver&quot;</param>
                         </action>
+                        <action id="0" name="Play" sid="2147412023688555" type="Audio">
+                            <param id="0" name="Audio file">Brush</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;Brush&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Time up, disable sine, move toothbrush off screen, and start the next level</comment>
@@ -104,6 +114,9 @@
                             <param id="1" name="Value">STATE_PLAY</param>
                         </action>
                         <action id="-26" name="Restart layout" sid="9161585108800049" type="System" />
+                        <action id="6" name="Stop" sid="557355932339654" type="Audio">
+                            <param id="0" name="Tag">&quot;Brush&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -137,6 +150,13 @@
                 <action id="5" name="Set frame" sid="5909099661332089" type="PlayerBase">
                     <param id="0" name="Frame number">round(PlayerBase.AnimationFrameCount/2)</param>
                 </action>
+                <action id="0" name="Play" sid="4810173096657161" type="Audio">
+                    <param id="0" name="Audio file">Game Over</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-24" name="Move to top" sid="613225891119368" type="Monsters" />
             </actions>
         </event-block>
         <event-block sid="940953478913154">

@@ -33,6 +33,21 @@
                     <param id="0" name="State">1</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="5308458996671809">
+                    <conditions>
+                        <condition id="-4" name="Trigger once while true" sid="3159348093107011" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="5598951775455202" type="Audio">
+                            <param id="0" name="Audio file">Music</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="6521033951701182">
             <conditions>
@@ -43,6 +58,9 @@
                     <param id="0" name="State">0</param>
                 </action>
                 <action behavior="8Direction" id="0" name="Stop" sid="9774411478221906" type="PlayerBase" />
+                <action id="6" name="Stop" sid="954180622904162" type="Audio">
+                    <param id="0" name="Tag">&quot;Music&quot;</param>
+                </action>
             </actions>
         </event-block>
         <comment>Handle in-play state stuff</comment>
@@ -149,6 +167,12 @@
                                     <param id="0" name="Name">&quot;AddToScore&quot;</param>
                                     <param id="1" name="Parameter {n}">10</param>
                                 </action>
+                                <action id="0" name="Play" sid="9471128004666037" type="Audio">
+                                    <param id="0" name="Audio file">Eat 1</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>Handle new level as eaten all the sweets</comment>
@@ -219,6 +243,12 @@
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;WarnMonsters&quot;</param>
                         </action>
+                        <action id="0" name="Play" sid="9432041906850778" type="Audio">
+                            <param id="0" name="Audio file">Eat 2</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block sid="4317426623702699">
@@ -243,7 +273,14 @@
                             <param id="0" name="Tag">&quot;WarnMonsters&quot;</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="0" name="Play" sid="9675266983214204" type="Audio">
+                            <param id="0" name="Audio file">Warning</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <event-block sid="5885447996343174">
                             <conditions>
