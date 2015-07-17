@@ -62,6 +62,9 @@
                     <param id="0" name="Width">ROWSPACE*0.7</param>
                     <param id="1" name="Height">ROWSPACE*0.7</param>
                 </action>
+                <action id="0" name="Set text" sid="1654221925701375" type="Level">
+                    <param id="0" name="Text">level</param>
+                </action>
             </actions>
             <sub-events>
                 <comment>Initialisation of the inbetween parts - the border and the gateways through which the player can pass</comment>
@@ -173,13 +176,6 @@
                     </sub-events>
                 </event-block>
             </sub-events>
-        </event-block>
-        <comment>Reset the moveables</comment>
-        <event-block sid="5490087312498158">
-            <conditions>
-                <condition id="-2" name="On start of layout" sid="8118865078447895" type="System" />
-            </conditions>
-            <actions />
         </event-block>
     </events>
 </c2eventsheet>

@@ -24,7 +24,9 @@
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="setcolor">Set color</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
@@ -33,7 +35,7 @@
         <height>480</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
-    <preview-effects>1</preview-effects>
+    <preview-effects>0</preview-effects>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -63,6 +65,26 @@
             <object-type name="SweetEatWhite" sid="8513070330436052">
                 <plugin id="Particles" />
                 <texture />
+            </object-type>
+        </object-folder>
+        <object-folder name="Text">
+            <object-type name="Score" sid="8516691364288615">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
+            </object-type>
+            <object-type name="Level" sid="5736738297342068">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
             </object-type>
         </object-folder>
         <object-type name="Border" sid="9134191739060181">
@@ -268,10 +290,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Score" sid="8516691364288615">
-            <plugin id="Spritefont2" />
-            <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
-        </object-type>
         <object-type name="Toothbrush" sid="9980697310052994">
             <plugin id="Sprite" />
             <behaviors>
@@ -302,6 +320,38 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="LifeMarker" sid="8029898264452681">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5554341754807927" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_3.png">
+                        <collision-poly>
+                            <point x="0.203125" y="0.203125" />
+                            <point x="0.5" y="0.1875" />
+                            <point x="0.796875" y="0.203125" />
+                            <point x="0.96875" y="0.5" />
+                            <point x="0.765625" y="0.765625" />
+                            <point x="0.5" y="0.796875" />
+                            <point x="0.25" y="0.75" />
+                            <point x="0.015625" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Eraser" sid="6413216056855254">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="8603427711806189">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="698339820699861" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Moveables" plugin-id="Sprite" sid="8170139443953773">
@@ -321,12 +371,25 @@
         <event-sheet>Play State.xml</event-sheet>
         <event-sheet>Moveables.xml</event-sheet>
         <event-sheet>Other States.xml</event-sheet>
+        <event-sheet>TODO.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="2" />
     </global-instances>
-    <sounds-folder />
-    <music-folder />
+    <sounds-folder>
+        <file name="Eat 1.m4a" />
+        <file name="Eat 1.ogg" />
+        <file name="Eat 2.m4a" />
+        <file name="Eat 2.ogg" />
+        <file name="Game Over.m4a" />
+        <file name="Game Over.ogg" />
+        <file name="Warning.m4a" />
+        <file name="Warning.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Music.m4a" />
+        <file name="Music.ogg" />
+    </music-folder>
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />

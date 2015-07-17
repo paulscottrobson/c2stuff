@@ -26,7 +26,31 @@
                     <param id="0" name="State">1</param>
                 </action>
             </actions>
+            <sub-events>
+                <comment>On level 3,5,7,9 get an extra life</comment>
+                <event-block sid="5613323553046063">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="255301008446988" type="System">
+                            <param id="0" name="First value">level % 2</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="9491808072057047" type="System">
+                            <param id="0" name="Variable">level</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="9587628616427125" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
+        <comment>Main state handler</comment>
         <event-block sid="7876404722339166">
             <conditions>
                 <condition id="-14" name="Compare variable" sid="2784930027330505" type="System">
@@ -81,6 +105,106 @@
                         </action>
                         <action id="-26" name="Restart layout" sid="9161585108800049" type="System" />
                     </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="Losing a life" sid="216112246530783" title="Life Lost state" />
+        <event-block sid="4525504002783857">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2833950890553668" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_LIFELOST</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="3975029646170806" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="6739276794476901" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-3" name="Create object" sid="4617803956805408" type="System">
+                    <param id="0" name="Object to create">Eraser</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">PlayerBase.X</param>
+                    <param id="3" name="Y">PlayerBase.Y</param>
+                </action>
+                <action id="-7" name="Set size" sid="4977658957080921" type="Eraser">
+                    <param id="0" name="Width">PlayerBase.Width</param>
+                    <param id="1" name="Height">1</param>
+                </action>
+                <action id="2" name="Stop" sid="6082780227268948" type="PlayerBase" />
+                <action id="5" name="Set frame" sid="5909099661332089" type="PlayerBase">
+                    <param id="0" name="Frame number">round(PlayerBase.AnimationFrameCount/2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="940953478913154">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2823749548715444" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_LIFELOST</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3044211511810018">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="4035962778175194" type="System">
+                            <param id="0" name="Interval (seconds)">0.1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-6" name="Set height" sid="2522371640113905" type="Eraser">
+                            <param id="0" name="Height">Eraser.Height+2</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="6037346655029657">
+                            <conditions>
+                                <condition id="-6" name="Compare height" sid="7476501355567188" type="Eraser">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Height">PlayerBase.Height</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="395166052634414" type="Eraser" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="9058855573414495">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="8114568484840812" type="System">
+                                            <param id="0" name="Variable">lives</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="1338945569564845" type="System">
+                                            <param id="0" name="Variable">state</param>
+                                            <param id="1" name="Value">STATE_GAMEOVER</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="7124212156171052">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="4737806844088732" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="8977813002071163" type="Function">
+                                            <param id="0" name="Name">&quot;RestartGame&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="6245142340989912" type="System">
+                                            <param id="0" name="Variable">state</param>
+                                            <param id="1" name="Value">STATE_PLAY</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

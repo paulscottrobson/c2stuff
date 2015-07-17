@@ -14,9 +14,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="1">Main</event-sheet>
         <event-sheet order="2">Globals and Constants</event-sheet>
         <event-sheet order="3">Setup</event-sheet>
-        <event-sheet active="1" order="4">Play State</event-sheet>
+        <event-sheet order="4">Play State</event-sheet>
         <event-sheet order="5">Moveables</event-sheet>
         <event-sheet order="6">Other States</event-sheet>
+        <event-sheet active="1" order="7">TODO</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -25,11 +26,12 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="1" name="Configuration Settings" />
     </properties>
     <families-expanded root="1">
-        <family expanded="1" name="Moveables" />
+        <family expanded="0" name="Moveables" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
         <folder expanded="1" path="object-folder/Particles/" />
+        <folder expanded="1" path="object-folder/Text/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -42,5 +44,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/VitaminPill/" />
         <folder expanded="1" path="animation-folder/Sweet/" />
         <folder expanded="1" path="animation-folder/Toothbrush/" />
+        <folder expanded="1" path="animation-folder/LifeMarker/" />
+        <folder expanded="1" path="animation-folder/Eraser/" />
     </folders-expanded>
 </c2uistate>

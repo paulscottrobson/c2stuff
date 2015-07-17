@@ -7,13 +7,13 @@
         <comment>Horizontal Border on each side</comment>
         <variable comment="Left and Right Borders" constant="1" name="XBORDER" sid="3569965072334676" static="0" type="number">32</variable>
         <comment>Space at the top</comment>
-        <variable comment="Top" constant="1" name="TOPMARGIN" sid="7447154352162915" static="0" type="number">64</variable>
+        <variable comment="Top" constant="1" name="TOPMARGIN" sid="7447154352162915" static="0" type="number">16</variable>
         <comment>Number of rows in game vertically</comment>
         <variable comment="Number of game rows" constant="1" name="CELLS" sid="6247188841279534" static="0" type="number">9</variable>
         <comment>Height of each row (overall), must be even</comment>
-        <variable comment="Height of Row" constant="1" name="ROWHEIGHT" sid="7644024961028567" static="0" type="number">42</variable>
+        <variable comment="Height of Row" constant="1" name="ROWHEIGHT" sid="7644024961028567" static="0" type="number">44</variable>
         <comment>Size of object space, must be even</comment>
-        <variable comment="Height of objects in the row" constant="1" name="ROWSPACE" sid="9085166987079707" static="0" type="number">36</variable>
+        <variable comment="Height of objects in the row" constant="1" name="ROWSPACE" sid="9085166987079707" static="0" type="number">38</variable>
         <comment>Number of sweets on each row</comment>
         <variable comment="Number of sweets on each row, maximum" constant="1" name="SWEETSPERROW" sid="4816089217555681" static="0" type="number">15</variable>
         <comment>Total time chaseable (including warning time)</comment>
@@ -62,6 +62,8 @@
         <event-group description="" sid="9286206977848656" title="Variables" />
         <comment>Game current score</comment>
         <variable constant="0" name="score" sid="7369523152249943" static="0" type="number">0</variable>
+        <comment>Lives left, including the current one</comment>
+        <variable comment="Number of lives remaining" constant="0" name="lives" sid="9929819429329462" static="0" type="number">3</variable>
         <comment>Current level</comment>
         <variable comment="Game level" constant="0" name="level" sid="1759528391087774" static="0" type="number">1</variable>
         <comment>Non zero if monsters are being chased</comment>
@@ -98,6 +100,48 @@
                 </action>
             </actions>
         </event-block>
+        <comment>Update the lives display</comment>
+        <event-block sid="9658424743520884">
+            <conditions>
+                <condition id="0" name="On function" sid="1834996692384209" type="Function">
+                    <param id="0" name="Name">&quot;UpdateLives&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3158722679187303" type="LifeMarker" />
+            </actions>
+            <sub-events>
+                <event-block sid="230499321137199">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3380934088098725" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2505929156031289">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7338887472560095" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">lives-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="1648780463029061" type="System">
+                                    <param id="0" name="Object to create">LifeMarker</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">(loopindex-0.3) * LifeMarker.Width*1.2</param>
+                                    <param id="3" name="Y">Score.BBoxBottom-LifeMarker.Height/2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
         <comment>Handle a game restart (at the start, and when a life lost)</comment>
         <event-block sid="1149162260479762">
             <conditions>
@@ -114,6 +158,14 @@
                     <param id="0" name="Name">&quot;ResetMoveables&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Call function" sid="9785644330818082" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="9668207988794317" type="Function">
+                    <param id="0" name="Name">&quot;UpdateLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
                 <action id="-15" name="Set visible" sid="4297685529048263" type="VitaminPill">
                     <param id="0" name="Visibility">0</param>
                 </action>
@@ -124,6 +176,13 @@
                     <param id="0" name="Duration">random(MINVITAMINTIME,MAXVITAMINTIME)</param>
                     <param id="1" name="Type">0</param>
                     <param id="2" name="Tag">&quot;Appear&quot;</param>
+                </action>
+                <action id="4" name="Set animation" sid="3964528428050199" type="PlayerBase">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="3" name="Start" sid="3708943557096659" type="PlayerBase">
+                    <param id="0" name="From">0</param>
                 </action>
             </actions>
         </event-block>
