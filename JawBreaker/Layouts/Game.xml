@@ -105,7 +105,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="PlayerBase" uid="1">
+                <instance type="Player" uid="1">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -115,9 +115,9 @@
                     <behavior-instances>
                         <behavior-instance type="8Direction">
                             <properties>
-                                <max-speed>200</max-speed>
+                                <max-speed>300</max-speed>
                                 <acceleration>600</acceleration>
-                                <deceleration>500</deceleration>
+                                <deceleration>800</deceleration>
                                 <directions>8 directions</directions>
                                 <set-angle>360 degree (smooth)</set-angle>
                                 <default-controls>Yes</default-controls>
@@ -147,6 +147,15 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <effect-instances>
+                        <effect-instance type="SetColor">
+                            <parameters>
+                                <blue>0</blue>
+                                <green>0</green>
+                                <red>0</red>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -511,6 +520,56 @@
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="GameOverMessage" uid="16">
+                    <properties>
+                        <character-width>48</character-width>
+                        <character-height>64</character-height>
+                        <character-set>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#&quot;&apos;&amp;()[]|`\/@°+=*$£€&lt;&gt;</character-set>
+                        <text>Game Over</text>
+                        <scale>1.5</scale>
+                        <initial-visibility>Visible</initial-visibility>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
+                        <hotspot>Center</hotspot>
+                        <wrapping>Word</wrapping>
+                        <character-spacing>-24</character-spacing>
+                        <line-height>0</line-height>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>No</active-at-start>
+                                <fade-in-time>2</fade-in-time>
+                                <wait-time>2</wait-time>
+                                <fade-out-time>0.2</fade-out-time>
+                                <destroy>After fade out</destroy>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="SetColor">
+                            <parameters>
+                                <blue>0</blue>
+                                <green>0.5</green>
+                                <red>1</red>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>320</x>
+                        <y>240</y>
+                        <z>0</z>
+                        <width>576</width>
+                        <height>96</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0</opacity>
                     </world>
                 </instance>
             </instances>

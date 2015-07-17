@@ -12,10 +12,12 @@
     <used-plugins>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -87,6 +89,20 @@
                 </effects>
                 <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
             </object-type>
+            <object-type name="GameOverMessage" sid="1592981275909593">
+                <plugin id="Spritefont2" />
+                <behaviors>
+                    <behavior-type name="Fade" sid="7266214781099726">
+                        <behavior id="Fade" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\MC14500Board\Images\console.png" />
+            </object-type>
         </object-folder>
         <object-type name="Border" sid="9134191739060181">
             <plugin id="TiledBg" />
@@ -97,7 +113,7 @@
             </behaviors>
             <texture />
         </object-type>
-        <object-type name="PlayerBase" sid="1520385140400964">
+        <object-type name="Player" sid="1520385140400964">
             <plugin id="Sprite" />
             <behaviors>
                 <behavior-type name="8Direction" sid="4928833778322012">
@@ -105,7 +121,7 @@
                 </behavior-type>
             </behaviors>
             <animation-folder>
-                <animation framecount="5" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="9073055112685672" speed="12">
+                <animation framecount="5" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="9073055112685672" speed="18">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_0.png" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_1.png" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\JawBreaker\lips_2.png" />
@@ -119,6 +135,11 @@
         </object-type>
         <object-type name="Gateway" sid="1990096251195888">
             <plugin id="Sprite" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8504610016870995" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0">
@@ -356,6 +377,12 @@
         <object-type name="Audio" sid="1050476135768665">
             <plugin id="Audio" />
         </object-type>
+        <object-type name="Touch" sid="9255881660775028">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Keyboard" sid="1660088974659425">
+            <plugin id="Keyboard" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Moveables" plugin-id="Sprite" sid="8170139443953773">
@@ -367,6 +394,7 @@
     </families>
     <layout-folder>
         <layout>Game.xml</layout>
+        <layout>Title.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Main.xml</event-sheet>
@@ -376,6 +404,7 @@
         <event-sheet>Moveables.xml</event-sheet>
         <event-sheet>Other States.xml</event-sheet>
         <event-sheet>TODO.xml</event-sheet>
+        <event-sheet>Title Event.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Function" uid="2" />
@@ -393,6 +422,12 @@
                 <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
+        <global-instance type="Touch" uid="17">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Keyboard" uid="18" />
     </global-instances>
     <sounds-folder>
         <file name="Eat 1.m4a" />
@@ -405,6 +440,8 @@
         <file name="Eat 2.ogg" />
         <file name="Brush.m4a" />
         <file name="Brush.ogg" />
+        <file name="OooScary1.m4a" />
+        <file name="OooScary1.ogg" />
     </sounds-folder>
     <music-folder>
         <file name="Music.m4a" />

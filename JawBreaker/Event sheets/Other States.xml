@@ -20,7 +20,7 @@
                 </action>
                 <action id="-3" name="Set position" sid="7411026113384594" type="Toothbrush">
                     <param id="0" name="X">LayoutWidth+10</param>
-                    <param id="1" name="Y">PlayerBase.Y</param>
+                    <param id="1" name="Y">Player.Y</param>
                 </action>
                 <action behavior="Bullet" id="5" name="Set enabled" sid="3887814602183711" type="Toothbrush">
                     <param id="0" name="State">1</param>
@@ -70,7 +70,7 @@
                     <conditions>
                         <condition id="-1" name="Compare X" sid="4442162296828005" type="Toothbrush">
                             <param id="0" name="Comparison">3</param>
-                            <param id="1" name="X co-ordinate">PlayerBase.X-PlayerBase.Width/2</param>
+                            <param id="1" name="X co-ordinate">Player.X-Player.Width/2</param>
                         </condition>
                         <condition behavior="Sine" id="0" inverted="1" name="Is active" sid="8863976767644307" type="Toothbrush" />
                     </conditions>
@@ -105,18 +105,33 @@
                         <action behavior="Sine" id="0" name="Set active" sid="1859721080581556" type="Toothbrush">
                             <param id="0" name="State">0</param>
                         </action>
-                        <action id="-3" name="Set position" sid="2831185080096392" type="Toothbrush">
-                            <param id="0" name="X">LayoutWidth+32</param>
-                            <param id="1" name="Y">0</param>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="2831185080096392" type="Toothbrush">
+                            <param id="0" name="Angle">0</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="9355102245447673" type="Toothbrush">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="6" name="Stop" sid="557355932339654" type="Audio">
+                            <param id="0" name="Tag">&quot;Brush&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4598066707195295">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="7898772435434259" type="Toothbrush">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth+64</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="5435817627051276" type="Toothbrush">
+                            <param id="0" name="State">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="4740474606946634" type="System">
                             <param id="0" name="Variable">state</param>
                             <param id="1" name="Value">STATE_PLAY</param>
                         </action>
                         <action id="-26" name="Restart layout" sid="9161585108800049" type="System" />
-                        <action id="6" name="Stop" sid="557355932339654" type="Audio">
-                            <param id="0" name="Tag">&quot;Brush&quot;</param>
-                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -139,16 +154,16 @@
                 <action id="-3" name="Create object" sid="4617803956805408" type="System">
                     <param id="0" name="Object to create">Eraser</param>
                     <param id="1" name="Layer">1</param>
-                    <param id="2" name="X">PlayerBase.X</param>
-                    <param id="3" name="Y">PlayerBase.Y</param>
+                    <param id="2" name="X">Player.X</param>
+                    <param id="3" name="Y">Player.Y</param>
                 </action>
                 <action id="-7" name="Set size" sid="4977658957080921" type="Eraser">
-                    <param id="0" name="Width">PlayerBase.Width</param>
+                    <param id="0" name="Width">Player.Width</param>
                     <param id="1" name="Height">1</param>
                 </action>
-                <action id="2" name="Stop" sid="6082780227268948" type="PlayerBase" />
-                <action id="5" name="Set frame" sid="5909099661332089" type="PlayerBase">
-                    <param id="0" name="Frame number">round(PlayerBase.AnimationFrameCount/2)</param>
+                <action id="2" name="Stop" sid="6082780227268948" type="Player" />
+                <action id="5" name="Set frame" sid="5909099661332089" type="Player">
+                    <param id="0" name="Frame number">round(Player.AnimationFrameCount/2)</param>
                 </action>
                 <action id="0" name="Play" sid="4810173096657161" type="Audio">
                     <param id="0" name="Audio file">Game Over</param>
@@ -185,7 +200,7 @@
                             <conditions>
                                 <condition id="-6" name="Compare height" sid="7476501355567188" type="Eraser">
                                     <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Height">PlayerBase.Height</param>
+                                    <param id="1" name="Height">Player.Height</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -225,6 +240,43 @@
                             </sub-events>
                         </event-block>
                     </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="Lost all lives" sid="6496596241212598" title="Game Over State" />
+        <event-block sid="9074891886506151">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9594807911453066" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_GAMEOVER</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="3957012610274845" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Fade" id="1" name="Start fade" sid="9556158944235644" type="GameOverMessage" />
+                <action id="-24" name="Move to top" sid="5995356938980732" type="GameOverMessage" />
+            </actions>
+        </event-block>
+        <event-block sid="145890813628799">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3840159095225604" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_GAMEOVER</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2619383535394358">
+                    <conditions>
+                        <condition behavior="Fade" id="2" name="On wait finished" sid="5265630094267085" type="GameOverMessage" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="4456243110410736" type="System">
+                            <param id="0" name="Layout">Title</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>

@@ -11,13 +11,15 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">Game</layout>
+        <layout order="8">Title</layout>
         <event-sheet order="1">Main</event-sheet>
         <event-sheet order="2">Globals and Constants</event-sheet>
-        <event-sheet order="3">Setup</event-sheet>
+        <event-sheet active="1" order="3">Setup</event-sheet>
         <event-sheet order="4">Play State</event-sheet>
         <event-sheet order="5">Moveables</event-sheet>
         <event-sheet order="6">Other States</event-sheet>
-        <event-sheet active="1" order="7">TODO</event-sheet>
+        <event-sheet order="7">TODO</event-sheet>
+        <event-sheet order="9">Title Event</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -38,7 +40,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/PlayerBase/" />
+        <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/Gateway/" />
         <folder expanded="1" path="animation-folder/Monsters/" />
         <folder expanded="1" path="animation-folder/VitaminPill/" />

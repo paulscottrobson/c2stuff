@@ -9,7 +9,7 @@
                 <condition id="-2" name="On start of layout" sid="6148193599753369" type="System" />
             </conditions>
             <actions>
-                <action id="-7" name="Set size" sid="7328765696007246" type="PlayerBase">
+                <action id="-7" name="Set size" sid="7328765696007246" type="Player">
                     <param id="0" name="Width">ROWSPACE</param>
                     <param id="1" name="Height">ROWSPACE</param>
                 </action>
@@ -29,7 +29,7 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="8Direction" id="8" name="Set enabled" sid="492721454855082" type="PlayerBase">
+                <action behavior="8Direction" id="8" name="Set enabled" sid="492721454855082" type="Player">
                     <param id="0" name="State">1</param>
                 </action>
             </actions>
@@ -54,10 +54,10 @@
                 <condition id="-22" name="Else" sid="208185004051782" type="System" />
             </conditions>
             <actions>
-                <action behavior="8Direction" id="8" name="Set enabled" sid="8716942532879039" type="PlayerBase">
+                <action behavior="8Direction" id="8" name="Set enabled" sid="8716942532879039" type="Player">
                     <param id="0" name="State">0</param>
                 </action>
-                <action behavior="8Direction" id="0" name="Stop" sid="9774411478221906" type="PlayerBase" />
+                <action behavior="8Direction" id="0" name="Stop" sid="9774411478221906" type="Player" />
                 <action id="6" name="Stop" sid="954180622904162" type="Audio">
                     <param id="0" name="Tag">&quot;Music&quot;</param>
                 </action>
@@ -80,20 +80,20 @@
                         <condition id="-1" name="Every tick" sid="3189971929412317" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-3" name="Set position" sid="3554233948500919" type="PlayerBase">
-                            <param id="0" name="X">clamp(PlayerBase.X,LEFTCOL,RIGHTCOL)</param>
-                            <param id="1" name="Y">clamp(PlayerBase.Y,YMIN,YMAX)</param>
+                        <action id="-3" name="Set position" sid="3554233948500919" type="Player">
+                            <param id="0" name="X">clamp(Player.X,LEFTCOL,RIGHTCOL)</param>
+                            <param id="1" name="Y">clamp(Player.Y,YMIN,YMAX)</param>
                         </action>
                     </actions>
                     <sub-events>
                         <comment>If player not in either the far left or far right columns, where vertical movement is permitted</comment>
                         <event-block sid="1240482451444515">
                             <conditions>
-                                <condition id="-1" name="Compare X" sid="1043343195564996" type="PlayerBase">
+                                <condition id="-1" name="Compare X" sid="1043343195564996" type="Player">
                                     <param id="0" name="Comparison">1</param>
                                     <param id="1" name="X co-ordinate">LEFTCOL</param>
                                 </condition>
-                                <condition id="-1" name="Compare X" sid="5112050553932185" type="PlayerBase">
+                                <condition id="-1" name="Compare X" sid="5112050553932185" type="Player">
                                     <param id="0" name="Comparison">1</param>
                                     <param id="1" name="X co-ordinate">RIGHTCOL</param>
                                 </condition>
@@ -103,15 +103,15 @@
                                 <comment>Can go vertically if not in far left/right providing overlapping a gateway</comment>
                                 <event-block sid="6163974205163252">
                                     <conditions>
-                                        <condition id="1" inverted="1" name="Is overlapping another object" sid="1577768271966525" type="PlayerBase">
+                                        <condition id="1" inverted="1" name="Is overlapping another object" sid="1577768271966525" type="Player">
                                             <param id="0" name="Object">Gateway</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-2" name="Set Y" sid="798208240823742" type="PlayerBase">
-                                            <param id="0" name="Y">round((PlayerBase.Y-YMIN)/ROWHEIGHT)*ROWHEIGHT+YMIN</param>
+                                        <action id="-2" name="Set Y" sid="798208240823742" type="Player">
+                                            <param id="0" name="Y">round((Player.Y-YMIN)/ROWHEIGHT)*ROWHEIGHT+YMIN</param>
                                         </action>
-                                        <action id="-8" name="Set angle" sid="6683382419127737" type="PlayerBase">
+                                        <action id="-8" name="Set angle" sid="6683382419127737" type="Player">
                                             <param id="0" name="Angle">0</param>
                                         </action>
                                     </actions>
@@ -123,7 +123,7 @@
                 <comment>Eaten a sweet</comment>
                 <event-block sid="5222812693645526">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="4692868357085058" type="PlayerBase">
+                        <condition id="0" name="On collision with another object" sid="4692868357085058" type="Player">
                             <param id="0" name="Object">Sweet</param>
                         </condition>
                     </conditions>
@@ -215,7 +215,7 @@
                 <comment>Eaten a vitamin pill</comment>
                 <event-block sid="8739488808048038">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="7357686787464985" type="PlayerBase">
+                        <condition id="0" name="On collision with another object" sid="7357686787464985" type="Player">
                             <param id="0" name="Object">VitaminPill</param>
                         </condition>
                         <condition id="-9" name="Is visible" sid="2086080566553678" type="VitaminPill" />
@@ -356,7 +356,7 @@
                                     <sub-events>
                                         <event-block sid="7229765386054471">
                                             <conditions>
-                                                <condition id="-1" name="Compare X" sid="1596012728061023" type="PlayerBase">
+                                                <condition id="-1" name="Compare X" sid="1596012728061023" type="Player">
                                                     <param id="0" name="Comparison">2</param>
                                                     <param id="1" name="X co-ordinate">LayoutWidth/2</param>
                                                 </condition>
@@ -386,7 +386,7 @@
                 <comment>Run into a monster</comment>
                 <event-block sid="6409979216647709">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="300588227715992" type="PlayerBase">
+                        <condition id="0" name="On collision with another object" sid="300588227715992" type="Player">
                             <param id="0" name="Object">Monsters</param>
                         </condition>
                         <condition id="-10" name="Compare opacity" sid="1518634094539259" type="Monsters">
@@ -428,6 +428,12 @@
                                 <action id="0" name="Call function" sid="487645756988343" type="Function">
                                     <param id="0" name="Name">&quot;AddToScore&quot;</param>
                                     <param id="1" name="Parameter {n}">200</param>
+                                </action>
+                                <action id="0" name="Play" sid="4540024200013268" type="Audio">
+                                    <param id="0" name="Audio file">OooScary1</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
