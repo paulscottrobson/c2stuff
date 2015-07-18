@@ -26,6 +26,7 @@
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="Scirra" id="wrap" version="1">Wrap</behavior>
     </used-behaviors>
     <used-effects>
         <effect author="Scirra" id="setcolor">Set color</effect>
@@ -390,6 +391,17 @@
                 <member>Gateway</member>
                 <member>Monsters</member>
             </members>
+            <behaviors>
+                <behavior-type name="Bullet" sid="2878763033518758">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Wrap" sid="9493597361885817">
+                    <behavior id="wrap" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="751884568366254">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
         </family>
     </families>
     <layout-folder>

@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Moveables</name>
     <events>
+        <event-group description="" sid="8390637185581285" title="Moveables (Monsters and gaps)" />
+        <comment>Reset all moveables - first clear chase mode</comment>
         <event-block sid="906556512292784">
             <conditions>
                 <condition id="0" name="On function" sid="7525673351505205" type="Function">
@@ -16,6 +18,7 @@
                 </action>
             </actions>
             <sub-events>
+                <comment>Set position,start reverse timer, set bullet speed and default direction</comment>
                 <event-block sid="8068090964752402">
                     <conditions>
                         <condition id="-11" name="For Each" sid="8392864454737201" type="System">
@@ -26,20 +29,89 @@
                         <action id="-1" name="Set X" sid="9292212117676477" type="Moveables">
                             <param id="0" name="X">floor(random(LayoutWidth/3,LayoutWidth*3/4))</param>
                         </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="243137344396318" type="Moveables">
+                            <param id="0" name="Duration">random(4,8)</param>
+                            <param id="1" name="Type">1</param>
+                            <param id="2" name="Tag">&quot;Reverse&quot;</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="7484608560065949" type="Moveables">
+                            <param id="0" name="Speed">(80+level*5)*random(70,130)/100</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="5612547803902242" type="Monsters">
+                            <param id="0" name="Angle">choose(0,180)</param>
+                        </action>
                     </actions>
+                </event-block>
+                <comment>Pick monster colour</comment>
+                <event-block sid="6218203919934256">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="1122740410896931" type="System">
+                            <param id="0" name="Object">Monsters</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="2486391455453009" type="Monsters">
+                            <param id="0" name="Frame number">Monsters.colour</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="2455086237913839" type="Monsters">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>On timer, flip the monsters</comment>
+        <event-block sid="9268004903405921">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4136166793078446" type="Moveables">
+                    <param id="0" name="Tag">&quot;Reverse&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="9169150641422974" type="Moveables">
+                    <param id="0" name="Angle">180-Moveables.Bullet.AngleOfMotion</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Make gateways invisible so don&apos;t appear over the border</comment>
+        <event-block sid="8957601434402861">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6501614957857485" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6206885788384991">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="318285643545904" type="System">
+                            <param id="0" name="Object">Gateway</param>
+                        </condition>
+                    </conditions>
+                    <actions />
                     <sub-events>
-                        <event-block sid="6218203919934256">
+                        <event-block sid="1267127975267042">
                             <conditions>
-                                <condition id="-11" name="For Each" sid="1122740410896931" type="System">
-                                    <param id="0" name="Object">Monsters</param>
+                                <condition id="-1" name="Compare X" sid="4634227053154856" type="Gateway">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">LEFTCOL</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="8019021734995823" type="Gateway">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">RIGHTCOL</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="5" name="Set frame" sid="2486391455453009" type="Monsters">
-                                    <param id="0" name="Frame number">Monsters.colour</param>
+                                <action id="-15" name="Set visible" sid="657278625826206" type="Gateway">
+                                    <param id="0" name="Visibility">1</param>
                                 </action>
-                                <action id="-16" name="Set opacity" sid="2455086237913839" type="Monsters">
-                                    <param id="0" name="Opacity">100</param>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3089069600246058">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="2975246472072623" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="8220347769157545" type="Gateway">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
                             </actions>
                         </event-block>
