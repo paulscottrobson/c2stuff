@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Player</name>
+    <events>
+        <event-group description="Controls the Player" sid="4927624936509483" title="Player Code" />
+        <comment>Handle player movement</comment>
+        <event-block sid="7027953360280166">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="4461322966736943" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>If Ctrl key not pressed, firing direction is the current direction - causes Ctrl to lock firing direction as in Llamatron</comment>
+                <event-block sid="9757855056064552">
+                    <conditions>
+                        <condition id="2" inverted="1" name="Key is down" sid="524519925029102" type="Keyboard">
+                            <param id="0" name="Key">17 (Ctrl)</param>
+                        </condition>
+                        <condition behavior="8Direction" id="0" name="Is moving" sid="8389355623958826" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="855335683207532" type="Player">
+                            <param id="0" name="Instance variable">firingAngle</param>
+                            <param id="1" name="Value">Player.8Direction.MovingAngle</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Adjust mirroring to fit direction</comment>
+                <event-block sid="380422534257452">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1738772301295675" type="Player">
+                            <param id="0" name="Instance variable">firingAngle</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">90</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="9039814995346032" type="Player">
+                            <param id="0" name="Instance variable">firingAngle</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">270</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="6210350428793126" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9889222722845171">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="3352252265825412" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="9152154675204644" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Autofiring missile</comment>
+        <event-block sid="1511767304264426">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="7731408682225919" type="System">
+                    <param id="0" name="Interval (seconds)">0.2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="6888185085484308" type="Player">
+                    <param id="0" name="Object">PlayerMissile</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4056341420487046" type="PlayerMissile">
+                    <param id="0" name="Angle">Player.firingAngle</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

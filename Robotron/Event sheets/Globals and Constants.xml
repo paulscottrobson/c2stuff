@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals and Constants</name>
+    <events>
+        <event-group description="" sid="7410180215615821" title="Constants" />
+        <comment>Define the game play area</comment>
+        <variable comment="Left margin" constant="1" name="leftBorder" sid="4843139110104007" static="0" type="number">16</variable>
+        <variable comment="Right Margin" constant="1" name="RIGHTBORDER" sid="7074581297312295" static="0" type="number">16</variable>
+        <variable comment="Top margin" constant="1" name="TOPBORDER" sid="803056412965651" static="0" type="number">48</variable>
+        <variable comment="Bottom margin" constant="1" name="BOTTOMBORDER" sid="7186105342597315" static="0" type="number">48</variable>
+        <comment>Overall scaling of game visible objects</comment>
+        <variable comment="Graphic Object Scaling" constant="1" name="SCALE" sid="8118621987944579" static="0" type="number">1.7</variable>
+    </events>
+</c2eventsheet>

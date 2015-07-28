@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Common</name>
+    <events>
+        <event-group description="" sid="2480076460806432" title="Common functions, routines" />
+        <comment>Rescale all created scaleable objects</comment>
+        <event-block sid="8056887773628889">
+            <conditions>
+                <condition id="-18" name="On created" sid="6667917001106143" type="Scaleables" />
+            </conditions>
+            <actions>
+                <action id="9" name="Set scale" sid="5421906718440416" type="Scaleables">
+                    <param id="0" name="Scale">SCALE</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Create the barriers that hide missiles leaving the area, which use DestroyOutsideLayout</comment>
+        <event-block sid="1354617076700154">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7593616379015823" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="5225974451678533" type="System">
+                    <param id="0" name="Object to create">Edging</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="608654086541426" type="Edging">
+                    <param id="0" name="Width">LayoutWidth</param>
+                    <param id="1" name="Height">TOPBORDER</param>
+                </action>
+                <action id="-3" name="Create object" sid="3954562765802535" type="System">
+                    <param id="0" name="Object to create">Edging</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">LayoutHeight-BOTTOMBORDER</param>
+                </action>
+                <action id="-7" name="Set size" sid="195101658304579" type="Edging">
+                    <param id="0" name="Width">LayoutWidth</param>
+                    <param id="1" name="Height">BOTTOMBORDER</param>
+                </action>
+                <action id="-3" name="Create object" sid="1858674169934983" type="System">
+                    <param id="0" name="Object to create">Edging</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="2407722670657373" type="Edging">
+                    <param id="0" name="Width">LEFTBORDER</param>
+                    <param id="1" name="Height">LayoutHeight</param>
+                </action>
+                <action id="-3" name="Create object" sid="7646299102433657" type="System">
+                    <param id="0" name="Object to create">Edging</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">LayoutWidth-RIGHTBORDER</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="9150927036970249" type="Edging">
+                    <param id="0" name="Width">RIGHTBORDER</param>
+                    <param id="1" name="Height">LayoutHeight</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Create the frame edging</comment>
+        <event-block sid="8491359180653373">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="7952953294086155" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="1279674186613313" type="System">
+                    <param id="0" name="Object to create">Frame</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">LEFTBORDER</param>
+                    <param id="3" name="Y">TOPBORDER</param>
+                </action>
+                <action id="-7" name="Set size" sid="9272753792632565" type="Frame">
+                    <param id="0" name="Width">2</param>
+                    <param id="1" name="Height">LayoutHeight-TOPBORDER-BOTTOMBORDER</param>
+                </action>
+                <action id="-3" name="Create object" sid="1742241133888193" type="System">
+                    <param id="0" name="Object to create">Frame</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">LayoutWidth-LEFTBORDER</param>
+                    <param id="3" name="Y">TOPBORDER</param>
+                </action>
+                <action id="-7" name="Set size" sid="159172563068619" type="Frame">
+                    <param id="0" name="Width">2</param>
+                    <param id="1" name="Height">LayoutHeight-TOPBORDER-BOTTOMBORDER</param>
+                </action>
+                <action id="-3" name="Create object" sid="7294371071896379" type="System">
+                    <param id="0" name="Object to create">Frame</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">LEFTBORDER</param>
+                    <param id="3" name="Y">TOPBORDER</param>
+                </action>
+                <action id="-7" name="Set size" sid="3654422385267488" type="Frame">
+                    <param id="0" name="Width">LayoutWidth-LEFTBORDER-RIGHTBORDER</param>
+                    <param id="1" name="Height">2</param>
+                </action>
+                <action id="-3" name="Create object" sid="3462239305761487" type="System">
+                    <param id="0" name="Object to create">Frame</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">LEFTBORDER</param>
+                    <param id="3" name="Y">LayoutHeight-BOTTOMBORDER</param>
+                </action>
+                <action id="-7" name="Set size" sid="4578114386030979" type="Frame">
+                    <param id="0" name="Width">LayoutWidth-LEFTBORDER-RIGHTBORDER</param>
+                    <param id="1" name="Height">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8001597229466832">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6105172613667538" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="8170003499213883">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="5460973992481985" type="System">
+                            <param id="0" name="Object">LockedToFrame</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="1100845922501901" type="LockedToFrame">
+                            <param id="0" name="X">clamp(LockedToFrame.X,LEFTBORDER,LayoutWidth-RIGHTBORDER)</param>
+                            <param id="1" name="Y">clamp(LockedToFrame.Y,TOPBORDER,LayoutHeight-BOTTOMBORDER)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
