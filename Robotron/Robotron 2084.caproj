@@ -34,7 +34,7 @@
         <height>768</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
-    <preview-effects>1</preview-effects>
+    <preview-effects>0</preview-effects>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -178,11 +178,82 @@
             </effects>
             <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
         </object-type>
+        <object-type name="Electrodes" sid="8813067458030733">
+            <plugin id="Sprite" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Animation1" pingpong="0" repeatcount="1" repeatto="0" sid="1899097514126267" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation2" pingpong="0" repeatcount="1" repeatto="0" sid="3806662892636853" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation3" pingpong="0" repeatcount="1" repeatto="0" sid="2799893319341899" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation4" pingpong="0" repeatcount="1" repeatto="0" sid="4773644905244944" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Animation5" pingpong="0" repeatcount="1" repeatto="0" sid="7115378387607808" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                        <collision-poly>
+                            <point x="0.272917" y="0.0020833" />
+                            <point x="0.733333" y="0.00416671" />
+                            <point x="0.71875" y="0.997917" />
+                            <point x="0.279167" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Animation6" pingpong="0" repeatcount="1" repeatto="0" sid="928124966606342" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                        <collision-poly>
+                            <point x="0.266667" y="0.266667" />
+                            <point x="0.466667" y="0" />
+                            <point x="0.733333" y="0.266667" />
+                            <point x="1" y="0.466667" />
+                            <point x="0.466667" y="1" />
+                            <point x="0.266667" y="0.733333" />
+                            <point x="0" y="0.466667" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Animation7" pingpong="0" repeatcount="1" repeatto="0" sid="82451138847089" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation8" pingpong="0" repeatcount="1" repeatto="0" sid="6981427521040071" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation9" pingpong="0" repeatcount="1" repeatto="0" sid="718430511808609" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                </animation>
+                <animation framecount="1" loop="0" name="Animation0" pingpong="0" repeatcount="1" repeatto="0" sid="2596715615558356" speed="5">
+                    <frame duration="1" hotspotX="0.548387" hotspotY="0.548387">
+                        <collision-poly>
+                            <point x="0.00201614" y="0.290323" />
+                            <point x="0.963709" y="0.288306" />
+                            <point x="0.967742" y="0.643145" />
+                            <point x="0" y="0.647177" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Scaleables" plugin-id="Sprite" sid="7045294177735034">
             <members>
                 <member>Child</member>
+                <member>Electrodes</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Mother</member>
@@ -193,6 +264,7 @@
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
             <members>
                 <member>Child</member>
+                <member>Electrodes</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Mother</member>
@@ -241,6 +313,21 @@
                 </behavior-type>
             </behaviors>
         </family>
+        <family name="FatalObjects" plugin-id="Sprite" sid="6435012994583088">
+            <members>
+                <member>Electrodes</member>
+                <member>Grunt</member>
+            </members>
+        </family>
+        <family name="ShootableObjects" plugin-id="Sprite" sid="6382874311065182">
+            <members>
+                <member>Electrodes</member>
+                <member>Grunt</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="Points accrued for shooting" name="points" sid="7767668047188789" type="number" />
+            </instance-variables>
+        </family>
     </families>
     <layout-folder>
         <layout>Game.xml</layout>
@@ -253,6 +340,7 @@
         <event-sheet>TODO.xml</event-sheet>
         <event-sheet>Creation.xml</event-sheet>
         <event-sheet>Humans.xml</event-sheet>
+        <event-sheet>Electrodes.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />

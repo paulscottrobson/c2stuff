@@ -17,7 +17,7 @@
         <comment>Current lives (including current one)</comment>
         <variable comment="Lives remaining including current one" constant="0" name="lives" sid="683145243605531" static="0" type="number">3</variable>
         <comment>Current level</comment>
-        <variable comment="Current level" constant="0" name="level" sid="3503179619649141" static="0" type="number">1</variable>
+        <variable comment="Current level" constant="0" name="waveNumber" sid="3503179619649141" static="0" type="number">1</variable>
         <comment>Number of humans collected so far</comment>
         <variable comment="Number of humans collected" constant="0" name="humansCollected" sid="2719190680875734" static="0" type="number">0</variable>
         <event-group description="" sid="4132719014296746" title="State" />

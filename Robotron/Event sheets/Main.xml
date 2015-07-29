@@ -8,5 +8,6 @@
         <include>Common</include>
         <include>Player</include>
         <include>Humans</include>
+        <include>Electrodes</include>
     </events>
 </c2eventsheet>

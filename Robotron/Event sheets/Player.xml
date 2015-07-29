@@ -70,7 +70,7 @@
                     <actions>
                         <action id="0" name="Spawn another object" sid="6888185085484308" type="Player">
                             <param id="0" name="Object">PlayerMissile</param>
-                            <param id="1" name="Layer">0</param>
+                            <param id="1" name="Layer">2</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action behavior="Bullet" id="3" name="Set angle of motion" sid="4056341420487046" type="PlayerMissile">

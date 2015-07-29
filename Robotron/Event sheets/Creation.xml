@@ -19,7 +19,7 @@
                     <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="0" name="Set text" sid="5953784734265101" type="WaveNumber">
-                    <param id="0" name="Text">level</param>
+                    <param id="0" name="Text">waveNumber</param>
                 </action>
             </actions>
         </event-block>
