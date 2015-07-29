@@ -10,17 +10,22 @@
     <unique-id>10e502urhmd7a</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="setcolor">Set color</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
@@ -66,14 +71,6 @@
         </object-type>
         <object-type name="Grunt" sid="9186831450366793">
             <plugin id="Sprite" />
-            <behaviors>
-                <behavior-type name="Bullet" sid="8179809057755121">
-                    <behavior id="Bullet" />
-                </behavior-type>
-                <behavior-type name="Timer" sid="2809075746003163">
-                    <behavior id="Timer" />
-                </behavior-type>
-            </behaviors>
             <animation-folder>
                 <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="412597359285009" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt0.png" />
@@ -109,26 +106,140 @@
             <plugin id="TiledBg" />
             <texture />
         </object-type>
+        <object-type name="Score" sid="8815515049814418">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+        </object-type>
+        <object-type name="LifeMarker" sid="301878590077809">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7569939233292399" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\lives\blue.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="WaveNumber" sid="7386857962310467">
+            <plugin id="Spritefont2" />
+            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+        </object-type>
+        <object-type name="Label" sid="5776760747188217">
+            <plugin id="Spritefont2" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+        </object-type>
+        <object-type name="Function" sid="6624102545666887">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Father" sid="5319061470660758">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2661438047150022" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e2.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Mother" sid="7062756826549816">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3415437833941216" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e2.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Child" sid="2934837249536788">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016919481546539" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e0.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e2.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="BriefScore" sid="8798253473477315">
+            <plugin id="Spritefont2" />
+            <behaviors>
+                <behavior-type name="Fade" sid="1691389629965319">
+                    <behavior id="Fade" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="3721640135977997">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Scaleables" plugin-id="Sprite" sid="7045294177735034">
             <members>
+                <member>Child</member>
+                <member>Father</member>
                 <member>Grunt</member>
+                <member>Mother</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
             </members>
         </family>
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
             <members>
+                <member>Child</member>
+                <member>Father</member>
                 <member>Grunt</member>
+                <member>Mother</member>
                 <member>Player</member>
             </members>
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
             <members>
+                <member>Child</member>
+                <member>Father</member>
                 <member>Grunt</member>
+                <member>Mother</member>
                 <member>Player</member>
             </members>
+        </family>
+        <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
+            <members>
+                <member>Grunt</member>
+            </members>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="1837136708739761">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+        </family>
+        <family name="Humans" plugin-id="Sprite" sid="5856666315128485">
+            <members>
+                <member>Child</member>
+                <member>Father</member>
+                <member>Mother</member>
+            </members>
+        </family>
+        <family name="Wanderers" plugin-id="Sprite" sid="7249892975979253">
+            <members>
+                <member>Child</member>
+                <member>Father</member>
+                <member>Grunt</member>
+                <member>Mother</member>
+            </members>
+            <behaviors>
+                <behavior-type name="Bullet" sid="9624322106646891">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="9301791434120577">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
         </family>
     </families>
     <layout-folder>
@@ -139,9 +250,13 @@
         <event-sheet>Player.xml</event-sheet>
         <event-sheet>Common.xml</event-sheet>
         <event-sheet>Globals and Constants.xml</event-sheet>
+        <event-sheet>TODO.xml</event-sheet>
+        <event-sheet>Creation.xml</event-sheet>
+        <event-sheet>Humans.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />
+        <global-instance type="Function" uid="10" />
     </global-instances>
     <sounds-folder />
     <music-folder />

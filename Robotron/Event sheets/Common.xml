@@ -10,8 +10,11 @@
                 <condition id="-18" name="On created" sid="6667917001106143" type="Scaleables" />
             </conditions>
             <actions>
-                <action id="9" name="Set scale" sid="5421906718440416" type="Scaleables">
-                    <param id="0" name="Scale">SCALE</param>
+                <action id="-5" name="Set width" sid="3880527417751602" type="Scaleables">
+                    <param id="0" name="Width">STDHEIGHT/Scaleables.Height*Scaleables.Width</param>
+                </action>
+                <action id="-6" name="Set height" sid="5421906718440416" type="Scaleables">
+                    <param id="0" name="Height">STDHEIGHT</param>
                 </action>
             </actions>
         </event-block>
@@ -111,9 +114,14 @@
                 </action>
             </actions>
         </event-block>
+        <comment>Lock LockedToFrame family inside the game arena</comment>
         <event-block sid="8001597229466832">
             <conditions>
-                <condition id="-1" name="Every tick" sid="6105172613667538" type="System" />
+                <condition id="-14" name="Compare variable" sid="6105172613667538" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
             </conditions>
             <actions />
             <sub-events>
@@ -127,6 +135,119 @@
                         <action id="-3" name="Set position" sid="1100845922501901" type="LockedToFrame">
                             <param id="0" name="X">clamp(LockedToFrame.X,LEFTBORDER,LayoutWidth-RIGHTBORDER)</param>
                             <param id="1" name="Y">clamp(LockedToFrame.Y,TOPBORDER,LayoutHeight-BOTTOMBORDER)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Update the score display</comment>
+        <event-block sid="1801582266490661">
+            <conditions>
+                <condition id="0" name="On function" sid="150753423091631" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5806965655858602" type="Score">
+                    <param id="0" name="Text">right(&quot;00000&quot; &amp; score,6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Add to the score</comment>
+        <event-block sid="7237598750251587">
+            <conditions>
+                <condition id="0" name="On function" sid="6309687639165623" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="7903037882065718" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">Function.Param(0)</param>
+                </action>
+                <action id="0" name="Call function" sid="6799156811598429" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Update the lives display</comment>
+        <event-block sid="9192877789673173">
+            <conditions>
+                <condition id="0" name="On function" sid="2942335784577784" type="Function">
+                    <param id="0" name="Name">&quot;UpdateLives&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3552778331592476" type="LifeMarker" />
+            </actions>
+            <sub-events>
+                <event-block sid="8845202711860772">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2429855574014347" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7376531310091684">
+                            <conditions>
+                                <condition id="-10" name="For" sid="4640974167154177" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">lives-1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="7651259666724514" type="System">
+                                    <param id="0" name="Object to create">LifeMarker</param>
+                                    <param id="1" name="Layer">4</param>
+                                    <param id="2" name="X">380+(loopindex-1)*30</param>
+                                    <param id="3" name="Y">25</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Set up the BriefScore object</comment>
+        <event-block sid="1631464573343876">
+            <conditions>
+                <condition id="-18" name="On created" sid="583518203201955" type="BriefScore" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="954876522768086" type="BriefScore">
+                    <param id="0" name="Angle">-90</param>
+                </action>
+            </actions>
+            <sub-events>
+                <variable constant="0" name="colour" sid="7623553726806143" static="0" type="number">0</variable>
+                <event-block sid="4604257005472219">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="7721453573557251" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="493569293709487" type="System">
+                            <param id="0" name="Variable">colour</param>
+                            <param id="1" name="Value">floor(random(1,8))</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="3830902732316217" type="BriefScore">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">getbit(colour,0) ? 100:0</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="5767699145533632" type="BriefScore">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">getbit(colour,1) ? 100:0</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="5960325350369656" type="BriefScore">
+                            <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">getbit(colour,2) ? 100:0</param>
                         </action>
                     </actions>
                 </event-block>

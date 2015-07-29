@@ -3,7 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Main</name>
     <events>
+        <include>Globals and Constants</include>
+        <include>Creation</include>
         <include>Common</include>
         <include>Player</include>
+        <include>Humans</include>
     </events>
 </c2eventsheet>

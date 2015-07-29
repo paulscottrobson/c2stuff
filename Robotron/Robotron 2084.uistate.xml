@@ -13,8 +13,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <layout order="0">Game</layout>
         <event-sheet order="1">Main</event-sheet>
         <event-sheet order="2">Player</event-sheet>
-        <event-sheet active="1" order="3">Common</event-sheet>
+        <event-sheet order="3">Common</event-sheet>
         <event-sheet order="4">Globals and Constants</event-sheet>
+        <event-sheet order="5">TODO</event-sheet>
+        <event-sheet order="6">Creation</event-sheet>
+        <event-sheet active="1" order="7">Humans</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -25,10 +28,13 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <families-expanded root="1">
         <family expanded="1" name="Scaleables" />
         <family expanded="1" name="GameObjects" />
-        <family expanded="0" name="LockedToFrame" />
+        <family expanded="1" name="LockedToFrame" />
+        <family expanded="1" name="EnemyObjects" />
+        <family expanded="0" name="Humans" />
+        <family expanded="1" name="Wanderers" />
     </families-expanded>
     <folders-expanded>
-        <folder expanded="1" path="object-folder/" />
+        <folder expanded="0" path="object-folder/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -38,5 +44,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/Grunt/" />
         <folder expanded="1" path="animation-folder/PlayerMissile/" />
+        <folder expanded="1" path="animation-folder/LifeMarker/" />
+        <folder expanded="1" path="animation-folder/Father/" />
+        <folder expanded="1" path="animation-folder/Mother/" />
+        <folder expanded="1" path="animation-folder/Child/" />
     </folders-expanded>
 </c2uistate>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Humans</name>
+    <events>
+        <event-group description="" sid="8799218875357447" title="Handles the Human behaviour" />
+        <comment>Handle humans collected at start</comment>
+        <event-block sid="4310297698084453">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8862651196999912" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9078902875000726" type="System">
+                    <param id="0" name="Variable">humansCollected</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Process human movement and collisions</comment>
+        <event-block sid="20939562266859">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2859561589200882" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Generic behaviour for Wanderers (Grunt uses this as well)</comment>
+                <event-block any="1" sid="4622396992098336">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="8398892012061235" type="Wanderers">
+                            <param id="0" name="Tag">&quot;ChangeDirection&quot;</param>
+                        </condition>
+                        <condition id="0" name="On collision with another object" sid="2663109766905945" type="Wanderers">
+                            <param id="0" name="Object">Frame</param>
+                        </condition>
+                        <condition id="-18" name="On created" sid="5771895737087723" type="Wanderers" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="7301026021881634" type="Wanderers">
+                            <param id="0" name="Angle">choose(0,90,180,270)</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="3825283566526445" type="Wanderers">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="1148591722980708" type="Wanderers">
+                            <param id="0" name="Duration">random(2,4)</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;ChangeDirection&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="3146327783838916">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="8600081778389248" type="Wanderers">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">LEFTBORDER</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3107312674252223" type="Wanderers">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7708431245482218">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="724916960176416" type="Wanderers">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">LayoutWidth-RIGHTBORDER</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4409859071082679" type="Wanderers">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1768517224757551">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="8185436491371757" type="Wanderers">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">TOPBORDER</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="6651937308747349" type="Wanderers">
+                                    <param id="0" name="Angle">90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8009811258836834">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="6786356358206494" type="Wanderers">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">LayoutHeight-BOTTOMBORDER</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5470677859231453" type="Wanderers">
+                                    <param id="0" name="Angle">-90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2677972261231949">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="439212795215829" type="System">
+                                    <param id="0" name="First value">Wanderers.Bullet.AngleOfMotion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">180</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="8957770715363991" type="Wanderers">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Handle human to player collisions</comment>
+                <event-block sid="3116652069829588">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="2491801229218574" type="Humans">
+                            <param id="0" name="Object">Player</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="6434194598289976" type="System">
+                            <param id="0" name="Variable">humansCollected</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable comment="Score for human" constant="0" name="thisScore" sid="9989559212801311" static="0" type="number">0</variable>
+                        <event-block sid="4399701927012153">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="7259912498268332" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="9173851697408972" type="System">
+                                    <param id="0" name="Variable">thisScore</param>
+                                    <param id="1" name="Value">min(humansCollected*1000,5000)</param>
+                                </action>
+                                <action id="0" name="Call function" sid="4387957956940684" type="Function">
+                                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                                    <param id="1" name="Parameter {n}">thisScore</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="6781663310492819" type="System">
+                                    <param id="0" name="Object to create">BriefScore</param>
+                                    <param id="1" name="Layer">4</param>
+                                    <param id="2" name="X">Humans.X</param>
+                                    <param id="3" name="Y">Humans.Y</param>
+                                </action>
+                                <action id="0" name="Set text" sid="3859147399713677" type="BriefScore">
+                                    <param id="0" name="Text">thisScore</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="604475662110285" type="Humans" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

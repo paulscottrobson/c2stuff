@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Creation</name>
+    <events>
+        <event-group description="" sid="4951495842332972" title="Code for creating a new level" />
+        <comment>Update score, waves and lives</comment>
+        <event-block sid="5241194176050247">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="154835129700651" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="6802520802255955" type="Function">
+                    <param id="0" name="Name">&quot;UpdateScore&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="7997633834965939" type="Function">
+                    <param id="0" name="Name">&quot;UpdateLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Set text" sid="5953784734265101" type="WaveNumber">
+                    <param id="0" name="Text">level</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

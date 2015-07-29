@@ -10,6 +10,21 @@
         <variable comment="Top margin" constant="1" name="TOPBORDER" sid="803056412965651" static="0" type="number">48</variable>
         <variable comment="Bottom margin" constant="1" name="BOTTOMBORDER" sid="7186105342597315" static="0" type="number">48</variable>
         <comment>Overall scaling of game visible objects</comment>
-        <variable comment="Graphic Object Scaling" constant="1" name="SCALE" sid="8118621987944579" static="0" type="number">1.7</variable>
+        <variable comment="Height of all graphic objects" constant="1" name="STDHEIGHT" sid="8237739907203073" static="0" type="number">32</variable>
+        <event-group description="" sid="3836417830586914" title="Variables" />
+        <comment>Current score</comment>
+        <variable comment="Current score" constant="0" name="score" sid="3992352173049936" static="0" type="number">0</variable>
+        <comment>Current lives (including current one)</comment>
+        <variable comment="Lives remaining including current one" constant="0" name="lives" sid="683145243605531" static="0" type="number">3</variable>
+        <comment>Current level</comment>
+        <variable comment="Current level" constant="0" name="level" sid="3503179619649141" static="0" type="number">1</variable>
+        <comment>Number of humans collected so far</comment>
+        <variable comment="Number of humans collected" constant="0" name="humansCollected" sid="2719190680875734" static="0" type="number">0</variable>
+        <event-group description="" sid="4132719014296746" title="State" />
+        <variable comment="Current state" constant="0" name="state" sid="3282901660068868" static="0" type="number">0</variable>
+        <comment>States</comment>
+        <variable comment="Playing game" constant="1" name="STATE_PLAY" sid="1184149527524537" static="0" type="number">0</variable>
+        <variable comment="Creating level from level state" constant="1" name="STATE_NEWLEVEL" sid="5828676377196543" static="0" type="number">1</variable>
+        <event-group description="" sid="95829865074099" title="Number of items in each level currently" />
     </events>
 </c2eventsheet>

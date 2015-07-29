@@ -7,7 +7,11 @@
         <comment>Handle player movement</comment>
         <event-block sid="7027953360280166">
             <conditions>
-                <condition id="-1" name="Every tick" sid="4461322966736943" type="System" />
+                <condition id="-14" name="Compare variable" sid="5379023189089087" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
             </conditions>
             <actions />
             <sub-events>
@@ -56,25 +60,25 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>Autofiring missile</comment>
+                <event-block sid="1511767304264426">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="7731408682225919" type="System">
+                            <param id="0" name="Interval (seconds)">0.25</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="6888185085484308" type="Player">
+                            <param id="0" name="Object">PlayerMissile</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="4056341420487046" type="PlayerMissile">
+                            <param id="0" name="Angle">Player.firingAngle</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
-        </event-block>
-        <comment>Autofiring missile</comment>
-        <event-block sid="1511767304264426">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="7731408682225919" type="System">
-                    <param id="0" name="Interval (seconds)">0.2</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="6888185085484308" type="Player">
-                    <param id="0" name="Object">PlayerMissile</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4056341420487046" type="PlayerMissile">
-                    <param id="0" name="Angle">Player.firingAngle</param>
-                </action>
-            </actions>
         </event-block>
     </events>
 </c2eventsheet>
