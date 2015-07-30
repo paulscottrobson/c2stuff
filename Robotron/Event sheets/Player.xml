@@ -13,7 +13,11 @@
                     <param id="2" name="Value">STATE_PLAY</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="113699227713116" type="Player">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
             <sub-events>
                 <comment>If Ctrl key not pressed, firing direction is the current direction - causes Ctrl to lock firing direction as in Llamatron</comment>
                 <event-block sid="9757855056064552">
@@ -79,6 +83,16 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-block sid="9470305144291751">
+            <conditions>
+                <condition id="-22" name="Else" sid="1233874514986229" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="1670081748772049" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

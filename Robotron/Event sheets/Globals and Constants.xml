@@ -11,6 +11,11 @@
         <variable comment="Bottom margin" constant="1" name="BOTTOMBORDER" sid="7186105342597315" static="0" type="number">48</variable>
         <comment>Overall scaling of game visible objects</comment>
         <variable comment="Height of all graphic objects" constant="1" name="STDHEIGHT" sid="8237739907203073" static="0" type="number">32</variable>
+        <comment>Object Speed</comment>
+        <variable comment="Speed of Grunts" constant="1" name="GRUNTSPEED" sid="8734207777960684" static="0" type="number">15</variable>
+        <variable comment="Speed of Hulks and Humans" constant="1" name="WANDERSPEED" sid="470325318862914" static="0" type="number">35</variable>
+        <comment>How far back a hulk moves when hit</comment>
+        <variable comment="How far back a hulk moves when hit" constant="1" name="HULKHITDISTANCE" sid="2129017903967394" static="0" type="number">13</variable>
         <event-group description="" sid="3836417830586914" title="Variables" />
         <comment>Current score</comment>
         <variable comment="Current score" constant="0" name="score" sid="3992352173049936" static="0" type="number">0</variable>
@@ -20,11 +25,14 @@
         <variable comment="Current level" constant="0" name="waveNumber" sid="3503179619649141" static="0" type="number">1</variable>
         <comment>Number of humans collected so far</comment>
         <variable comment="Number of humans collected" constant="0" name="humansCollected" sid="2719190680875734" static="0" type="number">0</variable>
+        <comment>Speed Scalar</comment>
+        <variable comment="Speed scalar" constant="0" name="speedScalar" sid="4733404181195136" static="0" type="number">1</variable>
         <event-group description="" sid="4132719014296746" title="State" />
         <variable comment="Current state" constant="0" name="state" sid="3282901660068868" static="0" type="number">0</variable>
         <comment>States</comment>
         <variable comment="Playing game" constant="1" name="STATE_PLAY" sid="1184149527524537" static="0" type="number">0</variable>
         <variable comment="Creating level from level state" constant="1" name="STATE_NEWLEVEL" sid="5828676377196543" static="0" type="number">1</variable>
+        <variable comment="Life lost" constant="1" name="STATE_LIFELOST" sid="7760243052788026" static="0" type="number">2</variable>
         <event-group description="" sid="95829865074099" title="Number of items in each level currently" />
     </events>
 </c2eventsheet>

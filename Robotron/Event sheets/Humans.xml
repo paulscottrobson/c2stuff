@@ -25,9 +25,16 @@
                     <param id="2" name="Value">STATE_PLAY</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="7264879080510321" type="Wanderers">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1625442949853943" type="Wanderers">
+                    <param id="0" name="Speed">WANDERSPEED*speedScalar</param>
+                </action>
+            </actions>
             <sub-events>
-                <comment>Generic behaviour for Wanderers (Grunt uses this as well)</comment>
+                <comment>Generic behaviour for Wanderers (Humans and Hulks)</comment>
                 <event-block any="1" sid="4622396992098336">
                     <conditions>
                         <condition behavior="Timer" id="0" name="On timer" sid="8398892012061235" type="Wanderers">
@@ -163,6 +170,17 @@
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-block>
+        <comment>Stop moving if not in play state</comment>
+        <event-block sid="8378987958630195">
+            <conditions>
+                <condition id="-22" name="Else" sid="4639696179608818" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="5294761214830131" type="Wanderers">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

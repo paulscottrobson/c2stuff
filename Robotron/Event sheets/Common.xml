@@ -253,5 +253,35 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>When player hits fatal object, a life is lost</comment>
+        <event-block sid="2487456100989271">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3416745593876399" type="FatalObjects">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8939680982537195" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_LIFELOST</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle shot objects</comment>
+        <event-block sid="5071909843691097">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="980911605514726" type="ShootableObjects">
+                    <param id="0" name="Object">PlayerMissile</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="9713384867379803" type="Function">
+                    <param id="0" name="Name">&quot;AddToScore&quot;</param>
+                    <param id="1" name="Parameter {n}">ShootableObjects.points</param>
+                </action>
+                <action id="-9" name="Destroy" sid="672402432397186" type="PlayerMissile" />
+                <action id="-9" name="Destroy" sid="8186158147399517" type="ShootableObjects" />
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

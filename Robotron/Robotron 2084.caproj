@@ -52,6 +52,162 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder>
+        <object-folder name="Enemies">
+            <object-type name="Grunt" sid="9186831450366793">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="412597359285009" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt1.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt2.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Hulk" sid="7196337569926349">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4497945203587971" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\hulk\e0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\hulk\e2.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Electrodes" sid="8813067458030733">
+                <plugin id="Sprite" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Animation1" pingpong="0" repeatcount="1" repeatto="0" sid="1899097514126267" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation2" pingpong="0" repeatcount="1" repeatto="0" sid="3806662892636853" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation3" pingpong="0" repeatcount="1" repeatto="0" sid="2799893319341899" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation4" pingpong="0" repeatcount="1" repeatto="0" sid="4773644905244944" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                            <collision-poly>
+                                <point x="1" y="0" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation5" pingpong="0" repeatcount="1" repeatto="0" sid="7115378387607808" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                            <collision-poly>
+                                <point x="0.272917" y="0.0020833" />
+                                <point x="0.733333" y="0.00416671" />
+                                <point x="0.71875" y="0.997917" />
+                                <point x="0.279167" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation6" pingpong="0" repeatcount="1" repeatto="0" sid="928124966606342" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                            <collision-poly>
+                                <point x="0.266667" y="0.266667" />
+                                <point x="0.466667" y="0" />
+                                <point x="0.733333" y="0.266667" />
+                                <point x="1" y="0.466667" />
+                                <point x="0.466667" y="1" />
+                                <point x="0.266667" y="0.733333" />
+                                <point x="0" y="0.466667" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation7" pingpong="0" repeatcount="1" repeatto="0" sid="82451138847089" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation8" pingpong="0" repeatcount="1" repeatto="0" sid="6981427521040071" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation9" pingpong="0" repeatcount="1" repeatto="0" sid="718430511808609" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Animation0" pingpong="0" repeatcount="1" repeatto="0" sid="2596715615558356" speed="5">
+                        <frame duration="1" hotspotX="0.548387" hotspotY="0.548387">
+                            <collision-poly>
+                                <point x="0.00201614" y="0.290323" />
+                                <point x="0.963709" y="0.288306" />
+                                <point x="0.967742" y="0.643145" />
+                                <point x="0" y="0.647177" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Humans">
+            <object-type name="Child" sid="2934837249536788">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016919481546539" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e2.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Father" sid="5319061470660758">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2661438047150022" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e2.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Mother" sid="7062756826549816">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3415437833941216" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e2.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Text">
+            <object-type name="BriefScore" sid="8798253473477315">
+                <plugin id="Spritefont2" />
+                <behaviors>
+                    <behavior-type name="Fade" sid="1691389629965319">
+                        <behavior id="Fade" />
+                    </behavior-type>
+                    <behavior-type name="Bullet" sid="3721640135977997">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+            </object-type>
+            <object-type name="Score" sid="8815515049814418">
+                <plugin id="Spritefont2" />
+                <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+            </object-type>
+            <object-type name="WaveNumber" sid="7386857962310467">
+                <plugin id="Spritefont2" />
+                <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+            </object-type>
+            <object-type name="Label" sid="5776760747188217">
+                <plugin id="Spritefont2" />
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+            </object-type>
+        </object-folder>
         <object-type name="Player" sid="3838142501653003">
             <plugin id="Sprite" />
             <instance-variables>
@@ -66,16 +222,6 @@
                 <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3007310069442849" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\player\walk\e0.png" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\player\walk\e2.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Grunt" sid="9186831450366793">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="412597359285009" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt0.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt1.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\grunts\walk\grunt2.png" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -106,10 +252,6 @@
             <plugin id="TiledBg" />
             <texture />
         </object-type>
-        <object-type name="Score" sid="8815515049814418">
-            <plugin id="Spritefont2" />
-            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
-        </object-type>
         <object-type name="LifeMarker" sid="301878590077809">
             <plugin id="Sprite" />
             <animation-folder>
@@ -118,135 +260,8 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="WaveNumber" sid="7386857962310467">
-            <plugin id="Spritefont2" />
-            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
-        </object-type>
-        <object-type name="Label" sid="5776760747188217">
-            <plugin id="Spritefont2" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
-        </object-type>
         <object-type name="Function" sid="6624102545666887">
             <plugin id="Function" />
-        </object-type>
-        <object-type name="Father" sid="5319061470660758">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2661438047150022" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e0.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.52" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\daddy\e2.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Mother" sid="7062756826549816">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3415437833941216" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e0.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\mommy\e2.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Child" sid="2934837249536788">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016919481546539" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e0.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.52381" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\kid\e2.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="BriefScore" sid="8798253473477315">
-            <plugin id="Spritefont2" />
-            <behaviors>
-                <behavior-type name="Fade" sid="1691389629965319">
-                    <behavior id="Fade" />
-                </behavior-type>
-                <behavior-type name="Bullet" sid="3721640135977997">
-                    <behavior id="Bullet" />
-                </behavior-type>
-            </behaviors>
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
-        </object-type>
-        <object-type name="Electrodes" sid="8813067458030733">
-            <plugin id="Sprite" />
-            <effects>
-                <effect-type name="SetColor">
-                    <effect id="setcolor" />
-                </effect-type>
-            </effects>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Animation1" pingpong="0" repeatcount="1" repeatto="0" sid="1899097514126267" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation2" pingpong="0" repeatcount="1" repeatto="0" sid="3806662892636853" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation3" pingpong="0" repeatcount="1" repeatto="0" sid="2799893319341899" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation4" pingpong="0" repeatcount="1" repeatto="0" sid="4773644905244944" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
-                        <collision-poly>
-                            <point x="1" y="0" />
-                            <point x="1" y="1" />
-                            <point x="0" y="1" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-                <animation framecount="1" loop="0" name="Animation5" pingpong="0" repeatcount="1" repeatto="0" sid="7115378387607808" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
-                        <collision-poly>
-                            <point x="0.272917" y="0.0020833" />
-                            <point x="0.733333" y="0.00416671" />
-                            <point x="0.71875" y="0.997917" />
-                            <point x="0.279167" y="1" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-                <animation framecount="1" loop="0" name="Animation6" pingpong="0" repeatcount="1" repeatto="0" sid="928124966606342" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
-                        <collision-poly>
-                            <point x="0.266667" y="0.266667" />
-                            <point x="0.466667" y="0" />
-                            <point x="0.733333" y="0.266667" />
-                            <point x="1" y="0.466667" />
-                            <point x="0.466667" y="1" />
-                            <point x="0.266667" y="0.733333" />
-                            <point x="0" y="0.466667" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-                <animation framecount="1" loop="0" name="Animation7" pingpong="0" repeatcount="1" repeatto="0" sid="82451138847089" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation8" pingpong="0" repeatcount="1" repeatto="0" sid="6981427521040071" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation9" pingpong="0" repeatcount="1" repeatto="0" sid="718430511808609" speed="5">
-                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333" />
-                </animation>
-                <animation framecount="1" loop="0" name="Animation0" pingpong="0" repeatcount="1" repeatto="0" sid="2596715615558356" speed="5">
-                    <frame duration="1" hotspotX="0.548387" hotspotY="0.548387">
-                        <collision-poly>
-                            <point x="0.00201614" y="0.290323" />
-                            <point x="0.963709" y="0.288306" />
-                            <point x="0.967742" y="0.643145" />
-                            <point x="0" y="0.647177" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
         </object-type>
     </object-folder>
     <families>
@@ -256,6 +271,7 @@
                 <member>Electrodes</member>
                 <member>Father</member>
                 <member>Grunt</member>
+                <member>Hulk</member>
                 <member>Mother</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
@@ -267,8 +283,10 @@
                 <member>Electrodes</member>
                 <member>Father</member>
                 <member>Grunt</member>
+                <member>Hulk</member>
                 <member>Mother</member>
                 <member>Player</member>
+                <member>PlayerMissile</member>
             </members>
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
@@ -276,13 +294,16 @@
                 <member>Child</member>
                 <member>Father</member>
                 <member>Grunt</member>
+                <member>Hulk</member>
                 <member>Mother</member>
                 <member>Player</member>
             </members>
         </family>
         <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
             <members>
+                <member>Electrodes</member>
                 <member>Grunt</member>
+                <member>Hulk</member>
             </members>
             <behaviors>
                 <behavior-type name="DestroyOutsideLayout" sid="1837136708739761">
@@ -301,7 +322,7 @@
             <members>
                 <member>Child</member>
                 <member>Father</member>
-                <member>Grunt</member>
+                <member>Hulk</member>
                 <member>Mother</member>
             </members>
             <behaviors>
@@ -317,6 +338,7 @@
             <members>
                 <member>Electrodes</member>
                 <member>Grunt</member>
+                <member>Hulk</member>
             </members>
         </family>
         <family name="ShootableObjects" plugin-id="Sprite" sid="6382874311065182">
@@ -333,6 +355,11 @@
         <layout>Game.xml</layout>
     </layout-folder>
     <event-folder>
+        <event-folder name="Enemies">
+            <event-sheet>Electrodes.xml</event-sheet>
+            <event-sheet>Grunts.xml</event-sheet>
+            <event-sheet>Hulk.xml</event-sheet>
+        </event-folder>
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>
         <event-sheet>Common.xml</event-sheet>
@@ -340,7 +367,6 @@
         <event-sheet>TODO.xml</event-sheet>
         <event-sheet>Creation.xml</event-sheet>
         <event-sheet>Humans.xml</event-sheet>
-        <event-sheet>Electrodes.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />

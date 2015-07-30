@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Hulk</name>
+    <events>
+        <event-group description="The big things you can&apos;t destroy" sid="1640143803122787" title="Hulks" />
+        <event-block sid="8966278171461608">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5878288254676007" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>You can shoot them, but they aren&apos;t destroyed.</comment>
+                <event-block sid="920161135688509">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="593913897151362" type="Hulk">
+                            <param id="0" name="Object">PlayerMissile</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6280698658289809" type="PlayerMissile" />
+                        <action id="-3" name="Set position" sid="5560791645834114" type="Hulk">
+                            <param id="0" name="X">Hulk.X + cos(PlayerMissile.Bullet.AngleOfMotion)*HULKHITDISTANCE</param>
+                            <param id="1" name="Y">Hulk.Y + sin(PlayerMissile.Bullet.AngleOfMotion)*HULKHITDISTANCE</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

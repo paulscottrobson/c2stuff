@@ -9,5 +9,7 @@
         <include>Player</include>
         <include>Humans</include>
         <include>Electrodes</include>
+        <include>Grunts</include>
+        <include>Hulk</include>
     </events>
 </c2eventsheet>

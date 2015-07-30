@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Grunts</name>
+    <events>
+        <event-group description="Special code for grunts" sid="9853583719199455" title="Grunts" />
+        <event-block sid="3910525719642627">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2287073092585259" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Grunts chase player</comment>
+                <event-block sid="3720772211730553">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="3649250474789236" type="System">
+                            <param id="0" name="Object">Grunt</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6477229269459211">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="2568736536056927" type="Grunt">
+                                    <param id="0" name="Comparison">1</param>
+                                    <param id="1" name="X co-ordinate">Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="6006667415476966" type="Grunt">
+                                    <param id="0" name="X">min(abs(Player.X-Grunt.X),GRUNTSPEED*speedScalar*dt)*(Grunt.X &lt; Player.X ? 1 : -1)+Grunt.X</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5170977247219029">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="6637584327474406" type="Grunt">
+                                    <param id="0" name="Comparison">1</param>
+                                    <param id="1" name="Y co-ordinate">Player.Y</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="4806863661481725" type="Grunt">
+                                    <param id="0" name="Y">min(abs(Player.Y-Grunt.Y),GRUNTSPEED*speedScalar*dt)*(Grunt.Y &lt; Player.Y ? 1 : -1)+Grunt.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Grunts destroyed by electrodes</comment>
+        <event-block sid="2326302419445458">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6127540264845773" type="Grunt">
+                    <param id="0" name="Object">Electrodes</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6091066794028181" type="Grunt" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

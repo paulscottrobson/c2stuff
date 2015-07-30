@@ -19,6 +19,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="6">Creation</event-sheet>
         <event-sheet order="7">Humans</event-sheet>
         <event-sheet order="8">Electrodes</event-sheet>
+        <event-sheet order="9">Grunts</event-sheet>
+        <event-sheet order="10">Hulk</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -27,30 +29,35 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="1" name="Configuration Settings" />
     </properties>
     <families-expanded root="1">
-        <family expanded="0" name="Scaleables" />
-        <family expanded="0" name="GameObjects" />
-        <family expanded="0" name="LockedToFrame" />
-        <family expanded="0" name="EnemyObjects" />
+        <family expanded="1" name="Scaleables" />
+        <family expanded="1" name="GameObjects" />
+        <family expanded="1" name="LockedToFrame" />
+        <family expanded="1" name="EnemyObjects" />
         <family expanded="0" name="Humans" />
-        <family expanded="0" name="Wanderers" />
-        <family expanded="0" name="FatalObjects" />
-        <family expanded="0" name="ShootableObjects" />
+        <family expanded="1" name="Wanderers" />
+        <family expanded="1" name="FatalObjects" />
+        <family expanded="1" name="ShootableObjects" />
     </families-expanded>
     <folders-expanded>
-        <folder expanded="0" path="object-folder/" />
+        <folder expanded="1" path="object-folder/" />
+        <folder expanded="0" path="object-folder/Enemies/" />
+        <folder expanded="0" path="object-folder/Humans/" />
+        <folder expanded="0" path="object-folder/Text/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
+        <folder expanded="1" path="event-folder/Enemies/" />
         <folder expanded="1" path="file-folder/" />
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/Grunt/" />
-        <folder expanded="1" path="animation-folder/PlayerMissile/" />
-        <folder expanded="1" path="animation-folder/LifeMarker/" />
+        <folder expanded="1" path="animation-folder/Hulk/" />
+        <folder expanded="1" path="animation-folder/Electrodes/" />
+        <folder expanded="1" path="animation-folder/Child/" />
         <folder expanded="1" path="animation-folder/Father/" />
         <folder expanded="1" path="animation-folder/Mother/" />
-        <folder expanded="1" path="animation-folder/Child/" />
-        <folder expanded="1" path="animation-folder/Electrodes/" />
+        <folder expanded="1" path="animation-folder/Player/" />
+        <folder expanded="1" path="animation-folder/PlayerMissile/" />
+        <folder expanded="1" path="animation-folder/LifeMarker/" />
     </folders-expanded>
 </c2uistate>

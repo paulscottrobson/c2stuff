@@ -4,9 +4,6 @@
     <name>TODO</name>
     <events>
         <event-group description="" sid="688851364428772" title="TODO" />
-        <comment>Electrodes : collision and shooting</comment>
-        <comment>Complete grunt movement pattern, make them fatal and shootable (another family) and collision with electrodes</comment>
-        <comment>Add Hulks</comment>
         <comment>Add enforcers/spheroids</comment>
         <comment>Add tanks/quarks</comment>
         <comment>Add brains</comment>
