@@ -4,8 +4,8 @@
     <name>TODO</name>
     <events>
         <event-group description="" sid="688851364428772" title="TODO" />
-        <comment>Add enforcers/spheroids</comment>
-        <comment>Add tanks/quarks</comment>
+        <comment>Add enforcers</comment>
+        <comment>Add tanks</comment>
         <comment>Add brains</comment>
     </events>
 </c2eventsheet>

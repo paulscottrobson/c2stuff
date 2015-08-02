@@ -38,9 +38,6 @@
                         <condition behavior="Timer" id="0" name="On timer" sid="8398892012061235" type="Wanderers">
                             <param id="0" name="Tag">&quot;ChangeDirection&quot;</param>
                         </condition>
-                        <condition id="0" name="On collision with another object" sid="2663109766905945" type="Wanderers">
-                            <param id="0" name="Object">Frame</param>
-                        </condition>
                         <condition id="-18" name="On created" sid="5771895737087723" type="Wanderers" />
                     </conditions>
                     <actions>
@@ -92,7 +89,7 @@
                             <conditions>
                                 <condition id="-1" name="Compare X" sid="8600081778389248" type="Wanderers">
                                     <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="X co-ordinate">LEFTBORDER</param>
+                                    <param id="1" name="X co-ordinate">FRAME_LEFT</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -105,7 +102,7 @@
                             <conditions>
                                 <condition id="-1" name="Compare X" sid="724916960176416" type="Wanderers">
                                     <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="X co-ordinate">LayoutWidth-RIGHTBORDER</param>
+                                    <param id="1" name="X co-ordinate">FRAME_RIGHT</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -118,7 +115,7 @@
                             <conditions>
                                 <condition id="-2" name="Compare Y" sid="8185436491371757" type="Wanderers">
                                     <param id="0" name="Comparison">3</param>
-                                    <param id="1" name="Y co-ordinate">TOPBORDER</param>
+                                    <param id="1" name="Y co-ordinate">FRAME_TOP</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -131,7 +128,7 @@
                             <conditions>
                                 <condition id="-2" name="Compare Y" sid="6786356358206494" type="Wanderers">
                                     <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Y co-ordinate">LayoutHeight-BOTTOMBORDER</param>
+                                    <param id="1" name="Y co-ordinate">FRAME_BOTTOM</param>
                                 </condition>
                             </conditions>
                             <actions>

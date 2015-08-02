@@ -15,6 +15,8 @@
         <variable comment="Speed of Grunts" constant="1" name="GRUNTSPEED" sid="8734207777960684" static="0" type="number">15</variable>
         <variable comment="Speed of Hulks and Humans" constant="1" name="HUMANSPEED" sid="470325318862914" static="0" type="number">25</variable>
         <variable comment="Speed of Hulks" constant="1" name="HULKSPEED" sid="8766602349531601" static="0" type="number">40</variable>
+        <variable comment="Speed of Quarks" constant="1" name="QUARKSPEED" sid="7199525644558314" static="0" type="number">120</variable>
+        <variable comment="Speed of Spheroids" constant="1" name="SPHEROIDSPEED" sid="1104038511074273" static="0" type="number">125</variable>
         <comment>How far back a hulk moves when hit</comment>
         <variable comment="How far back a hulk moves when hit" constant="1" name="HULKHITDISTANCE" sid="2129017903967394" static="0" type="number">13</variable>
         <event-group description="" sid="3595576589741883" title="Initialised Constants" />

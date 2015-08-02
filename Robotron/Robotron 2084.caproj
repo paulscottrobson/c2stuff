@@ -142,6 +142,133 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="Quark" sid="560747267980292">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="7" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7281723388376188" speed="15">
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.03125" y="0.03125" />
+                                <point x="1" y="0.03125" />
+                                <point x="1" y="0.96875" />
+                                <point x="0.03125" y="0.96875" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.495117" y="0.482422" />
+                                <point x="0.542969" y="0.482422" />
+                                <point x="0.542969" y="0.517578" />
+                                <point x="0.495117" y="0.517578" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.53125">
+                            <collision-poly>
+                                <point x="0.34375" y="0.34375" />
+                                <point x="0.65625" y="0.34375" />
+                                <point x="0.65625" y="0.6875" />
+                                <point x="0.34375" y="0.6875" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.28125" y="0.28125" />
+                                <point x="0.75" y="0.28125" />
+                                <point x="0.75" y="0.71875" />
+                                <point x="0.28125" y="0.71875" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.8125" y="0.21875" />
+                                <point x="0.8125" y="0.78125" />
+                                <point x="0.21875" y="0.78125" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125">
+                            <collision-poly>
+                                <point x="0.15625" y="0.15625" />
+                                <point x="0.875" y="0.15625" />
+                                <point x="0.875" y="0.875" />
+                                <point x="0.15625" y="0.875" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.09375" y="0.0625" />
+                                <point x="0.9375" y="0.0625" />
+                                <point x="0.9375" y="0.9375" />
+                                <point x="0.09375" y="0.9375" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Spheroid" sid="7032175758802213">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="8" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4284957356335799" speed="15">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\ma6.png">
+                            <collision-poly>
+                                <point x="0.0666667" y="0.0666667" />
+                                <point x="0.933333" y="0.0666667" />
+                                <point x="0.933333" y="0.933333" />
+                                <point x="0.0666667" y="0.933333" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\ma7.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m0.png">
+                            <collision-poly>
+                                <point x="0.466667" y="0.466667" />
+                                <point x="0.533333" y="0.466667" />
+                                <point x="0.533333" y="0.533333" />
+                                <point x="0.466667" y="0.533333" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m1.png">
+                            <collision-poly>
+                                <point x="0.4" y="0.4" />
+                                <point x="0.6" y="0.4" />
+                                <point x="0.6" y="0.6" />
+                                <point x="0.4" y="0.6" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m2.png">
+                            <collision-poly>
+                                <point x="0.333333" y="0.333333" />
+                                <point x="0.666667" y="0.333333" />
+                                <point x="0.666667" y="0.666667" />
+                                <point x="0.333333" y="0.666667" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m3.png">
+                            <collision-poly>
+                                <point x="0.266667" y="0.266667" />
+                                <point x="0.733333" y="0.266667" />
+                                <point x="0.733333" y="0.733333" />
+                                <point x="0.266667" y="0.733333" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m4.png">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.2" y="0.8" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m5.png">
+                            <collision-poly>
+                                <point x="0.133333" y="0.133333" />
+                                <point x="0.866667" y="0.133333" />
+                                <point x="0.866667" y="0.866667" />
+                                <point x="0.133333" y="0.866667" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder name="Humans">
             <object-type name="Child" sid="2934837249536788">
@@ -275,6 +402,8 @@
                 <member>Mother</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
         </family>
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
@@ -287,6 +416,8 @@
                 <member>Mother</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
@@ -297,6 +428,8 @@
                 <member>Hulk</member>
                 <member>Mother</member>
                 <member>Player</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
         </family>
         <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
@@ -304,6 +437,8 @@
                 <member>Electrodes</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
             <behaviors>
                 <behavior-type name="DestroyOutsideLayout" sid="1837136708739761">
@@ -324,6 +459,8 @@
                 <member>Father</member>
                 <member>Hulk</member>
                 <member>Mother</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
             <instance-variables>
                 <instance-variable name="usesDiagonals" sid="1620092545929379" type="boolean" />
@@ -349,6 +486,8 @@
             <members>
                 <member>Electrodes</member>
                 <member>Grunt</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
             </members>
             <instance-variables>
                 <instance-variable comment="Points accrued for shooting" name="points" sid="7767668047188789" type="number" />
@@ -368,6 +507,7 @@
             <event-sheet>Electrodes.xml</event-sheet>
             <event-sheet>Grunts.xml</event-sheet>
             <event-sheet>Hulk.xml</event-sheet>
+            <event-sheet>Quark and Spheroid.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>
