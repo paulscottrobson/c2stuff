@@ -15,9 +15,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="2">Player</event-sheet>
         <event-sheet order="3">Common</event-sheet>
         <event-sheet order="4">Globals and Constants</event-sheet>
-        <event-sheet active="1" order="5">TODO</event-sheet>
+        <event-sheet order="5">TODO</event-sheet>
         <event-sheet order="6">Creation</event-sheet>
-        <event-sheet order="7">Humans</event-sheet>
+        <event-sheet active="1" order="7">Humans</event-sheet>
         <event-sheet order="8">Electrodes</event-sheet>
         <event-sheet order="9">Grunts</event-sheet>
         <event-sheet order="10">Hulk</event-sheet>
@@ -37,6 +37,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="1" name="Wanderers" />
         <family expanded="1" name="FatalObjects" />
         <family expanded="1" name="ShootableObjects" />
+        <family expanded="1" name="Chasers" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />

@@ -325,6 +325,10 @@
                 <member>Hulk</member>
                 <member>Mother</member>
             </members>
+            <instance-variables>
+                <instance-variable name="usesDiagonals" sid="1620092545929379" type="boolean" />
+                <instance-variable name="moveCount" sid="5127315570172424" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="9624322106646891">
                     <behavior id="Bullet" />
@@ -349,6 +353,11 @@
             <instance-variables>
                 <instance-variable comment="Points accrued for shooting" name="points" sid="7767668047188789" type="number" />
             </instance-variables>
+        </family>
+        <family name="Chasers" plugin-id="Sprite" sid="5931214739327921">
+            <members>
+                <member>Grunt</member>
+            </members>
         </family>
     </families>
     <layout-folder>

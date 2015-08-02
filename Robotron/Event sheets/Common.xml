@@ -133,8 +133,8 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" sid="1100845922501901" type="LockedToFrame">
-                            <param id="0" name="X">clamp(LockedToFrame.X,LEFTBORDER,LayoutWidth-RIGHTBORDER)</param>
-                            <param id="1" name="Y">clamp(LockedToFrame.Y,TOPBORDER,LayoutHeight-BOTTOMBORDER)</param>
+                            <param id="0" name="X">clamp(LockedToFrame.X,FRAME_LEFT,FRAME_RIGHT)</param>
+                            <param id="1" name="Y">clamp(LockedToFrame.Y,FRAME_TOP,FRAME_BOTTOM)</param>
                         </action>
                     </actions>
                 </event-block>

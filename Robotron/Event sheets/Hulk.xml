@@ -31,5 +31,16 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Set initial speeds</comment>
+        <event-block sid="5410647344294868">
+            <conditions>
+                <condition id="-18" name="On created" sid="3493334299080268" type="Hulk" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="8627616697384576" type="Hulk">
+                    <param id="0" name="Speed">HULKSPEED*speedScalar</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

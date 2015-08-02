@@ -14,38 +14,38 @@
             </conditions>
             <actions />
             <sub-events>
-                <comment>Grunts chase player</comment>
+                <comment>Grunts chase player - also supports other chasing objects</comment>
                 <event-block sid="3720772211730553">
                     <conditions>
                         <condition id="-11" name="For Each" sid="3649250474789236" type="System">
-                            <param id="0" name="Object">Grunt</param>
+                            <param id="0" name="Object">Chasers</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
                         <event-block sid="6477229269459211">
                             <conditions>
-                                <condition id="-1" name="Compare X" sid="2568736536056927" type="Grunt">
+                                <condition id="-1" name="Compare X" sid="2568736536056927" type="Chasers">
                                     <param id="0" name="Comparison">1</param>
                                     <param id="1" name="X co-ordinate">Player.X</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-1" name="Set X" sid="6006667415476966" type="Grunt">
-                                    <param id="0" name="X">min(abs(Player.X-Grunt.X),GRUNTSPEED*speedScalar*dt)*(Grunt.X &lt; Player.X ? 1 : -1)+Grunt.X</param>
+                                <action id="-1" name="Set X" sid="6006667415476966" type="Chasers">
+                                    <param id="0" name="X">min(abs(Player.X-Chasers.X),GRUNTSPEED*speedScalar*dt)*(Chasers.X &lt; Player.X ? 1 : -1)+Chasers.X</param>
                                 </action>
                             </actions>
                         </event-block>
                         <event-block sid="5170977247219029">
                             <conditions>
-                                <condition id="-2" name="Compare Y" sid="6637584327474406" type="Grunt">
+                                <condition id="-2" name="Compare Y" sid="6637584327474406" type="Chasers">
                                     <param id="0" name="Comparison">1</param>
                                     <param id="1" name="Y co-ordinate">Player.Y</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-2" name="Set Y" sid="4806863661481725" type="Grunt">
-                                    <param id="0" name="Y">min(abs(Player.Y-Grunt.Y),GRUNTSPEED*speedScalar*dt)*(Grunt.Y &lt; Player.Y ? 1 : -1)+Grunt.Y</param>
+                                <action id="-2" name="Set Y" sid="4806863661481725" type="Chasers">
+                                    <param id="0" name="Y">min(abs(Player.Y-Chasers.Y),GRUNTSPEED*speedScalar*dt)*(Chasers.Y &lt; Player.Y ? 1 : -1)+Chasers.Y</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -62,6 +62,7 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="6091066794028181" type="Grunt" />
+                <action id="-9" name="Destroy" sid="9588726987839753" type="Electrodes" />
             </actions>
         </event-block>
     </events>

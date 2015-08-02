@@ -26,15 +26,13 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Bullet" id="5" name="Set enabled" sid="7264879080510321" type="Wanderers">
-                    <param id="0" name="State">1</param>
-                </action>
-                <action behavior="Bullet" id="0" name="Set speed" sid="1625442949853943" type="Wanderers">
-                    <param id="0" name="Speed">WANDERSPEED*speedScalar</param>
+                <action id="-11" name="Add to" sid="8309550877758501" type="Wanderers">
+                    <param id="0" name="Instance variable">moveCount</param>
+                    <param id="1" name="Value">1</param>
                 </action>
             </actions>
             <sub-events>
-                <comment>Generic behaviour for Wanderers (Humans and Hulks)</comment>
+                <comment>Generic behaviour for Wanderers (Humans and Hulks,, Diagonal version for Spheroids and Quarks)</comment>
                 <event-block any="1" sid="4622396992098336">
                     <conditions>
                         <condition behavior="Timer" id="0" name="On timer" sid="8398892012061235" type="Wanderers">
@@ -53,12 +51,43 @@
                             <param id="0" name="State">1</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="1148591722980708" type="Wanderers">
-                            <param id="0" name="Duration">random(2,4)</param>
+                            <param id="0" name="Duration">random(3,5)</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;ChangeDirection&quot;</param>
                         </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="4743268785308127" type="Wanderers">
+                            <param id="0" name="State">1</param>
+                        </action>
                     </actions>
                     <sub-events>
+                        <event-block sid="9769115623696577">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="3683388977607907" type="Wanderers">
+                                    <param id="0" name="Instance variable">usesDiagonals</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4046462869750022" type="Wanderers">
+                                    <param id="0" name="Angle">choose(0,45,90,135,180,255,270,315)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5767052356439439">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="5828250215581118" type="System">
+                                            <param id="0" name="First value">Wanderers.moveCount % 2 </param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="5" name="Set enabled" sid="6404148302017172" type="Wanderers">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <event-block sid="3146327783838916">
                             <conditions>
                                 <condition id="-1" name="Compare X" sid="8600081778389248" type="Wanderers">
@@ -179,6 +208,37 @@
             <actions>
                 <action behavior="Bullet" id="5" name="Set enabled" sid="5294761214830131" type="Wanderers">
                     <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Set initial speeds</comment>
+        <event-block sid="2999327981996577">
+            <conditions>
+                <condition id="-18" name="On created" sid="2216035168796512" type="Father" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1625442949853943" type="Father">
+                    <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2810815435870771">
+            <conditions>
+                <condition id="-18" name="On created" sid="7383254275356307" type="Mother" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="6915063619419395" type="Mother">
+                    <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8469499705296721">
+            <conditions>
+                <condition id="-18" name="On created" sid="1654247281095821" type="Child" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="3606843058499422" type="Child">
+                    <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
                 </action>
             </actions>
         </event-block>

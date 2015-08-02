@@ -13,9 +13,38 @@
         <variable comment="Height of all graphic objects" constant="1" name="STDHEIGHT" sid="8237739907203073" static="0" type="number">32</variable>
         <comment>Object Speed</comment>
         <variable comment="Speed of Grunts" constant="1" name="GRUNTSPEED" sid="8734207777960684" static="0" type="number">15</variable>
-        <variable comment="Speed of Hulks and Humans" constant="1" name="WANDERSPEED" sid="470325318862914" static="0" type="number">35</variable>
+        <variable comment="Speed of Hulks and Humans" constant="1" name="HUMANSPEED" sid="470325318862914" static="0" type="number">25</variable>
+        <variable comment="Speed of Hulks" constant="1" name="HULKSPEED" sid="8766602349531601" static="0" type="number">40</variable>
         <comment>How far back a hulk moves when hit</comment>
         <variable comment="How far back a hulk moves when hit" constant="1" name="HULKHITDISTANCE" sid="2129017903967394" static="0" type="number">13</variable>
+        <event-group description="" sid="3595576589741883" title="Initialised Constants" />
+        <variable constant="0" name="FRAME_LEFT" sid="7614134670839731" static="0" type="number">0</variable>
+        <variable constant="0" name="FRAME_RIGHT" sid="5307373632092451" static="0" type="number">0</variable>
+        <variable constant="0" name="FRAME_TOP" sid="8497691618094304" static="0" type="number">0</variable>
+        <variable constant="0" name="FRAME_BOTTOM" sid="6554907264349247" static="0" type="number">0</variable>
+        <event-block sid="7362190337383326">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3285528743525073" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9105475778674554" type="System">
+                    <param id="0" name="Variable">FRAME_TOP</param>
+                    <param id="1" name="Value">TOPBORDER+STDHEIGHT/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="3498442242230416" type="System">
+                    <param id="0" name="Variable">FRAME_BOTTOM</param>
+                    <param id="1" name="Value">LayoutHeight-TOPBORDER-STDHEIGHT/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="4842949103046364" type="System">
+                    <param id="0" name="Variable">FRAME_LEFT</param>
+                    <param id="1" name="Value">LEFTBORDER+STDHEIGHT/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="5480790577444685" type="System">
+                    <param id="0" name="Variable">FRAME_RIGHT</param>
+                    <param id="1" name="Value">LayoutWidth-RIGHTBORDER-STDHEIGHT/2</param>
+                </action>
+            </actions>
+        </event-block>
         <event-group description="" sid="3836417830586914" title="Variables" />
         <comment>Current score</comment>
         <variable comment="Current score" constant="0" name="score" sid="3992352173049936" static="0" type="number">0</variable>
