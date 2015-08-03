@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Quark, Spheroid, Enforcer, Tank</name>
+    <events>
+        <event-group description="" sid="9342937776355613" title="Quarks and Spheroids, Enforcers and Tanks" />
+        <event-block sid="4660094995382367">
+            <conditions>
+                <condition id="-18" name="On created" sid="4904468203129597" type="Quark" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="7989301009793087" type="Quark">
+                    <param id="0" name="Speed">QUARKSPEED*speedScalar</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="8152171120411813" type="Quark">
+                    <param id="0" name="Instance variable">usesDiagonals</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5791872617919854">
+            <conditions>
+                <condition id="-18" name="On created" sid="495719641954117" type="Spheroid" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="4837649201944157" type="Spheroid">
+                    <param id="0" name="Speed">SPHEROIDSPEED*speedScalar</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="7261338583939735" type="Spheroid">
+                    <param id="0" name="Instance variable">usesDiagonals</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4938499161192869">
+            <conditions>
+                <condition id="-18" name="On created" sid="1090829798129459" type="Enforcer" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="5914241670551121" type="Enforcer">
+                    <param id="0" name="Speed">ENFORCERSPEED*speedScalar</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="6910222333407149" type="Enforcer">
+                    <param id="0" name="Instance variable">usesDiagonals</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3170493761804975">
+            <conditions>
+                <condition id="-18" name="On created" sid="6748010194513725" type="Tank" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="4091477029711066" type="Tank">
+                    <param id="0" name="Speed">TANKSPEED*speedScalar</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="2106997131406771" type="Tank">
+                    <param id="0" name="Instance variable">usesDiagonals</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When running every 2-4 seconds spawn either a random tank or a random enforcer</comment>
+        <event-block sid="6911953087886145">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9617800359922106" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1798260780233631">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="2709846871174176" type="System">
+                            <param id="0" name="Interval (seconds)">random(2,4)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="5107959748727068">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="3203307188218971" type="System">
+                                    <param id="0" name="First value">choose(1,2)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="8275800170808323">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="913823882339199" type="System">
+                                            <param id="0" name="Object">Quark</param>
+                                            <param id="1" name="Expression">(Quark.moveCount &gt; 1) &amp; (Quark.moveCount%2 = 0)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="3213564248729138">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="3049963692715076" type="System">
+                                                    <param id="0" name="Object">Quark</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="2640958737657535" type="Quark">
+                                                    <param id="0" name="Object">Tank</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="4410308597796129">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7923135994025708" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="7638187847397725">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="9649519478312963" type="System">
+                                            <param id="0" name="Object">Spheroid</param>
+                                            <param id="1" name="Expression">(Spheroid.moveCount &gt; 1) &amp; (Spheroid.moveCount%2 = 0)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="1298042049707395">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="9086145224461835" type="System">
+                                                    <param id="0" name="Object">Spheroid</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="4064555946238206" type="Spheroid">
+                                                    <param id="0" name="Object">Enforcer</param>
+                                                    <param id="1" name="Layer">1</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

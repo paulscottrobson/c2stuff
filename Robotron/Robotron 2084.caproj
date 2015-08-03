@@ -269,6 +269,24 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="Tank" sid="633212938752398">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9022392847406679" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.515152" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Enforcer" sid="4518045764588456">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3945414095908107" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\walk0.png" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\walk1.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder name="Humans">
             <object-type name="Child" sid="2934837249536788">
@@ -396,6 +414,7 @@
             <members>
                 <member>Child</member>
                 <member>Electrodes</member>
+                <member>Enforcer</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -404,12 +423,14 @@
                 <member>PlayerMissile</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
         </family>
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
             <members>
                 <member>Child</member>
                 <member>Electrodes</member>
+                <member>Enforcer</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -418,11 +439,13 @@
                 <member>PlayerMissile</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
             <members>
                 <member>Child</member>
+                <member>Enforcer</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -430,15 +453,18 @@
                 <member>Player</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
         </family>
         <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
             <members>
                 <member>Electrodes</member>
+                <member>Enforcer</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
             <behaviors>
                 <behavior-type name="DestroyOutsideLayout" sid="1837136708739761">
@@ -456,15 +482,18 @@
         <family name="Wanderers" plugin-id="Sprite" sid="7249892975979253">
             <members>
                 <member>Child</member>
+                <member>Enforcer</member>
                 <member>Father</member>
                 <member>Hulk</member>
                 <member>Mother</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
             <instance-variables>
                 <instance-variable name="usesDiagonals" sid="1620092545929379" type="boolean" />
                 <instance-variable name="moveCount" sid="5127315570172424" type="number" />
+                <instance-variable comment="If true, heads directly for player" name="targetPlayer" sid="4949105596521674" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="9624322106646891">
@@ -478,16 +507,22 @@
         <family name="FatalObjects" plugin-id="Sprite" sid="6435012994583088">
             <members>
                 <member>Electrodes</member>
+                <member>Enforcer</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
+                <member>Tank</member>
             </members>
         </family>
         <family name="ShootableObjects" plugin-id="Sprite" sid="6382874311065182">
             <members>
                 <member>Electrodes</member>
+                <member>Enforcer</member>
                 <member>Grunt</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
+                <member>Tank</member>
             </members>
             <instance-variables>
                 <instance-variable comment="Points accrued for shooting" name="points" sid="7767668047188789" type="number" />
@@ -507,7 +542,7 @@
             <event-sheet>Electrodes.xml</event-sheet>
             <event-sheet>Grunts.xml</event-sheet>
             <event-sheet>Hulk.xml</event-sheet>
-            <event-sheet>Quark and Spheroid.xml</event-sheet>
+            <event-sheet>Quark, Spheroid, Enforcer, Tank.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>

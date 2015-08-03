@@ -137,6 +137,18 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="8153609776526345">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="2128982234191499" type="Wanderers">
+                                    <param id="0" name="Instance variable">targetPlayer</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="8729395558890595" type="Wanderers">
+                                    <param id="0" name="Angle">angle(Wanderers.X,Wanderers.Y,Player.X,Player.Y)</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block sid="2677972261231949">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="439212795215829" type="System">

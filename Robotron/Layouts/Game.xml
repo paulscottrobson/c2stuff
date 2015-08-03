@@ -401,6 +401,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -440,6 +441,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -479,6 +481,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -518,6 +521,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -557,6 +561,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -596,6 +601,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -635,6 +641,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                         <points>1000</points>
                     </instance-variables>
                     <behavior-instances>
@@ -676,6 +683,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                         <points>1000</points>
                     </instance-variables>
                     <behavior-instances>
@@ -695,8 +703,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>160</x>
-                        <y>512</y>
+                        <x>448</x>
+                        <y>448</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>
@@ -974,6 +982,7 @@
                     <instance-variables>
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
+                        <targetPlayer>false</targetPlayer>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout" />
@@ -1050,6 +1059,90 @@
                     <world>
                         <x>640</x>
                         <y>96</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Tank" uid="29">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <usesDiagonals>true</usesDiagonals>
+                        <moveCount>0</moveCount>
+                        <targetPlayer>true</targetPlayer>
+                        <points>200</points>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="DestroyOutsideLayout" />
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>No</set-angle>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>928</x>
+                        <y>128</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.515151501</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Enforcer" uid="30">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <usesDiagonals>true</usesDiagonals>
+                        <moveCount>0</moveCount>
+                        <targetPlayer>true</targetPlayer>
+                        <points>150</points>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="DestroyOutsideLayout" />
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>No</set-angle>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>832</x>
+                        <y>128</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>

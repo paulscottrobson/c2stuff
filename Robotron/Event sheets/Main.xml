@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Main</name>
     <events>
-        <include>Quark and Spheroid</include>
+        <include>Quark, Spheroid, Enforcer, Tank</include>
         <include>Globals and Constants</include>
         <include>Creation</include>
         <include>Common</include>

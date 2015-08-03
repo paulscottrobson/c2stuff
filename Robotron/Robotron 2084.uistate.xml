@@ -21,7 +21,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="8">Electrodes</event-sheet>
         <event-sheet order="9">Grunts</event-sheet>
         <event-sheet order="10">Hulk</event-sheet>
-        <event-sheet order="11">Quark and Spheroid</event-sheet>
+        <event-sheet order="11">Quark, Spheroid, Enforcer, Tank</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -57,6 +57,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Electrodes/" />
         <folder expanded="1" path="animation-folder/Quark/" />
         <folder expanded="1" path="animation-folder/Spheroid/" />
+        <folder expanded="1" path="animation-folder/Tank/" />
+        <folder expanded="1" path="animation-folder/Enforcer/" />
         <folder expanded="1" path="animation-folder/Child/" />
         <folder expanded="1" path="animation-folder/Father/" />
         <folder expanded="1" path="animation-folder/Mother/" />
