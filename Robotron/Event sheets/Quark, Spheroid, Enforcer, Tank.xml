@@ -153,5 +153,98 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>When running every 2-4 seconds spawn a bullet from a tank or enforcer</comment>
+        <event-block sid="986823389555183">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5164958799317663" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6466420880048438">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="6849040729750441" type="System">
+                            <param id="0" name="Interval (seconds)">random(0.5,1.5)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="550279924013262">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2750656930176731" type="System">
+                                    <param id="0" name="First value">choose(1,2)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="4971866666127469">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="1667372957225539" type="System">
+                                            <param id="0" name="Object">Enforcer</param>
+                                            <param id="1" name="Expression">(Enforcer.moveCount &gt; 1)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="6946089453497244">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="8368892846232534" type="System">
+                                                    <param id="0" name="Object">Enforcer</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="1785115032920264" type="Enforcer">
+                                                    <param id="0" name="Object">EnforcerMissile</param>
+                                                    <param id="1" name="Layer">2</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="5895181176512557">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="4099141328961834" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="1132911722264437">
+                                    <conditions>
+                                        <condition id="-34" name="Pick by evaluate" sid="6508050012200863" type="System">
+                                            <param id="0" name="Object">Tank</param>
+                                            <param id="1" name="Expression">(Tank.moveCount &gt; 1)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="3919789932935125">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="673920663019567" type="System">
+                                                    <param id="0" name="Object">Tank</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="3417463265383715" type="Tank">
+                                                    <param id="0" name="Object">TankMissile</param>
+                                                    <param id="1" name="Layer">2</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

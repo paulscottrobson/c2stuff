@@ -12,5 +12,6 @@
         <include>Electrodes</include>
         <include>Grunts</include>
         <include>Hulk</include>
+        <include>Missiles</include>
     </events>
 </c2eventsheet>

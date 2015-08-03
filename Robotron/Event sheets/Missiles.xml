@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Missiles</name>
+    <events>
+        <event-group description="" sid="7694952084305909" title="Missiles launched by Enforces and Tanks" />
+        <comment>On creation set direction, destroy time and speed</comment>
+        <event-block sid="7872210314474248">
+            <conditions>
+                <condition id="-18" name="On created" sid="3273963203669402" type="EnemyMissiles" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2078670632749183" type="EnemyMissiles">
+                    <param id="0" name="Angle">angle(EnemyMissiles.X,EnemyMissiles.Y,Player.X,Player.Y)</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="4468940034615808" type="EnemyMissiles">
+                    <param id="0" name="Duration">EnemyMissiles.life</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;Destroy&quot;</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="2984272591555197" type="EnemyMissiles">
+                    <param id="0" name="Speed">MISSILESPEED*speedScalar</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Handle missiles being destroyed.</comment>
+        <event-block sid="904405572879889">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="2284806989610157" type="EnemyMissiles">
+                    <param id="0" name="Tag">&quot;Destroy&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="8672874714893045" type="EnemyMissiles" />
+            </actions>
+        </event-block>
+        <comment>Bounce bouncy missiles off the walls</comment>
+        <event-block sid="5358662531944126">
+            <conditions>
+                <condition id="-11" name="For Each" sid="5101900620125691" type="System">
+                    <param id="0" name="Object">EnemyMissiles</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1918324004678174">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="5254540137747217" type="EnemyMissiles">
+                            <param id="0" name="Instance variable">bounces</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3875416330170912">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="9717829596417131" type="EnemyMissiles">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">FRAME_LEFT</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3888786241781465" type="EnemyMissiles">
+                                    <param id="0" name="Angle">angle(0,0,1,sin(EnemyMissiles.Bullet.AngleOfMotion))</param>
+                                </action>
+                                <action id="14" name="Log" sid="2173249493022679" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Angle&quot; &amp; EnemyMissiles.Bullet.AngleOfMotion</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="680003243886863">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="5170409117386044" type="EnemyMissiles">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">FRAME_RIGHT</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="1533548986244913" type="EnemyMissiles">
+                                    <param id="0" name="Angle">angle(0,0,-1,sin(EnemyMissiles.Bullet.AngleOfMotion))</param>
+                                </action>
+                                <action id="14" name="Log" sid="4272032736851683" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Angle&quot; &amp; EnemyMissiles.Bullet.AngleOfMotion</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8711795084167569">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="5880857548838247" type="EnemyMissiles">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">FRAME_TOP</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2978045143764761" type="EnemyMissiles">
+                                    <param id="0" name="Angle">angle(0,0,cos(EnemyMissiles.Bullet.AngleOfMotion),1)</param>
+                                </action>
+                                <action id="14" name="Log" sid="3509973140844812" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Angle&quot; &amp; EnemyMissiles.Bullet.AngleOfMotion</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1908703509436848">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="1321012040316646" type="EnemyMissiles">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">FRAME_BOTTOM</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3580893958495185" type="EnemyMissiles">
+                                    <param id="0" name="Angle">angle(0,0,cos(EnemyMissiles.Bullet.AngleOfMotion),-1)</param>
+                                </action>
+                                <action id="14" name="Log" sid="341226175320133" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Angle&quot; &amp; EnemyMissiles.Bullet.AngleOfMotion</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

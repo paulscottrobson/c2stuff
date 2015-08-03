@@ -10,6 +10,7 @@
     <unique-id>10e502urhmd7a</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -287,6 +288,76 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="TankMissile" sid="3243683716466832">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7005227002070361" speed="10">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m3.png">
+                            <collision-poly>
+                                <point x="0.208333" y="0.208333" />
+                                <point x="0.791667" y="0.208333" />
+                                <point x="0.791667" y="0.791667" />
+                                <point x="0.208333" y="0.791667" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m1.png">
+                            <collision-poly>
+                                <point x="0.375" y="0.375" />
+                                <point x="0.625" y="0.375" />
+                                <point x="0.625" y="0.625" />
+                                <point x="0.375" y="0.625" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\spheroids\m2.png">
+                            <collision-poly>
+                                <point x="0.291667" y="0.291667" />
+                                <point x="0.708333" y="0.291667" />
+                                <point x="0.708333" y="0.708333" />
+                                <point x="0.291667" y="0.708333" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="EnforcerMissile" sid="8674254118914395">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="4" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9316106278173676" speed="10">
+                        <frame duration="1" hotspotX="0.470588" hotspotY="0.470588" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\shot0.png">
+                            <collision-poly>
+                                <point x="0.176471" y="0.176471" />
+                                <point x="0.764706" y="0.176471" />
+                                <point x="0.764706" y="0.823529" />
+                                <point x="0.176471" y="0.823529" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.470588" hotspotY="0.529412" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\shot1.png">
+                            <collision-poly>
+                                <point x="0.176471" y="0.176471" />
+                                <point x="0.764706" y="0.176471" />
+                                <point x="0.764706" y="0.823529" />
+                                <point x="0.176471" y="0.823529" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.470588" hotspotY="0.470588" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\shot2.png">
+                            <collision-poly>
+                                <point x="0.176471" y="0.176471" />
+                                <point x="0.764706" y="0.176471" />
+                                <point x="0.764706" y="0.823529" />
+                                <point x="0.176471" y="0.823529" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.470588" hotspotY="0.529412" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\robot\shot3.png">
+                            <collision-poly>
+                                <point x="0.176471" y="0.176471" />
+                                <point x="0.764706" y="0.176471" />
+                                <point x="0.764706" y="0.823529" />
+                                <point x="0.176471" y="0.823529" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder name="Humans">
             <object-type name="Child" sid="2934837249536788">
@@ -408,6 +479,9 @@
         <object-type name="Function" sid="6624102545666887">
             <plugin id="Function" />
         </object-type>
+        <object-type name="Browser" sid="8757448502363394">
+            <plugin id="Browser" />
+        </object-type>
     </object-folder>
     <families>
         <family name="Scaleables" plugin-id="Sprite" sid="7045294177735034">
@@ -415,6 +489,7 @@
                 <member>Child</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
+                <member>EnforcerMissile</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -424,6 +499,7 @@
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>
+                <member>TankMissile</member>
             </members>
         </family>
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
@@ -431,6 +507,7 @@
                 <member>Child</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
+                <member>EnforcerMissile</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -440,12 +517,19 @@
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>
+                <member>TankMissile</member>
             </members>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout2" sid="1911975049875745">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
             <members>
                 <member>Child</member>
                 <member>Enforcer</member>
+                <member>EnforcerMissile</member>
                 <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
@@ -454,6 +538,7 @@
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>
+                <member>TankMissile</member>
             </members>
         </family>
         <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
@@ -508,21 +593,25 @@
             <members>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
+                <member>EnforcerMissile</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>
+                <member>TankMissile</member>
             </members>
         </family>
         <family name="ShootableObjects" plugin-id="Sprite" sid="6382874311065182">
             <members>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
+                <member>EnforcerMissile</member>
                 <member>Grunt</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>
+                <member>TankMissile</member>
             </members>
             <instance-variables>
                 <instance-variable comment="Points accrued for shooting" name="points" sid="7767668047188789" type="number" />
@@ -532,6 +621,24 @@
             <members>
                 <member>Grunt</member>
             </members>
+        </family>
+        <family name="EnemyMissiles" plugin-id="Sprite" sid="9547811154875998">
+            <members>
+                <member>EnforcerMissile</member>
+                <member>TankMissile</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="True if bounces of wall" name="bounces" sid="5388952617114606" type="boolean" />
+                <instance-variable comment="Time in seconds before self destructs" name="life" sid="4303906353887956" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="8233945701570301">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="6558467468650976">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
         </family>
     </families>
     <layout-folder>
@@ -551,10 +658,12 @@
         <event-sheet>TODO.xml</event-sheet>
         <event-sheet>Creation.xml</event-sheet>
         <event-sheet>Humans.xml</event-sheet>
+        <event-sheet>Missiles.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />
         <global-instance type="Function" uid="10" />
+        <global-instance type="Browser" uid="14" />
     </global-instances>
     <sounds-folder />
     <music-folder />
