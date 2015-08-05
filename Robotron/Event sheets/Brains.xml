@@ -29,6 +29,9 @@
                             <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
                             <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
                         </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="4182661404571941" type="CruiseMissile">
+                            <param id="0" name="Speed">CRUISESPEED*speedScalar</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -101,6 +104,115 @@
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-block>
+        <comment>Move the brains</comment>
+        <event-block sid="7750118212071922">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1471064434262849" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2543029055909945">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="9194313304842793" type="System">
+                            <param id="0" name="Object">Brain</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Check the human targetted actually exists</comment>
+                        <event-block sid="158371164510561">
+                            <conditions>
+                                <condition id="-31" inverted="1" name="Object UID exists" sid="515453558647105" type="System">
+                                    <param id="0" name="UID">Brain.targetUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="8640760897288924" type="Brain">
+                                    <param id="0" name="Instance variable">targetUID</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>No current target, so pick a nearest human</comment>
+                        <event-block sid="1828086514210471">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="7077209795405778" type="Brain">
+                                    <param id="0" name="Instance variable">targetUID</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="1028037176349583">
+                                    <conditions>
+                                        <condition id="-15" name="Pick nearest/furthest" sid="695215940015399" type="Humans">
+                                            <param id="0" name="Which">0</param>
+                                            <param id="1" name="X">Brain.X</param>
+                                            <param id="2" name="Y">Brain.Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="7523850293713884" type="Brain">
+                                            <param id="0" name="Instance variable">targetUID</param>
+                                            <param id="1" name="Value">Humans.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>No humans, so just pick some object in the game to follow, don&apos;t care what.</comment>
+                                <event-block sid="7778801943754369">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="8798821900471543" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="3701583882594542">
+                                            <conditions>
+                                                <condition id="-16" name="Pick random instance" sid="9988333571384345" type="System">
+                                                    <param id="0" name="Object">GameObjects</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="8545122341437612" type="Brain">
+                                                    <param id="0" name="Instance variable">targetUID</param>
+                                                    <param id="1" name="Value">GameObjects.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="3520751509107174">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="6867441399649209" type="GameObjects">
+                                    <param id="0" name="Unique ID">Brain.targetUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="6786741952909283" type="Brain">
+                                    <param id="0" name="X">((Brain.X &lt; GameObjects.X) ? 1 : -1)*BRAINSPEED*dt+Brain.X</param>
+                                </action>
+                                <action id="-2" name="Set Y" sid="4596458726063489" type="Brain">
+                                    <param id="0" name="Y">((Brain.Y &lt; GameObjects.Y) ? 1 : -1)*BRAINSPEED*dt+Brain.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Eat the human, becomes a zombie (actually creates a new object)</comment>
+        <event-block sid="2285423593002762">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3147428439664976" type="Humans">
+                    <param id="0" name="Object">Brain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="2674553714938126" type="Humans" />
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

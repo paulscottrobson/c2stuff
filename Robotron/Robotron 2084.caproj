@@ -484,6 +484,9 @@
         </object-type>
         <object-type name="Brain" sid="4751420276195857">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="targetUID" sid="2515374747486274" type="number" />
+            </instance-variables>
             <animation-folder>
                 <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="642171688864558" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />

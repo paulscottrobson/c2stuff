@@ -20,6 +20,8 @@
         <variable comment="Speed of Tanks" constant="1" name="TANKSPEED" sid="912731906803541" static="0" type="number">60</variable>
         <variable comment="Speed of Enforcer" constant="1" name="ENFORCERSPEED" sid="3605093868369931" static="0" type="number">210</variable>
         <variable comment="Speed of Enemy Missile" constant="1" name="MISSILESPEED" sid="7476928498288594" static="0" type="number">276</variable>
+        <variable comment="Speed of Enemy Missile" constant="1" name="BRAINSPEED" sid="6355181739798583" static="0" type="number">30</variable>
+        <variable comment="Speed of Enemy Missile" constant="1" name="CRUISESPEED" sid="6895434932650559" static="0" type="number">180</variable>
         <comment>How far back a hulk moves when hit</comment>
         <variable comment="How far back a hulk moves when hit" constant="1" name="HULKHITDISTANCE" sid="2129017903967394" static="0" type="number">13</variable>
         <event-group description="" sid="3595576589741883" title="Initialised Constants" />
