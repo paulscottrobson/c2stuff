@@ -10,18 +10,19 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout active="1" order="0">Game</layout>
-        <event-sheet order="1">Main</event-sheet>
-        <event-sheet order="2">Player</event-sheet>
-        <event-sheet order="3">Common</event-sheet>
-        <event-sheet order="4">Globals and Constants</event-sheet>
-        <event-sheet order="5">TODO</event-sheet>
-        <event-sheet order="6">Creation</event-sheet>
-        <event-sheet order="7">Humans</event-sheet>
-        <event-sheet order="8">Electrodes</event-sheet>
-        <event-sheet order="9">Grunts</event-sheet>
-        <event-sheet order="10">Hulk</event-sheet>
+        <layout order="0">Game</layout>
+        <event-sheet order="1">Player</event-sheet>
+        <event-sheet order="2">Common</event-sheet>
+        <event-sheet active="1" order="3">Globals and Constants</event-sheet>
+        <event-sheet order="4">TODO</event-sheet>
+        <event-sheet order="5">Creation</event-sheet>
+        <event-sheet order="6">Humans</event-sheet>
+        <event-sheet order="7">Electrodes</event-sheet>
+        <event-sheet order="8">Grunts</event-sheet>
+        <event-sheet order="9">Hulk</event-sheet>
+        <event-sheet order="10">Main</event-sheet>
         <event-sheet order="11">Missiles</event-sheet>
+        <event-sheet order="12">Brains</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -30,16 +31,16 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="1" name="Configuration Settings" />
     </properties>
     <families-expanded root="1">
-        <family expanded="0" name="Scaleables" />
-        <family expanded="0" name="GameObjects" />
-        <family expanded="0" name="LockedToFrame" />
+        <family expanded="1" name="Scaleables" />
+        <family expanded="1" name="GameObjects" />
+        <family expanded="1" name="LockedToFrame" />
         <family expanded="0" name="EnemyObjects" />
         <family expanded="0" name="Humans" />
         <family expanded="0" name="Wanderers" />
-        <family expanded="0" name="FatalObjects" />
-        <family expanded="0" name="ShootableObjects" />
+        <family expanded="1" name="FatalObjects" />
+        <family expanded="1" name="ShootableObjects" />
         <family expanded="0" name="Chasers" />
-        <family expanded="1" name="EnemyMissiles" />
+        <family expanded="0" name="EnemyMissiles" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
@@ -68,5 +69,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/PlayerMissile/" />
         <folder expanded="1" path="animation-folder/LifeMarker/" />
+        <folder expanded="1" path="animation-folder/Brain/" />
+        <folder expanded="1" path="animation-folder/CruiseMissile/" />
     </folders-expanded>
 </c2uistate>

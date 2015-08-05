@@ -482,11 +482,46 @@
         <object-type name="Browser" sid="8757448502363394">
             <plugin id="Browser" />
         </object-type>
+        <object-type name="Brain" sid="4751420276195857">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="3" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="642171688864558" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="CruiseMissile" sid="1391176982054996">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="9613596560679619">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="1320816097757433">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5031035036760152" speed="5">
+                    <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                        <collision-poly>
+                            <point x="2.79397e-009" y="0.391667" />
+                            <point x="0.983333" y="0.3875" />
+                            <point x="1" y="0.604167" />
+                            <point x="0" y="0.6125" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Scaleables" plugin-id="Sprite" sid="7045294177735034">
             <members>
+                <member>Brain</member>
                 <member>Child</member>
+                <member>CruiseMissile</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
@@ -504,7 +539,9 @@
         </family>
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
             <members>
+                <member>Brain</member>
                 <member>Child</member>
+                <member>CruiseMissile</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
@@ -527,7 +564,9 @@
         </family>
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
             <members>
+                <member>Brain</member>
                 <member>Child</member>
+                <member>CruiseMissile</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
                 <member>Father</member>
@@ -591,6 +630,8 @@
         </family>
         <family name="FatalObjects" plugin-id="Sprite" sid="6435012994583088">
             <members>
+                <member>Brain</member>
+                <member>CruiseMissile</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
@@ -604,6 +645,8 @@
         </family>
         <family name="ShootableObjects" plugin-id="Sprite" sid="6382874311065182">
             <members>
+                <member>Brain</member>
+                <member>CruiseMissile</member>
                 <member>Electrodes</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
@@ -650,6 +693,7 @@
             <event-sheet>Grunts.xml</event-sheet>
             <event-sheet>Hulk.xml</event-sheet>
             <event-sheet>Quark, Spheroid, Enforcer, Tank.xml</event-sheet>
+            <event-sheet>Brains.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>Player.xml</event-sheet>

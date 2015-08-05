@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Brains</name>
+    <events>
+        <event-group description="" sid="4886008356738706" title="Brains" />
+        <comment>Brains launch missiles very rarely, but they are homing missiles</comment>
+        <event-block sid="271346834999791">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="108938293351195" type="System">
+                    <param id="0" name="Interval (seconds)">random(4,8)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="8257769057621161">
+                    <conditions>
+                        <condition id="-16" name="Pick random instance" sid="6654457091670133" type="System">
+                            <param id="0" name="Object">Brain</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="8570628859803589" type="Brain">
+                            <param id="0" name="Object">CruiseMissile</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="4018372874598635" type="Function">
+                            <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
+                            <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>So retarget them every second</comment>
+        <event-block sid="4373396079150185">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="5705783054917461" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2000479296842107">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="8361142874159617" type="System">
+                            <param id="0" name="Object">CruiseMissile</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="4293626570003926" type="Function">
+                            <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
+                            <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>This function does the retargetting</comment>
+        <event-block sid="55239144278954">
+            <conditions>
+                <condition id="0" name="On function" sid="751230398668877" type="Function">
+                    <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5371784300211002">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="8552429733658416" type="CruiseMissile">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6088858650730367">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8844439545031317" type="System">
+                                    <param id="0" name="First value">abs(Player.X-CruiseMissile.X)</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">abs(Player.Y-CruiseMissile.Y)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="4416022170116082" type="CruiseMissile">
+                                    <param id="0" name="Angle">(Player.X &lt; CruiseMissile.X) ? 180 : 0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7740660461343694">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="1482360507344988" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5473372335360268" type="CruiseMissile">
+                                    <param id="0" name="Angle">(Player.Y &lt; CruiseMissile.Y) ? -90 : 90</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
