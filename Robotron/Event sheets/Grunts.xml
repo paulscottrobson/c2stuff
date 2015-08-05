@@ -32,7 +32,7 @@
                             </conditions>
                             <actions>
                                 <action id="-1" name="Set X" sid="6006667415476966" type="Chasers">
-                                    <param id="0" name="X">min(abs(Player.X-Chasers.X),GRUNTSPEED*speedScalar*dt)*(Chasers.X &lt; Player.X ? 1 : -1)+Chasers.X</param>
+                                    <param id="0" name="X">min(abs(Player.X-Chasers.X),Chasers.speed*speedScalar*dt)*(Chasers.X &lt; Player.X ? 1 : -1)+Chasers.X</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -45,7 +45,7 @@
                             </conditions>
                             <actions>
                                 <action id="-2" name="Set Y" sid="4806863661481725" type="Chasers">
-                                    <param id="0" name="Y">min(abs(Player.Y-Chasers.Y),GRUNTSPEED*speedScalar*dt)*(Chasers.Y &lt; Player.Y ? 1 : -1)+Chasers.Y</param>
+                                    <param id="0" name="Y">min(abs(Player.Y-Chasers.Y),Chasers.speed*speedScalar*dt)*(Chasers.Y &lt; Player.Y ? 1 : -1)+Chasers.Y</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -57,12 +57,34 @@
         <event-block sid="2326302419445458">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="6127540264845773" type="Grunt">
-                    <param id="0" name="Object">Electrodes</param>
+                    <param id="0" name="Object">Electrode</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="6091066794028181" type="Grunt" />
-                <action id="-9" name="Destroy" sid="9588726987839753" type="Electrodes" />
+                <action id="-9" name="Destroy" sid="9588726987839753" type="Electrode" />
+            </actions>
+        </event-block>
+        <event-block sid="604639662020549">
+            <conditions>
+                <condition id="-18" name="On created" sid="9013913632447758" type="Grunt" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="9405111873280591" type="Grunt">
+                    <param id="0" name="Instance variable">speed</param>
+                    <param id="1" name="Value">GRUNTSPEED</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7768161049674518">
+            <conditions>
+                <condition id="-18" name="On created" sid="5223461127242276" type="Prog" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="2699182503986275" type="Prog">
+                    <param id="0" name="Instance variable">speed</param>
+                    <param id="1" name="Value">PROGSPEED</param>
+                </action>
             </actions>
         </event-block>
     </events>

@@ -7,10 +7,10 @@
         <comment>Set the appropriate animation for the level when created</comment>
         <event-block sid="2817615299356835">
             <conditions>
-                <condition id="-18" name="On created" sid="5480203067414697" type="Electrodes" />
+                <condition id="-18" name="On created" sid="5480203067414697" type="Electrode" />
             </conditions>
             <actions>
-                <action id="4" name="Set animation" sid="1343701581561013" type="Electrodes">
+                <action id="4" name="Set animation" sid="1343701581561013" type="Electrode">
                     <param id="0" name="Animation">&quot;Animation&quot; &amp; (waveNumber % 10)</param>
                     <param id="1" name="From">1</param>
                 </action>
@@ -57,17 +57,17 @@
                                 <condition id="-1" name="Every tick" sid="5421057993669946" type="System" />
                             </conditions>
                             <actions>
-                                <action id="-28" name="Set effect parameter" sid="849311659010932" type="Electrodes">
+                                <action id="-28" name="Set effect parameter" sid="849311659010932" type="Electrode">
                                     <param id="0" name="Effect">&quot;SetColor&quot;</param>
                                     <param id="1" name="Parameter index">0</param>
                                     <param id="2" name="Value">colour0</param>
                                 </action>
-                                <action id="-28" name="Set effect parameter" sid="2145131031721161" type="Electrodes">
+                                <action id="-28" name="Set effect parameter" sid="2145131031721161" type="Electrode">
                                     <param id="0" name="Effect">&quot;SetColor&quot;</param>
                                     <param id="1" name="Parameter index">1</param>
                                     <param id="2" name="Value">colour1</param>
                                 </action>
-                                <action id="-28" name="Set effect parameter" sid="1016902434184187" type="Electrodes">
+                                <action id="-28" name="Set effect parameter" sid="1016902434184187" type="Electrode">
                                     <param id="0" name="Effect">&quot;SetColor&quot;</param>
                                     <param id="1" name="Parameter index">2</param>
                                     <param id="2" name="Value">colour2</param>

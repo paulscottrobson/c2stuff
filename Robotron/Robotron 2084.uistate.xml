@@ -12,9 +12,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <open-tabs>
         <layout order="0">Game</layout>
         <event-sheet order="1">Player</event-sheet>
-        <event-sheet active="1" order="2">Common</event-sheet>
+        <event-sheet order="2">Common</event-sheet>
         <event-sheet order="3">Globals and Constants</event-sheet>
-        <event-sheet order="4">TODO</event-sheet>
+        <event-sheet active="1" order="4">TODO</event-sheet>
         <event-sheet order="5">Creation</event-sheet>
         <event-sheet order="6">Humans</event-sheet>
         <event-sheet order="7">Electrodes</event-sheet>
@@ -34,18 +34,18 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="1" name="Scaleables" />
         <family expanded="1" name="GameObjects" />
         <family expanded="1" name="LockedToFrame" />
-        <family expanded="0" name="EnemyObjects" />
-        <family expanded="0" name="Humans" />
+        <family expanded="1" name="EnemyObjects" />
+        <family expanded="1" name="Humans" />
         <family expanded="0" name="Wanderers" />
         <family expanded="1" name="FatalObjects" />
         <family expanded="1" name="ShootableObjects" />
-        <family expanded="0" name="Chasers" />
+        <family expanded="1" name="Chasers" />
         <family expanded="0" name="EnemyMissiles" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
-        <folder expanded="0" path="object-folder/Enemies/" />
-        <folder expanded="0" path="object-folder/Humans/" />
+        <folder expanded="1" path="object-folder/Enemies/" />
+        <folder expanded="1" path="object-folder/Humans/" />
         <folder expanded="0" path="object-folder/Text/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
@@ -56,20 +56,21 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="0" path="file-folder/Icons/" />
         <folder expanded="1" path="animation-folder/Grunt/" />
         <folder expanded="1" path="animation-folder/Hulk/" />
-        <folder expanded="1" path="animation-folder/Electrodes/" />
+        <folder expanded="1" path="animation-folder/Electrode/" />
         <folder expanded="1" path="animation-folder/Quark/" />
         <folder expanded="1" path="animation-folder/Spheroid/" />
         <folder expanded="1" path="animation-folder/Tank/" />
         <folder expanded="1" path="animation-folder/Enforcer/" />
         <folder expanded="1" path="animation-folder/TankMissile/" />
         <folder expanded="1" path="animation-folder/EnforcerMissile/" />
+        <folder expanded="1" path="animation-folder/Prog/" />
+        <folder expanded="1" path="animation-folder/CruiseMissile/" />
+        <folder expanded="1" path="animation-folder/Brain/" />
         <folder expanded="1" path="animation-folder/Child/" />
         <folder expanded="1" path="animation-folder/Father/" />
         <folder expanded="1" path="animation-folder/Mother/" />
         <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/PlayerMissile/" />
         <folder expanded="1" path="animation-folder/LifeMarker/" />
-        <folder expanded="1" path="animation-folder/Brain/" />
-        <folder expanded="1" path="animation-folder/CruiseMissile/" />
     </folders-expanded>
 </c2uistate>

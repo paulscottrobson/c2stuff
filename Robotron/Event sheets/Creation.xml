@@ -23,5 +23,379 @@
                 </action>
             </actions>
         </event-block>
+        <event-group description="" sid="8947862690969007" title="Set up the Level" />
+        <event-block sid="1616609800061901">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3122271323627003" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="8497571100918694" type="GameObjects" />
+                <action id="-3" name="Create object" sid="3283063334175334" type="System">
+                    <param id="0" name="Object to create">Player</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">(FRAME_LEFT+FRAME_RIGHT)/2</param>
+                    <param id="3" name="Y">(FRAME_TOP+FRAME_BOTTOM)/2</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2391247859368497">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4717499408827626" type="System">
+                            <param id="0" name="Variable">CountGrunts</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2374093786268434">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5204551247072192" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountGrunts</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="1093358932311221" type="System">
+                                    <param id="0" name="Object to create">Grunt</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="1222972225042757" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Grunt.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6236965356287411">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3107938626941734" type="System">
+                            <param id="0" name="Variable">CountElectrodes</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6286572006041497">
+                            <conditions>
+                                <condition id="-10" name="For" sid="8828081462558669" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountElectrodes</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="3503775851092916" type="System">
+                                    <param id="0" name="Object to create">Electrode</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="1546913052384327" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Electrode.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6559231759947789">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2363142873874791" type="System">
+                            <param id="0" name="Variable">CountDaddies</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8585514332434743">
+                            <conditions>
+                                <condition id="-10" name="For" sid="2332604577878902" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountDaddies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="214544746844312" type="System">
+                                    <param id="0" name="Object to create">Father</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="6158638442986791" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Father.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9525028541652967">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3708581194016858" type="System">
+                            <param id="0" name="Variable">CountMommies</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6995433264632737">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7342112461124443" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountMommies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="7639464147515471" type="System">
+                                    <param id="0" name="Object to create">Mother</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2254230739801562" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Mother.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="4818750923153819">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9981720452440478" type="System">
+                            <param id="0" name="Variable">CountHulks</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6354582310802058">
+                            <conditions>
+                                <condition id="-10" name="For" sid="492190854314001" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountHulks</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="3052545090719423" type="System">
+                                    <param id="0" name="Object to create">Hulk</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2015614574112667" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Hulk.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6274086314250549">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2892097968010049" type="System">
+                            <param id="0" name="Variable">CountBrains</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7635446919313744">
+                            <conditions>
+                                <condition id="-10" name="For" sid="8827286936545466" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountBrains</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="8534412340518701" type="System">
+                                    <param id="0" name="Object to create">Brain</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2874038842564767" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Brain.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="3278282958537078">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4225356719690491" type="System">
+                            <param id="0" name="Variable">CountSpheroids</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7701964101360984">
+                            <conditions>
+                                <condition id="-10" name="For" sid="7861440832967482" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountSpheroids</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="4423052956816107" type="System">
+                                    <param id="0" name="Object to create">Spheroid</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="7398066132883803" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Spheroid.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="4283759760724996">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4515432493673168" type="System">
+                            <param id="0" name="Variable">CountQuarks</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6149018054115943">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5656078655862761" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountQuarks</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="1875408789070871" type="System">
+                                    <param id="0" name="Object to create">Quark</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="8748869699838245" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Quark.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9515001077300068">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9026703621299846" type="System">
+                            <param id="0" name="Variable">CountMikies</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="9189654079069098">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5488571993193397" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountMikies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="3980336659106024" type="System">
+                                    <param id="0" name="Object to create">Child</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="766371440838841" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Child.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Position an enemy initially away from the middle</comment>
+        <event-block sid="812921661658913">
+            <conditions>
+                <condition id="0" name="On function" sid="6296773285244966" type="Function">
+                    <param id="0" name="Name">&quot;Position&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="n" sid="430773629472948" static="0" type="number">0</variable>
+                <event-block sid="1562593947115011">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="1952839789939748" type="GameObjects">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="585242089836296">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="224497896733225" type="System">
+                                    <param id="0" name="First value">choose(1,2)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="6566169170960327" type="GameObjects">
+                                    <param id="0" name="X">random(FRAME_LEFT+STDHEIGHT/2,FRAME_RIGHT+STDHEIGHT/2)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6853972470369501" type="System">
+                                    <param id="0" name="Variable">n</param>
+                                    <param id="1" name="Value">random(0,(FRAME_BOTTOM-FRAME_TOP)/6)</param>
+                                </action>
+                                <action id="-2" name="Set Y" sid="4705761978797925" type="GameObjects">
+                                    <param id="0" name="Y">choose(FRAME_TOP+STDHEIGHT/2+n,FRAME_BOTTOM-STDHEIGHT/2-n)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4110197408873073">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="9329575510030086" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="7024556376437865" type="GameObjects">
+                                    <param id="0" name="Y">random(FRAME_TOP+STDHEIGHT/2,FRAME_BOTTOM+STDHEIGHT/2)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6019356751924501" type="System">
+                                    <param id="0" name="Variable">n</param>
+                                    <param id="1" name="Value">random(0,(FRAME_BOTTOM-FRAME_TOP)/6)</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="361919800705837" type="GameObjects">
+                                    <param id="0" name="X">choose(FRAME_LEFT+STDHEIGHT/2+n,FRAME_RIGHT-STDHEIGHT/2-n)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

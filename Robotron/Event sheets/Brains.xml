@@ -5,58 +5,70 @@
     <events>
         <event-group description="" sid="4886008356738706" title="Brains" />
         <comment>Brains launch missiles very rarely, but they are homing missiles</comment>
-        <event-block sid="271346834999791">
+        <event-block sid="6748295640159607">
             <conditions>
-                <condition id="-6" name="Every X seconds" sid="108938293351195" type="System">
-                    <param id="0" name="Interval (seconds)">random(4,8)</param>
+                <condition id="-14" name="Compare variable" sid="2312057602681682" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
                 </condition>
             </conditions>
             <actions />
             <sub-events>
-                <event-block sid="8257769057621161">
+                <event-block sid="271346834999791">
                     <conditions>
-                        <condition id="-16" name="Pick random instance" sid="6654457091670133" type="System">
-                            <param id="0" name="Object">Brain</param>
+                        <condition id="-6" name="Every X seconds" sid="108938293351195" type="System">
+                            <param id="0" name="Interval (seconds)">random(4,8)</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="0" name="Spawn another object" sid="8570628859803589" type="Brain">
-                            <param id="0" name="Object">CruiseMissile</param>
-                            <param id="1" name="Layer">2</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action id="0" name="Call function" sid="4018372874598635" type="Function">
-                            <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
-                            <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
-                        </action>
-                        <action behavior="Bullet" id="0" name="Set speed" sid="4182661404571941" type="CruiseMissile">
-                            <param id="0" name="Speed">CRUISESPEED*speedScalar</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <comment>So retarget them every second</comment>
-        <event-block sid="4373396079150185">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="5705783054917461" type="System">
-                    <param id="0" name="Interval (seconds)">1.0</param>
-                </condition>
-            </conditions>
-            <actions />
-            <sub-events>
-                <event-block sid="2000479296842107">
-                    <conditions>
-                        <condition id="-11" name="For Each" sid="8361142874159617" type="System">
-                            <param id="0" name="Object">CruiseMissile</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Call function" sid="4293626570003926" type="Function">
-                            <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
-                            <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8257769057621161">
+                            <conditions>
+                                <condition id="-16" name="Pick random instance" sid="6654457091670133" type="System">
+                                    <param id="0" name="Object">Brain</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="8570628859803589" type="Brain">
+                                    <param id="0" name="Object">CruiseMissile</param>
+                                    <param id="1" name="Layer">2</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Call function" sid="4018372874598635" type="Function">
+                                    <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
+                                    <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="4182661404571941" type="CruiseMissile">
+                                    <param id="0" name="Speed">CRUISESPEED*speedScalar</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>So retarget them every second</comment>
+                        <event-block sid="4373396079150185">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="5705783054917461" type="System">
+                                    <param id="0" name="Interval (seconds)">1.0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="2000479296842107">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="8361142874159617" type="System">
+                                            <param id="0" name="Object">CruiseMissile</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="4293626570003926" type="Function">
+                                            <param id="0" name="Name">&quot;RetargetBrainMissile&quot;</param>
+                                            <param id="1" name="Parameter {n}">CruiseMissile.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
@@ -108,7 +120,11 @@
         <comment>Move the brains</comment>
         <event-block sid="7750118212071922">
             <conditions>
-                <condition id="-1" name="Every tick" sid="1471064434262849" type="System" />
+                <condition id="-14" name="Compare variable" sid="1471064434262849" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
             </conditions>
             <actions />
             <sub-events>
@@ -212,6 +228,11 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="2674553714938126" type="Humans" />
+                <action id="0" name="Spawn another object" sid="4770856121470984" type="Humans">
+                    <param id="0" name="Object">Prog</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
             </actions>
         </event-block>
     </events>
