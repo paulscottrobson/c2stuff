@@ -182,6 +182,18 @@
                         <action id="-26" name="Restart layout" sid="3445989787744054" type="System" />
                     </actions>
                 </event-block>
+                <comment>Lives zero, go to game over state</comment>
+                <event-block sid="6399487877506622">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="1365113306230409" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5533939600035145" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Value">STATE_GAMEOVER</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-block>
         <comment>Completed a level</comment>

@@ -15,7 +15,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="1">Player</event-sheet>
         <event-sheet order="2">Common</event-sheet>
         <event-sheet order="3">Globals and Constants</event-sheet>
-        <event-sheet active="1" order="4">TODO</event-sheet>
+        <event-sheet order="4">TODO</event-sheet>
         <event-sheet order="5">Creation</event-sheet>
         <event-sheet order="6">Humans</event-sheet>
         <event-sheet order="7">Electrodes</event-sheet>
@@ -23,7 +23,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="9">Hulk</event-sheet>
         <event-sheet order="10">Main</event-sheet>
         <event-sheet order="11">Missiles</event-sheet>
-        <event-sheet order="12">Brains</event-sheet>
+        <event-sheet active="1" order="12">Brains</event-sheet>
         <event-sheet order="13">Quark, Spheroid, Enforcer, Tank</event-sheet>
         <event-sheet order="15">Enter Level Events</event-sheet>
     </open-tabs>
@@ -50,7 +50,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="object-folder/" />
         <folder expanded="1" path="object-folder/Enemies/" />
         <folder expanded="1" path="object-folder/Humans/" />
-        <folder expanded="0" path="object-folder/Text/" />
+        <folder expanded="1" path="object-folder/Text/" />
+        <folder expanded="1" path="object-folder/Miscellany/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="event-folder/Enemies/" />
@@ -70,9 +71,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Prog/" />
         <folder expanded="1" path="animation-folder/CruiseMissile/" />
         <folder expanded="1" path="animation-folder/Brain/" />
-        <folder expanded="1" path="animation-folder/Child/" />
-        <folder expanded="1" path="animation-folder/Father/" />
-        <folder expanded="1" path="animation-folder/Mother/" />
+        <folder expanded="1" path="animation-folder/Mikie/" />
+        <folder expanded="1" path="animation-folder/Daddy/" />
+        <folder expanded="1" path="animation-folder/Mummy/" />
         <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/PlayerMissile/" />
         <folder expanded="1" path="animation-folder/LifeMarker/" />

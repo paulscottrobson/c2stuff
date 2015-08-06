@@ -64,12 +64,15 @@
         <variable comment="Number of humans collected" constant="0" name="humansCollected" sid="2719190680875734" static="0" type="number">0</variable>
         <comment>Speed Scalar</comment>
         <variable comment="Speed scalar" constant="0" name="speedScalar" sid="4733404181195136" static="0" type="number">1</variable>
+        <comment>Number of boxes drawn so far</comment>
+        <variable constant="0" name="boxCount" sid="820957763746652" static="0" type="number">0</variable>
         <event-group description="" sid="4132719014296746" title="State" />
         <variable comment="Current state" constant="0" name="state" sid="3282901660068868" static="0" type="number">0</variable>
         <comment>States</comment>
         <variable comment="Playing game" constant="1" name="STATE_PLAY" sid="1184149527524537" static="0" type="number">0</variable>
         <variable comment="Creating level from level state" constant="1" name="STATE_NEWLEVEL" sid="5828676377196543" static="0" type="number">1</variable>
         <variable comment="Life lost" constant="1" name="STATE_LIFELOST" sid="7760243052788026" static="0" type="number">2</variable>
+        <variable comment="Life lost" constant="1" name="STATE_GAMEOVER" sid="3047361262811512" static="0" type="number">3</variable>
         <event-group description="This is initialised at the start of a new level, if a life is lost these values are saved." sid="95829865074099" title="Number of items in each level currently" />
         <variable constant="0" name="CountGrunts" sid="509412798209998" static="0" type="number">1</variable>
         <variable constant="0" name="CountElectrodes" sid="8921848819248492" static="0" type="number">1</variable>

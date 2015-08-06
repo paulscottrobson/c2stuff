@@ -86,14 +86,80 @@
                                     <param id="0" name="Variable">CountQuarks</param>
                                     <param id="1" name="Value">int(tokenat(desc,9,&quot;,&quot;))</param>
                                 </action>
-                                <action id="-2" name="Go to layout" sid="4789518183481227" type="System">
-                                    <param id="0" name="Layout">Game</param>
+                                <action id="-9" name="Set value" sid="1810813326741309" type="System">
+                                    <param id="0" name="Variable">boxCount</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Play" sid="6814410239845689" type="Audio">
+                                    <param id="0" name="Audio file">Warp Next Level</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
+        </event-block>
+        <comment>Create the zoom in zoom out effect.</comment>
+        <event-block sid="252761110536396">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="2829466774522549" type="System">
+                    <param id="0" name="Interval (seconds)">0.04</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="8376799943171362" type="System">
+                    <param id="0" name="First value">boxCount*32</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">LayoutHeight</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="6219235216837596" type="System">
+                    <param id="0" name="Object to create">Box</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">LayoutWidth/2</param>
+                    <param id="3" name="Y">LayoutHeight/2</param>
+                </action>
+                <action id="-7" name="Set size" sid="37743002875182" type="Box">
+                    <param id="0" name="Width">(8+boxCount)*32</param>
+                    <param id="1" name="Height">boxCount*32</param>
+                </action>
+                <action id="-10" name="Add to" sid="5503920255901593" type="System">
+                    <param id="0" name="Variable">boxCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="7574387092106204" type="Box">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">0</param>
+                    <param id="2" name="Value">getbit(boxCount,0)*100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="9530865652331929" type="Box">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">1</param>
+                    <param id="2" name="Value">getbit(boxCount,1)*100</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="6641367257062922" type="Box">
+                    <param id="0" name="Effect">&quot;SetColor&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">getbit(boxCount,2)*100</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When all boxes have been destroyed, go to the game screen.</comment>
+        <event-block sid="2484117302352225">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="7270959034749205" type="System">
+                    <param id="0" name="First value">Box.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="2777669097574031" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

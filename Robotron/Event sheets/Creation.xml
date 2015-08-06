@@ -134,14 +134,14 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="214544746844312" type="System">
-                                    <param id="0" name="Object to create">Father</param>
+                                    <param id="0" name="Object to create">Daddy</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Player.X</param>
                                     <param id="3" name="Y">Player.Y</param>
                                 </action>
                                 <action id="0" name="Call function" sid="6158638442986791" type="Function">
                                     <param id="0" name="Name">&quot;Position&quot;</param>
-                                    <param id="1" name="Parameter {n}">Father.UID</param>
+                                    <param id="1" name="Parameter {n}">Daddy.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -167,14 +167,14 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="7639464147515471" type="System">
-                                    <param id="0" name="Object to create">Mother</param>
+                                    <param id="0" name="Object to create">Mummy</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Player.X</param>
                                     <param id="3" name="Y">Player.Y</param>
                                 </action>
                                 <action id="0" name="Call function" sid="2254230739801562" type="Function">
                                     <param id="0" name="Name">&quot;Position&quot;</param>
-                                    <param id="1" name="Parameter {n}">Mother.UID</param>
+                                    <param id="1" name="Parameter {n}">Mummy.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -200,14 +200,14 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="3980336659106024" type="System">
-                                    <param id="0" name="Object to create">Child</param>
+                                    <param id="0" name="Object to create">Mikie</param>
                                     <param id="1" name="Layer">1</param>
                                     <param id="2" name="X">Player.X</param>
                                     <param id="3" name="Y">Player.Y</param>
                                 </action>
                                 <action id="0" name="Call function" sid="766371440838841" type="Function">
                                     <param id="0" name="Name">&quot;Position&quot;</param>
-                                    <param id="1" name="Parameter {n}">Child.UID</param>
+                                    <param id="1" name="Parameter {n}">Mikie.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -365,15 +365,15 @@
                 </action>
                 <action id="-9" name="Set value" sid="6832563232623924" type="System">
                     <param id="0" name="Variable">CountDaddies</param>
-                    <param id="1" name="Value">Father.Count</param>
+                    <param id="1" name="Value">Daddy.Count</param>
                 </action>
                 <action id="-9" name="Set value" sid="8436229799226936" type="System">
                     <param id="0" name="Variable">CountMommies</param>
-                    <param id="1" name="Value">Mother.Count</param>
+                    <param id="1" name="Value">Mummy.Count</param>
                 </action>
                 <action id="-9" name="Set value" sid="163483503044826" type="System">
                     <param id="0" name="Variable">CountMikies</param>
-                    <param id="1" name="Value">Child.Count</param>
+                    <param id="1" name="Value">Mikie.Count</param>
                 </action>
                 <action id="-9" name="Set value" sid="7689048597826001" type="System">
                     <param id="0" name="Variable">CountHulks</param>

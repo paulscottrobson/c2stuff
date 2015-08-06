@@ -14,6 +14,7 @@
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -406,7 +407,7 @@
             </object-type>
         </object-folder>
         <object-folder name="Humans">
-            <object-type name="Child" sid="2934837249536788">
+            <object-type name="Mikie" sid="2934837249536788">
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016919481546539" speed="5">
@@ -415,7 +416,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="Father" sid="5319061470660758">
+            <object-type name="Daddy" sid="5319061470660758">
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2661438047150022" speed="5">
@@ -424,7 +425,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="Mother" sid="7062756826549816">
+            <object-type name="Mummy" sid="7062756826549816">
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3415437833941216" speed="5">
@@ -470,6 +471,36 @@
                 <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
             </object-type>
         </object-folder>
+        <object-folder name="Miscellany">
+            <object-type name="Box" sid="7829801835911559">
+                <plugin id="NinePatch" />
+                <behaviors>
+                    <behavior-type name="Fade" sid="4912138104721989">
+                        <behavior id="Fade" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture />
+            </object-type>
+            <object-type name="Audio" sid="6924397073363718">
+                <plugin id="Audio" />
+            </object-type>
+            <object-type name="Browser" sid="8757448502363394">
+                <plugin id="Browser" />
+            </object-type>
+            <object-type name="Edging" sid="1502945605650348">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
+            <object-type name="Frame" sid="291722540047679">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
+        </object-folder>
         <object-type name="Player" sid="3838142501653003">
             <plugin id="Sprite" />
             <instance-variables>
@@ -497,10 +528,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Frame" sid="291722540047679">
-            <plugin id="TiledBg" />
-            <texture />
-        </object-type>
         <object-type name="PlayerMissile" sid="2315484418625549">
             <plugin id="Sprite" />
             <behaviors>
@@ -520,10 +547,6 @@
         <object-type name="Keyboard" sid="1974305762740519">
             <plugin id="Keyboard" />
         </object-type>
-        <object-type name="Edging" sid="1502945605650348">
-            <plugin id="TiledBg" />
-            <texture />
-        </object-type>
         <object-type name="LifeMarker" sid="301878590077809">
             <plugin id="Sprite" />
             <animation-folder>
@@ -535,26 +558,20 @@
         <object-type name="Function" sid="6624102545666887">
             <plugin id="Function" />
         </object-type>
-        <object-type name="Browser" sid="8757448502363394">
-            <plugin id="Browser" />
-        </object-type>
-        <object-type name="Audio" sid="6924397073363718">
-            <plugin id="Audio" />
-        </object-type>
     </object-folder>
     <families>
         <family name="Scaleables" plugin-id="Sprite" sid="7045294177735034">
             <members>
                 <member>Brain</member>
-                <member>Child</member>
                 <member>CruiseMissile</member>
+                <member>Daddy</member>
                 <member>Electrode</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
-                <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
-                <member>Mother</member>
+                <member>Mikie</member>
+                <member>Mummy</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
                 <member>Prog</member>
@@ -567,15 +584,15 @@
         <family name="GameObjects" plugin-id="Sprite" sid="7232506723739091">
             <members>
                 <member>Brain</member>
-                <member>Child</member>
                 <member>CruiseMissile</member>
+                <member>Daddy</member>
                 <member>Electrode</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
-                <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
-                <member>Mother</member>
+                <member>Mikie</member>
+                <member>Mummy</member>
                 <member>Player</member>
                 <member>PlayerMissile</member>
                 <member>Prog</member>
@@ -593,14 +610,14 @@
         <family name="LockedToFrame" plugin-id="Sprite" sid="4813936077892901">
             <members>
                 <member>Brain</member>
-                <member>Child</member>
                 <member>CruiseMissile</member>
+                <member>Daddy</member>
                 <member>Enforcer</member>
                 <member>EnforcerMissile</member>
-                <member>Father</member>
                 <member>Grunt</member>
                 <member>Hulk</member>
-                <member>Mother</member>
+                <member>Mikie</member>
+                <member>Mummy</member>
                 <member>Player</member>
                 <member>Prog</member>
                 <member>Quark</member>
@@ -629,18 +646,18 @@
         </family>
         <family name="Humans" plugin-id="Sprite" sid="5856666315128485">
             <members>
-                <member>Child</member>
-                <member>Father</member>
-                <member>Mother</member>
+                <member>Daddy</member>
+                <member>Mikie</member>
+                <member>Mummy</member>
             </members>
         </family>
         <family name="Wanderers" plugin-id="Sprite" sid="7249892975979253">
             <members>
-                <member>Child</member>
+                <member>Daddy</member>
                 <member>Enforcer</member>
-                <member>Father</member>
                 <member>Hulk</member>
-                <member>Mother</member>
+                <member>Mikie</member>
+                <member>Mummy</member>
                 <member>Quark</member>
                 <member>Spheroid</member>
                 <member>Tank</member>

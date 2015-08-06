@@ -239,30 +239,30 @@
         <comment>Set initial speeds</comment>
         <event-block sid="2999327981996577">
             <conditions>
-                <condition id="-18" name="On created" sid="2216035168796512" type="Father" />
+                <condition id="-18" name="On created" sid="2216035168796512" type="Daddy" />
             </conditions>
             <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="1625442949853943" type="Father">
+                <action behavior="Bullet" id="0" name="Set speed" sid="1625442949853943" type="Daddy">
                     <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
                 </action>
             </actions>
         </event-block>
         <event-block sid="2810815435870771">
             <conditions>
-                <condition id="-18" name="On created" sid="7383254275356307" type="Mother" />
+                <condition id="-18" name="On created" sid="7383254275356307" type="Mummy" />
             </conditions>
             <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="6915063619419395" type="Mother">
+                <action behavior="Bullet" id="0" name="Set speed" sid="6915063619419395" type="Mummy">
                     <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
                 </action>
             </actions>
         </event-block>
         <event-block sid="8469499705296721">
             <conditions>
-                <condition id="-18" name="On created" sid="1654247281095821" type="Child" />
+                <condition id="-18" name="On created" sid="1654247281095821" type="Mikie" />
             </conditions>
             <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="3606843058499422" type="Child">
+                <action behavior="Bullet" id="0" name="Set speed" sid="3606843058499422" type="Mikie">
                     <param id="0" name="Speed">HUMANSPEED*speedScalar</param>
                 </action>
             </actions>
