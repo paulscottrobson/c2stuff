@@ -4,8 +4,6 @@
     <name>TODO</name>
     <events>
         <event-group description="" sid="688851364428772" title="TODO" />
-        <comment>Sound effects</comment>
-        <comment>State wait to start .....</comment>
         <comment>Completion state</comment>
     </events>
 </c2eventsheet>

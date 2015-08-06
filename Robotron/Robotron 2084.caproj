@@ -10,6 +10,7 @@
     <unique-id>10e502urhmd7a</unique-id>
     <saved-with-version>20600</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
@@ -478,6 +479,9 @@
                 <behavior-type name="8Direction" sid="679471908989599">
                     <behavior id="EightDir" />
                 </behavior-type>
+                <behavior-type name="Fade" sid="8196520780895472">
+                    <behavior id="Fade" />
+                </behavior-type>
             </behaviors>
             <animation-folder>
                 <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3007310069442849" speed="5">
@@ -526,6 +530,9 @@
         </object-type>
         <object-type name="Browser" sid="8757448502363394">
             <plugin id="Browser" />
+        </object-type>
+        <object-type name="Audio" sid="6924397073363718">
+            <plugin id="Audio" />
         </object-type>
     </object-folder>
     <families>
@@ -634,6 +641,7 @@
                 <instance-variable name="usesDiagonals" sid="1620092545929379" type="boolean" />
                 <instance-variable name="moveCount" sid="5127315570172424" type="number" />
                 <instance-variable comment="If true, heads directly for player" name="targetPlayer" sid="4949105596521674" type="boolean" />
+                <instance-variable comment="Has timer been started" name="started" sid="6035880436585045" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="9624322106646891">
@@ -730,8 +738,41 @@
         <global-instance type="Keyboard" uid="4" />
         <global-instance type="Function" uid="10" />
         <global-instance type="Browser" uid="14" />
+        <global-instance type="Audio" uid="23">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
+    <sounds-folder>
+        <file name="Enemy Dead.m4a" />
+        <file name="Enemy Dead.ogg" />
+        <file name="Family Collect.m4a" />
+        <file name="Family Collect.ogg" />
+        <file name="Grunt Walking.m4a" />
+        <file name="Grunt Walking.ogg" />
+        <file name="Player Died.m4a" />
+        <file name="Player Died.ogg" />
+        <file name="Player Shoot.m4a" />
+        <file name="Player Shoot.ogg" />
+        <file name="Pong Attack.m4a" />
+        <file name="Pong Attack.ogg" />
+        <file name="Start Level.m4a" />
+        <file name="Start Level.ogg" />
+        <file name="Start Up.m4a" />
+        <file name="Start Up.ogg" />
+        <file name="Warp Next Level.m4a" />
+        <file name="Warp Next Level.ogg" />
+    </sounds-folder>
     <music-folder />
     <files-folder>
         <file-folder name="Icons">

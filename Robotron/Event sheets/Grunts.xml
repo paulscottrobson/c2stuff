@@ -87,5 +87,26 @@
                 </action>
             </actions>
         </event-block>
+        <comment>Grunt walking SFX</comment>
+        <event-block sid="7274416780897459">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="3094314242088427" type="System">
+                    <param id="0" name="Interval (seconds)">0.6</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9272333372285457" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">STATE_PLAY</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="1325936782450339" type="Audio">
+                    <param id="0" name="Audio file">Grunt Walking</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

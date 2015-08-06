@@ -4,6 +4,18 @@
     <name>Player</name>
     <events>
         <event-group description="Controls the Player" sid="4927624936509483" title="Player Code" />
+        <comment>When player faded in, start the game.</comment>
+        <event-block sid="3181517267273107">
+            <conditions>
+                <condition behavior="Fade" id="1" name="On fade-in finished" sid="975625521775325" type="Player" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="129822368017267" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_PLAY</param>
+                </action>
+            </actions>
+        </event-block>
         <comment>Handle player movement</comment>
         <event-block sid="7027953360280166">
             <conditions>
@@ -80,6 +92,12 @@
                         <action behavior="Bullet" id="3" name="Set angle of motion" sid="4056341420487046" type="PlayerMissile">
                             <param id="0" name="Angle">Player.firingAngle</param>
                         </action>
+                        <action id="0" name="Play" sid="7790144682099704" type="Audio">
+                            <param id="0" name="Audio file">Player Shoot</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -92,6 +110,33 @@
                 <action behavior="8Direction" id="8" name="Set enabled" sid="1670081748772049" type="Player">
                     <param id="0" name="State">0</param>
                 </action>
+            </actions>
+        </event-block>
+        <comment>When player hits fatal object, a life is lost, save the current numbers of objects</comment>
+        <event-block sid="8481723335720711">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2572296945098553" type="FatalObjects">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6907030682264427" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_LIFELOST</param>
+                </action>
+                <action id="0" name="Play" sid="5665134938356933" type="Audio">
+                    <param id="0" name="Audio file">Player Died</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Call function" sid="9956234964197722" type="Function">
+                    <param id="0" name="Name">&quot;UpdateEnemyCountGlobals&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-9" name="Destroy" sid="2673492027594039" type="EnemyMissiles" />
+                <action id="-9" name="Destroy" sid="3026430783379672" type="CruiseMissile" />
+                <action id="-9" name="Destroy" sid="8917277067830016" type="PlayerMissile" />
             </actions>
         </event-block>
     </events>

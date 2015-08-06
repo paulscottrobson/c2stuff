@@ -21,6 +21,12 @@
                 <action id="0" name="Set text" sid="5953784734265101" type="WaveNumber">
                     <param id="0" name="Text">waveNumber</param>
                 </action>
+                <action id="0" name="Play" sid="5089286277864498" type="Audio">
+                    <param id="0" name="Audio file">Start Level</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="8947862690969007" title="Set up the Level" />
@@ -35,6 +41,10 @@
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="X">(FRAME_LEFT+FRAME_RIGHT)/2</param>
                     <param id="3" name="Y">(FRAME_TOP+FRAME_BOTTOM)/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="8598434584413584" type="System">
+                    <param id="0" name="Variable">state</param>
+                    <param id="1" name="Value">STATE_NEWLEVEL</param>
                 </action>
             </actions>
             <sub-events>
@@ -165,6 +175,39 @@
                                 <action id="0" name="Call function" sid="2254230739801562" type="Function">
                                     <param id="0" name="Name">&quot;Position&quot;</param>
                                     <param id="1" name="Parameter {n}">Mother.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9515001077300068">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9026703621299846" type="System">
+                            <param id="0" name="Variable">CountMikies</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="9189654079069098">
+                            <conditions>
+                                <condition id="-10" name="For" sid="5488571993193397" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">CountMikies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="3980336659106024" type="System">
+                                    <param id="0" name="Object to create">Child</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Player.X</param>
+                                    <param id="3" name="Y">Player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="766371440838841" type="Function">
+                                    <param id="0" name="Name">&quot;Position&quot;</param>
+                                    <param id="1" name="Parameter {n}">Child.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -302,40 +345,53 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="9515001077300068">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="9026703621299846" type="System">
-                            <param id="0" name="Variable">CountMikies</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="9189654079069098">
-                            <conditions>
-                                <condition id="-10" name="For" sid="5488571993193397" type="System">
-                                    <param id="0" name="Name">&quot;&quot;</param>
-                                    <param id="1" name="Start index">1</param>
-                                    <param id="2" name="End index">CountMikies</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="3980336659106024" type="System">
-                                    <param id="0" name="Object to create">Child</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">Player.X</param>
-                                    <param id="3" name="Y">Player.Y</param>
-                                </action>
-                                <action id="0" name="Call function" sid="766371440838841" type="Function">
-                                    <param id="0" name="Name">&quot;Position&quot;</param>
-                                    <param id="1" name="Parameter {n}">Child.UID</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
             </sub-events>
+        </event-block>
+        <comment>Update the count globals.</comment>
+        <event-block sid="9929898410464668">
+            <conditions>
+                <condition id="0" name="On function" sid="7074893445924672" type="Function">
+                    <param id="0" name="Name">&quot;UpdateEnemyCountGlobals&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="3062598870181724" type="System">
+                    <param id="0" name="Variable">CountGrunts</param>
+                    <param id="1" name="Value">Grunt.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="3887827654075639" type="System">
+                    <param id="0" name="Variable">CountElectrodes</param>
+                    <param id="1" name="Value">Electrode.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="6832563232623924" type="System">
+                    <param id="0" name="Variable">CountDaddies</param>
+                    <param id="1" name="Value">Father.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="8436229799226936" type="System">
+                    <param id="0" name="Variable">CountMommies</param>
+                    <param id="1" name="Value">Mother.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="163483503044826" type="System">
+                    <param id="0" name="Variable">CountMikies</param>
+                    <param id="1" name="Value">Child.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="7689048597826001" type="System">
+                    <param id="0" name="Variable">CountHulks</param>
+                    <param id="1" name="Value">Hulk.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="2775010579291383" type="System">
+                    <param id="0" name="Variable">CountBrains</param>
+                    <param id="1" name="Value">Brain.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="7003764954697262" type="System">
+                    <param id="0" name="Variable">CountSpheroids</param>
+                    <param id="1" name="Value">Spheroid.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="7366715009830119" type="System">
+                    <param id="0" name="Variable">CountQuarks</param>
+                    <param id="1" name="Value">Quark.Count</param>
+                </action>
+            </actions>
         </event-block>
         <comment>Position an enemy initially away from the middle</comment>
         <event-block sid="812921661658913">

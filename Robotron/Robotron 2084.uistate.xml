@@ -23,6 +23,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="10">Main</event-sheet>
         <event-sheet order="11">Missiles</event-sheet>
         <event-sheet order="12">Brains</event-sheet>
+        <event-sheet order="13">Quark, Spheroid, Enforcer, Tank</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -36,7 +37,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="1" name="LockedToFrame" />
         <family expanded="1" name="EnemyObjects" />
         <family expanded="1" name="Humans" />
-        <family expanded="0" name="Wanderers" />
+        <family expanded="1" name="Wanderers" />
         <family expanded="1" name="FatalObjects" />
         <family expanded="1" name="ShootableObjects" />
         <family expanded="1" name="Chasers" />

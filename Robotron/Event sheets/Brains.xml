@@ -233,6 +233,12 @@
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
                 </action>
+                <action id="0" name="Play" sid="3359051508685965" type="Audio">
+                    <param id="0" name="Audio file">Pong Attack</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
             </actions>
         </event-block>
     </events>

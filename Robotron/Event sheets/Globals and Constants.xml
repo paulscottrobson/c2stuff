@@ -20,9 +20,9 @@
         <variable comment="Speed of Tanks" constant="1" name="TANKSPEED" sid="912731906803541" static="0" type="number">60</variable>
         <variable comment="Speed of Enforcer" constant="1" name="ENFORCERSPEED" sid="3605093868369931" static="0" type="number">210</variable>
         <variable comment="Speed of Enemy Missile" constant="1" name="MISSILESPEED" sid="7476928498288594" static="0" type="number">276</variable>
-        <variable comment="Speed of Enemy Missile" constant="1" name="BRAINSPEED" sid="6355181739798583" static="0" type="number">30</variable>
+        <variable comment="Speed of Enemy Missile" constant="1" name="BRAINSPEED" sid="6355181739798583" static="0" type="number">15</variable>
         <variable comment="Speed of Enemy Missile" constant="1" name="CRUISESPEED" sid="6895434932650559" static="0" type="number">180</variable>
-        <variable comment="Speed of Prog" constant="1" name="PROGSPEED" sid="4615455491363386" static="0" type="number">250</variable>
+        <variable comment="Speed of Prog" constant="1" name="PROGSPEED" sid="4615455491363386" static="0" type="number">200</variable>
         <comment>How far back a hulk moves when hit</comment>
         <variable comment="How far back a hulk moves when hit" constant="1" name="HULKHITDISTANCE" sid="2129017903967394" static="0" type="number">13</variable>
         <event-group description="" sid="3595576589741883" title="Initialised Constants" />
@@ -71,14 +71,14 @@
         <variable comment="Creating level from level state" constant="1" name="STATE_NEWLEVEL" sid="5828676377196543" static="0" type="number">1</variable>
         <variable comment="Life lost" constant="1" name="STATE_LIFELOST" sid="7760243052788026" static="0" type="number">2</variable>
         <event-group description="This is initialised at the start of a new level, if a life is lost these values are saved." sid="95829865074099" title="Number of items in each level currently" />
-        <variable constant="0" name="CountGrunts" sid="509412798209998" static="0" type="number">15</variable>
-        <variable constant="0" name="CountElectrodes" sid="8921848819248492" static="0" type="number">5</variable>
+        <variable constant="0" name="CountGrunts" sid="509412798209998" static="0" type="number">1</variable>
+        <variable constant="0" name="CountElectrodes" sid="8921848819248492" static="0" type="number">1</variable>
         <variable constant="0" name="CountMommies" sid="6582647903126212" static="0" type="number">1</variable>
-        <variable constant="0" name="CountDaddies" sid="4855773952891343" static="0" type="number">2</variable>
-        <variable constant="0" name="CountMikies" sid="2149093264546874" static="0" type="number">3</variable>
+        <variable constant="0" name="CountDaddies" sid="4855773952891343" static="0" type="number">1</variable>
+        <variable constant="0" name="CountMikies" sid="2149093264546874" static="0" type="number">1</variable>
         <variable constant="0" name="CountHulks" sid="5742515018843781" static="0" type="number">1</variable>
-        <variable constant="0" name="CountBrains" sid="8919987674126756" static="0" type="number">2</variable>
-        <variable constant="0" name="CountSpheroids" sid="1202887187661987" static="0" type="number">3</variable>
-        <variable constant="0" name="CountQuarks" sid="3866729588810911" static="0" type="number">4</variable>
+        <variable constant="0" name="CountBrains" sid="8919987674126756" static="0" type="number">1</variable>
+        <variable constant="0" name="CountSpheroids" sid="1202887187661987" static="0" type="number">1</variable>
+        <variable constant="0" name="CountQuarks" sid="3866729588810911" static="0" type="number">1</variable>
     </events>
 </c2eventsheet>

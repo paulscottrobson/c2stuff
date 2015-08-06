@@ -165,6 +165,15 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>Yes</active-at-start>
+                                <fade-in-time>2</fade-in-time>
+                                <wait-time>0</wait-time>
+                                <fade-out-time>0</fade-out-time>
+                                <destroy>No</destroy>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -222,6 +231,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout2" />
@@ -263,6 +273,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout2" />
@@ -304,6 +315,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout2" />
@@ -345,6 +357,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                         <points>1000</points>
                     </instance-variables>
                     <behavior-instances>
@@ -388,6 +401,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                         <points>1000</points>
                     </instance-variables>
                     <behavior-instances>
@@ -688,6 +702,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout2" />
@@ -730,6 +745,7 @@
                         <usesDiagonals>true</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>true</targetPlayer>
+                        <started>false</started>
                         <points>150</points>
                     </instance-variables>
                     <behavior-instances>
@@ -855,6 +871,7 @@
                         <usesDiagonals>true</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>true</targetPlayer>
+                        <started>false</started>
                         <points>200</points>
                     </instance-variables>
                     <behavior-instances>
@@ -945,6 +962,7 @@
                         <usesDiagonals>false</usesDiagonals>
                         <moveCount>0</moveCount>
                         <targetPlayer>false</targetPlayer>
+                        <started>false</started>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout2" />

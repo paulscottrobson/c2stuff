@@ -25,12 +25,7 @@
                     <param id="2" name="Value">STATE_PLAY</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="-11" name="Add to" sid="8309550877758501" type="Wanderers">
-                    <param id="0" name="Instance variable">moveCount</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-            </actions>
+            <actions />
             <sub-events>
                 <comment>Generic behaviour for Wanderers (Humans and Hulks,, Diagonal version for Spheroids and Quarks)</comment>
                 <event-block any="1" sid="4622396992098336">
@@ -38,7 +33,9 @@
                         <condition behavior="Timer" id="0" name="On timer" sid="8398892012061235" type="Wanderers">
                             <param id="0" name="Tag">&quot;ChangeDirection&quot;</param>
                         </condition>
-                        <condition id="-18" name="On created" sid="5771895737087723" type="Wanderers" />
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="5771895737087723" type="Wanderers">
+                            <param id="0" name="Instance variable">started</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action behavior="Bullet" id="3" name="Set angle of motion" sid="7301026021881634" type="Wanderers">
@@ -48,12 +45,20 @@
                             <param id="0" name="State">1</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="1148591722980708" type="Wanderers">
-                            <param id="0" name="Duration">random(3,5)</param>
+                            <param id="0" name="Duration">random(1.5,3.5)</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;ChangeDirection&quot;</param>
                         </action>
                         <action behavior="Bullet" id="5" name="Set enabled" sid="4743268785308127" type="Wanderers">
                             <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="8309550877758501" type="Wanderers">
+                            <param id="0" name="Instance variable">moveCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="2440325222479048" type="Wanderers">
+                            <param id="0" name="Instance variable">started</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -171,11 +176,22 @@
                         <condition id="0" name="On collision with another object" sid="2491801229218574" type="Humans">
                             <param id="0" name="Object">Player</param>
                         </condition>
+                        <condition id="-14" name="Compare variable" sid="8366886135016508" type="System">
+                            <param id="0" name="Variable">state</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">STATE_PLAY</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="6434194598289976" type="System">
                             <param id="0" name="Variable">humansCollected</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Play" sid="268419099773686" type="Audio">
+                            <param id="0" name="Audio file">Family Collect</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
                         </action>
                     </actions>
                     <sub-events>
