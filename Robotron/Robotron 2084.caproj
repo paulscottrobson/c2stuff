@@ -482,11 +482,18 @@
                 <behavior-type name="Fade" sid="8196520780895472">
                     <behavior id="Fade" />
                 </behavior-type>
+                <behavior-type name="Timer" sid="2870845868830907">
+                    <behavior id="Timer" />
+                </behavior-type>
             </behaviors>
             <animation-folder>
                 <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3007310069442849" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\player\walk\e0.png" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Construct2\Practice\Docs\Robotron\Sprites\player\walk\e2.png" />
+                </animation>
+                <animation framecount="2" loop="1" name="Death" pingpong="0" repeatcount="1" repeatto="0" sid="2378690031928134" speed="10">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -604,6 +611,7 @@
         </family>
         <family name="EnemyObjects" plugin-id="Sprite" sid="8243731500252052">
             <members>
+                <member>Brain</member>
                 <member>Electrode</member>
                 <member>Enforcer</member>
                 <member>Grunt</member>
@@ -713,9 +721,21 @@
                 </behavior-type>
             </behaviors>
         </family>
+        <family name="Robotrons" plugin-id="Sprite" sid="6391342908507804">
+            <members>
+                <member>Brain</member>
+                <member>Enforcer</member>
+                <member>Grunt</member>
+                <member>Prog</member>
+                <member>Quark</member>
+                <member>Spheroid</member>
+                <member>Tank</member>
+            </members>
+        </family>
     </families>
     <layout-folder>
         <layout>Game.xml</layout>
+        <layout>Enter Level.xml</layout>
     </layout-folder>
     <event-folder>
         <event-folder name="Enemies">
@@ -733,6 +753,7 @@
         <event-sheet>Creation.xml</event-sheet>
         <event-sheet>Humans.xml</event-sheet>
         <event-sheet>Missiles.xml</event-sheet>
+        <event-sheet>Enter Level Events.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />

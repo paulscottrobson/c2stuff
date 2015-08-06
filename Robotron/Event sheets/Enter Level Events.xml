@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Enter Level Events</name>
+    <events>
+        <include>Globals and Constants</include>
+        <event-block sid="1004306286846416">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5261112315795671" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="desc" sid="9191618437825897" static="0" type="text"></variable>
+                <variable comment="Ref Number" constant="0" name="n" sid="9818283583254622" static="0" type="number">0</variable>
+                <comment>Work out which item number to use. The entries are numbered 1..40 but are items 0..39</comment>
+                <event-block sid="2714068768001732">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3112829254691946" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="7925926716769494" type="System">
+                            <param id="0" name="Variable">n</param>
+                            <param id="1" name="Value">waveNumber-1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>They repeat after level 41, going back to level 21 (e.g. entry # 20)</comment>
+                        <event-block sid="8613676544498317">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="1968906139988978" type="System">
+                                    <param id="0" name="Variable">n</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">40</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="384796575660987" type="System">
+                                    <param id="0" name="Variable">n</param>
+                                    <param id="1" name="Value">(n - 40) % 20 + 20</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Now have a CSV description in &quot;desc&quot; - unpack into the count globals. Could use an array for this really.</comment>
+                        <event-block sid="9298861216764484">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="9416384721640674" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="6545794461183373" type="System">
+                                    <param id="0" name="Variable">desc</param>
+                                    <param id="1" name="Value">tokenat(LEVELDATA,n,&quot;:&quot;)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="1135669913900205" type="System">
+                                    <param id="0" name="Variable">CountGrunts</param>
+                                    <param id="1" name="Value">int(tokenat(desc,1,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="7569461297649336" type="System">
+                                    <param id="0" name="Variable">CountElectrodes</param>
+                                    <param id="1" name="Value">int(tokenat(desc,2,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="783783501791844" type="System">
+                                    <param id="0" name="Variable">CountMommies</param>
+                                    <param id="1" name="Value">int(tokenat(desc,3,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9788094456125545" type="System">
+                                    <param id="0" name="Variable">CountDaddies</param>
+                                    <param id="1" name="Value">int(tokenat(desc,4,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="5368770112965816" type="System">
+                                    <param id="0" name="Variable">CountMikies</param>
+                                    <param id="1" name="Value">int(tokenat(desc,5,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6147970007764871" type="System">
+                                    <param id="0" name="Variable">CountHulks</param>
+                                    <param id="1" name="Value">int(tokenat(desc,6,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2290957236437443" type="System">
+                                    <param id="0" name="Variable">CountBrains</param>
+                                    <param id="1" name="Value">int(tokenat(desc,7,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4011827693138633" type="System">
+                                    <param id="0" name="Variable">CountSpheroids</param>
+                                    <param id="1" name="Value">int(tokenat(desc,8,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9049696636915238" type="System">
+                                    <param id="0" name="Variable">CountQuarks</param>
+                                    <param id="1" name="Value">int(tokenat(desc,9,&quot;,&quot;))</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="4789518183481227" type="System">
+                                    <param id="0" name="Layout">Game</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -59,7 +59,7 @@
         <comment>Current lives (including current one)</comment>
         <variable comment="Lives remaining including current one" constant="0" name="lives" sid="683145243605531" static="0" type="number">3</variable>
         <comment>Current level</comment>
-        <variable comment="Current level" constant="0" name="waveNumber" sid="3503179619649141" static="0" type="number">1</variable>
+        <variable comment="Current level" constant="0" name="waveNumber" sid="3503179619649141" static="0" type="number">2</variable>
         <comment>Number of humans collected so far</comment>
         <variable comment="Number of humans collected" constant="0" name="humansCollected" sid="2719190680875734" static="0" type="number">0</variable>
         <comment>Speed Scalar</comment>
@@ -80,5 +80,7 @@
         <variable constant="0" name="CountBrains" sid="8919987674126756" static="0" type="number">1</variable>
         <variable constant="0" name="CountSpheroids" sid="1202887187661987" static="0" type="number">1</variable>
         <variable constant="0" name="CountQuarks" sid="3866729588810911" static="0" type="number">1</variable>
+        <event-group description="40 sets of 9 digits each. Sets seperated by : and digits seperated by , Represent Wave#.Grunts,Electrodes,Mummies,Daddies,Mikies,Hulks,Brains,Spheroids,Quarks" sid="6896215571856777" title="Level Data" />
+        <variable comment="Level Data (21-40 repeats level 41 onwards)" constant="1" name="LevelData" sid="9724415915271246" static="0" type="text">1,15,5,1,1,0,0,0,0,0:2,17,15,1,1,1,5,0,1,0:3,22,25,2,2,2,6,0,3,0:4,34,25,2,2,2,7,0,4,0:5,20,20,15,0,1,0,15,1,0:6,32,25,3,3,3,7,0,4,0:7,0,0,4,4,4,12,0,0,10:8,35,25,3,3,3,8,0,5,0:9,60,0,3,3,3,4,0,5,0:10,25,20,0,22,0,0,20,1,0:11,35,25,3,3,3,8,0,5,0:12,0,0,3,3,3,13,0,0,12:13,35,25,3,3,3,8,0,5,0:14,27,5,5,5,5,20,0,2,0:15,25,20,0,0,22,2,20,1,0:16,35,25,3,3,3,3,0,5,0:17,0,0,3,3,3,14,0,0,12:18,35,25,3,3,3,8,0,5,0:19,70,0,3,3,3,3,0,5,0:20,25,20,8,8,8,2,20,2,0:21,35,25,3,3,3,8,0,5,0:22,0,0,3,3,3,15,0,0,12:23,35,25,3,3,3,8,0,5,0:24,0,0,3,3,3,13,0,6,7:25,25,20,25,0,1,1,21,1,0:26,35,25,3,3,3,8,0,5,0:27,0,0,3,3,3,16,0,0,12:28,35,25,3,3,3,8,0,5,1:29,75,0,3,3,3,4,0,5,1:30,25,20,0,25,0,1,22,1,1:31,35,25,3,3,3,8,0,5,1:32,0,0,3,3,3,16,0,0,13:33,35,25,3,3,3,8,0,5,1:34,30,0,3,3,3,25,0,2,2:35,27,15,0,0,25,2,23,1,2:36,35,25,3,3,3,8,0,5,2:37,0,0,3,3,3,16,0,0,14:38,35,25,3,3,3,8,0,5,2:39,80,0,3,3,3,6,0,5,1:40,30,15,10,10,10,2,25,1,1:</variable>
     </events>
 </c2eventsheet>

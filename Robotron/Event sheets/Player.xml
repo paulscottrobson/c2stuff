@@ -137,6 +137,70 @@
                 <action id="-9" name="Destroy" sid="2673492027594039" type="EnemyMissiles" />
                 <action id="-9" name="Destroy" sid="3026430783379672" type="CruiseMissile" />
                 <action id="-9" name="Destroy" sid="8917277067830016" type="PlayerMissile" />
+                <action id="4" name="Set animation" sid="9375825304924395" type="Player">
+                    <param id="0" name="Animation">&quot;Death&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="1423539414814857" type="Player">
+                    <param id="0" name="Duration">2</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;Continue&quot;</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="367364758223107" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Call function" sid="713374219128192" type="Function">
+                    <param id="0" name="Name">&quot;UpdateLives&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="2" name="Stop" sid="5387437889354914" type="EnemyObjects" />
+                <action id="2" name="Stop" sid="5698951048454623" type="Humans" />
+            </actions>
+        </event-block>
+        <comment>Life lost time out</comment>
+        <event-block sid="4024584205566383">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="9825855022956724" type="Player">
+                    <param id="0" name="Tag">&quot;Continue&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="2" name="Stop" sid="43277288040519" type="Player" />
+            </actions>
+            <sub-events>
+                <comment>More lives, restart level with whatever the saved values are</comment>
+                <event-block sid="5452096057374932">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5593420176915573" type="System">
+                            <param id="0" name="Variable">lives</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Restart layout" sid="3445989787744054" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Completed a level</comment>
+        <event-block sid="2815416056915697">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6070431187276932" type="System">
+                    <param id="0" name="First value">Robotrons.Count</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="6342087639048808" type="System">
+                    <param id="0" name="Variable">waveNumber</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="6964336956010692" type="System">
+                    <param id="0" name="Layout">Enter Level</param>
+                </action>
             </actions>
         </event-block>
     </events>

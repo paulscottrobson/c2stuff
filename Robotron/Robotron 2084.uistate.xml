@@ -11,6 +11,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">Game</layout>
+        <layout order="14">Enter Level</layout>
         <event-sheet order="1">Player</event-sheet>
         <event-sheet order="2">Common</event-sheet>
         <event-sheet order="3">Globals and Constants</event-sheet>
@@ -24,6 +25,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet order="11">Missiles</event-sheet>
         <event-sheet order="12">Brains</event-sheet>
         <event-sheet order="13">Quark, Spheroid, Enforcer, Tank</event-sheet>
+        <event-sheet order="15">Enter Level Events</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -42,6 +44,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="1" name="ShootableObjects" />
         <family expanded="1" name="Chasers" />
         <family expanded="0" name="EnemyMissiles" />
+        <family expanded="1" name="Robotrons" />
     </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
