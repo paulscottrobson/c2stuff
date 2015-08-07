@@ -470,6 +470,20 @@
                 </effects>
                 <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
             </object-type>
+            <object-type name="GameOverText" sid="4869375185136802">
+                <plugin id="Spritefont2" />
+                <behaviors>
+                    <behavior-type name="Fade" sid="4120370153157249">
+                        <behavior id="Fade" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="SetColor">
+                        <effect id="setcolor" />
+                    </effect-type>
+                </effects>
+                <texture original-source="C:\Construct2\Sprite Font Creator\braciola.png" />
+            </object-type>
         </object-folder>
         <object-folder name="Miscellany">
             <object-type name="Box" sid="7829801835911559">
@@ -557,6 +571,27 @@
         </object-type>
         <object-type name="Function" sid="6624102545666887">
             <plugin id="Function" />
+        </object-type>
+        <object-type name="Logo" sid="4979242741698873">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4592493397366313" speed="5">
+                    <frame duration="1" hotspotX="0.50116" hotspotY="0.50365" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Circle" sid="7635855588542083">
+            <plugin id="Sprite" />
+            <effects>
+                <effect-type name="SetColor">
+                    <effect id="setcolor" />
+                </effect-type>
+            </effects>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2914133051963185" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>
@@ -753,6 +788,7 @@
     <layout-folder>
         <layout>Game.xml</layout>
         <layout>Enter Level.xml</layout>
+        <layout>Title Screen.xml</layout>
     </layout-folder>
     <event-folder>
         <event-folder name="Enemies">
@@ -771,6 +807,7 @@
         <event-sheet>Humans.xml</event-sheet>
         <event-sheet>Missiles.xml</event-sheet>
         <event-sheet>Enter Level Events.xml</event-sheet>
+        <event-sheet>Title Screen.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />

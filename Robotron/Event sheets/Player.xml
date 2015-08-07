@@ -192,6 +192,7 @@
                             <param id="0" name="Variable">state</param>
                             <param id="1" name="Value">STATE_GAMEOVER</param>
                         </action>
+                        <action behavior="Fade" id="1" name="Start fade" sid="158918345862614" type="GameOverText" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -212,6 +213,17 @@
                 </action>
                 <action id="-2" name="Go to layout" sid="6964336956010692" type="System">
                     <param id="0" name="Layout">Enter Level</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When Game Over finished, return to title screen</comment>
+        <event-block sid="4434282032054726">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="4911128453351161" type="GameOverText" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="1394356229435171" type="System">
+                    <param id="0" name="Layout">Title Screen</param>
                 </action>
             </actions>
         </event-block>

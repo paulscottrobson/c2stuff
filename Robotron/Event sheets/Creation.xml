@@ -27,6 +27,9 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
+                <action id="-16" name="Set opacity" sid="1688210589035075" type="GameOverText">
+                    <param id="0" name="Opacity">0</param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="8947862690969007" title="Set up the Level" />

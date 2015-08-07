@@ -55,7 +55,7 @@
         </event-block>
         <event-group description="" sid="3836417830586914" title="Variables" />
         <comment>Current score</comment>
-        <variable comment="Current score" constant="0" name="score" sid="3992352173049936" static="0" type="number">0</variable>
+        <variable comment="Current score" constant="0" name="score" sid="3992352173049936" static="0" type="number">-1</variable>
         <comment>Current lives (including current one)</comment>
         <variable comment="Lives remaining including current one" constant="0" name="lives" sid="683145243605531" static="0" type="number">3</variable>
         <comment>Current level</comment>
@@ -66,6 +66,31 @@
         <variable comment="Speed scalar" constant="0" name="speedScalar" sid="4733404181195136" static="0" type="number">1</variable>
         <comment>Number of boxes drawn so far</comment>
         <variable constant="0" name="boxCount" sid="820957763746652" static="0" type="number">0</variable>
+        <comment>Variable initialisation</comment>
+        <event-block sid="3063415803820573">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6702298992171539" type="System" />
+                <condition id="-14" name="Compare variable" sid="6980047942632524" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5956833477722902" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5637747857707943" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+                <action id="-9" name="Set value" sid="1489508713229476" type="System">
+                    <param id="0" name="Variable">waveNumber</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
         <event-group description="" sid="4132719014296746" title="State" />
         <variable comment="Current state" constant="0" name="state" sid="3282901660068868" static="0" type="number">0</variable>
         <comment>States</comment>

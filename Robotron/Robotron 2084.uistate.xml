@@ -10,22 +10,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">Game</layout>
-        <layout order="14">Enter Level</layout>
+        <layout order="0">Title Screen</layout>
         <event-sheet order="1">Player</event-sheet>
-        <event-sheet order="2">Common</event-sheet>
-        <event-sheet order="3">Globals and Constants</event-sheet>
-        <event-sheet order="4">TODO</event-sheet>
-        <event-sheet order="5">Creation</event-sheet>
-        <event-sheet order="6">Humans</event-sheet>
-        <event-sheet order="7">Electrodes</event-sheet>
-        <event-sheet order="8">Grunts</event-sheet>
-        <event-sheet order="9">Hulk</event-sheet>
-        <event-sheet order="10">Main</event-sheet>
-        <event-sheet order="11">Missiles</event-sheet>
-        <event-sheet active="1" order="12">Brains</event-sheet>
-        <event-sheet order="13">Quark, Spheroid, Enforcer, Tank</event-sheet>
-        <event-sheet order="15">Enter Level Events</event-sheet>
+        <event-sheet order="2">Globals and Constants</event-sheet>
+        <event-sheet order="3">TODO</event-sheet>
+        <event-sheet active="1" order="4">Title Screen</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -77,5 +66,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Player/" />
         <folder expanded="1" path="animation-folder/PlayerMissile/" />
         <folder expanded="1" path="animation-folder/LifeMarker/" />
+        <folder expanded="1" path="animation-folder/Logo/" />
+        <folder expanded="1" path="animation-folder/Circle/" />
     </folders-expanded>
 </c2uistate>
