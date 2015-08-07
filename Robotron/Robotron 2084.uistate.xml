@@ -11,10 +11,13 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="0">Title Screen</layout>
+        <layout order="5">Game</layout>
         <event-sheet order="1">Player</event-sheet>
         <event-sheet order="2">Globals and Constants</event-sheet>
         <event-sheet order="3">TODO</event-sheet>
-        <event-sheet active="1" order="4">Title Screen</event-sheet>
+        <event-sheet order="4">Title Screen</event-sheet>
+        <event-sheet order="6">Brains</event-sheet>
+        <event-sheet active="1" order="7">Common</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />

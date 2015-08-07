@@ -223,6 +223,11 @@
                 <condition id="0" name="On collision with another object" sid="3147428439664976" type="Humans">
                     <param id="0" name="Object">Brain</param>
                 </condition>
+                <condition id="-8" name="Compare two values" sid="1293975508127624" type="System">
+                    <param id="0" name="First value">Brain.targetUID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">Humans.UID</param>
+                </condition>
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="2674553714938126" type="Humans" />

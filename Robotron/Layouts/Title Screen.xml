@@ -1126,7 +1126,7 @@
                         <character-width>64</character-width>
                         <character-height>96</character-height>
                         <character-set>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#&quot;&apos;&amp;()[]|`\/@°+=*$£€&lt;&gt;</character-set>
-                        <text>CREDITS : 1</text>
+                        <text>CREDITS : 999</text>
                         <scale>0.45</scale>
                         <initial-visibility>Visible</initial-visibility>
                         <horizontal-alignment>Center</horizontal-alignment>
